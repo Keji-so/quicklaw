@@ -1,0 +1,38 @@
+{
+  "name": "boilerplate-nuxt",
+  "version": "1.1.0",
+  "private": true,
+  "engines": {
+    "npm": ">=9",
+    "node": ">=20",
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "cleanup": "nuxi cleanup",
+    "dev": "nuxi cleanup && nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prepare": "nuxt prepare",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.12.1",
+    "@nuxt/devtools": "1.1.5",
+    "@nuxtjs/tailwindcss": "6.11.4",
+    "daisyui": "4.9.0",
+    "dayjs": "1.11.10",
+    "eslint": "npm:eslint-ts-patch@8.57.0-0",
+    "eslint-plugin-prefer-arrow-functions": "^3.3.2",
+    "eslint-plugin-tailwindcss": "^3.15.1",
+    "eslint-ts-patch": "8.57.0-0",
+    "nuxt": "3.11.1",
+    "nuxt-icon": "0.6.10",
+    "nuxt-lodash": "2.5.3",
+    "typescript": "5.4.3",
+    "vue-eslint-parser": "9.4.2"
+  }
+}

@@ -1,0 +1,11 @@
+.table th:first-child {
+  position: unset;
+  @apply left-[unset] z-[unset];
+}
+
+.table tfoot td,
+.table tfoot th,
+.table thead td,
+.table thead th {
+  @apply font-extrabold bg-base-300;
+}

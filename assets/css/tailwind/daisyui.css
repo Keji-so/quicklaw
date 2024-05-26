@@ -1,0 +1,18 @@
+/* This file contains the root override for DaisyUI */
+
+@layer base {
+  :root {
+    --rounded-box: 0.5rem; /* border-radius for cards and other big elements */
+    --rounded-btn: 0.25rem; /* border-radius for buttons and similar elements */
+    --rounded-badge: 0.375rem; /* border-radius for badge and other small elements */
+
+    --animation-btn: 0.25s; /* bounce animation time for button */
+    --animation-input: 0.2s; /* bounce animation time for checkbox, toggle, etc */
+
+    --padding-card: 2rem; /* default card-body padding */
+
+    --btn-text-case: capitalize; /* default text case for buttons */
+    --navbar-padding: 0.5rem; /* default padding for navbar */
+    --border-btn: 1px;
+  }
+}

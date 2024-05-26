@@ -1,0 +1,22 @@
+/* This file is specifically for the boilerplate.
+  you can remove/modify the codes below to suit the project need*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap');
+@import './index.css';
+@import './daisyui.css';
+@import './modal.css';
+@import './table.css';
+@import './menu.css';
+
+body {
+  font-family: 'Lato', sans-serif;
+  @apply bg-gray-200;
+}
+
+/* Consistent spacing on the sides of code snippet */
+.mockup-code pre:before {
+  margin-right: 0ch;
+}
+.mockup-code pre {
+  padding: 0 2ch;
+}

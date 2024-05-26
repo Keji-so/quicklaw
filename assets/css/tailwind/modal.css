@@ -1,0 +1,45 @@
+/* Daisy UI Modal Mods */
+
+.modal-box {
+  @apply p-[unset];
+}
+
+.modal-action {
+  @apply m-[unset];
+}
+
+.modal-content {
+  @apply flex flex-col flex-grow;
+}
+
+.modal-title {
+  @apply p-4 text-2xl font-semibold bg-gray-100 border-b text-primary;
+}
+
+.modal-action {
+  @apply p-4 border-t;
+}
+
+.modal-body {
+  @apply p-4;
+}
+
+.modal-scrollable {
+  @apply flex max-h-[calc(100%-1rem)];
+}
+
+.modal-scrollable .modal-content {
+  @apply overflow-hidden;
+}
+
+.modal-scrollable .modal-body {
+  @apply overflow-y-auto;
+}
+
+.modal-md {
+  @apply lg:max-w-[600px];
+}
+
+.modal-lg {
+  @apply lg:max-w-[800px];
+}

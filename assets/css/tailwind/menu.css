@@ -1,0 +1,15 @@
+.menu {
+  @apply overflow-hidden p-[unset];
+}
+
+.menu a {
+  @apply rounded-[unset];
+}
+
+.menu.sub-menu {
+  @apply w-full p-1 shadow bg-gray-100 rounded-box dropdown-content;
+}
+
+.menu.sub-menu > * {
+  @apply mt-1;
+}
