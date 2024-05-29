@@ -1,3 +1,4 @@
+import getHeadScripts from './commons/head-scripts'
 /** Module Options */
 const lodashOptions = {
   prefix: 'lodash',
@@ -6,8 +7,13 @@ const lodashOptions = {
 
 export default defineNuxtConfig({
   pages: true,
+  app: {
+    head: {
+      script: [...(getHeadScripts() as any)]
+    }
+  },
 
-  css: ['~/assets/css/others/main.css'],
+  css: ['~/public/assets/css/normalize.css', '~/public/assets/css/webflow.css', '~/public/assets/css/quicklaw.webflow.css', '~/public/assets/css/global.css', '~/assets/css/others/main.css'],
 
   devServer: {
     port: 3002

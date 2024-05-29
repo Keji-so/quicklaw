@@ -1,8 +1,18 @@
 <template>
-  <NuxtPage />
+  <div>
+    <NuxtPage />
+  </div>
 </template>
 
 <script setup lang="ts">
+import { smoothScroll } from './commons/lenis'
+
+onMounted(() => {
+  setTimeout(() => {
+    smoothScroll()
+  }, 2000)
+})
+
 const isOnline = useOnline()
 const toast = useToast({
   slot: { icon: false },

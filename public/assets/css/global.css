@@ -1,0 +1,118 @@
+/** Links **/
+a {
+	color: inherit;
+  text-decoration: none;
+}
+/** Form elements **/
+textarea, 
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox,
+.w-input,
+.w-select {
+	-webkit-appearance: none;
+	resize: vertical;
+} 
+textarea {
+	resize: none;
+}
+.w-select {
+	background-position: center right 2px;
+}
+input[type="email"] {
+	text-transform: lowercase;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/** Images **/
+img {
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
+	user-drag: none;
+}
+/** Buttons **/
+.c-button {
+	display: inline-flex;
+}
+/** Popups **/
+.c-popup.cc-hide {
+visibility: hidden;
+}
+.c-popup {
+visibility: visible;
+}
+#scrollbar:not(:hover)::-webkit-scrollbar-thumb, 
+#scrollbar:not(:hover)::-webkit-scrollbar-track
+{
+visibility: hidden;
+}
+#scrollbar::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+#scrollbar::-webkit-scrollbar-track{
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+#scrollbar::-webkit-scrollbar-thumb  {
+  border-radius: 100px;
+  border: 6px solid rgba(0, 0, 0, 0.18);
+  background-color: var(--light-green);
+}
+.footer-contact_flex:last-child,
+.social-link:last-child,
+.order-filter:last-child{
+margin-right: 0;
+}
+.footer-link:last-child,
+.c-service:last-child,
+.dashboard-link.w--current:last-child {
+margin-bottom: 0;
+}
+.c-status.cc-submitted .status-color{
+background: var(--gold);
+}
+.c-status.cc-in-progress .status-color{
+background: var(--purple);
+}
+.c-status.cc-cancelled .status-color{
+background: var(--red);
+}
+.c-status.cc-done .status-color{
+background: var(--light-green);
+}
+.c-status.cc-draft .status-color{
+background: var(--dark-blue);
+}
+.dashboard-link.w--current:first-child {
+margin-top: 0;
+}
+ .column-text {
+     overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
+    }
+.references-list_item > a {
+word-break: break-all;
+}
+.references-list_item:last-child {
+margin-bottom: 0;
+}
+@media screen and (max-width: 767px) {
+.table-entry:last-child {
+border-bottom: none;
+margin-bottom: 0;
+}
+}
