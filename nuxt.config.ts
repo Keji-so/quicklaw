@@ -1,19 +1,21 @@
 import getHeadScripts from './commons/head-scripts'
-/** Module Options */
-const lodashOptions = {
-  prefix: 'lodash',
-  prefixSkip: false
-}
 
 export default defineNuxtConfig({
   pages: true,
+
   app: {
     head: {
       script: [...(getHeadScripts() as any)]
     }
   },
 
-  css: ['~/public/assets/css/normalize.css', '~/public/assets/css/webflow.css', '~/public/assets/css/quicklaw.webflow.css', '~/public/assets/css/global.css', '~/assets/css/others/main.css'],
+  css: [
+    '~/public/assets/css/normalize.css',
+    '~/public/assets/css/webflow.css',
+    '~/public/assets/css/quicklaw.webflow.css',
+    '~/public/assets/css/global.css',
+    '~/assets/css/others/main.css'
+  ],
 
   devServer: {
     port: 3002
@@ -26,7 +28,13 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/tailwindcss', ['nuxt-lodash', lodashOptions]],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    ['nuxt-lodash', {
+      prefix: 'lodash',
+      prefixSkip: false
+    }],
+  ],
 
   routeRules: {
     '/nitro/**': { proxy: '/api/**' }

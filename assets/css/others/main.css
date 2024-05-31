@@ -1,5 +1,7 @@
 @import './transitions.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
 .router-link-active {
 font-weight: 500;
 color: var(--green-primary);
