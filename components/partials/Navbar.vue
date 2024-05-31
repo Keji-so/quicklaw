@@ -24,7 +24,7 @@
         Dashboard
       </nuxtLink>
       <a class="c-nav_link cc-hide" href="#">Sign In</a>
-      <nuxtLink class="c-nav_link cc-signup" to="/sign-up">
+      <nuxtLink class="c-nav_link cc-signup" to="/auth/sign-up">
         Sign Up
       </nuxtLink>
     </div>

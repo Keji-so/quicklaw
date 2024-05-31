@@ -232,7 +232,11 @@
               </div>
             </div>
             <div class="btn-flex">
-              <input class="c-button cc-lg w-button" data-wait="" type="submit" value="Submit">
+                <SubmitButton
+                      classes="c-button cc-lg"
+                      form="form-sign-up"
+                      message="Next"
+                      :state="isSubmittingRef ? 'loading' : 'idle'" />
             </div>
           </form>
           <div class="w-form-done">
@@ -254,6 +258,7 @@
 
 <script setup lang="ts">
 
+const isSubmittingRef = ref<boolean>(false)
 </script>
 
 <style scoped>

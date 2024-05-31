@@ -36,77 +36,10 @@
           </div>
         </div>
         <div class="insights-flex_container">
-          <div class="insights-block cc-featured">
-            <div class="insights-block_img cc-lg">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h3">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date cc-featured">
-                JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="insights/open.html">Read Insight</a>
-            </div>
-          </div>
+          <Insights classes="insights-block cc-featured" to="/insights/open" />
           <div class="insights-grid">
-            <div class="insights-block cc-sm">
-              <div class="insights-block_img cc-sm">
-                <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-              </div>
-              <div class="insights-block_details">
-                <div class="heading-h4">
-                  Why Do I Need to Register <br>My Business?
-                </div>
-                <div class="insights-block_date">
-                  JAN 10, 2023
-                </div>
-                <a class="arrow-link cc-green" href="#">Read Insight</a>
-              </div>
-            </div>
-            <div id="w-node-_928bb587-b5db-2dda-8b1e-6f902b7c1b38-0f19ce38" class="insights-block cc-sm">
-              <div class="insights-block_img cc-sm">
-                <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-              </div>
-              <div class="insights-block_details">
-                <div class="heading-h4">
-                  Why Do I Need to Register <br>My Business?
-                </div>
-                <div class="insights-block_date">
-                  JAN 10, 2023
-                </div>
-                <a class="arrow-link cc-green" href="#">Read Insight</a>
-              </div>
-            </div>
-            <div id="w-node-_74c35dfe-2fb2-06f3-6fdc-d5f66db0660f-0f19ce38" class="insights-block cc-sm">
-              <div class="insights-block_img cc-sm">
-                <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-              </div>
-              <div class="insights-block_details">
-                <div class="heading-h4">
-                  Why Do I Need to Register <br>My Business?
-                </div>
-                <div class="insights-block_date">
-                  JAN 10, 2023
-                </div>
-                <a class="arrow-link cc-green" href="#">Read Insight</a>
-              </div>
-            </div>
-            <div id="w-node-a9db426b-ae21-c245-7839-f1cdfd08e431-0f19ce38" class="insights-block cc-sm">
-              <div class="insights-block_img cc-sm">
-                <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-              </div>
-              <div class="insights-block_details">
-                <div class="heading-h4">
-                  Why Do I Need to Register <br>My Business?
-                </div>
-                <div class="insights-block_date">
-                  JAN 10, 2023
-                </div>
-                <a class="arrow-link cc-green" href="#">Read Insight</a>
-              </div>
-            </div>
+          
+            <Insights classes="insights-block cc-sm" />
           </div>
         </div>
       </div>
@@ -119,62 +52,8 @@
           </div>
         </div>
         <div class="insights-grid cc-lg">
-          <div class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div id="w-node-ebd597c7-abd8-13b0-6469-b05cafd0029e-0f19ce38" class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div id="w-node-ebd597c7-abd8-13b0-6469-b05cafd002aa-0f19ce38" class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div id="w-node-ebd597c7-abd8-13b0-6469-b05cafd002b6-0f19ce38" class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
+        <Insights classes="insights-block cc-sm" />
+      
         </div>
       </div>
     </section>

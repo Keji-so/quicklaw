@@ -68,74 +68,7 @@
             <nuxtLink class="c-button" to="/services">Explore Our Services</nuxtLink>
           </div>
           <div class="services-list">
-            <div
-              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
-              class="services-list_item"
-            >
-              <div class="services-list_flex">
-                <div class="sevices-list_inner">
-                  <div>Start A Business</div>
-                </div>
-                <div class="services-list_icon">
-                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
-                </div>
-              </div>
-              <div class="heading-h4">
-                We provide you with the legal support you need to get your business up and
-                running without stress.
-              </div>
-            </div>
-            <div
-              id="w-node-_4bc82d3d-d08e-ab08-bb38-7431dafce866-a4ae8fab"
-              class="services-list_item"
-            >
-              <div class="services-list_flex">
-                <div class="sevices-list_inner">
-                  <div>Protect Your Ideas</div>
-                </div>
-                <div class="services-list_icon">
-                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
-                </div>
-              </div>
-              <div class="heading-h4">
-                Receive adequate legal support and representation you require to protect
-                your intellectual property.
-              </div>
-            </div>
-            <div
-              id="w-node-_1881d242-c68f-0140-c7ef-3d6351de14a9-a4ae8fab"
-              class="services-list_item"
-            >
-              <div class="services-list_flex">
-                <div class="sevices-list_inner">
-                  <div>Draft &amp; Review Agreement</div>
-                </div>
-                <div class="services-list_icon">
-                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
-                </div>
-              </div>
-              <div class="heading-h4">
-                Creating and reviewing contract agreements is easier with Quicklaw’s self-
-                service.
-              </div>
-            </div>
-            <div
-              id="w-node-b6affa78-3672-7a86-7939-55b6519068e3-a4ae8fab"
-              class="services-list_item"
-            >
-              <div class="services-list_flex">
-                <div class="sevices-list_inner">
-                  <div>Download a Template</div>
-                </div>
-                <div class="services-list_icon">
-                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
-                </div>
-              </div>
-              <div class="heading-h4">
-                With our legal templates, you don’t have to stress yourself with drafting
-                new documents.
-              </div>
-            </div>
+          <HomeServiceCard />
           </div>
         </div>
       </div>
@@ -145,88 +78,13 @@
         <div class="section-header_flex cc-insights">
           <div class="section-inner_header uc-white-text">
             <div class="heading-h4">
-              OUR SERVICES
+              INSIGHTS
             </div>
           </div>
           <nuxtLink class="c-button cc-md cc-secondary-green" to="/insights">Explore All Insights</nuxtLink>
         </div>
         <div id="scrollbar" class="insights-wrapper">
-          <div class="insights-block">
-            <div class="insights-block_img">
-              <img
-                alt=""
-                class="c-img cc-cover"
-                loading="lazy"
-                src="@/public/assets/images/placeholder.svg"
-              >
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h3">
-                Why Do I Need to Register My Business?
-              </div>
-              <div class="insights-block_date">
-                JAN 10, 2023
-              </div>
-              <a class="arrow-link" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div class="insights-block">
-            <div class="insights-block_img">
-              <img
-                alt=""
-                class="c-img cc-cover"
-                loading="lazy"
-                src="@/public/assets/images/placeholder.svg"
-              >
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h3">
-                Corporate Governance – A Practical Guide for Early-Stage Growth
-              </div>
-              <div class="insights-block_date">
-                JAN 10, 2023
-              </div>
-              <a class="arrow-link" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div class="insights-block">
-            <div class="insights-block_img">
-              <img
-                alt=""
-                class="c-img cc-cover"
-                loading="lazy"
-                src="@/public/assets/images/placeholder.svg"
-              >
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h3">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                JAN 10, 2023
-              </div>
-              <a class="arrow-link" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div class="insights-block">
-            <div class="insights-block_img">
-              <img
-                alt=""
-                class="c-img cc-cover"
-                loading="lazy"
-                src="@/public/assets/images/placeholder.svg"
-              >
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h3">
-                Corporate Governance – A Practical Guide for Early-Stage Growth
-              </div>
-              <div class="insights-block_date">
-                JAN 10, 2023
-              </div>
-              <a class="arrow-link" href="#">Read Insight</a>
-            </div>
-          </div>
+        <Insights classes="insights-block"/>
         </div>
       </div>
     </section>
