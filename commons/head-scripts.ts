@@ -5,12 +5,6 @@ const getHeadScripts = () => [
     async: true,
     defer: true
   },
-  {
-    src: '/assets/js/override-alert.js',
-    body: true,
-    async: true,
-    defer: true
-  }
 ]
 
 export default getHeadScripts

@@ -18,18 +18,19 @@
                 <div class="profile-form_flex">
                   <div class="profile-details">
                     <div class="profile-image_container">
-                      <div class="profile-img_icon" />
+                      <div class="profile-img_icon" 
+                      :class="isImageEditable ? 'cc-show' : ''"  @click="showModal"/>
                       <div class="profile-image">
-                        <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
+                        <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/user-placeholder-img.svg">
                       </div>
                     </div>
                     <div>Chiamaka Zichat Adebiyi</div>
                   </div>
-                  <a class="c-button cc-icon-btn w-inline-block" href="#">
+                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? 'cc-hide' : 'cc-show'" @click="allowImageEdit">
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/edit.svg"></div>
                     <div>Edit</div>
                   </a>
-                  <a class="c-button cc-icon-btn w-inline-block" href="#">
+                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? '' : 'cc-hide'" >
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check-white-outline.svg"></div>
                     <div>Save Changes</div>
                   </a>
@@ -63,32 +64,44 @@
                   <p class="uc-medium-text">
                     Password
                   </p>
-                  <a class="c-button cc-icon-btn w-inline-block" href="#">
+                  <a class="c-button cc-icon-btn w-inline-block" :class="isPasswordEditable ? 'cc-hide' : 'cc-show'" @click="allowPasswordEdit" >
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/edit.svg"></div>
                     <div>Change Password</div>
-                  </a><input class="c-button cc-profile-submit w-button" data-wait="" type="submit" value="Save Changes">
+                  </a><input :class="isPasswordEditable ? 'cc-show' : 'cc-hide'"  class="c-button cc-profile-submit w-button" data-wait="" type="submit" value="Save Changes">
                 </div>
                 <div class="form-flex cc-profile">
                   <div class="c-form_field cc-mb-0">
-                    <div class="c-label_wrapper">
+                    <div class="c-label_wrapper" >
                       <div class="c-label">
                         Current Password
                       </div>
                     </div>
-                    <div class="c-input_wrapper">
-                      <input id="Current-Password" class="c-input cc-trailing w-input" data-name="Current Password" maxlength="256" name="Current-Password" placeholder="••••••••" required type="password">
-                      <div class="reveal-toggle" />
+                    <div class="c-input_wrapper" >
+                      <input 
+                       id="current-password" 
+                      class="c-input w-input"
+                       maxlength="256" 
+                       name="password" 
+                       placeholder="Choose a Password"
+                       :type="isCurrentPasswordVisible ? 'text' : 'password'">
+                      <div @click="toggleCurrentPasswordVisibility" class="reveal-toggle" :class="isCurrentPasswordVisible && 'cc-hidden'" />
                     </div>
                   </div>
                   <div class="c-form_field cc-mb-0">
-                    <div class="c-label_wrapper">
+                    <div class="c-label_wrapper" :class="isPasswordEditable ? '' : 'cc-hide'">
                       <div class="c-label">
                         New Password
                       </div>
                     </div>
-                    <div class="c-input_wrapper">
-                      <input id="New-Password" class="c-input cc-trailing w-input" data-name="New Password" maxlength="256" name="New-Password" placeholder="" required type="password">
-                      <div class="reveal-toggle cc-hidden" />
+                    <div class="c-input_wrapper" :class="isPasswordEditable ? '' : 'cc-hide'">
+                      <input 
+                      id="new-password" 
+                      class="c-input w-input"
+                       maxlength="256" 
+                       name="password" 
+                       placeholder="Choose a Password"
+                       :type="isNewPasswordVisible ? 'text' : 'password'">
+                      <div @click="toggleNewPasswordVisibility" class="reveal-toggle" :class="isNewPasswordVisible && 'cc-hidden'"/>
                     </div>
                   </div>
                 </div>
@@ -105,26 +118,36 @@
       </div>
     </section>
   </div>
-  <div class="c-popup">
-    <div class="c-popup_inner cc-plain">
-      <div class="popup-close_btn" />
-      <div class="heading-h3">
-        Crop Profile Picture
-      </div>
-      <div class="crop-img_wrapper">
-        <div class="crop-image_block">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="100vw" src="@/public/assets/images/home-hero-image.png" srcset="@/public/assets/images/home-hero-image-p-500.png 500w, @/public/assets/images/home-hero-image-p-800.png 800w, @/public/assets/images/home-hero-image-p-1080.png 1080w, @/public/assets/images/home-hero-image-p-1600.png 1600w, @/public/assets/images/home-hero-image.png 1901w">
-          <div class="crop-image_circle" />
-        </div>
-      </div>
-      <div class="btn-flex cc-align-right">
-        <a class="c-button" href="#">Use Picture</a>
-      </div>
-    </div>
-  </div>
+  <CropProfilePictureModal />
 </template>
 
 <script setup lang="ts">
+const modal = useModal('CropProfilePictureModal')
+const isImageEditable = ref(false)
+const isCurrentPasswordVisible = ref(false)
+const isNewPasswordVisible = ref(false)
+const isPasswordEditable = ref(false)
+
+
+
+
+const allowImageEdit = () => { 
+  isImageEditable.value = !isImageEditable.value
+}
+const allowPasswordEdit = () => { 
+  isPasswordEditable.value = !isPasswordEditable.value
+}
+const showModal =  () => {
+  modal.show('CropProfilePictureModal')
+}
+
+const toggleCurrentPasswordVisibility = () => {
+  isCurrentPasswordVisible.value = !isCurrentPasswordVisible.value
+}
+
+const toggleNewPasswordVisibility = () => {
+  isNewPasswordVisible.value = !isNewPasswordVisible.value
+}
 
 </script>
 

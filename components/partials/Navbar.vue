@@ -23,15 +23,37 @@
       <nuxtLink class="c-nav_link" to="/dashboard/orders">
         Dashboard
       </nuxtLink>
-      <a class="c-nav_link cc-hide" href="#">Sign In</a>
+      <div class="c-nav_link" @click="showSignIn">Sign In</div>
       <nuxtLink class="c-nav_link cc-signup" to="/auth/sign-up">
         Sign Up
       </nuxtLink>
     </div>
+    <SignInModal />
+    <ForgotPasswordModal />
+    <ResetPasswordModal />
   </nav>
 </template>
 
 <script setup lang="ts">
+const signInModal = useModal('SignInModal')
+
+
+
+const showSignIn =  () => {
+  signInModal.show('SignInModal')
+}
+
+
+
+// useWatch(
+//   () => signInModal.isVisible,
+//   (value) => {
+//     if (!value)
+//       useToast().show('Modal B has closed', { description: 'No events emitted' })
+//   }
+// )
+
+
 onMounted(() => {
   const menuBtn = document.querySelector('.nav-menu')
   const menuDropdown = document.querySelector('.nav-links')

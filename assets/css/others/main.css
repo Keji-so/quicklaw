@@ -52,6 +52,25 @@ font-size: 16px;
   transition: all 0.5s ease;
 }
 
+.c-nav_link,
+.c-text_link {
+  cursor: pointer;
+}
+.c-button {
+  cursor: pointer;
+}
+
+.profile-img_icon,
+.c-button.cc-hide,
+.c-label_wrapper.cc-hide,
+.c-input_wrapper.cc-hide {
+display: none;
+}
+
+.profile-img_icon.cc-show {
+display: block;
+}
+
 @media screen and (max-width: 991px) {
 .insights-block.cc-featured .insights-block_img{
 height: 450px;

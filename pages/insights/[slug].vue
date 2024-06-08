@@ -145,48 +145,7 @@
           </div>
         </div>
         <div class="insights-grid cc-lg">
-          <div class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div id="w-node-_78c234c0-8d47-6c16-8329-0487b2514860-37944365" class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
-          <div id="w-node-_78c234c0-8d47-6c16-8329-0487b251486c-37944365" class="insights-block cc-sm">
-            <div class="insights-block_img cc-md">
-              <img alt="" class="c-img cc-cover" loading="lazy" src="@/public/assets/images/placeholder.svg">
-            </div>
-            <div class="insights-block_details">
-              <div class="heading-h4">
-                Why Do I Need to Register <br>My Business?
-              </div>
-              <div class="insights-block_date">
-                CORPORATE LAW // JAN 10, 2023
-              </div>
-              <a class="arrow-link cc-green" href="#">Read Insight</a>
-            </div>
-          </div>
+            <Insights classes="insights-block cc-sm" />
         </div>
       </div>
     </section>

@@ -89,6 +89,8 @@
       </div>
     </section>
     <FooterNav />
+    <Transition name="modal-fade">
+    </Transition>
   </div>
 </template>
 

@@ -75,16 +75,8 @@
 </template>
 
 <script setup lang="ts">
-import Lenis from 'lenis'
 
 const isServiceActive = ref(false)
-// const props = defineProps<{
-//   label: string
-//   preSelectedOption: string | undefined
-//   options: { name?: string; value?: string; id?: string }[]
-// }>()
-// const selectedOption = ref(`Select ${props.label}`)
-// const emits = defineEmits(['selectOption'])
 
 const toggleService = () => {
   // if (props.preSelectedOption) {
