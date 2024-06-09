@@ -22,14 +22,14 @@
               Profile
             </div>
           </nuxtLink>
-          <a class="dashboard-link cc-signout w-inline-block" href="#">
+          <nuxtLink to="/auth/sign-out" class="dashboard-link cc-signout w-inline-block" href="#">
             <div class="dashboard-link_icon w-embed"><svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.7082 6C16.4931 4.64142 14.894 3.68382 13.1227 3.25392C11.3514 2.82401 9.49134 2.94206 7.7886 3.59245C6.08586 4.24284 4.62073 5.39491 3.58709 6.89621C2.55344 8.39751 2 10.1773 2 12C2 13.8227 2.55344 15.6025 3.58709 17.1038C4.62073 18.6051 6.08586 19.7572 7.7886 20.4076C9.49134 21.0579 11.3514 21.176 13.1227 20.7461C14.894 20.3162 16.4931 19.3586 17.7082 18" stroke="currentColor" stroke-width="1.5" />
               <path d="M22 12H8" stroke="currentColor" stroke-width="1.5" />
               <path d="M18 8L22 12L18 16" stroke="currentColor" stroke-width="1.5" />
             </svg></div>
-            <div class="dashboard-link_text">Sign Out</div>
-          </a>
+            <div  class="dashboard-link_text">Sign Out</div>
+          </nuxtLink>
         </div>
 </template>
 
