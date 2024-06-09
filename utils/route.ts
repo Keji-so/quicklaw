@@ -17,3 +17,19 @@ export const normalizeUrl = (urlString: string) => {
     return parsedUrl.origin + parsedUrl.pathname.replace(/\/+/g, '/').replace(/\/$/, '')
   }
 }
+
+export const locationIntendedTrigger = () => {
+  const locationIntended = useLocationIntended()
+
+  if (locationIntended.location?.page) {
+    navigateTo(locationIntended.location?.page)
+
+    setTimeout(() => {
+      useModal().show(locationIntended.location?.activeModal as string)
+      locationIntended.setLocation({ page: '', activeModal: '' })
+    }, 150)
+  }
+  else {
+    navigateTo('/')
+  }
+}
