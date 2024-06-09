@@ -19,18 +19,26 @@
               </div>
               <div class="c-input_wrapper"><input 
                 id="email"
-                 v-model.lazy="form.email"
+                 v-model.lazy="formData.email"
                  class="c-input w-input"
+                 :class="{ 'cc-error': v$.email.$error || errorMessage }"
                  maxlength="256"
                  name="email"
                  type="email"
                  @blur="v$.email.$dirty"
                placeholder="Enter your Registered Username or Email Address"></div>
-              <div
-                        v-if="v$.email.$errors.length"
-                        class="c-help cc-error">
-                        {{ v$.email.$errors[0].$message }}
-                      </div>
+                       <div
+                      v-if="errorMessage && !v$.email.$error"
+                      class="c-help cc-error"
+                    >
+                      {{ errorMessage }}
+                    </div>
+                    <div
+                      v-else
+                      class="c-help cc-error"
+                    >
+                      {{ v$?.email?.$errors[0]?.$message }}
+                    </div>
             </div>
           </div>
           <div class="btn-flex"> <SubmitButton
@@ -62,84 +70,54 @@ import { required, email, helpers } from '@vuelidate/validators'
 
 const signInModal = useModal('SignInModal')
 const forgotPasswordModal = useModal('ForgotPasswordModal')
-const resetPasswordModal = useModal('ResettPasswordModal')
-
-
-
-
-interface Data {
-  message: string
-  title: string
-  ctaText: string
-  buttonClass: string
-  wrapperClass?: string
-  notifType: 'cc-success' | 'cc-error'
-}
-
-const componentMode = ref<'form-state' | 'error-state' | 'success-state'>('form-state')
+const resetPasswordModal = useModal('ResetPasswordModal')
 const isSubmittingRef = ref(false)
-const response = ref<{
-  email: string
-  token: string
-}>({
+
+
+const config = useRuntimeConfig()
+
+definePageMeta({
+  middleware: ['auth-page'],
+})
+
+const formData = reactive({
   email: '',
-  token: ''
-})
-const form = reactive<{ email: string }>({
-  email: ''
-})
-const successMessage = ref<Data>({
-  message: 'Please click the link in the email sent to you to continue',
-  title: 'Reset link sent',
-  notifType: 'cc-success',
-  buttonClass: 'c-button cc-orange w-button',
-  ctaText: 'Simulate Email Setup'
-})
-const errorMessage = ref<Data>({
-  message: 'Link could not be sent',
-  title: 'Please try again',
-  notifType: 'cc-error',
-  buttonClass: 'c-button cc-orange w-button',
-  ctaText: 'Try again'
+  site_url: config.public.siteURL,
 })
 
-const formRules = {
-  email: {
-    required: helpers.withMessage('Email is required', required),
-    email: helpers.withMessage('Email is invalid', email)
-  }
-}
+const errorMessage = ref('')
 
-const v$ = useVuelidate(formRules, form, { $autoDirty: true })
+const rules = computed(() => ({
+  email: { required: helpers.withMessage('Required', required), email },
+}))
+
+const v$ = useVuelidate(rules, formData, { $autoDirty: true })
+
+const forgotPasswordState = useFetchState('/auth/send-reset-token')
+
+
 
 const submitForm = async () => {
-  const result = await v$.value.$validate()
-  if (result) {
-    isSubmittingRef.value = true
-    //await sendResetEmail()
-    isSubmittingRef.value = false
-    showResetPasswordModal()
+ v$.value.$touch()
+  if (v$.value.$invalid) {
+    useToastExtended('error').show('Some fields require your attention')
+    return false
   }
+
+  const { data, error } = await usePost(forgotPasswordState.value.url, formData)
+
+  if (error.value)
+    errorMessage.value = 'This email is not associated with a Quicklaw account.'
+
+  if (data.value) {
+    useToastExtended('success').show('Reset link has been sent to your email')
+    showResetPasswordModal() 
+  }
+
+
+  
 }
 
-// const sendResetEmail = async () => {
-//   const { data, error } = await usePost('/auth/forgot-password', form)
-
-//   if (data.value) {
-//     componentMode.value = 'success-state'
-//     response.value = data.value
-//   }
-
-//   if (error.value) {
-//     componentMode.value = 'error-state'
-//   }
-// }
-
-const clearForm = () => {
-  form.email = ''
-  componentMode.value = 'form-state'
-  v$.value.$reset()
-}
 
 const showSignInModal = () => {
   signInModal.show('SignInModal')

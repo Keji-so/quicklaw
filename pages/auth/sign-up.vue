@@ -13,10 +13,7 @@
             </h2>
           </div>
           <div class="auth-form_block w-form">
-            <form 
-            id="signup-form" 
-            name="signup-form"
-             @submit.prevent="submitForm">
+            <form id="signup-form" name="signup-form" @submit.prevent="submitForm">
               <div class="auth-form_inner">
                 <div class="form-flex">
                   <div class="c-form_field cc-lg">
@@ -26,21 +23,13 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="name" 
-                      v-model="name"
-                      class="c-input w-input" 
-                    :class="v$.name.$errors.length && 'cc-error'"
-                      maxlength="256" 
-                      name="name" 
-                      placeholder="Enter your First Name &amp; Last Name" 
-                     type="text">
+                      <input id="full-name" v-model="fullName" class="c-input w-input"
+                        :class="{ 'cc-error': v$.fullName.$error }" maxlength="256" name="Full-Name"
+                        placeholder="Enter your First Name &amp; Last Name" type="text">
                     </div>
-                     <div
-                        v-if="v$.name.$errors.length"
-                        class="c-help cc-error">
-                        {{ v$.name.$errors[0].$message }}
-                      </div>
+                    <div v-if="v$.fullName.$errors.length" class="c-help cc-error">
+                      {{ v$?.fullName?.$errors[0]?.$message }}
+                    </div>
                   </div>
                   <div class="c-form_field cc-lg">
                     <div class="c-label_wrapper">
@@ -49,22 +38,13 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="email" 
-                      v-model.lazy="form.email"
-                      class="c-input w-input" 
-                      :class="v$.form.email.$errors.length && 'cc-error'"
-                      maxlength="256"
-                      name="email" 
-                      placeholder="Enter your Email Address"
-                      type="email"
-                      @blur="v$.form.email.$dirty">
+                      <input id="email" v-model.lazy="formData.email" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.email.$error }" maxlength="256" name="email"
+                        placeholder="Enter your Email Address" type="email">
                     </div>
-                    <div
-                        v-if="v$.form.email.$errors.length"
-                        class="c-help cc-error">
-                        {{ v$.form.email.$errors[0].$message }}
-                      </div>
+                    <div v-if="v$.formData.email.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.email?.$errors[0]?.$message }}
+                    </div>
                   </div>
                 </div>
                 <div class="form-flex">
@@ -75,21 +55,13 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="username" 
-                      v-model="form.username"
-                      class="c-input w-input" 
-                      :class="v$.form.username.$errors.length && 'cc-error'"
-                      maxlength="256" 
-                      name="username" 
-                      placeholder="Choose A Username" 
-                      type="text">
+                      <input id="username" v-model="formData.username" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.username.$error }" maxlength="256" name="username"
+                        placeholder="Choose A Username" type="text">
                     </div>
-                    <div
-                        v-if="v$.form.username.$errors.length"
-                        class="c-help cc-error">
-                        {{ v$.form.username.$errors[0].$message }}
-                      </div>
+                    <div v-if="v$.formData.username.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.username?.$errors[0]?.$message }}
+                    </div>
                   </div>
                   <div class="c-form_field cc-lg">
                     <div class="c-label_wrapper">
@@ -98,31 +70,21 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="password"
-                      v-model="form.password"
-                      class="c-input w-input"
-                       :class="v$.form.password.$errors.length && 'cc-error'"
-                       maxlength="256" 
-                       name="password" 
-                       placeholder="Choose a Password"
-                       :type="isPasswordVisible ? 'text' : 'password'">
-                      <div @click="togglePasswordVisibility" class="reveal-toggle" :class="isPasswordVisible && 'cc-hidden'"></div>
+                      <input id="password" v-model="formData.password" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.password.$error }" maxlength="256" name="password"
+                        placeholder="Choose a Password" :type="isPasswordVisible ? 'text' : 'password'">
+                      <div @click="togglePasswordVisibility" class="reveal-toggle"
+                        :class="isPasswordVisible && 'cc-hidden'"></div>
                     </div>
-                     <div
-                        v-if="v$.form.password.$errors.length"
-                        class="c-help cc-error">
-                        {{ v$.form.password.$errors[0].$message }}
-                      </div>
+                    <div v-if="v$.formData.password.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.password?.$errors[0]?.$message }}
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="btn-flex">
-                  <SubmitButton
-                      classes="c-button cc-lg w-button"
-                      form="signup-form"
-                      message="Sign Up"
-                      :state="isSubmittingRef ? 'loading' : 'idle'" />
+                <SubmitButton classes="c-button cc-lg w-button" form="signup-form" message="Sign Up"
+                  :state="isSubmittingRef ? 'loading' : 'idle'" />
               </div>
             </form>
             <div class="w-form-done">
@@ -136,7 +98,8 @@
             Have an account? <span class="c-text_link" @click="showSignIn"> Log In</span>
           </div>
           <div class="auth-terms_text">
-            By clicking ‘Sign Up’, you acknowledge to have read and agreed with Quicklaw <nuxtLink class="cc-underline" to="/terms-and-conditions">
+            By clicking ‘Sign Up’, you acknowledge to have read and agreed with Quicklaw <nuxtLink class="cc-underline"
+              to="/terms-and-conditions">
               Terms and Conditions
             </nuxtLink>.
           </div>
@@ -151,85 +114,105 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
 const modal = useModal('SignInModal')
 
-
+const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
+const fullName = ref('')
+const passwordVisibility = ref(false)
+const terms = ref(false)
 const isSubmittingRef = ref(false)
 const isPasswordVisible = ref(false)
 
-
-const form = reactive<{ email: string; first_name: string; last_name?: string; username: string; password: string; }>({
-  email: '',
-  first_name: '',
-  last_name: '',
-  username: '',
-  password: '',
+definePageMeta({
+  middleware: ['auth-page'],
 })
 
-//const apiError = ref<{ email: ''[]; username: ''[]; name: ''[] }>({ email: [], username: [], name: [] })
+const signUpState = useFetchState('/auth/register')
+const signInState = useFetchState('/auth/login')
+const metaDef = useDefault('meta')
 
 
-// Data
-const name = ref('')
-const formRules = {
-  form: {
-    email: {
-      required: helpers.withMessage('Email is required', required),
-      email: helpers.withMessage('Invalid email format', email)
-    },
+
+const formData = reactive({
+  email: '',
+  password: '',
+  username: '',
+  first_name: '',
+  last_name: '',
+})
+
+const rules = computed(() => ({
+  formData: {
+    email: { required: helpers.withMessage('Required', required), email },
     password: {
-    required: helpers.withMessage('Password is required', required)
+      required: helpers.withMessage('Required', required),
+      minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)),
     },
-  username: {
-    required: helpers.withMessage('Username is required', required)
+    username: {
+      required: helpers.withMessage('Required', required),
+      minLength: helpers.withMessage('Username is too short', minLength(3)),
+    },
   },
+  fullName: {
+    required,
+    nameRegex: helpers.withMessage('Name should only contain letters', nameRegex),
   },
-  name: {
-    required: helpers.withMessage('Name is required', required)
+}))
+
+const v$ = useVuelidate(
+  rules,
+  {
+    formData,
+    fullName,
+    $autoDirty: true,
   }
+)
+
+
+
+
+const silentlySignIn = async () => {
+  const payload = {
+    email: formData.email,
+    password: formData.password,
+  }
+  const { data } = await usePost('/auth/login', payload)
+    if (data.value)
+    navigateTo('/dashboard/profile')
 }
 
-const v$ = useVuelidate(formRules, { form, name }, { $autoDirty: true })
+
+const submitForm = async () => {
+  // v$.value.$touch()
+  // if (v$.value.$invalid) {
+  //   useToastExtended('error').show('Some fields require your attention')
+  //   return false
+  // }
+
+   const { data, error } = await usePost(signUpState.value.url, formData)
+ 
+   silentlySignIn()
+}
+
+watch(fullName, (newFullName) => {
+  const names = newFullName.trim().split(' ')
+  formData.first_name = names[0] || ''
+  formData.last_name = names.slice(1).join(' ')
+})
+
 
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value
 }
 
-// Watchers
-watch(name, (newValue) => {
-  const nameParts = newValue.trim().split(' ')
-  form.first_name = nameParts[0]
-  if (nameParts.length > 1) {
-    form.last_name = nameParts.pop()
-  } else {
-    delete form.last_name
-  }
-})
 
 
-const storeUserDetails = () => {
-  const newForm = {} as any
-  newForm.email = form.email
-  newForm.first_name = form.first_name
-  newForm.last_name = form.last_name
-   newForm.username = form.username
-  sessionStorage.setItem('user', JSON.stringify(newForm))
-  navigateTo('/dashboard/profile')
-}
 
-const submitForm = async () => {
-  const result = await v$.value.$validate()
 
-   if (result) {
-     //   createAccount()
-    storeUserDetails()
-   }
-}
 
-const showSignIn =  () => {
+const showSignIn = () => {
   modal.show('SignInModal')
 }
 
 
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
