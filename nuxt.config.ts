@@ -24,7 +24,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appENV: import.meta.env.APP_ENV,
-      baseURL: import.meta.env.BASE_URL
+      baseURL: import.meta.env.BASE_URL,
+      siteURL: process.env.SITE_URL,
     }
   },
 
@@ -45,6 +46,7 @@ export default defineNuxtConfig({
     '~/components/modals',
     '~/components/partials',
     '~/components/widgets',
+    '~/components/utils',
     '~/components'
   ],
 
