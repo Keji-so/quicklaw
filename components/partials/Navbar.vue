@@ -20,13 +20,17 @@
       <nuxtLink class="c-nav_link" to="/contact">
         Contact Us
       </nuxtLink>
-      <nuxtLink class="c-nav_link" to="/dashboard/orders">
+      
+      <nuxtLink  v-if="isUserLoggedIn" class="c-nav_link" to="/dashboard/orders">
         Dashboard
       </nuxtLink>
-      <div class="c-nav_link" @click="showSignIn">Sign In</div>
-      <nuxtLink class="c-nav_link cc-signup" to="/auth/sign-up">
+      <ClientOnly v-else>
+         <div class="c-nav_link" @click="showSignIn">Sign In</div>
+      <nuxtLink  class="c-nav_link cc-signup" to="/auth/sign-up">
         Sign Up
       </nuxtLink>
+      </ClientOnly>
+     
     </div>
     <SignInModal />
     <ForgotPasswordModal />
@@ -37,7 +41,8 @@
 <script setup lang="ts">
 const signInModal = useModal('SignInModal')
 
-
+const auth = useAuth()
+const isUserLoggedIn = computed(() => auth.value.isLoggedIn)
 
 const showSignIn =  () => {
   signInModal.show('SignInModal')
