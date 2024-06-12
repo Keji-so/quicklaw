@@ -38,9 +38,15 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="email" v-model.lazy="formData.email" class="c-input w-input"
-                        :class="{ 'cc-error': v$.formData.email.$error }" maxlength="256" name="email"
-                        placeholder="Enter your Email Address" type="email">
+                      <input
+                       id="email" 
+                       v-model="formData.email"
+                        class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.email.$error }"
+                        maxlength="256"
+                        name="email"
+                        placeholder="Enter your Email Address" 
+                        type="email">
                     </div>
                     <div v-if="v$.formData.email.$errors.length" class="c-help cc-error">
                       {{ v$?.formData.email?.$errors[0]?.$message }}
@@ -87,12 +93,7 @@
                   :state="isSubmittingRef ? 'loading' : 'idle'" />
               </div>
             </form>
-            <div class="w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
+
           </div>
           <div class="auth-form_subtext">
             Have an account? <span class="c-text_link" @click="showSignIn"> Log In</span>
@@ -141,7 +142,9 @@ const formData = reactive({
 
 const rules = computed(() => ({
   formData: {
-    email: { required: helpers.withMessage('Required', required), email },
+    email: {
+      required: helpers.withMessage('Required', required), email
+    },
     password: {
       required: helpers.withMessage('Required', required),
       minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)),
@@ -162,11 +165,9 @@ const v$ = useVuelidate(
   {
     formData,
     fullName,
-    $autoDirty: true,
-  }
+  },
+  { $autoDirty: true, }
 )
-
-
 
 
 const silentlySignIn = async () => {
@@ -175,14 +176,15 @@ const silentlySignIn = async () => {
     password: formData.password,
   }
   const { data } = await usePost('/auth/login', payload)
-    if (data.value)
+  if (data.value)
     navigateTo('/dashboard/profile')
 }
 
-
 const submitForm = async () => {
-  // v$.value.$touch()
+  v$.value.$touch()
+  //TODO 
   // if (v$.value.$invalid) {
+  //   console.log(v$.value);
   //   useToastExtended('error').show('Some fields require your attention')
   //   return false
   // }
@@ -202,10 +204,6 @@ watch(fullName, (newFullName) => {
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value
 }
-
-
-
-
 
 
 const showSignIn = () => {

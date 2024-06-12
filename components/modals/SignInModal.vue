@@ -146,7 +146,13 @@ const submitForm = async () => {
     //   type: 'Traditional ',
     // })
     closeSignInModal();
+    if (currentPath === '/auth/sign-up') {
+       navigateTo('/')
+    }
+    else {
     navigateTo(currentPath);
+    }
+    
   }
 };
 

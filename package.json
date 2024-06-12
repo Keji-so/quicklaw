@@ -11,7 +11,8 @@
     "prepare": "nuxt prepare",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "refresh": "rm -rf node_modules && rm -rf pnpm-lock.yaml"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.3",
