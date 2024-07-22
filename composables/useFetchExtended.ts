@@ -41,9 +41,9 @@ export const useFetchExtended = <T>(
         return Promise.reject(response)
       }
 
-      if (url.includes('login')) {
+      if (url.includes('/auth/sign-in')) {
         authCookie.value = {
-          user: lodashOmit(response._data.user, ['permission_names', 'latest_photos']),
+          user: response._data.user,
           accessToken: response._data.access_token,
           isLoggedIn: true,
         }
@@ -51,13 +51,17 @@ export const useFetchExtended = <T>(
         auth.value = authCookie.value
       }
 
-      if (url === '/auth/logout') {
+      if (url === '/auth/sign-out') {
         authCookie.value = {
           user: {},
           accessToken: null,
           isLoggedIn: false,
         }
+        localStorage.removeItem('user')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('isLoggedIn')
 
+        // auth.value = authCookie.value
         auth.value = authCookie.value
       }
     },

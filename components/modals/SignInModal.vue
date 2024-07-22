@@ -16,7 +16,7 @@
                 <div class="c-input_wrapper">
                   <input
                     id="username-email"
-                    v-model.lazy="formData.email"
+                    v-model.lazy="formData.email_or_username"
                     :class="{ 'cc-error': v$.password.$error || authMessage }"
                     class="c-input w-input"
                     maxlength="256"
@@ -25,8 +25,8 @@
                     type="text"
                   />
                 </div>
-                <div v-if="v$.email.$errors.length" class="c-help cc-error">
-                  {{ v$?.email?.$errors[0]?.$message }}
+                <div v-if="v$.email_or_username.$errors.length" class="c-help cc-error">
+                  {{ v$?.email_or_username?.$errors[0]?.$message }}
                 </div>
               </div>
               <div class="c-form_field">
@@ -101,19 +101,23 @@ const isSubmittingRef = ref(false);
 const isPasswordVisible = ref(false);
 const signInModal = useModal("SignInModal");
 const forgotPasswordModal = useModal("ForgotPasswordModal");
+const auth = useAuth().value
 
 const authMessage = ref();
 const rememberMe = ref(true);
-const signInState = useFetchState("/auth/login?laravel");
+const signInState = useFetchState("/auth/sign-in");
 const route = useRoute();
 
+
+
 const formData = reactive({
-  email: "",
+  // email: "",
+  email_or_username: '',
   password: "",
 });
 
 const rules = computed(() => ({
-  email: { required: validatorHelpers.withMessage("Required", required) },
+  email_or_username: { required: validatorHelpers.withMessage("Required", required) },
   password: { required: validatorHelpers.withMessage("Required", required) },
 }));
 
@@ -121,11 +125,8 @@ const v$ = useVuelidate(rules, formData, {
   $autoDirty: true,
 });
 
-const handleLoginError = () => {
-  useToastExtended("error").show("There was an error signing in");
-};
-
 const currentPath = route.path;
+
 const submitForm = async () => {
   v$.value.$touch();
   if (v$.value.$invalid) {
@@ -134,6 +135,7 @@ const submitForm = async () => {
   }
 
   const { data, error } = await usePost(signInState.value.url, formData);
+  
 
   if (error.value) {
     authMessage.value = "Username or Email and Password do not match";
@@ -142,11 +144,15 @@ const submitForm = async () => {
 
   if (data.value) {
     // useAmplitude('Sign In', {
-    //   emailOrUsername: formData.email,
+    //   emailOrUsername: formData.email_or_username,
     //   type: 'Traditional ',
     // })
+   console.log(currentPath)
+    if (currentPath === '/auth/sign-up') {
+      navigateTo('/');
+    }
     closeSignInModal();
-    navigateTo(currentPath);
+    // navigateTo(currentPath);
   }
 };
 

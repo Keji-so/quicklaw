@@ -23,12 +23,12 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="full-name" v-model="fullName" class="c-input w-input"
-                        :class="{ 'cc-error': v$.fullName.$error }" maxlength="256" name="Full-Name"
+                      <input id="full-name" v-model="formData.full_name" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.full_name.$error }" maxlength="256" name="Full-Name"
                         placeholder="Enter your First Name &amp; Last Name" type="text">
                     </div>
-                    <div v-if="v$.fullName.$errors.length" class="c-help cc-error">
-                      {{ v$?.fullName?.$errors[0]?.$message }}
+                    <div v-if="v$.formData.full_name.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.full_name?.$errors[0]?.$message }}
                     </div>
                   </div>
                   <div class="c-form_field cc-lg">
@@ -115,7 +115,7 @@ import { required, email, minLength, maxLength, helpers } from '@vuelidate/valid
 const modal = useModal('SignInModal')
 
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
-const fullName = ref('')
+// const full_name = ref('')
 const passwordVisibility = ref(false)
 const terms = ref(false)
 const isSubmittingRef = ref(false)
@@ -125,8 +125,8 @@ definePageMeta({
   middleware: ['auth-page'],
 })
 
-const signUpState = useFetchState('/auth/register')
-const signInState = useFetchState('/auth/login')
+const signUpState = useFetchState('/auth/sign-up')
+const signInState = useFetchState('/auth/sign-in')
 const metaDef = useDefault('meta')
 
 
@@ -135,8 +135,9 @@ const formData = reactive({
   email: '',
   password: '',
   username: '',
-  first_name: '',
-  last_name: '',
+  // first_name: '',
+  // last_name: '',
+  full_name: '',
 })
 
 const rules = computed(() => ({
@@ -150,20 +151,20 @@ const rules = computed(() => ({
       required: helpers.withMessage('Required', required),
       minLength: helpers.withMessage('Username is too short', minLength(3)),
     },
+    full_name: {
+        required,
+        nameRegex: helpers.withMessage('Name should only contain letters', nameRegex),
+      },
   },
-  fullName: {
-    required,
-    nameRegex: helpers.withMessage('Name should only contain letters', nameRegex),
-  },
+ 
 }))
 
 const v$ = useVuelidate(
   rules,
   {
     formData,
-    fullName,
     $autoDirty: true,
-  }
+  },
 )
 
 
@@ -171,10 +172,10 @@ const v$ = useVuelidate(
 
 const silentlySignIn = async () => {
   const payload = {
-    email: formData.email,
+    email_or_username: formData.email || formData.username,
     password: formData.password,
   }
-  const { data } = await usePost('/auth/login', payload)
+  const { data } = await usePost('/auth/sign-in', payload)
     if (data.value)
     navigateTo('/dashboard/profile')
 }
@@ -187,16 +188,15 @@ const submitForm = async () => {
   //   return false
   // }
 
-   const { data, error } = await usePost(signUpState.value.url, formData)
- 
+  const { data, error } = await usePost(signUpState.value.url, formData)
+   if (error.value?.statusCode === 422) {
+     useToastExtended('error').show('User already exists, signin instead')
+    return false
+  }
    silentlySignIn()
 }
 
-watch(fullName, (newFullName) => {
-  const names = newFullName.trim().split(' ')
-  formData.first_name = names[0] || ''
-  formData.last_name = names.slice(1).join(' ')
-})
+
 
 
 const togglePasswordVisibility = () => {

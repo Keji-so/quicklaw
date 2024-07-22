@@ -6,5 +6,5 @@ export default defineNuxtRouteMiddleware((to) => {
   pageIntended.value = to.path !== '/login' ? to.path : pageIntended.value
 
   if (!auth.isLoggedIn)
-    return navigateTo('/login')
+    return navigateTo('/')
 })
