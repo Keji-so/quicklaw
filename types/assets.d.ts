@@ -36,3 +36,10 @@ export interface Asset {
   author_summary: AuthorSummary
   resources: Resource[]
 }
+
+export interface AssetPickerPayload {
+  index?: number
+  file: File
+  preview: any
+  orientation: string
+}
