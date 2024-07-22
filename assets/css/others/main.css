@@ -15,6 +15,18 @@ color: var(--green-primary);
     overflow: hidden;
 }
 
+.empty.cc-hide,
+.table-entry.cc-hide,
+.c-pagination.cc-hide {
+  display: none;
+}
+.profile-image {
+    background-image: url('@/public/assets/images/user-placeholder-img.svg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
 .insights-block.cc-sm .insights-block_img{
 width: 100%;
 height: 250px;
@@ -27,6 +39,16 @@ height: 250px;
 max-width: 95%;
   font-weight: 400;
 
+}
+
+.cropper-crop-box,
+.cropper-view-box {
+  border-radius: 50%;
+}
+
+.cropper-view-box {
+  box-shadow: 0 0 0 1px #fff;
+  outline: 0;
 }
 
 .insights-block.cc-sm .insights-title{
@@ -71,6 +93,55 @@ display: none;
 display: block;
 }
 
+
+
+.upload-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.upload-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+border: 1px var(--green-primary) dashed;
+border-radius: 20px;
+background-color: #f8f8f8;
+height: 350px;
+}
+.upload-prompt {
+  font-size: 12px;
+  color: grey;
+  margin-top: 5px;
+}
+
+.upload-text {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.browse-link {
+  cursor: pointer;
+  color: #47654D;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.username {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.crop-img_wrapper {
+  background-color: transparent;
+  height: auto;
+  align-items: stretch !important;
+ flex-direction: column;
+}
+
 @media screen and (max-width: 991px) {
 .insights-block.cc-featured .insights-block_img{
 height: 450px;
@@ -89,6 +160,9 @@ font-size: 20px;
 @media screen and (max-width: 768px) {
 .insights-block.cc-sm .insights-title{
 font-size: 18px;
+}
+.upload-area {
+border-radius: 15px;
 }
 }
 
