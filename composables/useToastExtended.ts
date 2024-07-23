@@ -15,7 +15,7 @@ const kindProps: Record<string, any> = {
     iconClass: 'text-black'
   },
   error: {
-    bodyClass: 'bg-[#e50f0f]',
+    bodyClass: 'bg-[#d11a1a]',
     textClass: 'text-white ',
     progressClass: 'bg-white',
     iconClass: 'text-white',
@@ -23,7 +23,7 @@ const kindProps: Record<string, any> = {
     icon: false
   },
   success: {
-    bodyClass: 'bg-[#3445fe]',
+    bodyClass: 'bg-[#253829]',
     textClass: 'text-white',
     progressClass: 'bg-white',
     iconClass: 'text-white',
