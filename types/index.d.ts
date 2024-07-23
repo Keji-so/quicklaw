@@ -13,8 +13,9 @@ export interface Pagination {
   total: number
   cursor: (index: number) => number
 }
-export interface PaginatedCollection<T> extends Pagination {
-  data: T[]
+export interface PaginatedCollection<T> {
+  user: T[]
+  meta: Pagination
 }
 
 export interface ErrorOptions {
