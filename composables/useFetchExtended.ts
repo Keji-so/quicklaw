@@ -57,9 +57,6 @@ export const useFetchExtended = <T>(
           accessToken: null,
           isLoggedIn: false,
         }
-        localStorage.removeItem('user')
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('isLoggedIn')
 
         // auth.value = authCookie.value
         auth.value = authCookie.value
