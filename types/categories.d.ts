@@ -1,4 +1,4 @@
-export interface Service {
+export interface Services {
   id: string
   title: string
   name: string
@@ -12,12 +12,12 @@ export interface Service {
   updated_at: string
 }
 
-export interface Category {
+export interface Categories {
   id: string
   title: string
   name: string
   description: string
   created_at: string
   updated_at: string
-  services: Service[]
+  services: Services[]
 }
