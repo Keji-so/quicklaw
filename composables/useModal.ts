@@ -1,17 +1,18 @@
 export const useModal = (modal: string | null = null) => {
-  const activeModals = useState<Record<string, { shownAt: number }>>('activeModals', () => ({}))
+  const activeModals = useState<Record<string, { shownAt: number }>>('activeModals', () => {
+    return {}
+  })
 
   const show = (specificModal: string) => {
     activeModals.value[specificModal] = { shownAt: Date.now() }
   }
 
   const hide = (modalName: string | null = null) => {
-    if (modalName === 'all')
+    if (modalName === 'all') {
       activeModals.value = {}
-    else if (modalName)
-      delete activeModals.value[modalName]
-    else if (modal)
+    } else if (modal) {
       delete activeModals.value[modal]
+    }
   }
 
   const hideAll = (modals: string[] | null = null) => {
@@ -26,9 +27,9 @@ export const useModal = (modal: string | null = null) => {
   }
 
   const isVisible = computed(() => {
-    if (modal && modal in activeModals.value)
+    if (modal && modal in activeModals.value) {
       return true
-
+    }
     return false
   })
 
@@ -43,9 +44,17 @@ export const useModal = (modal: string | null = null) => {
     return undefined
   })
 
+  const has = (name: string) => {
+    return Object.keys(activeModals.value).includes(name)
+  }
+
+  const hasAny = computed(() => Object.keys(activeModals.value).length > 0)
+
   return reactive({
     activeModals,
     isVisible,
+    hasAny,
+    has,
     hide,
     hideAll,
     show,

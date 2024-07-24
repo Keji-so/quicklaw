@@ -3,14 +3,70 @@
   <div  v-if="modal.isVisible" class="c-popup cc-show">
     <div class="c-popup_inner cc-plain">
       <div class="popup-close_btn" @click="closeModal"></div>
-      <div class="heading-h3">Crop Profile Picture</div>
+      <div class="heading-h3">Upload Profile Picture</div>
       <div class="crop-img_wrapper">
-        <div class="crop-image_block"><img src="@/public/assets/images/home-hero-image.png" loading="lazy" sizes="(max-width: 479px) 180px, (max-width: 767px) 250px, 290px" srcset="@/public/assets/images/home-hero-image-p-500.png 500w, @/public/assets/images/home-hero-image-p-800.png 800w, @/public/assets/images/home-hero-image-p-1080.png 1080w, @/public/assets/images/home-hero-image-p-1600.png 1600w, @/public/assets/images/home-hero-image.png 1901w" alt="" class="c-img cc-cover">
-          <div class="crop-image_circle"></div>
+        <div
+          v-if="!modalState"
+          class="upload-area cc-small relative"
+        >
+          <MediaUpload
+            :allow-multiple="false"
+            :max-file-size="5000000"
+            @send-files="generateImage"
+          />
+          <div class="upload-area_inner">
+            <div class="upload-text_wrapper">
+              <img
+                alt="upload-img-icon"
+                class="upload-icon"
+                loading="lazy"
+                src="/public/assets/images/upload-img-icon.svg"
+              >
+              <div>
+              <div class="upload-text"> Drag &amp; drop a picture or</div>
+               
+                <div class="browse-link">
+                  browse
+                </div>
+              </div>
+            </div>
+          </div>
+              <ul
+            id="w-node-a7ee8604-da52-daf6-0a73-32b9114264e3-20308ab2"
+            class="upload-prompt_wrapper"
+            role="list"
+          >
+            <li class="upload-prompt">
+              Only
+              <span>.jpeg, .jpg or .png</span>
+              files
+            </li>
+          </ul>
+        </div>
+         <div v-if="modalState === 'image-preview'">
+          <VueCropper
+            ref="cropper"
+            alt="Source Image"
+            :aspect-ratio="1"
+            :auto-crop-area="1"
+            :background="false"
+            :guides="true"
+            :img-style="{ width: '400px', height: '300px' }"
+            :minContainerHeight="350"
+            :rounded="true"
+            :src="profilePicture[0].preview"
+            :view-mode="2"
+          />
         </div>
       </div>
-      <div class="btn-flex cc-align-right">
-        <a href="#" class="c-button">Use Picture</a>
+      <div v-if="modalState" class="btn-flex cc-align-right">
+        <button
+            v-if="modalState === 'image-preview'"
+            class="c-button"
+            @click="uploadImage"
+          >
+          Use Picture
+           </button>
       </div>
     </div>
   </div>
@@ -19,8 +75,103 @@
 </template>
 
 <script setup lang="ts">
+import VueCropper from 'vue-cropperjs'
+import 'cropperjs/dist/cropper.css'
+import type { AssetPickerPayload } from '~/types/assets'
+
+
 const modal = useModal('CropProfilePictureModal')
 
+
+
+const config = useRuntimeConfig()
+const auth = useAuth()
+
+const formData = auth.value.user
+
+const profilePicture = ref<AssetPickerPayload[]>([])
+const modalState = ref('')
+const cropper = ref()
+const cropImg = ref(null)
+const isWorking = ref(false)
+
+const handleClose = () => {
+  if (!lodashIsEmpty(profilePicture.value))
+    modal.show('ConfirmCloseModal')
+   else
+    modal.hide()
+}
+
+const generateImage = (payload: AssetPickerPayload[]) => {
+  profilePicture.value = payload
+  setTimeout(() => {
+    modalState.value = 'image-preview'
+  }, 1000)
+}
+
+
+const updateProfile = async (pictureUrl: string | any) => {
+  formData.profile_picture = pictureUrl
+  await usePost('/users/update', formData)
+}
+
+const updateUser = (pictureUrl: string) => {
+  const user = {
+    ...useAuth().value.user,
+    profile_picture: pictureUrl,
+  }
+
+  useAuth().value.user = user
+  localStorage.setItem('user', JSON.stringify(user))
+}
+
+const uploadImage = async () => {
+  
+  cropImg.value = cropper.value.getCroppedCanvas().toDataURL()
+  isWorking.value = true
+
+  const formData = new FormData()
+
+  if (cropImg.value) {
+    const file = await fetch(cropImg.value)
+      .then(res => res.blob())
+      .then(blob => new File([blob], 'File name', { type: 'image/jpeg' }))
+
+    formData.append('file', file)
+  }
+
+  try {
+    const { data } = await useFetchExtended<Record<string, any>>(
+      `${config.public.baseURL}storage/upload-profile-photo`,
+      {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: formData,
+      },
+    )
+
+    if (data.value) {
+      updateProfile(data.value.path)
+      updateUser(data.value.path)
+      profilePicture.value = []
+      isWorking.value = false
+      modalState.value = ''
+      useToastExtended('success').show('Avatar Uploaded')
+      modal.hide()
+    }
+  }
+  catch (error) {
+    useToastExtended('error').show('Upload Failed')
+    isWorking.value = false
+  }
+}
+
+const resetForm = () => {
+  modalState.value = ''
+  profilePicture.value = []
+}
 
 const closeModal = () => {
   modal.hide('CropProfilePictureModal')

@@ -46,8 +46,8 @@
             </div>
           </div>
         </div>
-       <Services />
 
+      <Categories :categories="categories" />
       </div>
     </section>
     <FooterNav />
@@ -55,6 +55,23 @@
 </template>
 
 <script setup lang="ts">
+import type { Categories, Services } from "~/types/categories"
+import { useModal } from '~/composables/useModal'
+
+const modal = useModal()
+const categories = ref<Categories[]>([])
+const fetchAllCategories = async () => {
+  try {
+    const response = await fetch("/categories.json")
+    if (!response.ok) {
+      throw new Error("Network response was not ok")
+    }
+    categories.value = await response.json()
+  } catch (error) {
+    console.error("Failed to fetch categories:", error)
+  }
+}
+fetchAllCategories()
 
 </script>
 

@@ -5,10 +5,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (to.path === '/auth/sign-out' && !auth.isLoggedIn)
     return navigateTo(from.path === '/auth/sign-out' ? '/' : from)
 
+
   // User is loggedIn and visited route is logout
   if (to.path === '/auth/sign-out') {
-    await usePost('/auth/logout', {})
-
+    await usePost('/auth/sign-out', {})
     return navigateTo('/')
   }
 
