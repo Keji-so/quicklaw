@@ -60,18 +60,49 @@ import { useModal } from '~/composables/useModal'
 
 const modal = useModal()
 const categories = ref<Categories[]>([])
-const fetchAllCategories = async () => {
-  try {
-    const response = await fetch("/categories.json")
-    if (!response.ok) {
-      throw new Error("Network response was not ok")
-    }
-    categories.value = await response.json()
-  } catch (error) {
-    console.error("Failed to fetch categories:", error)
-  }
+const fetchCategoriesState = useFetchState('/category/all')
+
+// const fetchAllCategories = async () => {
+//   try {
+//     const response = await fetch("/categories.json")
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok")
+//     }
+//     categories.value = await response.json()
+//   } catch (error) {
+//     console.error("Failed to fetch categories:", error)
+//   }
+// }
+// fetchAllCategories()
+
+
+// const categoriesState = useFetchState("/category/all");
+
+const getAllCategories = async () => {
+    try {
+    const { data } = await useGet('/category/all')
+      categories.value = (data.value as { data: Categories[] })
+      console.log(categories.value);
+      
+  } catch (error) {}
 }
-fetchAllCategories()
+
+getAllCategories()
+
+// no result property
+const noResultCopy = computed(() => {
+  if (fetchCategoriesState.value.error) {
+    if (!useOnline().value) {
+      return 'Network error, check connectivity'
+    } else {
+      return fetchCategoriesState.value.error
+    }
+  }
+
+  if (lodashIsEmpty(categories.value)) {
+    return 'No Categories Found'
+  }
+})
 
 </script>
 
