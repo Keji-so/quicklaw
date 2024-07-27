@@ -127,7 +127,6 @@ definePageMeta({
 
 const signUpState = useFetchState('/auth/sign-up')
 const signInState = useFetchState('/auth/sign-in')
-const metaDef = useDefault('meta')
 
 
 
