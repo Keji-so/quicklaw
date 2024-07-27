@@ -344,7 +344,11 @@ const toggleCurrentPasswordVisibility = () => {
 const toggleNewPasswordVisibility = () => {
   isNewPasswordVisible.value = !isNewPasswordVisible.value
 }
-
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Profile`,
+})
 </script>
 
 <style scoped>

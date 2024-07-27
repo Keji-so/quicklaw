@@ -154,7 +154,11 @@
 </template>
 
 <script setup lang="ts">
-
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Insights`,
+})
 </script>
 
 <style scoped>

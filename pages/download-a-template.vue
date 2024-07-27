@@ -179,7 +179,11 @@
 </template>
 
 <script setup lang="ts">
-
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Download a Template`,
+})
 </script>
 
 <style scoped>

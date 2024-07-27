@@ -96,7 +96,11 @@
 </template>
 
 <script setup lang="ts">
-
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Contact`,
+})
 </script>
 
 <style scoped>

@@ -16,11 +16,11 @@ const defaults = {
   } as AuthOption,
 
   meta: {
-    title: 'Nuxt3:SSR:Boilerplate',
-    ogTitle: 'Nuxt3:SSR:Boilerplate',
-    description: 'This is my Nuxt3:SSR:Boilerplate, let me tell you all about it.',
-    ogDescription: 'This is my Nuxt3:SSR:Boilerplate, let me tell you all about it.',
-    ogImage: 'https://nuxt.com/social.jpg',
+    title: 'Quicklaw',
+    ogTitle: 'Quicklaw',
+    description: '',
+    ogDescription: '',
+    ogImage: '',
     twitterCard: 'summary_large_image'
   } as Parameters<typeof useSeoMeta>[0],
 

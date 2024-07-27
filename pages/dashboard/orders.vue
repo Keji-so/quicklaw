@@ -146,6 +146,11 @@
 <script setup lang="ts">
 const isTableEmpty = ref(true)
 
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Orders`,
+})
 </script>
 
 <style scoped>

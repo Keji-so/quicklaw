@@ -211,7 +211,11 @@ const togglePasswordVisibility = () => {
 const showSignIn = () => {
   modal.show('SignInModal')
 }
-
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Sign Up`,
+})
 
 </script>
 

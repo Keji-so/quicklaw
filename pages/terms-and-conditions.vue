@@ -64,7 +64,11 @@
 </template>
 
 <script setup lang="ts">
-
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Terms and Conditions`,
+})
 </script>
 
 <style scoped>
