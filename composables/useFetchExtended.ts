@@ -44,7 +44,7 @@ export const useFetchExtended = <T>(
       if (url.includes('/auth/sign-in')) {
         authCookie.value = {
           user: response._data.user,
-          accessToken: response._data.access_token,
+          accessToken: response._data.token,
           isLoggedIn: true,
         }
 
