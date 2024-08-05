@@ -142,6 +142,11 @@ height: 350px;
  flex-direction: column;
 }
 
+.c-button.cc-toggle.cc-active {
+  color: var(--green-primary);
+  background-color: var(--white);
+}
+
 @media screen and (max-width: 991px) {
 .insights-block.cc-featured .insights-block_img{
 height: 450px;

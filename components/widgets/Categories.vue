@@ -3,13 +3,14 @@
     :class="{ 'cc-active': isServiceActive[index] }">
     <div class="service-flex" @click="toggleService(index)">
       <div class="service-title_container">
-        <div class="service-index">0{{ index + 2 }}</div>
+        <div class="service-index">0{{ index + 1 }}</div>
         <div class="service-title">{{ category.name }}</div>
       </div>
       <div class="service-details_container">
         <div class="service-details_inner">
           <div>{{ category.description }}</div>
-          <div class="service-details_icon" :class="{ 'cc-active': isServiceActive[index] }"></div>
+          <div v-if="index === 0" class="c-button cc-toggle" :class="{ 'cc-active': isServiceActive[index] }">Get A Quote</div>
+          <div v-if="index > 0" class="service-details_icon" :class="{ 'cc-active': isServiceActive[index] }"></div>
         </div>
       </div>
     </div>

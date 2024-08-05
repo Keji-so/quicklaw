@@ -28,25 +28,6 @@
     </section>
     <section class="c-section">
       <div class="services-wrapper">
-        <div class="c-service">
-          <div class="service-flex">
-            <div class="service-title_container">
-              <div class="service-index">
-                01
-              </div>
-              <div class="service-title">
-                Startup Advisory
-              </div>
-            </div>
-            <div class="service-details_container">
-              <div class="service-details_inner">
-                <div>Quicklaw provides legal services and company secretarial duties that suit the entire business life cycle We help your startup observe all due diligence and get investment-ready.</div>
-                <a class="c-button" href="#">Get A Quote</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
       <Categories :categories="categories" />
       </div>
     </section>
@@ -62,32 +43,19 @@ const modal = useModal()
 const categories = ref<Categories[]>([])
 const fetchCategoriesState = useFetchState('/category/all')
 
-// const fetchAllCategories = async () => {
-//   try {
-//     const response = await fetch("/categories.json")
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok")
-//     }
-//     categories.value = await response.json()
-//   } catch (error) {
-//     console.error("Failed to fetch categories:", error)
-//   }
-// }
-// fetchAllCategories()
 
-
-// const categoriesState = useFetchState("/category/all");
-
-const getAllCategories = async () => {
-    try {
-    const { data } = await useGet('/category/all')
+const fetchAllCategories = async () => {
+  const { data } = await useGet<Categories>(fetchCategoriesState.value.url, {});
+  try {
+    const { data } = await useGet<Categories>(fetchCategoriesState.value.url,{})
+    if (data.value) {
       categories.value = (data.value as { data: Categories[] })
-      console.log(categories.value);
-      
-  } catch (error) {}
+    } 
+    }
+    catch (error) {
+    console.error('Error fetching categories:', error);
+  }
 }
-
-getAllCategories()
 
 // no result property
 const noResultCopy = computed(() => {
@@ -104,6 +72,15 @@ const noResultCopy = computed(() => {
   }
 })
 
+onMounted(() => {
+  fetchAllCategories();
+});
+
+const metaDef = useDefault('meta')
+useSeoMeta({
+  ...metaDef,
+  title: `${metaDef.title} | Services`,
+})
 </script>
 
 <style scoped>
