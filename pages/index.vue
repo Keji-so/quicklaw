@@ -68,7 +68,71 @@
             <nuxtLink class="c-button" to="/services">Explore Our Services</nuxtLink>
           </div>
           <div class="services-list">
-          <HomeServiceCard />
+             <div
+              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
+              class="services-list_item"
+            >
+              <div class="services-list_flex">
+                <div class="sevices-list_inner">
+                  <div>Start A Business</div>
+                </div>
+                <div class="services-list_icon">
+                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
+                </div>
+              </div>
+              <div class="heading-h4">
+                We provide you with the legal support you need to get your business up and
+                running without stress.
+              </div>
+            </div>
+               <div
+              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
+              class="services-list_item"
+            >
+              <div class="services-list_flex">
+                <div class="sevices-list_inner">
+                  <div>Protect Your Ideas</div>
+                </div>
+                <div class="services-list_icon">
+                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
+                </div>
+              </div>
+              <div class="heading-h4">
+                Receive adequate legal support and  representation you require to protect your intellectual property.
+              </div>
+            </div>
+               <div
+              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
+              class="services-list_item"
+            >
+              <div class="services-list_flex">
+                <div class="sevices-list_inner">
+                  <div>Draft & Review Agreement</div>
+                </div>
+                <div class="services-list_icon">
+                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
+                </div>
+              </div>
+              <div class="heading-h4">
+               Creating and reviewing contract agreements is easier with Quicklaw’s self- service.
+              </div>
+            </div>
+               <div
+              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
+              class="services-list_item"
+            >
+              <div class="services-list_flex">
+                <div class="sevices-list_inner">
+                  <div>Download a Template</div>
+                </div>
+                <div class="services-list_icon">
+                  <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/gavel.svg">
+                </div>
+              </div>
+              <div class="heading-h4">
+               With our legal templates, you don’t have to stress yourself with drafting new documents.
+              </div>
+            </div>
           </div>
         </div>
       </div>
