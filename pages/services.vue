@@ -41,15 +41,15 @@ import { useModal } from '~/composables/useModal'
 
 const modal = useModal()
 const categories = ref<Categories[]>([])
-const fetchCategoriesState = useFetchState('/category/all')
+const fetchCategoriesState = useFetchState('/categories/all')
 
 
 const fetchAllCategories = async () => {
-  const { data } = await useGet<Categories>(fetchCategoriesState.value.url,{});
+  const { data } = await useGet<Categories>(fetchCategoriesState.value.url, {});
   try {
     const { data } = await useGet<Categories>(fetchCategoriesState.value.url,{})
     if (data.value) {
-      categories.value = data.value as Categories[] 
+      categories.value = data.value.data.data as Categories[] 
     } 
     }
     catch (error) {
