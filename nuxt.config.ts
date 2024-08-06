@@ -29,10 +29,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    paystackSecretKey: process.env.PAYSTACK_SECRET_KEY,
     public: {
       appENV: import.meta.env.APP_ENV,
       baseURL: import.meta.env.BASE_URL,
       siteURL: process.env.SITE_URL,
+      paystackKey: process.env.PAYSTACK_PUBLIC_KEY,
     }
   },
 

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@paystack/inline-js':
+    specifier: ^2.19.3
+    version: 2.19.3
   '@vuelidate/core':
     specifier: ^2.0.3
     version: 2.0.3(vue@3.4.35)
@@ -1899,6 +1902,11 @@ packages:
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
     dev: true
+
+  /@paystack/inline-js@2.19.3:
+    resolution: {integrity: sha512-kMPp9B+VulRp+VVRiimKJ+CzSBAG8+vmhzXS1S9/5W7F5mQlhFNKadO+lIBLFI3E/XTWsjDBn2V+839m9bbHfg==}
+    engines: {node: '>= 18.0.0', npm: '>= 10.0.0'}
+    dev: false
 
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
