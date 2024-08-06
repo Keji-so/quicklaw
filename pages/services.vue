@@ -45,11 +45,11 @@ const fetchCategoriesState = useFetchState('/category/all')
 
 
 const fetchAllCategories = async () => {
-  const { data } = await useGet<Categories>(fetchCategoriesState.value.url, {});
+  const { data } = await useGet<Categories>(fetchCategoriesState.value.url,{});
   try {
     const { data } = await useGet<Categories>(fetchCategoriesState.value.url,{})
     if (data.value) {
-      categories.value = (data.value as { data: Categories[] })
+      categories.value = data.value as Categories[] 
     } 
     }
     catch (error) {
