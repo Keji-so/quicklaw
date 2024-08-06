@@ -176,8 +176,23 @@ const transactionFee = ref<number>(324)
 const totalPrice = ref<number>(0)
 
 
+const fetchServicesState = useFetchState('/services/all')
+
+
 
 const fetchAllServices = async () => {
+// const { data } = await useGet<Services>(fetchServicesState.value.url, {});
+//   try {
+//     const { data } = await useGet<Services>(fetchServicesState.value.url,{})
+//     if (data.value) {
+//       services.value = data.value as Services[] 
+//     } 
+//     }
+//     catch (error) {
+//     console.error('Error fetching categories:', error);
+//   }
+
+
   try {
     const response = await fetch('/services.json')
     if (!response.ok) {
