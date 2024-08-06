@@ -234,31 +234,37 @@ const formData = ref({
   username: '',
   password: '',
   new_password: '',
-
-  token: auth.value.accessToken || '',
+ token: auth.value.accessToken || '',
 })
 
 
-const verifyEmailUrl = useFetchState('/auth/validate-email')
-const verifyEmail = async () => {
-  const { data: emailStatus } = await usePost(
-    verifyEmailUrl.value.url,
-    {
-      email: auth.value.user.email,
-    },
-    {},
-  )
-}
-verifyEmail()
+// const verifyEmailUrl = useFetchState('/auth/validate-email')
+// const verifyEmail = async () => {
+//   const { data: emailStatus } = await usePost(
+//     verifyEmailUrl.value.url,
+//     {
+//       email: auth.value.user.email,
+//     },
+//     {},
+//   )
+// }
+// verifyEmail()
 
 
 const prefillForm = () => {
   formData.value = deepClone(auth.value.user)
   if (auth.value.user.profile)
-    formData.value.profile_payload = deepClone(auth.value.user.profile)
-
+    formData.value.profile_payload = deepClone(auth.value.user.profile)   
+     
 }
 prefillForm()
+
+const splitFullName = () => {
+  const [first_name, ...rest] = formData.value.full_name.split(' ')
+  formData.value.first_name = first_name
+  formData.value.last_name = rest.join(' ')  
+}
+splitFullName()
 
 
 const rules = computed(() => ({
