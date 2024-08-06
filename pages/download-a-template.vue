@@ -44,29 +44,14 @@
                   </div>
                 </div>
                 <div class="c-dropdown">
-                  <div class="dropdown-toggle">
-                    <div>This is some text inside of a div block.</div>
+                  <div  class="dropdown-toggle" @click="toggleDropdown">
+                    <div>{{selectedService?.name}}</div>
                   </div>
-                  <div class="dropdown-list">
-                    <div class="dropdown-list_item">
-                      Employment Offer Letter
-                    </div>
-                    <div class="dropdown-list_item">
-                      Employment Offer Letter
-                    </div>
-                    <div class="dropdown-list_item">
-                      Employment Offer Letter
-                    </div>
-                    <div class="dropdown-list_item">
-                      Employment Offer Letter
-                    </div>
-                    <div class="dropdown-list_item">
-                      Employment Offer Letter
+                  <div v-if="isDropdownOpen" class="dropdown-list">
+                    <div v-for="(service, index) in services" :key="service.id" class="dropdown-list_item" @click="handleChange(service)">
+                      {{service.name}}
                     </div>
                   </div>
-                </div>
-                <div class="c-help">
-                  This is a dummy help text
                 </div>
               </div>
               <div class="c-form_field cc-sm">
@@ -131,9 +116,9 @@
               </div>
               <div class="order-details">
                 <div class="order-details_inner">
-                  <div>Employment Offer Letter</div>
+                  <div>{{selectedService?.name}}</div>
                   <div class="order-price">
-                    ₦15,000.00
+                    ₦{{ formatNumber(selectedService?.price, '0,0') }}
                   </div>
                 </div>
                 <div class="order-code_image">
@@ -147,13 +132,14 @@
                 <div class="order-price_title">
                   SubTotal
                 </div>
-                <div>₦15,000.00</div>
+               <div>₦{{ numberEmptyState(formatNumber(selectedService?.price, '0,0')) }}</div>
+
               </div>
               <div class="order-details_flex">
                 <div class="order-price_title">
                   Paystack Transactions Fee
                 </div>
-                <div>₦324.00</div>
+                <div>₦{{ numberEmptyState(formatNumber(transactionFee, '0,0')) }}</div>
               </div>
               <div class="reciept-circle cc-left" />
               <div class="reciept-circle cc-right" />
@@ -162,7 +148,7 @@
               <div class="order-price_title">
                 Total
               </div>
-              <div>₦15,324.00</div>
+              <div>₦{{ numberEmptyState(formatNumber(totalPrice, '0,0')) }}</div>
             </div>
           </div>
           <div class="c-note">
@@ -179,6 +165,58 @@
 </template>
 
 <script setup lang="ts">
+import type { Services } from "~/types/services"
+import { useModal } from '~/composables/useModal'
+
+const modal = useModal()
+const services = ref<Services[]>([])
+const selectedService = ref<Services | []>([])
+const isDropdownOpen = ref(false)
+const transactionFee = ref<number>(324)
+const totalPrice = ref<number>(0)
+
+
+
+const fetchAllServices = async () => {
+  try {
+    const response = await fetch('/services.json')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data: Services[] = await response.json()
+    services.value = data
+
+    // Set the first service as the selected service if available
+    if (data.length > 0) {
+      selectedService.value = data[0]
+      totalPrice.value = selectedService?.value.price + transactionFee.value
+    }
+  } catch (error) {
+    console.error('Error fetching services:', error)
+  }
+}
+
+const handleChange = (service: Services) => {
+  selectedService.value = service
+  isDropdownOpen.value = false // Close dropdown after selection
+  getTotalPrice()
+}
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value
+}
+
+const getTotalPrice = () => {
+  if(selectedService.value) {
+  totalPrice.value = selectedService?.value.price + transactionFee.value
+    }
+}
+
+onMounted(() => {
+  fetchAllServices()
+})
+
+// SEO Meta
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,
