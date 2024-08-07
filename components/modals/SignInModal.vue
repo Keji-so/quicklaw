@@ -17,7 +17,7 @@
                   <input
                     id="username-email"
                     v-model.lazy="formData.email_or_username"
-                    :class="{ 'cc-error': v$.password.$error || authMessage }"
+                    :class="{ 'cc-error': v$.email_or_username.$error || authMessage }"
                     class="c-input w-input"
                     maxlength="256"
                     name="username-email"
@@ -121,7 +121,7 @@ const rules = computed(() => ({
   password: { required: validatorHelpers.withMessage("Required", required) },
 }));
 
-const v$ = useVuelidate(rules, formData, {
+const v$ = useVuelidate(rules,  formData, {
   $autoDirty: true,
 });
 
@@ -147,12 +147,13 @@ const submitForm = async () => {
     //   emailOrUsername: formData.email_or_username,
     //   type: 'Traditional ',
     // })
-   console.log(currentPath)
     if (currentPath === '/auth/sign-up') {
       navigateTo('/');
+     useToastExtended('success').show('Welcome!')
+
+
     }
     closeSignInModal();
-    // navigateTo(currentPath);
   }
 };
 
