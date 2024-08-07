@@ -60,12 +60,15 @@
                     Full Name
                   </div>
                 </div>
-                <div class="c-input_wrapper">
-                  <input id="Fullname-4" class="c-input w-input" data-name="Fullname" maxlength="256" name="Fullname" placeholder="Enter Full Name" required type="text">
-                </div>
-                <div class="c-help">
-                  This is a dummy help text
-                </div>
+                 <div class="c-input_wrapper">
+                      <input id="full-name" v-model="formData.full_name" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.full_name.$error }" maxlength="256" name="Full-Name"
+                        placeholder="Enter your First Name &amp; Last Name" type="text">
+                    </div>
+                    <div v-if="v$.formData.full_name.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.full_name?.$errors[0]?.$message }}
+                    </div>
+
               </div>
               <div class="c-form_field cc-sm">
                 <div class="c-label_wrapper">
@@ -73,12 +76,14 @@
                     Email Address
                   </div>
                 </div>
-                <div class="c-input_wrapper">
-                  <input id="Email-Address" class="c-input w-input" data-name="Email Address" maxlength="256" name="Email-Address" placeholder="Enter Email Address" required type="email">
-                </div>
-                <div class="c-help">
-                  This is a dummy help text
-                </div>
+            <div class="c-input_wrapper">
+                      <input id="email" v-model.lazy="formData.email" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.email.$error }" maxlength="256" name="email"
+                        placeholder="Enter your Email Address" type="email">
+                    </div>
+                    <div v-if="v$.formData.email.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.email?.$errors[0]?.$message }}
+                    </div>
               </div>
               <div class="c-form_field cc-sm">
                 <div class="c-label_wrapper">
@@ -87,14 +92,22 @@
                   </div>
                 </div>
                 <div class="c-input_wrapper">
-                  <input id="Phone-Number" class="c-input w-input" data-name="Phone Number" maxlength="256" name="Phone-Number" placeholder="Enter Phone Number" required type="tel">
+                  <input
+                  id="phone-number" 
+                  v-model.lazy="formData.phone_number"
+                  :class="{ 'cc-error': v$.formData.phone_number.$error }"
+                  class="c-input w-input" 
+                   maxlength="256" 
+                   name="phone_number" 
+                   placeholder="Enter Phone Number" 
+                   type="tel">
                 </div>
-                <div class="c-help">
-                  This is a dummy help text
-                </div>
+                <div v-if="v$.formData.phone_number.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.phone_number?.$errors[0]?.$message }}
+                    </div>
               </div>
               <div class="uc-align-right">
-                <input class="c-button cc-secondary-green w-button" data-wait="" type="submit" value="Checkout">
+                <input class="c-button cc-secondary-green w-button" data-wait="" type="submit" value="Checkout" @click.prevent="handlePayment">
               </div>
             </form>
             <div class="w-form-done">
@@ -165,20 +178,61 @@
 </template>
 
 <script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength, maxLength, helpers  } from '@vuelidate/validators'
 import type { Services } from "~/types/services"
 import { useModal } from '~/composables/useModal'
 
-const modal = useModal()
+const modal = useModal('SignInModal')
 const services = ref<Services[]>([])
 const selectedService = ref<Services | []>([])
 const isDropdownOpen = ref(false)
 const transactionFee = ref<number>(324)
 const totalPrice = ref<number>(0)
-
+// const router = useRouter()
+const auth = useAuth()
+// const payment = usePay()
+const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 
 const fetchServicesState = useFetchState('/services/all')
+const createOrderState = useFetchState('/order/create')
 
 
+
+const formData = ref({
+  id: '',
+  subtotal: '',
+  total: '',
+  phone_number: '',
+})
+
+
+const rules = computed(() => ({
+  formData: {
+    full_name: {
+      required: helpers.withMessage('Please enter your full name', required),
+      nameRegex: helpers.withMessage('Name should only contain letters', nameRegex),
+     },
+    email: {
+    required: helpers.withMessage('Please enter a valid email address', required),
+    email: helpers.withMessage('Please enter a valid email address', email)
+    },
+   phone_number: {
+      required: helpers.withMessage('Phone number is required', required),
+      maxLength: helpers.withMessage('Phone number must be at most 10 digits long', maxLength(14)),
+      minLength: helpers.withMessage('Phone number must be at least 10 digits long', minLength(10))
+    },
+  },
+ 
+}))
+
+const v$ = useVuelidate(
+  rules,
+  {
+  formData,
+  $autoDirty: true,
+  },
+)
 
 const fetchAllServices = async () => {
 // const { data } = await useGet<Services>(fetchServicesState.value.url, {});
@@ -226,6 +280,50 @@ const getTotalPrice = () => {
   totalPrice.value = selectedService?.value.price + transactionFee.value
     }
 }
+
+
+const handlePayment = async () => {
+  if (auth.value?.isLoggedIn) {
+    //   v$.value.$touch()
+    //   if (v$.value.$invalid) {
+    //     useToastExtended('error').show('Some fields require your attention')
+    //     return false
+    // }
+    const { data, error } = await usePost(createOrderState.value.url, formData)
+    // formData.value.id = selectedService?.value.name 
+    // formData.value.subtotal = selectedService?.value.price
+    // formData.value.total = totalPrice.value     
+
+  }
+ else modal.show('SignInModal')
+}
+
+// const initializePaystackCheckout = () => {
+//   const handler = window.PaystackPop.setup({
+//     key: process.env.PAYSTACK_PUBLIC_KEY, // Replace with your Paystack public key
+//     service: selectedService.name,
+//     full_name: formData.value.name,
+//     email: formData.value.email,
+//     phone: formData.value.phone,
+//     amount: selectedService?.value.price, 
+//     currency: 'NGN', 
+//     callback: function (response) {
+//       alert('Payment successful! Reference: ' + response.reference)
+//     },
+//     onClose: function () {
+//       alert('Payment was canceled')
+//     },
+//   })
+
+//   handler.openIframe() // Open the payment modal
+// }
+
+const prefillForm = () => {
+  formData.value = deepClone(auth.value.user)
+  if (auth.value.user.profile)
+    formData.value.profile_payload = deepClone(auth.value.user.profile)       
+}
+prefillForm()
 
 onMounted(() => {
   fetchAllServices()
