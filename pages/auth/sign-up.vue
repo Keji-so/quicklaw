@@ -192,7 +192,6 @@ v$.value.$touch()
 
   if (isFormInvalid) {
     useToastExtended('error').show('Some fields require your attention')
-    console.log(v$.value)
     return false
   }
 
