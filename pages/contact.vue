@@ -4,7 +4,9 @@
     <section class="c-section">
       <div class="c-hero">
         <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" src="@/public/assets/images/contact-hero-image.png" srcset="@/public/assets/images/contact-hero-image-p-500.png 500w, @/public/assets/images/contact-hero-image-p-800.png 800w, @/public/assets/images/contact-hero-image-p-1080.png 1080w, @/public/assets/images/contact-hero-image-p-1600.png 1600w, @/public/assets/images/contact-hero-image.png 1901w">
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw"
+            src="@/public/assets/images/contact-hero-image.png"
+            srcset="@/public/assets/images/contact-hero-image-p-500.png 500w, @/public/assets/images/contact-hero-image-p-800.png 800w, @/public/assets/images/contact-hero-image-p-1080.png 1080w, @/public/assets/images/contact-hero-image-p-1600.png 1600w, @/public/assets/images/contact-hero-image.png 1901w">
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-services">
@@ -35,7 +37,7 @@
             </h2>
           </div>
           <div class="form-block w-form">
-            <form id="wf-form-" data-name="contact form" data-wf-element-id="3125d455-bda2-658a-bfe8-5cd0dfe56fc3" data-wf-page-id="6646598ea35a1ad891c89f2c" method="get" name="wf-form-">
+            <form id="contact-form" name="contact-form" @submit.prevent="submitForm">
               <div class="contact-form_inner">
                 <div class="form-flex">
                   <div class="c-form_field">
@@ -45,7 +47,12 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="fullname-2" class="c-input w-input" data-name="fullname" maxlength="256" name="fullname" placeholder="Enter your First Name &amp; Last Name" required type="text">
+                      <input id="full-name" v-model="formData.full_name" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.full_name.$error }" maxlength="256" name="Full-Name"
+                        placeholder="Enter your First Name &amp; Last Name" type="text">
+                    </div>
+                    <div v-if="v$.formData.full_name.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.full_name?.$errors[0]?.$message }}
                     </div>
                   </div>
                   <div class="c-form_field">
@@ -55,7 +62,12 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="Email-3" class="c-input w-input" data-name="Email" maxlength="256" name="Email" placeholder="Enter your Email Address" required type="email">
+                      <input id="email" v-model.lazy="formData.email" class="c-input w-input"
+                        :class="{ 'cc-error': v$.formData.email.$error }" maxlength="256" name="email"
+                        placeholder="Enter your Email Address" type="email">
+                    </div>
+                    <div v-if="v$.formData.email.$errors.length" class="c-help cc-error">
+                      {{ v$?.formData.email?.$errors[0]?.$message }}
                     </div>
                   </div>
                 </div>
@@ -66,7 +78,12 @@
                     </div>
                   </div>
                   <div class="c-input_wrapper">
-                    <input id="Subject" class="c-input w-input" data-name="Subject" maxlength="256" name="Subject" placeholder="Enter the Subject of your Message" required type="text">
+                    <input id="subject" v-model.lazy="formData.subject" class="c-input w-input"
+                      :class="{ 'cc-error': v$.formData.subject.$error }" name="subject"
+                      placeholder="Enter the Subject of your Messsage" type="text">
+                  </div>
+                  <div v-if="v$.formData.subject.$errors.length" class="c-help cc-error">
+                    {{ v$?.formData.subject?.$errors[0]?.$message }}
                   </div>
                 </div>
                 <div class="c-form_field">
@@ -76,7 +93,12 @@
                     </div>
                   </div>
                   <div class="c-input_wrapper">
-                    <textarea id="Message" class="c-input cc-textarea w-input" data-name="Message" maxlength="5000" name="Message" placeholder="Enter your Message here..." required />
+                    <textarea id="message" v-model.lazy="formData.message" class="c-input cc-textarea w-input"
+                      :class="{ 'cc-error': v$.formData.message.$error }" name="subject" type="text"
+                      placeholder="Enter your Message here..." />
+                  </div>
+                  <div v-if="v$.formData.message.$errors.length" class="c-help cc-error">
+                    {{ v$?.formData.message?.$errors[0]?.$message }}
                   </div>
                 </div>
               </div><input class="c-button w-button" data-wait="" type="submit" value="Submit Message">
@@ -96,6 +118,83 @@
 </template>
 
 <script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, maxLength, helpers } from '@vuelidate/validators'
+
+const contactSubmitState = useFetchState('/contact-us')
+const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
+
+
+const formData = reactive({
+  full_name: '',
+  email: '',
+  subject: '',
+  message: '',
+})
+
+
+const rules = computed(() => ({
+  formData: {
+    full_name: {
+      required: helpers.withMessage('Please enter your full name', required),
+      nameRegex: helpers.withMessage('Name should only contain letters', nameRegex),
+    },
+    email: {
+      required: helpers.withMessage('Please enter a valid email address', required),
+      email: helpers.withMessage('Please enter a valid email address', email)
+    },
+    subject: {
+      required: helpers.withMessage('Message subject is required', required),
+    },
+    message: {
+      required: helpers.withMessage('Message body is required', required),
+      maxLength: helpers.withMessage('Message is too long', maxLength(5000)),
+    },
+
+  },
+
+}))
+
+const v$ = useVuelidate(
+  rules,
+  {
+    formData,
+  },
+  { $autoDirty: true },
+)
+
+const submitForm = async () => {
+  v$.value.$touch()
+
+  const isFormInvalid =
+    v$.value.formData.full_name.$invalid ||
+    v$.value.formData.email.$invalid ||
+    v$.value.formData.subject.$invalid ||
+    v$.value.formData.message.$invalid
+
+  if (isFormInvalid) {
+    useToastExtended('error').show('Some fields require your attention')
+    return false
+  }
+
+
+  const { data, error } = await usePost(contactSubmitState.value.url, formData)
+
+  if (data.value) {
+    useToastExtended('success').show('Thank you for your form submission!')
+    formData.full_name = ''
+    formData.email = ''
+    formData.subject = ''
+    formData.message = ''
+    v$.value.$reset()
+  }
+
+  if (error.value) {
+    useToastExtended('error').show('An error occurred, please try again')
+    return false
+  }
+}
+
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,
@@ -103,6 +202,4 @@ useSeoMeta({
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
