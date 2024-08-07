@@ -23,8 +23,13 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="full-name" v-model="formData.full_name" class="c-input w-input"
-                        :class="{ 'cc-error': v$.formData.full_name.$error }" maxlength="256" name="Full-Name"
+                      <input 
+                      id="full-name" 
+                      v-model="formData.full_name" 
+                      class="c-input w-input"
+                      :class="{ 'cc-error': v$.formData.full_name.$error }"
+                       maxlength="256" 
+                       name="full-name"
                         placeholder="Enter your First Name &amp; Last Name" type="text">
                     </div>
                     <div v-if="v$.formData.full_name.$errors.length" class="c-help cc-error">
@@ -70,7 +75,7 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="password" v-model="formData.password" class="c-input w-input"
+                      <input id="password" v-model="formData.password" class="c-input cc-trailing w-input"
                         :class="{ 'cc-error': v$.formData.password.$error }" maxlength="256" name="password"
                         placeholder="Choose a Password" :type="isPasswordVisible ? 'text' : 'password'">
                       <div @click="togglePasswordVisibility" class="reveal-toggle"
@@ -111,49 +116,47 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
+import { required, email, minLength, maxLength, helpers  } from '@vuelidate/validators'
 const modal = useModal('SignInModal')
 
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 // const full_name = ref('')
-const passwordVisibility = ref(false)
-const terms = ref(false)
+// const passwordVisibility = ref(false)
 const isSubmittingRef = ref(false)
 const isPasswordVisible = ref(false)
 
-definePageMeta({
-  middleware: ['auth-page'],
-})
+// definePageMeta({
+//   middleware: ['auth-page'],
+// })
 
 const signUpState = useFetchState('/auth/sign-up')
 const signInState = useFetchState('/auth/sign-in')
-
-
 
 const formData = reactive({
   email: '',
   password: '',
   username: '',
-  // first_name: '',
-  // last_name: '',
   full_name: '',
 })
 
 const rules = computed(() => ({
   formData: {
-    email: { required: helpers.withMessage('Required', required), email },
+    email: {
+    required: helpers.withMessage('Please enter a valid email address', required),
+    email: helpers.withMessage('Please enter a valid email address', email)
+  },
     password: {
-      required: helpers.withMessage('Required', required),
+     required: helpers.withMessage('Minimum of 8 characters required', required),
       minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)),
     },
     username: {
-      required: helpers.withMessage('Required', required),
+     required: helpers.withMessage('Please enter a valid username', required),
       minLength: helpers.withMessage('Username is too short', minLength(3)),
     },
     full_name: {
-        required,
+        required: helpers.withMessage('Please enter your full name', required),
         nameRegex: helpers.withMessage('Name should only contain letters', nameRegex),
-      },
+      }
   },
  
 }))
@@ -162,50 +165,51 @@ const v$ = useVuelidate(
   rules,
   {
     formData,
-    $autoDirty: true,
   },
+  { $autoDirty: true },
 )
-
-
-
 
 const silentlySignIn = async () => {
   const payload = {
     email_or_username: formData.email || formData.username,
     password: formData.password,
   }
-  const { data } = await usePost('/auth/sign-in', payload)
+  const { data } = await usePost(signInState.value.url, payload)
     if (data.value)
-    navigateTo('/dashboard/profile')
+     navigateTo('/dashboard/profile')
+     useToastExtended('success').show('Welcome!')
 }
 
 
 const submitForm = async () => {
-  // v$.value.$touch()
-  // if (v$.value.$invalid) {
-  //   useToastExtended('error').show('Some fields require your attention')
-  //   return false
-  // }
+
+v$.value.$touch()
+  const isFormInvalid
+    = v$.value.formData.email.$invalid
+    || v$.value.formData.password.$invalid
+    || v$.value.formData.username.$invalid
+    || v$.value.formData.full_name.$invalid
+
+  if (isFormInvalid) {
+    useToastExtended('error').show('Some fields require your attention')
+    console.log(v$.value)
+    return false
+  }
 
   const { data, error } = await usePost(signUpState.value.url, formData)
+
    if (error.value?.statusCode === 422) {
      useToastExtended('error').show('User already exists, signin instead')
     return false
   }
-   silentlySignIn()
+
+silentlySignIn()
 }
-
-
 
 
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value
 }
-
-
-
-
-
 
 const showSignIn = () => {
   modal.show('SignInModal')
