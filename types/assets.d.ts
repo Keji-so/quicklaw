@@ -43,3 +43,34 @@ export interface AssetPickerPayload {
   preview: any
   orientation: string
 }
+
+
+interface Order {
+  id: string
+  order_reference: string
+  user_id: string
+  service_id: string
+  company_details: {
+    "Company Name": string
+    "Scope of Business": string
+    "Object of Business": string
+    "Registered Address": string
+    "Alternate Company Name": string
+  }
+  subtotal: number
+  paystack_trx_fee: number
+  total: number
+  phone_number: string
+  payment_status: string
+  payment_ref: string
+  order_status: string
+  deleted_at: null
+  created_at: string
+  updated_at: string
+}
+
+interface OrderResponse {
+  status: string
+  message: string
+  data: Order[]
+}
