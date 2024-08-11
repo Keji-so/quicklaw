@@ -9,10 +9,10 @@
         </div>
         <div class="hero-text_block cc-full-width">
           <div class="page-title">
-            CORPORATE LAW // JAN 10, 2023
+            CORPORATE LAW // {{formatDate(insights.date)}}
           </div>
           <h1 class="heading-h2">
-            Corporate Governance - A Practical Guide for Early-Stage Growth
+            {{insights.title }}
           </h1>
         </div>
         <div class="hero-illustration cc-illustration-one">
@@ -32,7 +32,8 @@
           <div class="insights-open_details">
             <div class="block-quote cc-sm">
               <div class="block-quote_text">
-                The Derek Chauvin case has been described by academics as a watershed moment in United State history for police accountability.
+                           {{insights.quote }}
+
               </div>
             </div>
             <div class="insights-socials_link">
@@ -66,26 +67,7 @@
               </div>
             </div>
           </div>
-          <div class="insights-inner_content w-richtext">
-            <h4>Heading 4</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <p>Ordered list</p>
-            <ol role="list">
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-            </ol>
-            <p>Unordered list</p>
-            <ul class="list" role="list">
-              <li>Item A</li>
-              <li>Item B</li>
-              <li>Item C</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <div v-html="insights.content" class="insights-inner_content w-richtext">
           </div>
         </div>
       </div>
@@ -154,6 +136,32 @@
 </template>
 
 <script setup lang="ts">
+import type { ArticleContent } from "~/types/content"
+const insights = ref<ArticleContent[]>([])
+
+const route = useRoute()
+
+
+const fetchPosts = async (params) => {
+    try {
+         const response = await fetch(`https://cms.quicklaw.ng/api/posts?filters[slug]=${params.slug}`)
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        insights.value = data.data[0]   
+          
+    } catch (error) {
+        console.error('Error fetching home page data:', error)
+    }
+};
+
+
+onMounted(async () => {
+  const slug = route.params.slug  
+  await fetchPosts({ slug })
+});
+
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,

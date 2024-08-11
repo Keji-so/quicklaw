@@ -101,6 +101,22 @@ export interface DownloadTemplateData {
   hero: Hero
 }
 
+interface ArticleContent {
+  id: number
+  title: string
+  quote: string
+  content: string
+  date: string
+  slug: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+  featured: boolean | null
+  cover_image: string | null
+  references: string[]
+  category: string | null
+}
+
 export interface Form {
   id: number
   title: string

@@ -1,5 +1,5 @@
 <template>
- <div :class="classes" >
+ <div v-for="(insight, index) in insights" :key="insight.id" :class="classes" >
             <div  class="insights-block_img">
               <img
                 alt=""
@@ -10,17 +10,39 @@
             </div>
             <div class="insights-block_details">
               <div class="insights-title heading-h3">
-                Why Do I Need to Register My Business?
+                {{insight.title}}
               </div>
               <div class="insights-block_date">
-                JAN 10, 2023
+                {{formatDate(insight.date)}}
               </div>
-              <a class="arrow-link" >Read Insight</a>
+              <nuxtLink :to="`/insights/${insight.slug}`"  class="arrow-link" >Read Insight</nuxtLink>
             </div>
           </div>
 </template>
 
 <script setup lang="ts">
+import type { ArticleContent } from "~/types/content"
+const insights = ref<ArticleContent[]>([])
+
+
+const fetchPosts = async () => {
+    try {
+        const response = await fetch('https://cms.quicklaw.ng/api/posts?populate=deep');
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        insights.value = data.data      
+        
+    } catch (error) {
+        console.error('Error fetching home page data:', error)
+    }
+};
+
+
+onMounted(() => {
+  fetchPosts()
+});
 defineProps<{ classes: string }>()
 </script>
 
