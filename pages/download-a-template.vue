@@ -186,6 +186,7 @@ import type { Services } from "~/types/services"
 import { useModal } from '~/composables/useModal'
 
 
+
 const modal = useModal('SignInModal')
 const content = ref(null);
 const hero = ref<Hero[]>([])
@@ -226,10 +227,9 @@ const fetchPageData = async () => {
 
 
 const formData = ref({
-  id: '',
-  subtotal: '',
-  total: '',
-  phone_number: '',
+    service_id: "",
+    phone_number: "",
+   
 })
 
 
@@ -267,6 +267,7 @@ const fetchAllServices = async () => {
       if (data.value) {
         services.value = data.value.data as Services[] 
         
+        
      if (services.value.length > 0) {
        selectedService.value = services.value[0]
        totalPrice.value = selectedService?.value.price + transactionFee.value
@@ -296,19 +297,50 @@ const getTotalPrice = () => {
   }
 }
 
+const submitForm = async () => { 
+  const phoneNumber = v$.value.formData.phone_number.$model
+   const companyName = ''
+    const alternateCompanyName = ''
+    const registeredAddress = ''
+    const objectOfBusiness = ''
+    const scopeOfBusiness = ''
+   const payload = {
+     service_id: selectedService?.value.category_id,
+     phone_number: phoneNumber,
+     company_details: {
+        "Company Name": companyName,
+        "Alternate Company Name": alternateCompanyName,
+        "Registered Address": registeredAddress,
+        "Object of Business": objectOfBusiness,
+        "Scope of Business": scopeOfBusiness
+    }
+   }
+  
+  const { data, error } = await usePost(createOrderState.value.url, payload)   
+        if (data.value)
+          useToastExtended('success').show('Success')
+        
+    if (error.value) {
+      useToastExtended('error').show('Something went wrong with your order')
+      return false;
+    }
+
+}
 
 const handlePayment = async () => {
   if (auth.value?.isLoggedIn) {
-    //   v$.value.$touch()
-    //   if (v$.value.$invalid) {
-    //     useToastExtended('error').show('Some fields require your attention')
-    //     return false
-    // }
-    const { data, error } = await usePost(createOrderState.value.url, formData)
-    // formData.value.id = selectedService?.value.name 
-    // formData.value.subtotal = selectedService?.value.price
-    // formData.value.total = totalPrice.value     
+     v$.value.$touch()
+    const isFormInvalid
+    = v$.value.formData.full_name.$invalid
+    || v$.value.formData.email.$invalid
+    || v$.value.formData.phone_number.$invalid
 
+  if (isFormInvalid) {
+    useToastExtended('error').show('Some fields require your attention')
+    return false
+  }
+
+  submitForm()
   }
   else modal.show('SignInModal')
 }
@@ -338,6 +370,8 @@ const prefillForm = () => {
   if (auth.value.user)
     formData.value.profile_payload = deepClone(auth.value.user)    
 }
+
+
 
 onMounted(() => {
   fetchPageData()
