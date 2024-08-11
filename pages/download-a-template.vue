@@ -336,15 +336,13 @@ const handlePayment = async () => {
 const prefillForm = () => {
   formData.value = deepClone(auth.value.user)
   if (auth.value.user)
-    formData.value.profile_payload = deepClone(auth.value.user)
-    console.log(auth.value.user);
-    
+    formData.value.profile_payload = deepClone(auth.value.user)    
 }
-prefillForm()
 
 onMounted(() => {
   fetchPageData()
   fetchAllServices()
+  prefillForm()
 })
 
 // SEO Meta

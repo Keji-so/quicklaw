@@ -209,7 +209,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, minLength, required } from '@vuelidate/validators'
-import type { profileDetails } from "~/types/auth"
+// import type { profileDetails } from "~/types/auth"
 
 
 
@@ -255,31 +255,20 @@ const formData = ref({
 
 
 
-// const rules = computed(() => ({
-//   email: { required: helpers.withMessage('Required', required), email },
-//   first_name: { required: helpers.withMessage('Required', required) },
-//   last_name: { required: helpers.withMessage('Required', required) },
-//   password: {  minLengthValue: minLength(8) },
-//   new_password: { minLengthValue: minLength(8) },
-//   username: {
-//     required: helpers.withMessage('Required', required),
-//   },
-// }))
+const rules = computed(() => ({
+  email: { required: helpers.withMessage('Required', required), email },
+  first_name: { required: helpers.withMessage('Required', required) },
+  last_name: { required: helpers.withMessage('Required', required) },
+  password: {  minLengthValue: minLength(8) },
+  new_password: { minLengthValue: minLength(8) },
+  username: {
+    required: helpers.withMessage('Required', required),
+  },
+}))
 
-// const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
-// const userUpdateState = useFetchState('/user/update')
-// const changePasswordState = useFetchState('/auth/change-password')
-
-const userProfileState = useFetchState('/users')
-
-
-
-const fetchProfileState = async () => {
-  const { data } = await useGet<profileDetails>(userProfileState.value.url, {})
-  profile.value = data.value
-}
-
-fetchProfileState()
+const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
+const userUpdateState = useFetchState('/user/update')
+const changePasswordState = useFetchState('/auth/change-password')
 
 // const updateUser = (userResponse: Record<string, null>) => {
 //   const user = {
@@ -289,63 +278,58 @@ fetchProfileState()
 //   useAuth().value.user = user
 // }
 
-// const submitForm = async () => {
-//   v$.value.$touch()
-//   const isFormInvalid
-//     = v$.value.email.$invalid
-//     || v$.value.first_name.$invalid
-//     || v$.value.username.$invalid
-//     || v$.value.last_name.$invalid
+const submitForm = async () => {
+  v$.value.$touch()
+  const isFormInvalid
+    = v$.value.email.$invalid
+    || v$.value.first_name.$invalid
+    || v$.value.username.$invalid
+    || v$.value.last_name.$invalid
 
-//   if (isFormInvalid) {
-//     useToastExtended('error').show('Some fields require your attention')
-//     return false
-//   }
-//   else {
-//     const { data } = await usePost(
-//       userUpdateState.value.url,
-//       removeKeys(formData.value, [
-//         'profile',
-//         'created_at',
-//         'email_verified_at',
-//         'deleted_at',
-//         'old_password',
-//       ]),
-//     )
+  if (isFormInvalid) {
+    useToastExtended('error').show('Some fields require your attention')
+    return false
+  }
+  else {
+    const { data } = await usePost(
+      userUpdateState.value.url,
+      removeKeys(formData.value, [
+        'profile',
+        'created_at',
+        'email_verified_at',
+        'deleted_at',
+        'old_password',
+      ]),
+    )
 
-//     if (data.value) {
-//       useToastExtended('success').show('Profile Updated')
-//       updateUser(data.value)
-//       v$.value.$reset()
-//       window.scrollTo({ top: 0, behavior: 'smooth' })
-//     }
-//     else {
-//       useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
-//     }
-//   }
+    if (data.value) {
+      useToastExtended('success').show('Profile Updated')
+      updateUser(data.value)
+      v$.value.$reset()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+    else {
+      useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
+    }
+  }
 
 
-// }
+}
 
 
 const allowImageEdit = () => { 
   isImageEditable.value = !isImageEditable.value
 }
 
-// const prefillForm = () => {
-//   formData.value = deepClone(auth.value.user.profile)
-//   if (auth.value.user.profile)
-//     formData.value.profile_payload = deepClone(auth.value.user.profile)   
-     
-// }
+const prefillForm = () => {
+  formData.value = deepClone(auth.value.user)
+  if (auth.value.user)
+    formData.value.profile_payload = deepClone(auth.value.user)   
 
-
-// const splitFullName = () => {
-//   const [first_name, ...rest] = formData.value.full_name.split(' ')
-//   formData.value.first_name = first_name
-//   formData.value.last_name = rest.join(' ')  
-// }
-// splitFullName()
+  const [first_name, ...rest] = formData.value.full_name.split(' ')
+  formData.value.first_name = first_name
+  formData.value.last_name = rest.join(' ')  
+}
 
 
 const showModal =  () => {
@@ -362,7 +346,7 @@ const toggleNewPasswordVisibility = () => {
 
 
 onMounted(() => {
-//  prefillForm()
+ prefillForm()
 })
 const metaDef = useDefault('meta')
 useSeoMeta({
