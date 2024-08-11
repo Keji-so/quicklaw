@@ -15,7 +15,7 @@
               <div class="insights-block_date">
                 JAN 10, 2023
               </div>
-              <a class="arrow-link" href="#">Read Insight</a>
+              <a class="arrow-link" >Read Insight</a>
             </div>
           </div>
 </template>

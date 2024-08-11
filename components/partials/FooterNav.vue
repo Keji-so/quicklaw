@@ -106,7 +106,7 @@
                   CONNECT WITH US
                 </div>
                 <div class="social-links">
-                  <a class="social-link w-inline-block" href="#">
+                  <a class="social-link w-inline-block" >
                     <div class="w-embed">
                       <svg
                         fill="none"
@@ -120,7 +120,7 @@
                       </svg>
                     </div>
                   </a>
-                  <a class="social-link w-inline-block" href="#">
+                  <a class="social-link w-inline-block" >
                     <div class="w-embed">
                       <svg
                         fill="none"
@@ -134,7 +134,7 @@
                       </svg>
                     </div>
                   </a>
-                  <a class="social-link w-inline-block" href="#">
+                  <a class="social-link w-inline-block" >
                     <div class="w-embed">
                       <svg
                         fill="none"

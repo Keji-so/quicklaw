@@ -161,7 +161,7 @@
                       <input 
                        id="current-password" 
                        class="c-input w-input"
-                       :class="{'cc-error': v$.password.$error,}"
+                       :class="{'cc-error': v$.password.$error}"
                        v-model="formData.password"
                        maxlength="256" 
                        name="password" 
@@ -183,7 +183,7 @@
                       <input 
                       id="new-password" 
                       class="c-input w-input"
-                      :class="{'cc-error': v$.new_password.$error,}"
+                      :class="{'cc-error': v$.new_password.$error}"
                       v-model="formData.new_password"
                        maxlength="256" 
                        name="password" 
@@ -208,7 +208,9 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { email, helpers, maxLength, minLength, required } from '@vuelidate/validators'
+import { email, helpers, minLength, required } from '@vuelidate/validators'
+import type { profileDetails } from "~/types/auth"
+
 
 
 const modal = useModal('CropProfilePictureModal')
@@ -216,15 +218,15 @@ const isImageEditable = ref(false)
 const isCurrentPasswordVisible = ref(false)
 const isNewPasswordVisible = ref(false)
 const isSubmittingRef = ref(false)
+const profile = ref<profileDetails[]>([])
+
 
 const auth = useAuth()
-const config = useRuntimeConfig()
 
 definePageMeta({
   middleware: ['auth'],
 })
 
-const usernameRegex = helpers.regex(/^[A-Za-z0-9_]*$/)
 
 const formData = ref({
   id: '',
@@ -234,7 +236,7 @@ const formData = ref({
   username: '',
   password: '',
   new_password: '',
- token: auth.value.accessToken || '',
+  token: auth.value.accessToken || '',
 })
 
 
@@ -251,93 +253,100 @@ const formData = ref({
 // verifyEmail()
 
 
-const prefillForm = () => {
-  formData.value = deepClone(auth.value.user)
-  if (auth.value.user.profile)
-    formData.value.profile_payload = deepClone(auth.value.user.profile)   
-     
-}
-prefillForm()
-
-const splitFullName = () => {
-  const [first_name, ...rest] = formData.value.full_name.split(' ')
-  formData.value.first_name = first_name
-  formData.value.last_name = rest.join(' ')  
-}
-splitFullName()
 
 
-const rules = computed(() => ({
-  email: { required: helpers.withMessage('Required', required), email },
-  first_name: { required: helpers.withMessage('Required', required) },
-  last_name: { required: helpers.withMessage('Required', required) },
-  password: {  minLengthValue: minLength(8) },
-  new_password: { minLengthValue: minLength(8) },
-  username: {
-    required: helpers.withMessage('Required', required),
-    usernameRegex: helpers.withMessage('Must contain only alphanumeric and/or underscore', usernameRegex),
-  },
-}))
+// const rules = computed(() => ({
+//   email: { required: helpers.withMessage('Required', required), email },
+//   first_name: { required: helpers.withMessage('Required', required) },
+//   last_name: { required: helpers.withMessage('Required', required) },
+//   password: {  minLengthValue: minLength(8) },
+//   new_password: { minLengthValue: minLength(8) },
+//   username: {
+//     required: helpers.withMessage('Required', required),
+//   },
+// }))
 
-const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
-const userUpdateState = useFetchState('/users/update')
-const changePasswordState = useFetchState('/auth/change-password')
+// const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
+// const userUpdateState = useFetchState('/user/update')
+// const changePasswordState = useFetchState('/auth/change-password')
+
+const userProfileState = useFetchState('/users')
 
 
 
-const updateUser = (userResponse: Record<string, null>) => {
-  const user = {
-    ...useAuth().value.user,
-    ...userResponse,
-  }
-  useAuth().value.user = user
+const fetchProfileState = async () => {
+  const { data } = await useGet<profileDetails>(userProfileState.value.url, {})
+  profile.value = data.value
 }
 
-const submitForm = async () => {
-  v$.value.$touch()
-  const isFormInvalid
-    = v$.value.email.$invalid
-    || v$.value.first_name.$invalid
-    || v$.value.username.$invalid
-    || v$.value.last_name.$invalid
+fetchProfileState()
 
-  if (isFormInvalid) {
-    useToastExtended('error').show('Some fields require your attention')
-    return false
-  }
-  else {
-    const { data } = await usePost(
-      userUpdateState.value.url,
-      removeKeys(formData.value, [
-        'profile',
-        'latest_photos',
-        'permission_names',
-        'role_names',
-        'created_at',
-        'email_verified_at',
-        'deleted_at',
-        'old_password',
-      ]),
-    )
+// const updateUser = (userResponse: Record<string, null>) => {
+//   const user = {
+//     ...useAuth().value.user,
+//     ...userResponse,
+//   }
+//   useAuth().value.user = user
+// }
 
-    if (data.value) {
-      useToastExtended('success').show('Profile Updated')
-      updateUser(data.value)
-      v$.value.$reset()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-    else {
-      useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
-    }
-  }
+// const submitForm = async () => {
+//   v$.value.$touch()
+//   const isFormInvalid
+//     = v$.value.email.$invalid
+//     || v$.value.first_name.$invalid
+//     || v$.value.username.$invalid
+//     || v$.value.last_name.$invalid
+
+//   if (isFormInvalid) {
+//     useToastExtended('error').show('Some fields require your attention')
+//     return false
+//   }
+//   else {
+//     const { data } = await usePost(
+//       userUpdateState.value.url,
+//       removeKeys(formData.value, [
+//         'profile',
+//         'created_at',
+//         'email_verified_at',
+//         'deleted_at',
+//         'old_password',
+//       ]),
+//     )
+
+//     if (data.value) {
+//       useToastExtended('success').show('Profile Updated')
+//       updateUser(data.value)
+//       v$.value.$reset()
+//       window.scrollTo({ top: 0, behavior: 'smooth' })
+//     }
+//     else {
+//       useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
+//     }
+//   }
 
 
-}
+// }
 
 
 const allowImageEdit = () => { 
   isImageEditable.value = !isImageEditable.value
 }
+
+// const prefillForm = () => {
+//   formData.value = deepClone(auth.value.user.profile)
+//   if (auth.value.user.profile)
+//     formData.value.profile_payload = deepClone(auth.value.user.profile)   
+     
+// }
+
+
+// const splitFullName = () => {
+//   const [first_name, ...rest] = formData.value.full_name.split(' ')
+//   formData.value.first_name = first_name
+//   formData.value.last_name = rest.join(' ')  
+// }
+// splitFullName()
+
 
 const showModal =  () => {
   modal.show('CropProfilePictureModal')
@@ -350,6 +359,11 @@ const toggleCurrentPasswordVisibility = () => {
 const toggleNewPasswordVisibility = () => {
   isNewPasswordVisible.value = !isNewPasswordVisible.value
 }
+
+
+onMounted(() => {
+//  prefillForm()
+})
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,

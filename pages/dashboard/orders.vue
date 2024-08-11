@@ -14,32 +14,32 @@
           </div>
           <div class="dashboard-utilitiies">
             <div class="order-filter_flex">
-              <a class="order-filter cc-active w-inline-block" href="#">
+              <a class="order-filter cc-active w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/unordered-list.svg"></div>
                 <div>All</div>
               </a>
-              <a class="order-filter w-inline-block" href="#">
+              <a class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check.svg"></div>
                 <div>Done</div>
               </a>
-              <a class="order-filter w-inline-block" href="#">
+              <a class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hourglass.svg"></div>
                 <div>In Progress</div>
               </a>
-              <a class="order-filter w-inline-block" href="#">
+              <a class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/feather.svg"></div>
                 <div>Draft</div>
               </a>
-              <a class="order-filter w-inline-block" href="#">
+              <a class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/notebook.svg"></div>
                 <div>Submitted</div>
               </a>
-              <a class="order-filter w-inline-block" href="#">
+              <a class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cancel.svg"></div>
                 <div>Cancelled</div>
               </a>
             </div>
-            <a class="c-button cc-icon-btn w-inline-block" href="#">
+            <a class="c-button cc-icon-btn w-inline-block">
               <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cart-add.svg"></div>
               <div>New Order</div>
             </a>
@@ -144,7 +144,40 @@
 </template>
 
 <script setup lang="ts">
+import type { Order } from "~/types/assets"
+
+const auth = useAuth()
+ const user = {
+    ...useAuth().value.user
+  }
+console.log(user);
+
+
+// definePageMeta({
+//   middleware: ['auth'],
+// })
+const orders = ref<Order[]>([])
+const userOrderState = useFetchState('/order/all')
+
+const fetchOrderState = async () => {
+  const { data } = await useGet<Order>(userOrderState.value.url, {})
+    try {
+    const { data } = await useGet<Order>(userOrderState.value.url,{})
+    if (data.value) {
+      orders.value = data.value.data as Order[] 
+    } 
+    }
+    catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+}
+
 const isTableEmpty = ref(true)
+
+
+onMounted(() => {
+fetchOrderState()
+});
 
 const metaDef = useDefault('meta')
 useSeoMeta({
