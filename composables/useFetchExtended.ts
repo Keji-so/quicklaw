@@ -11,6 +11,7 @@ export const useFetchExtended = <T>(
 ) => {
   const authCookie = useCookie<Auth>('auth_cookie')
   const auth = useAuth()
+  const toast = useToast()
   const fetchState = useFetchState(url)
   const config = useRuntimeConfig()
 
@@ -36,9 +37,11 @@ export const useFetchExtended = <T>(
       fetchState.value.error = null
 
       if (!response.ok) {
-        fetchState.value.error = (response as Record<string, any>).message
-
-        return Promise.reject(response)
+        // Handle globally here before rejecting - e.g call a toast
+        toast.show(response._data.message)
+        if (response._data.message === 'Token Expired') {
+          navigateTo('/auth/sign-out')
+        }
       }
 
       if (url.includes('/auth/sign-in')) {
