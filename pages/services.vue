@@ -4,15 +4,19 @@
     <section class="c-section">
       <div class="c-hero">
         <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" src="@/public/assets/images/services-hero-image1.png" srcset="@/public/assets/images/services-hero-image1-p-500.png 500w, @/public/assets/images/services-hero-image1-p-800.png 800w, @/public/assets/images/services-hero-image1-p-1080.png 1080w, @/public/assets/images/services-hero-image1-p-1600.png 1600w, @/public/assets/images/services-hero-image1.png 1901w">
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw"
+           :src="hero_image.url"
+           >
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-services">
           <div class="page-title">
-            SERVICES
+                                   {{ hero.heading }}
+
           </div>
           <h1 class="heading-h2">
-            Here’s What We Can Help You With
+                                              {{ hero.description}}
+
           </h1>
         </div>
         <div class="hero-illustration cc-illustration-one">
@@ -36,12 +40,35 @@
 </template>
 
 <script setup lang="ts">
-import type { Categories, Services } from "~/types/categories"
+import type { Categories } from "~/types/categories"
+import type { Hero, Image } from "~/types/content"
 import { useModal } from '~/composables/useModal'
+const content = ref(null);
+const hero = ref<Hero[]>([])
+const hero_image = ref<Image[]>([])
+
+
 
 const modal = useModal()
 const categories = ref<Categories[]>([])
 const fetchCategoriesState = useFetchState('/categories/all')
+
+
+const fetchPageData = async () => {
+    try {
+        const response = await fetch('https://cms.quicklaw.ng/api/service?populate=deep')
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        content.value = data.data; 
+        hero.value = content.value.hero
+        hero_image.value = hero.value.image.formats.large
+        
+    } catch (error) {
+        console.error('Error fetching home page data:', error);
+    }
+};
 
 
 const fetchAllCategories = async () => {
@@ -50,13 +77,14 @@ const fetchAllCategories = async () => {
     const { data } = await useGet<Categories>(fetchCategoriesState.value.url,{})
     if (data.value) {
       categories.value = data.value.data as Categories[] 
-      
     } 
     }
     catch (error) {
     console.error('Error fetching categories:', error);
   }
 }
+
+
 
 // no result property
 const noResultCopy = computed(() => {
@@ -74,7 +102,8 @@ const noResultCopy = computed(() => {
 })
 
 onMounted(() => {
-  fetchAllCategories();
+  fetchPageData()
+  fetchAllCategories()
 });
 
 const metaDef = useDefault('meta')

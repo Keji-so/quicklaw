@@ -26,7 +26,7 @@
             <div class="newsletter-block">
               <div class="newsletter-block_header">
                 <div class="heading-h1">
-                  Subscribe to our newsletter
+                                     {{footer.newsletter_title}}
                 </div>
               </div>
               <div class="form-block w-form">
@@ -46,7 +46,7 @@
                         data-name="Email 2"
                         maxlength="256"
                         name="email-2"
-                        placeholder="Enter Email Address"
+                        :placeholder="footer.newsletter_placeholder"
                         required
                         type="email"
                       ><input
@@ -163,7 +163,7 @@
                     <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/house.svg">
                   </div>
                   <nuxtLink class="footer-contact_link" target="_blank" to="https://maps.app.goo.gl/VQGzw8nJtxNskUVN8">
-                    14 Awolowo Road, <br>Ikoyi 106104, Lagos
+                   {{footer.address}}
                   </nuxtLink>
                 </div>
                 <div class="footer-contact_flex">
@@ -171,11 +171,8 @@
                     <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/phone.svg">
                   </div>
                   <div>
-                    <nuxtLink class="footer-contact_link" to="tel:08079670571">
-                      0807 967 0571
-                    </nuxtLink>
-                    <nuxtLink class="footer-contact_link" to="tel:08126156718">
-                      0812 615 6718
+                    <nuxtLink v-for="(contact_number, index) in contact_numbers" :key="contact_number.id" class="footer-contact_link" :to="`tel:${contact_number.number}`">
+                    {{ contact_number.number }}
                     </nuxtLink>
                   </div>
                 </div>
@@ -188,8 +185,8 @@
                       src="@/public/assets/images/envelope.svg"
                     >
                   </div>
-                  <nuxtLink class="footer-contact_link" to="mailto:info@quicklaw.ng">
-                    info@quicklaw.ng
+                  <nuxtLink class="footer-contact_link" :to="`mailto:${footer.contact_email}`">
+                    {{ footer.contact_email }}
                   </nuxtLink>
                 </div>
               </div>
@@ -208,6 +205,35 @@
 </template>
 
 <script setup lang="ts">
+import type { footerData, ContactNumber } from "~/types/content"
+const content = ref(null);
+const footer = ref<footerData[]>([])
+const contact_numbers= ref<ContactNumber[]>([])
+
+
+
+
+
+const fetchFooterData = async () => {
+    try {
+        const response = await fetch('https://cms.quicklaw.ng/api/footer?populate=deep'); 
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+         footer.value  = data.data; 
+         contact_numbers.value = footer.value.contact_numbers
+         
+        
+        
+    } catch (error) {
+        console.error('Error fetching home page data:', error);
+    }
+};
+
+onMounted(() => {
+  fetchFooterData();
+});
 const currentYear = ref<number>(new Date().getFullYear())
 </script>
 

@@ -4,15 +4,17 @@
     <section class="c-section">
       <div class="c-hero">
         <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" src="@/public/assets/images/insights-hero-image.png" srcset="@/public/assets/images/insights-hero-image-p-500.png 500w, @/public/assets/images/insights-hero-image-p-800.png 800w, @/public/assets/images/insights-hero-image-p-1080.png 1080w, @/public/assets/images/insights-hero-image-p-1600.png 1600w, @/public/assets/images/insights-hero-image.png 1901w">
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" 
+            :src="hero_image.url"
+          >
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-full-width">
           <div class="page-title">
-            INSIGHTS
+            {{hero.heading}}
           </div>
           <h1 class="heading-h2">
-            Keep Up with Updates from The Legal World
+                        {{hero.description}}
           </h1>
         </div>
         <div class="hero-illustration cc-illustration-one">
@@ -62,6 +64,35 @@
 </template>
 
 <script setup lang="ts">
+import type { Hero, Image } from "~/types/content"
+const content = ref(null);
+const hero = ref<Hero[]>([])
+const hero_image = ref<Image[]>([])
+
+
+
+
+const fetchPageData = async () => {
+    try {
+        const response = await fetch('https://cms.quicklaw.ng/api/insight?populate=deep'); 
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        content.value = data.data; 
+        hero.value = content.value.hero
+        hero_image.value = hero.value.image.formats.large
+        
+    } catch (error) {
+        console.error('Error fetching home page data:', error);
+    }
+};
+
+
+onMounted(() => {
+  fetchPageData()
+});
+
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,

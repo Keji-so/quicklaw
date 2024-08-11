@@ -5,16 +5,19 @@
       <div class="c-hero">
         <div class="hero-img">
           <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw"
-            src="@/public/assets/images/contact-hero-image.png"
-            srcset="@/public/assets/images/contact-hero-image-p-500.png 500w, @/public/assets/images/contact-hero-image-p-800.png 800w, @/public/assets/images/contact-hero-image-p-1080.png 1080w, @/public/assets/images/contact-hero-image-p-1600.png 1600w, @/public/assets/images/contact-hero-image.png 1901w">
+                                    :src="hero_image.url"
+
+            >
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-services">
           <div class="page-title">
-            CONTACT US
+                                             {{ hero.heading }}
+
           </div>
           <h1 class="heading-h2">
-            We Love Hearing From You
+                                                          {{ hero.description}}
+
           </h1>
         </div>
         <div class="hero-illustration cc-illustration-one">
@@ -33,7 +36,7 @@
         <div class="contact-container">
           <div class="contact-header">
             <h2 class="heading-h3">
-              Leave A Message
+                                                           {{ form_content.title }}
             </h2>
           </div>
           <div class="form-block w-form">
@@ -101,7 +104,7 @@
                     {{ v$?.formData.message?.$errors[0]?.$message }}
                   </div>
                 </div>
-              </div><input class="c-button w-button" data-wait="" type="submit" value="Submit Message">
+              </div><input class="c-button w-button" data-wait="" type="submit" :value="form_content.cta_text">
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>
@@ -120,9 +123,39 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, maxLength, helpers } from '@vuelidate/validators'
+import type { Hero, Image, Form } from "~/types/content"
+
 
 const contactSubmitState = useFetchState('/contact-us')
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
+
+const content = ref(null);
+const hero = ref<Hero[]>([])
+const hero_image = ref<Image[]>([])
+const form_content = ref<Form[]>([])
+
+
+
+const fetchPageData = async () => {
+    try {
+        const response = await fetch('https://cms.quicklaw.ng/api/contact?populate=deep')
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        content.value = data.data; 
+        hero.value = content.value.hero
+         hero_image.value = hero.value.image
+        form_content.value = content.value.form
+         
+        
+        
+        
+    } catch (error) {
+        console.error('Error fetching home page data:', error);
+    }
+};
+
 
 
 const formData = reactive({
@@ -194,6 +227,10 @@ const submitForm = async () => {
     return false
   }
 }
+
+onMounted(() => {
+  fetchPageData()
+})
 
 const metaDef = useDefault('meta')
 useSeoMeta({

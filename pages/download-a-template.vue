@@ -5,16 +5,16 @@
       <div class="c-hero">
         <div class="hero-img">
           <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw"
-            src="@/public/assets/images/download-hero-image.png"
-            srcset="@/public/assets/images/download-hero-image-p-500.png 500w, @/public/assets/images/download-hero-image-p-800.png 800w, @/public/assets/images/download-hero-image-p-1080.png 1080w, @/public/assets/images/download-hero-image-p-1600.png 1600w, @/public/assets/images/download-hero-image.png 1901w">
+                        :src="hero_image.url"
+            >
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block">
           <div class="page-title">
-            DOWNLOAD A TEMPLATE
+                                  {{ hero.heading }}
           </div>
           <h1 class="heading-h2">
-            Buy An Agreement Template
+                                               {{ hero.description}}
           </h1>
         </div>
         <div class="hero-illustration cc-illustration-one">
@@ -32,8 +32,7 @@
       <div class="download-agreement_section">
         <div class="download-form_container">
           <div class="download-form_prompt">
-            Purchase a legally vetted agreement template for a host of services. These agreements have been drafted to
-            enable you to insert key information with ease.
+            {{body_content.form_info_text}}
           </div>
           <h2 class="download-form_header">
             SELECT A TEMPLATE
@@ -168,7 +167,8 @@
           <div class="c-note">
             <div class="note-icon" />
             <div class="note-text">
-              Kindly wait for your order confirmation after payment before closing the browser, tab or this page
+                      {{body_content.order_info_text}}
+
             </div>
           </div>
         </div>
@@ -181,10 +181,16 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
+import type { Hero, Image, DownloadTemplateData } from "~/types/content"
 import type { Services } from "~/types/services"
 import { useModal } from '~/composables/useModal'
 
+
 const modal = useModal('SignInModal')
+const content = ref(null);
+const hero = ref<Hero[]>([])
+const hero_image = ref<Image[]>([])
+const body_content = ref<DownloadTemplateData[]>([])
 const services = ref<Services[]>([])
 const selectedService = ref<Services | []>([])
 const isDropdownOpen = ref(false)
@@ -198,6 +204,25 @@ const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 const fetchServicesState = useFetchState('/services/all')
 const createOrderState = useFetchState('/order/create')
 
+
+const fetchPageData = async () => {
+    try {
+        const response = await fetch('https://cms.quicklaw.ng/api/download-template?populate=deep')
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        content.value = data.data; 
+        hero.value = content.value.hero
+         hero_image.value = hero.value.image
+         body_content.value = content.value
+        
+        
+        
+    } catch (error) {
+        console.error('Error fetching home page data:', error);
+    }
+};
 
 
 const formData = ref({
@@ -236,34 +261,24 @@ const v$ = useVuelidate(
 )
 
 const fetchAllServices = async () => {
-  // const { data } = await useGet<Services>(fetchServicesState.value.url, {});
-  //   try {
-  //     const { data } = await useGet<Services>(fetchServicesState.value.url,{})
-  //     if (data.value) {
-  //       services.value = data.value as Services[] 
-  //     } 
-  //     }
-  //     catch (error) {
-  //     console.error('Error fetching categories:', error);
-  //   }
+  const { data } = await useGet<Services>(fetchServicesState.value.url, {});
+    try {
+      const { data } = await useGet<Services>(fetchServicesState.value.url,{})
+      if (data.value) {
+        services.value = data.value.data as Services[] 
+        
 
-
-  try {
-    const response = await fetch('/services.json')
-    if (!response.ok) {
-      throw new Error('Network response was not ok')
+     if (data.length > 0) {
+       selectedService.value = data[0]
+       totalPrice.value = selectedService?.value.price + transactionFee.value
     }
-    const data: Services[] = await response.json()
-    services.value = data
-
-    // Set the first service as the selected service if available
-    if (data.length > 0) {
-      selectedService.value = data[0]
-      totalPrice.value = selectedService?.value.price + transactionFee.value
+      } 
+      }
+      catch (error) {
+      console.error('Error fetching categories:', error);
     }
-  } catch (error) {
-    console.error('Error fetching services:', error)
-  }
+
+
 }
 
 const handleChange = (service: Services) => {
@@ -327,6 +342,7 @@ const prefillForm = () => {
 prefillForm()
 
 onMounted(() => {
+  fetchPageData()
   fetchAllServices()
 })
 
