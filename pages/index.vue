@@ -151,12 +151,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Hero, ServicesSection, InsightsSection, Image } from "~/types/content"
+import type { Hero, ServicesSection, InsightsSection, Image} from "~/types/content"
 const content = ref(null);
 const hero = ref<Hero[]>([])
 const services = ref<ServicesSection[]>([])
 const insights = ref<InsightsSection[]>([])
 const hero_image = ref<Image[]>([])
+
 
 
 
@@ -179,23 +180,10 @@ const fetchPageData = async () => {
     }
 };
 
-const fetchPosts = async () => {
-    try {
-        const response = await fetch('https://cms.quicklaw.ng/api/insight?populate=deep'); 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        content.value = data.data; 
-        
-    } catch (error) {
-        console.error('Error fetching home page data:', error);
-    }
-};
+
 
 onMounted(() => {
   fetchPageData()
-  fetchPosts()
 });
 
 const metaDef = useDefault('meta')
