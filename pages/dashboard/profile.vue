@@ -13,84 +13,64 @@
             </div>
           </div>
           <div class="form-block w-form">
-            <form 
-            id="profile-form" 
-            class="profile-form" 
-            data-name="profile form" 
-            name="profile-form"
-             @submit.prevent="submitForm">
+            <form id="profile-form" class="profile-form" data-name="profile form" name="profile-form"
+              @submit.prevent="submitForm">
               <div class="profile-form_inner">
                 <div class="profile-form_flex">
                   <div class="profile-details">
                     <div class="profile-image_container">
-                      <div class="profile-img_icon" 
-                      :class="isImageEditable ? 'cc-show' : ''"  @click="showModal"/>
+                      <div class="profile-img_icon" :class="isImageEditable ? 'cc-show' : ''" @click="showModal" />
                       <div class="profile-image">
-                        <img
-                        v-if="auth.user?.profile_picture"
-                        :alt="`${auth.user?.username}-profile-picture`"
-                        class="c-img cc-cover"
-                        loading="lazy"
-                        :preferSrc="true"
-                        :src="auth.user.profile_picture"
-                      >
+                        <img v-if="auth.user?.profile_picture" :alt="`${auth.user?.username}-profile-picture`"
+                          class="c-img cc-cover" loading="lazy" :preferSrc="true" :src="auth.user.profile_picture">
                       </div>
                     </div>
                     <div>
                       <div> {{ fullName(auth.user) }}</div>
-                  <div class="username">
-                    @{{ auth.user?.username }}
+                      <div class="username">
+                        @{{ auth.user?.username }}
+                      </div>
+                    </div>
                   </div>
-                  </div>
-                  </div>
-                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? 'cc-hide' : 'cc-show'" @click="allowImageEdit">
-                    <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/edit.svg"></div>
+                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? 'cc-hide' : 'cc-show'"
+                    @click="allowImageEdit">
+                    <div class="button-icon"><img alt="" class="c-img" loading="lazy"
+                        src="@/public/assets/images/edit.svg"></div>
                     <div>Edit</div>
                   </a>
-                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? '' : 'cc-hide'" >
-                    <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check-white-outline.svg"></div>
+                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? '' : 'cc-hide'">
+                    <div class="button-icon"><img alt="" class="c-img" loading="lazy"
+                        src="@/public/assets/images/check-white-outline.svg"></div>
                     <div>Save Changes</div>
                   </a>
                 </div>
                 <div class="profile-form_divider" />
                 <div class="form-flex cc-profile">
-                    <div class="c-form_field">
+                  <div class="c-form_field">
                     <div class="c-label_wrapper">
                       <div class="c-label">
                         First Name
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="first-name"
-                       class="c-input w-input" 
-                      :class="{ 'cc-error': v$.first_name.$error }"
-                      v-model="formData.first_name"
-                       maxlength="256" 
-                       name="first-name"
-                      placeholder="Enter your First Name &amp; Last Name" 
-                      type="text">
+                      <input id="first-name" class="c-input w-input" :class="{ 'cc-error': v$.first_name.$error }"
+                        v-model="formData.first_name" maxlength="256" name="first-name"
+                        placeholder="Enter your First Name &amp; Last Name" type="text">
                     </div>
                     <div class="c-help cc-error" v-if="v$.first_name.$errors.length">
                       {{ v$?.first_name?.$errors[0]?.$message }}
                     </div>
                   </div>
-                   <div class="c-form_field">
+                  <div class="c-form_field">
                     <div class="c-label_wrapper">
                       <div class="c-label">
                         Last Name
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="last-name"
-                       class="c-input w-input" 
-                      :class="{ 'cc-error': v$.last_name.$error }"
-                      v-model="formData.last_name"
-                       maxlength="256" 
-                       name="last-name"
-                      placeholder="Enter your Last Name"
-                      type="text">
+                      <input id="last-name" class="c-input w-input" :class="{ 'cc-error': v$.last_name.$error }"
+                        v-model="formData.last_name" maxlength="256" name="last-name" placeholder="Enter your Last Name"
+                        type="text">
                     </div>
                     <div class="c-help cc-error" v-if="v$.last_name.$errors.length">
                       {{ v$?.last_name?.$errors[0]?.$message }}
@@ -105,18 +85,12 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="email" 
-                      class="c-input w-input"
-                      :class="{ 'cc-error': v$.email.$error }"
-                       v-model="formData.email"
-                       maxlength="256" 
-                       name="email" 
-                       placeholder="chiamaka.zichat-adebiyi@email.com" 
-                        type="email">
+                      <input id="email" class="c-input w-input" :class="{ 'cc-error': v$.email.$error }"
+                        v-model="formData.email" maxlength="256" name="email"
+                        placeholder="chiamaka.zichat-adebiyi@email.com" type="email">
                     </div>
-                      <div class="c-help cc-error" v-if="v$.email.$errors.length">
-                       {{ v$?.email?.$errors[0]?.$message }}
+                    <div class="c-help cc-error" v-if="v$.email.$errors.length">
+                      {{ v$?.email?.$errors[0]?.$message }}
                     </div>
                   </div>
                   <div class="c-form_field cc-mb-0">
@@ -126,18 +100,12 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="username" 
-                      class="c-input w-input" 
-                      :class="{ 'cc-error': v$.username.$error }"
-                       v-model="formData.username"
-                       maxlength="256" 
-                       name="username" 
-                       placeholder="chizichat_a" 
-                       type="text">
+                      <input id="username" class="c-input w-input" :class="{ 'cc-error': v$.username.$error }"
+                        v-model="formData.username" maxlength="256" name="username" placeholder="chizichat_a"
+                        type="text">
                     </div>
-                      <div class="c-help cc-error" v-if="v$.username.$errors.length">
-                       {{ v$?.username?.$errors[0]?.$message }}
+                    <div class="c-help cc-error" v-if="v$.username.$errors.length">
+                      {{ v$?.username?.$errors[0]?.$message }}
                     </div>
                   </div>
                 </div>
@@ -147,30 +115,25 @@
                   <p class="uc-medium-text">
                     Password
                   </p>
-                     <SubmitButton classes="c-button cc-profile-submit w-button" form="profile-form" message="Save Changes"
-                     :state="isSubmittingRef ? 'loading' : 'idle'" />
+                  <SubmitButton classes="c-button cc-profile-submit w-button" form="profile-form" message="Save Changes"
+                    :state="isSubmittingRef ? 'loading' : 'idle'" />
                 </div>
                 <div class="form-flex cc-profile">
                   <div class="c-form_field cc-mb-0">
-                    <div class="c-label_wrapper" >
+                    <div class="c-label_wrapper">
                       <div class="c-label">
                         Current Password
                       </div>
                     </div>
-                    <div class="c-input_wrapper" >
-                      <input 
-                       id="current-password" 
-                       class="c-input w-input"
-                       :class="{'cc-error': v$.password.$error}"
-                       v-model="formData.password"
-                       maxlength="256" 
-                       name="password" 
-                       placeholder="Choose a Password"
-                       :type="isCurrentPasswordVisible ? 'text' : 'password'">
-                      <div @click="toggleCurrentPasswordVisibility" class="reveal-toggle" :class="isCurrentPasswordVisible && 'cc-hidden'" />
+                    <div class="c-input_wrapper">
+                      <input id="current-password" class="c-input w-input" :class="{ 'cc-error': v$.password.$error }"
+                        v-model="formData.password" maxlength="256" name="password" placeholder="Choose a Password"
+                        :type="isCurrentPasswordVisible ? 'text' : 'password'">
+                      <div @click="toggleCurrentPasswordVisibility" class="reveal-toggle"
+                        :class="isCurrentPasswordVisible && 'cc-hidden'" />
                     </div>
-                       <div class="c-help cc-error" v-if="v$.password.$errors.length">
-                       {{ v$?.password?.$errors[0]?.$message }}
+                    <div class="c-help cc-error" v-if="v$.password.$errors.length">
+                      {{ v$?.password?.$errors[0]?.$message }}
                     </div>
                   </div>
                   <div class="c-form_field cc-mb-0">
@@ -180,19 +143,14 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input 
-                      id="new-password" 
-                      class="c-input w-input"
-                      :class="{'cc-error': v$.new_password.$error}"
-                      v-model="formData.new_password"
-                       maxlength="256" 
-                       name="password" 
-                       placeholder="Choose a Password"
-                       :type="isNewPasswordVisible ? 'text' : 'password'">
-                      <div @click="toggleNewPasswordVisibility" class="reveal-toggle" :class="isNewPasswordVisible && 'cc-hidden'"/>
+                      <input id="new-password" class="c-input w-input" :class="{ 'cc-error': v$.new_password.$error }"
+                        v-model="formData.new_password" maxlength="256" name="password" placeholder="Choose a Password"
+                        :type="isNewPasswordVisible ? 'text' : 'password'">
+                      <div @click="toggleNewPasswordVisibility" class="reveal-toggle"
+                        :class="isNewPasswordVisible && 'cc-hidden'" />
                     </div>
-                      <div class="c-help cc-error" v-if="v$.new_password.$errors.length">
-                       {{ v$?.new_password?.$errors[0]?.$message }}
+                    <div class="c-help cc-error" v-if="v$.new_password.$errors.length">
+                      {{ v$?.new_password?.$errors[0]?.$message }}
                     </div>
                   </div>
                 </div>
@@ -220,6 +178,7 @@ const isNewPasswordVisible = ref(false)
 const isSubmittingRef = ref(false)
 const profile = ref<profileDetails[]>([])
 
+const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 
 const auth = useAuth()
 
@@ -256,27 +215,25 @@ const formData = ref({
 
 
 const rules = computed(() => ({
-  email: { required: helpers.withMessage('Required', required), email },
-  first_name: { required: helpers.withMessage('Required', required) },
-  last_name: { required: helpers.withMessage('Required', required) },
-  password: {  minLengthValue: minLength(8) },
-  new_password: { minLengthValue: minLength(8) },
-  username: {
-    required: helpers.withMessage('Required', required),
-  },
+  email: { email: helpers.withMessage('Please enter a valid email address', email) },
+  first_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
+  last_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
+  password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
+  new_password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
+  username: { minLength: helpers.withMessage('Username is too short', minLength(3)) },
 }))
 
 const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
 const userUpdateState = useFetchState('/user/update')
 const changePasswordState = useFetchState('/auth/change-password')
 
-// const updateUser = (userResponse: Record<string, null>) => {
-//   const user = {
-//     ...useAuth().value.user,
-//     ...userResponse,
-//   }
-//   useAuth().value.user = user
-// }
+const updateUser = (userResponse: Record<string, null>) => {
+  const user = {
+    ...useAuth().value.user,
+    ...userResponse,
+  }
+  useAuth().value.user = user
+}
 
 const submitForm = async () => {
   v$.value.$touch()
@@ -302,11 +259,11 @@ const submitForm = async () => {
       ]),
     )
 
+
     if (data.value) {
       useToastExtended('success').show('Profile Updated')
       updateUser(data.value)
       v$.value.$reset()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
     else {
       useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
@@ -317,22 +274,22 @@ const submitForm = async () => {
 }
 
 
-const allowImageEdit = () => { 
+const allowImageEdit = () => {
   isImageEditable.value = !isImageEditable.value
 }
 
 const prefillForm = () => {
   formData.value = deepClone(auth.value.user)
   if (auth.value.user)
-    formData.value.profile_payload = deepClone(auth.value.user)   
+    formData.value.profile_payload = deepClone(auth.value.user)
 
   const [first_name, ...rest] = formData.value.full_name.split(' ')
   formData.value.first_name = first_name
-  formData.value.last_name = rest.join(' ')  
+  formData.value.last_name = rest.join(' ')
 }
 
 
-const showModal =  () => {
+const showModal = () => {
   modal.show('CropProfilePictureModal')
 }
 
@@ -346,7 +303,7 @@ const toggleNewPasswordVisibility = () => {
 
 
 onMounted(() => {
- prefillForm()
+  prefillForm()
 })
 const metaDef = useDefault('meta')
 useSeoMeta({
@@ -355,6 +312,4 @@ useSeoMeta({
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
