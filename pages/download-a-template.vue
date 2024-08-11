@@ -267,9 +267,8 @@ const fetchAllServices = async () => {
       if (data.value) {
         services.value = data.value.data as Services[] 
         
-
-     if (data.length > 0) {
-       selectedService.value = data[0]
+     if (services.value.length > 0) {
+       selectedService.value = services.value[0]
        totalPrice.value = selectedService?.value.price + transactionFee.value
     }
       } 
@@ -336,8 +335,10 @@ const handlePayment = async () => {
 
 const prefillForm = () => {
   formData.value = deepClone(auth.value.user)
-  if (auth.value.user.profile)
-    formData.value.profile_payload = deepClone(auth.value.user.profile)
+  if (auth.value.user)
+    formData.value.profile_payload = deepClone(auth.value.user)
+    console.log(auth.value.user);
+    
 }
 prefillForm()
 
