@@ -76,9 +76,7 @@ const isSubmittingRef = ref(false)
 
 const config = useRuntimeConfig()
 
-definePageMeta({
-  middleware: ['auth-page'],
-})
+
 
 const formData = reactive({
   email: '',

@@ -93,9 +93,6 @@
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, helpers as validatorHelpers } from "@vuelidate/validators";
 
-definePageMeta({
-  middleware: ["auth-page"],
-});
 
 const isSubmittingRef = ref(false);
 const isPasswordVisible = ref(false);
