@@ -36,6 +36,7 @@ export interface Image {
   updatedAt: string
 }
 
+
 export interface Hero {
   id: number
   heading: string
@@ -112,7 +113,7 @@ interface ArticleContent {
   updatedAt: string
   publishedAt: string
   featured: boolean | null
-  cover_image: string | null
+  cover_image: Image
   references: string[]
   category: string | null
 }
@@ -121,6 +122,14 @@ export interface Form {
   id: number
   title: string
   cta_text: string
+}
+
+export interface InsightCategory {
+  id: number
+  name: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
 }
 
 export interface footerData {

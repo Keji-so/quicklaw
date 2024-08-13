@@ -195,7 +195,7 @@ const body_content = ref<DownloadTemplateData[]>([])
 const services = ref<Services[]>([])
 const selectedService = ref<Services | []>([])
 const isDropdownOpen = ref(false)
-const transactionFee = ref<number>(324)
+const transactionFee = ref<number>(10)
 const totalPrice = ref<number>(0)
 // const router = useRouter()
 const auth = useAuth()
@@ -203,7 +203,7 @@ const auth = useAuth()
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 
 const fetchServicesState = useFetchState('/services/all')
-const createOrderState = useFetchState('/order/create')
+const createOrderState = useFetchState('/orders/create')
 
 
 const fetchPageData = async () => {
@@ -228,7 +228,8 @@ const fetchPageData = async () => {
 
 const formData = ref({
     service_id: "",
-    phone_number: "",
+  phone_number: "",
+    subtotal: ""
    
 })
 
@@ -307,6 +308,7 @@ const submitForm = async () => {
    const payload = {
      service_id: selectedService?.value.category_id,
      phone_number: phoneNumber,
+     subtotal: totalPrice.value,
      company_details: {
         "Company Name": companyName,
         "Alternate Company Name": alternateCompanyName,
