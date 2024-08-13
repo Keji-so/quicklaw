@@ -4,47 +4,26 @@
     <section class="c-section">
       <div class="c-hero cc-home">
         <div class="hero-img">
-          <img
-            alt=""
-            class="c-img cc-cover"
-            loading="lazy"
-            sizes="(max-width: 767px) 90vw, 88vw"
-            :src="hero_image.url"
-          >
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" :src="hero_image.url">
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block">
           <h1 class="heading-h1">
-                       {{ hero.heading }}
+            {{ hero.heading }}
           </h1>
           <div class="hero-subtext">
-                                   {{ hero.description}}
+            {{ hero.description }}
           </div>
-          <nuxtLink  class="c-button cc-md" :to="hero.cta_link"> {{ hero.cta_text }}</nuxtLink>
+          <nuxtLink class="c-button cc-md" to="/services"> {{ hero.cta_text }}</nuxtLink>
         </div>
         <div class="hero-illustration cc-illustration-one">
-          <img
-            alt=""
-            class="c-img"
-            loading="lazy"
-            src="@/public/assets/images/hero-illustration-gold.svg"
-          >
+          <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hero-illustration-gold.svg">
         </div>
         <div class="hero-illustration cc-illustration-two">
-          <img
-            alt=""
-            class="c-img"
-            loading="lazy"
-            src="@/public/assets/images/popup-illustration-4.svg"
-          >
+          <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/popup-illustration-4.svg">
         </div>
         <div class="hero-illustration cc-illustration-three">
-          <img
-            alt=""
-            class="c-img"
-            loading="lazy"
-            src="@/public/assets/images/hero-illustration-green.svg"
-          >
+          <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hero-illustration-green.svg">
         </div>
       </div>
     </section>
@@ -54,16 +33,13 @@
           <div class="section-header_flex">
             <div class="section-inner_header uc-green-text">
               <div class="heading-h4">
-                {{ services.title}}
+                {{ services.title }}
               </div>
             </div>
             <nuxtLink class="c-button" :to="services.cta_link">{{ services.cta_text }}</nuxtLink>
           </div>
           <div class="services-list">
-             <div
-              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
-              class="services-list_item"
-            >
+            <div id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab" class="services-list_item">
               <div class="services-list_flex">
                 <div class="sevices-list_inner">
                   <div>Start A Business</div>
@@ -77,10 +53,7 @@
                 running without stress.
               </div>
             </div>
-               <div
-              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
-              class="services-list_item"
-            >
+            <div id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab" class="services-list_item">
               <div class="services-list_flex">
                 <div class="sevices-list_inner">
                   <div>Protect Your Ideas</div>
@@ -90,13 +63,10 @@
                 </div>
               </div>
               <div class="heading-h4">
-                Receive adequate legal support and  representation you require to protect your intellectual property.
+                Receive adequate legal support and representation you require to protect your intellectual property.
               </div>
             </div>
-               <div
-              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
-              class="services-list_item"
-            >
+            <div id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab" class="services-list_item">
               <div class="services-list_flex">
                 <div class="sevices-list_inner">
                   <div>Draft & Review Agreement</div>
@@ -106,13 +76,10 @@
                 </div>
               </div>
               <div class="heading-h4">
-               Creating and reviewing contract agreements is easier with Quicklaw’s self- service.
+                Creating and reviewing contract agreements is easier with Quicklaw’s self- service.
               </div>
             </div>
-               <div
-              id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab"
-              class="services-list_item"
-            >
+            <div id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab" class="services-list_item">
               <div class="services-list_flex">
                 <div class="sevices-list_inner">
                   <div>Download a Template</div>
@@ -122,7 +89,7 @@
                 </div>
               </div>
               <div class="heading-h4">
-               With our legal templates, you don’t have to stress yourself with drafting new documents.
+                With our legal templates, you don’t have to stress yourself with drafting new documents.
               </div>
             </div>
           </div>
@@ -134,13 +101,13 @@
         <div class="section-header_flex cc-insights">
           <div class="section-inner_header uc-white-text">
             <div class="heading-h4">
-              {{insights.title}}
+              {{ insightsSection.title }}
             </div>
           </div>
-          <nuxtLink class="c-button cc-md cc-secondary-green" :to="insights.cta_link"> {{insights.cta_text}}</nuxtLink>
+          <nuxtLink class="c-button cc-md cc-secondary-green" :to="insightsSection.cta_link"> {{ insightsSection.cta_text }}</nuxtLink>
         </div>
         <div id="scrollbar" class="insights-wrapper">
-        <Insights classes="insights-block"/>
+          <InsightsComponent :insights="insights" class="insights-block" />
         </div>
       </div>
     </section>
@@ -151,40 +118,54 @@
 </template>
 
 <script setup lang="ts">
-import type { Hero, ServicesSection, InsightsSection, Image} from "~/types/content"
-const content = ref(null);
+import type { Hero, ServicesSection, InsightsSection, Image, ArticleContent } from "~/types/content"
+const content = ref(null)
 const hero = ref<Hero[]>([])
 const services = ref<ServicesSection[]>([])
-const insights = ref<InsightsSection[]>([])
+const insightsSection = ref<InsightsSection[]>([])
+const insights = ref<ArticleContent[]>([])
 const hero_image = ref<Image[]>([])
 
 
 
 
-
 const fetchPageData = async () => {
-    try {
-        const response = await fetch('https://cms.quicklaw.ng/api/home?populate=deep'); 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        content.value = data.data; 
-        hero.value = content.value.hero
-        services.value = content.value.services_section
-        insights.value = content.value.insights_section
-        hero_image.value = hero.value.image.formats.large
-        
-    } catch (error) {
-        console.error('Error fetching home page data:', error);
+    // await useGet('home', { populate: 'deep' }, 'cms')
+
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/home?populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
     }
-};
+    const data = await response.json()
+    content.value = data.data
+    hero.value = content.value.hero
+    services.value = content.value.services_section
+    insightsSection.value = content.value.insights_section
+    hero_image.value = hero.value.image.formats.large
 
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
 
+const fetchAllPosts = async () => {
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/posts?populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    insights.value = data.data
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
 
 onMounted(() => {
   fetchPageData()
-});
+  fetchAllPosts()
+})
 
 const metaDef = useDefault('meta')
 useSeoMeta({
