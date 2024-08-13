@@ -1,30 +1,39 @@
 import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
+import { withHttps } from 'ufo'
 import type { Auth } from '~/types/auth'
 
 export const useFetchExtended = <T>(
   url: string,
   options: UseFetchOptions<T> = {},
   payload: Record<string, any> = {},
+  baseUrlType: string = 'base',
   bypassBearer: Record<string, any> = {},
-  baseUrlType: string = '',
 ) => {
   const authCookie = useCookie<Auth>('auth_cookie')
   const auth = useAuth()
   const fetchState = useFetchState(url)
   const config = useRuntimeConfig()
+  let headersMod: Record<string, any> = {}
+
+  const authToken = bypassBearer ? bypassBearer.token : auth.value.accessToken
+
+  if (baseUrlType === 'cms') {
+    headersMod = {}
+  } else {
+    headersMod.Authorization = `Bearer ${authToken}`
+  }
 
   const defaults: UseFetchOptions<T> = {
     retry: 0,
 
-    baseURL: config.public.baseURL,
+    baseURL: baseUrlType !== 'cms' ? withHttps(config.public.baseURL) : withHttps(config.public.cmsURL),
 
     // Key - for caching
     key: url,
 
-    headers: bypassBearer.token
-      ? { Authorization: `Bearer ${bypassBearer.token}` }
-      : { Authorization: `Bearer ${auth.value.accessToken}` },
+
+    headers: headersMod,
 
     onRequest: () => {
       fetchState.value.isWorking = true
