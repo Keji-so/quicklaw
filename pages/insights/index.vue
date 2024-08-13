@@ -38,10 +38,10 @@
           </div>
         </div>
         <div class="insights-flex_container">
-          <Insights classes="insights-block cc-featured" to="/insights/open" />
+          <InsightsComponent :insights="featuredPost" class="insights-block cc-featured" to="/insights/open" />
           <div class="insights-grid">
           
-            <Insights classes="insights-block cc-sm" />
+            <InsightsComponent :insights="popularPosts" class="insights-block cc-sm" />
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="insights-grid cc-lg">
-        <Insights classes="insights-block cc-sm" />
+        <InsightsComponent :insights="insights" class="insights-block cc-sm" />
       
         </div>
       </div>
@@ -64,10 +64,15 @@
 </template>
 
 <script setup lang="ts">
-import type { Hero, Image } from "~/types/content"
+import type { Hero, Image, ArticleContent } from "~/types/content"
 const content = ref(null);
 const hero = ref<Hero[]>([])
 const hero_image = ref<Image[]>([])
+const featured_image = ref<Image[]>([])
+const insights = ref<ArticleContent[]>([])
+const featuredPost = ref<ArticleContent[]>([])
+
+
 
 
 
@@ -79,7 +84,7 @@ const fetchPageData = async () => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        content.value = data.data; 
+        content.value = data.data 
         hero.value = content.value.hero
         hero_image.value = hero.value.image.formats.large
         
@@ -89,8 +94,46 @@ const fetchPageData = async () => {
 };
 
 
+const fetchAllPosts = async () => {
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/posts?populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    insights.value = data.data 
+    featured_image.value = insights.value
+    console.log(featured_image.value.cover_image)   
+
+
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
+
+const popularPosts = computed(() => {
+  return insights.value.slice(0, 4)
+})
+
+const fetchFeaturedPost = async () => {
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/posts?filters[featured]=true&populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    featuredPost.value = data.data
+
+
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
+
 onMounted(() => {
   fetchPageData()
+  fetchAllPosts()
+  fetchFeaturedPost()
 });
 
 const metaDef = useDefault('meta')

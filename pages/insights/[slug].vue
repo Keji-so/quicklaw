@@ -4,15 +4,16 @@
     <section class="c-section">
       <div class="c-hero">
         <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" src="@/public/assets/images/contact-hero-image.png" srcset="@/public/assets/images/contact-hero-image-p-500.png 500w, @/public/assets/images/contact-hero-image-p-800.png 800w, @/public/assets/images/contact-hero-image-p-1080.png 1080w, @/public/assets/images/contact-hero-image-p-1600.png 1600w, @/public/assets/images/contact-hero-image.png 1901w">
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" 
+          :src="coverImage.url" >
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-full-width">
-          <div class="page-title">
-            CORPORATE LAW // {{formatDate(insights.date)}}
+          <div class="page-title">          
+            {{category.name }} // {{formatDate(insight.date)}}
           </div>
           <h1 class="heading-h2">
-            {{insights.title }}
+            {{insight.title }}
           </h1>
         </div>
         <div class="hero-illustration cc-illustration-one">
@@ -32,7 +33,7 @@
           <div class="insights-open_details">
             <div class="block-quote cc-sm">
               <div class="block-quote_text">
-                           {{insights.quote }}
+                           {{insight.quote }}
 
               </div>
             </div>
@@ -67,7 +68,7 @@
               </div>
             </div>
           </div>
-          <div v-html="insights.content" class="insights-inner_content w-richtext">
+          <div v-html="insight.content" class="insights-inner_content w-richtext">
           </div>
         </div>
       </div>
@@ -127,7 +128,7 @@
           </div>
         </div>
         <div class="insights-grid cc-lg">
-            <Insights classes="insights-block cc-sm" />
+            <InsightsComponent :insights="insights" class="insights-block cc-sm" />
         </div>
       </div>
     </section>
@@ -136,30 +137,50 @@
 </template>
 
 <script setup lang="ts">
-import type { ArticleContent } from "~/types/content"
+import type { ArticleContent, Image, InsightCategory } from "~/types/content"
+const insight = ref<ArticleContent[]>([])
 const insights = ref<ArticleContent[]>([])
+const coverImage = ref<Image[]>([])
+const category = ref<InsightCategory[]>([])
+
+
+
 
 const route = useRoute()
 
-
-const fetchPosts = async (params) => {
+const fetchPost = async (params) => {
     try {
-         const response = await fetch(`https://cms.quicklaw.ng/api/posts?filters[slug]=${params.slug}`)
+        const response = await fetch(`https://cms.quicklaw.ng/api/posts?filters[slug]=${params.slug}&populate=deep`)
         if (!response.ok) {
             throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        insights.value = data.data[0]   
-          
+        insight.value = data.data[0]  
+        coverImage.value = insight.value.cover_image.formats.large      
+        category.value = insight.value.category
     } catch (error) {
         console.error('Error fetching home page data:', error)
     }
-};
+}
+
+const fetchAllPosts = async () => {
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/posts?populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    insights.value = data.data
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
 
 
 onMounted(async () => {
   const slug = route.params.slug  
-  await fetchPosts({ slug })
+  await fetchPost({ slug })
+  fetchAllPosts()
 });
 
 const metaDef = useDefault('meta')
