@@ -146,6 +146,12 @@ height: 350px;
   color: var(--green-primary);
   background-color: var(--white);
 }
+.founders-note_block {
+      flex-shrink: 1;
+}
+.founders-image {
+  min-width: 51%;
+}
 
 @media screen and (max-width: 991px) {
 .insights-block.cc-featured .insights-block_img{
