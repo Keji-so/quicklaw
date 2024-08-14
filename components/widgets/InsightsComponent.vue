@@ -1,7 +1,7 @@
 <template>
   <div v-for="(insight, index) in insights" :key="insight.id" :class="computedClass">
     <div class="insights-block_img">
-      <img alt="" class="c-img cc-cover" loading="lazy">
+      <img :src="insight.cover_image.url" class="c-img cc-cover" loading="lazy">
     </div>
     <div class="insights-block_details">
       <div class="insights-title heading-h3">

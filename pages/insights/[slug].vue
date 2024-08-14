@@ -5,7 +5,7 @@
       <div class="c-hero">
         <div class="hero-img">
           <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" 
-          :src="coverImage.url" >
+          :src="coverImage" >
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-full-width">
@@ -156,7 +156,7 @@ const fetchPost = async (params) => {
         }
         const data = await response.json()
         insight.value = data.data[0]  
-        coverImage.value = insight.value.cover_image.formats.large      
+        coverImage.value = insight.value.cover_image.url    
         category.value = insight.value.category
     } catch (error) {
         console.error('Error fetching home page data:', error)

@@ -4,7 +4,7 @@
     <section class="c-section">
       <div class="c-hero cc-home">
         <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" :src="hero_image.url">
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" :src="hero_image">
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block">
@@ -124,13 +124,12 @@ const hero = ref<Hero[]>([])
 const services = ref<ServicesSection[]>([])
 const insightsSection = ref<InsightsSection[]>([])
 const insights = ref<ArticleContent[]>([])
-const hero_image = ref<Image[]>([])
+const hero_image = ref<Image>({})
 
 
 
 
 const fetchPageData = async () => {
-    // await useGet('home', { populate: 'deep' }, 'cms')
 
   try {
     const response = await fetch('https://cms.quicklaw.ng/api/home?populate=deep')
@@ -142,7 +141,7 @@ const fetchPageData = async () => {
     hero.value = content.value.hero
     services.value = content.value.services_section
     insightsSection.value = content.value.insights_section
-    hero_image.value = hero.value.image.formats.large
+    hero_image.value = hero.value.image.formats.url
 
   } catch (error) {
     console.error('Error fetching home page data:', error)
