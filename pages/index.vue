@@ -141,7 +141,7 @@ const fetchPageData = async () => {
     hero.value = content.value.hero
     services.value = content.value.services_section
     insightsSection.value = content.value.insights_section
-    hero_image.value = hero.value.image.formats.url
+    hero_image.value = hero.value.image.url
 
   } catch (error) {
     console.error('Error fetching home page data:', error)

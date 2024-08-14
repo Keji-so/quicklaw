@@ -39,10 +39,10 @@
                 <div>Cancelled</div>
               </a>
             </div>
-            <a class="c-button cc-icon-btn w-inline-block">
+            <nuxtLink to="/download-template" class="c-button cc-icon-btn w-inline-block">
               <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cart-add.svg"></div>
               <div>New Order</div>
-            </a>
+            </nuxtLink>
           </div>
           <div id="scrollbar" class="c-table">
            <div class="table-header cc-hide-mobile">

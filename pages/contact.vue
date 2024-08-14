@@ -5,7 +5,7 @@
       <div class="c-hero">
         <div class="hero-img">
           <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw"
-                                    :src="hero_image.url"
+                                    :src="hero_image"
 
             >
           <div class="hero-img_overlay" />
@@ -131,7 +131,7 @@ const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 
 const content = ref(null);
 const hero = ref<Hero[]>([])
-const hero_image = ref<Image[]>([])
+const hero_image = ref<Image>({})
 const form_content = ref<Form[]>([])
 
 
@@ -145,7 +145,7 @@ const fetchPageData = async () => {
         const data = await response.json();
         content.value = data.data; 
         hero.value = content.value.hero
-         hero_image.value = hero.value.image
+         hero_image.value = hero.value.image.url
         form_content.value = content.value.form
          
         
