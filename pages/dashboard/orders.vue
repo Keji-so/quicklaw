@@ -14,30 +14,30 @@
           </div>
           <div class="dashboard-utilitiies">
             <div class="order-filter_flex">
-              <a class="order-filter cc-active w-inline-block" >
+              <nuxtLink @click="showAllOrders" class="order-filter cc-active w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/unordered-list.svg"></div>
                 <div>All</div>
-              </a>
-              <a class="order-filter w-inline-block" >
+              </nuxtLink>
+              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check.svg"></div>
                 <div>Done</div>
-              </a>
-              <a class="order-filter w-inline-block" >
+              </nuxtLink>
+              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hourglass.svg"></div>
                 <div>In Progress</div>
-              </a>
-              <a class="order-filter w-inline-block" >
+              </nuxtLink>
+              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/feather.svg"></div>
                 <div>Draft</div>
-              </a>
-              <a class="order-filter w-inline-block" >
+              </nuxtLink>
+              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/notebook.svg"></div>
                 <div>Submitted</div>
-              </a>
-              <a class="order-filter w-inline-block" >
+              </nuxtLink>
+              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cancel.svg"></div>
                 <div>Cancelled</div>
-              </a>
+              </nuxtLink>
             </div>
             <nuxtLink to="/download-template" class="c-button cc-icon-btn w-inline-block">
               <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cart-add.svg"></div>
@@ -63,7 +63,8 @@
               </div>
             <div>
              
-              <div v-for="(order, index) in orders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'">
+             <div v-if="currentStatus || currentStatus === null">
+              <div v-for="(order, index) in filteredOrders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'">
                 <div class="w-layout-grid table-columns cc-hide-desktop">
                   <div id="w-node-_19c35c8b-8878-93ab-6f33-2cfdf576ffbd-7ac6554d" class="column-header">
                     SERVICE
@@ -88,12 +89,14 @@
                   <div  class="column-text">
                     {{ formatDateString(order.created_at) }}
                   </div>
-                  <div  class="c-status cc-submitted">
+                  <div  class="c-status" :class="`cc-${order.order_status}`">
                     <div>{{order.order_status}}</div>
                     <div class="status-color" />
                   </div>
                 </div>
               </div>
+             </div>
+             
             </div>
             <div class="empty" :class="isTableEmpty ? 'cc-show' : ''">
               <div class="empty-block_img">
@@ -153,6 +156,9 @@ import type { Order } from "~/types/assets"
 const isTableEmpty = ref(true)
 
 const orders = ref<Order[]>([])
+const filteredOrders = ref<Order[]>([])
+const currentStatus = ref(null)
+
 const userOrderState = useFetchState('/orders')
 
 const fetchAllOrders = async () => {
@@ -166,8 +172,30 @@ const fetchAllOrders = async () => {
     }
     catch (error) {
     console.error('Error fetching categories:', error);
+    }
+  showAllOrders()
+}
+
+
+const filterOrdersByStatus = (status) => {
+  currentStatus.value = status
+  if (orders.value && orders.value.length > 0) {
+    filteredOrders.value = orders.value.filter(order => order.order_status === status)
+    
+  } else {
+    filteredOrders.value = []
   }
 }
+
+const showAllOrders = () => {
+  currentStatus.value = null
+  filteredOrders.value = [...orders.value]
+}
+
+
+
+
+
 const formatDateString = (dateString) => {
   const date = new Date(dateString);
 
@@ -180,8 +208,8 @@ const formatDateString = (dateString) => {
 
 
 onMounted(() => {
-fetchAllOrders()
-});
+  fetchAllOrders()
+})
 
 const metaDef = useDefault('meta')
 useSeoMeta({

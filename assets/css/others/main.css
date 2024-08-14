@@ -173,6 +173,10 @@ display: block;
   justify-self: start;
 }
 
+.order-filter {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 991px) {
 .insights-block.cc-featured .insights-block_img{
 height: 450px;
