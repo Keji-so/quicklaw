@@ -45,8 +45,7 @@
             </a>
           </div>
           <div id="scrollbar" class="c-table">
-            <div>
-              <div class="table-header cc-hide-mobile">
+           <div class="table-header cc-hide-mobile">
                 <div class="w-layout-grid table-columns">
                   <div id="w-node-_4abf2dca-da60-c095-6bb9-aaaca2eef5d4-7ac6554d" class="column-header">
                     SERVICE
@@ -62,7 +61,9 @@
                   </div>
                 </div>
               </div>
-              <div v-if="!isTableEmpty" class="table-entry">
+            <div>
+             
+              <div v-for="(order, index) in orders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'">
                 <div class="w-layout-grid table-columns cc-hide-desktop">
                   <div id="w-node-_19c35c8b-8878-93ab-6f33-2cfdf576ffbd-7ac6554d" class="column-header">
                     SERVICE
@@ -77,24 +78,24 @@
                     status
                   </div>
                 </div>
-                <div class="w-layout-grid table-columns">
-                  <div id="w-node-b2319235-1d8b-8528-8df2-5857c263392b-7ac6554d" class="column-text">
-                    Employment Agreement
+                <div  class="w-layout-grid table-columns">
+                  <div  class="column-text">
+                    {{order.service.title}}
                   </div>
-                  <div id="w-node-b2319235-1d8b-8528-8df2-5857c263392d-7ac6554d" class="column-text">
-                    ₦15,000.00
+                  <div class="column-text">
+                    ₦{{order.service.price}}
                   </div>
-                  <div id="w-node-b2319235-1d8b-8528-8df2-5857c263392f-7ac6554d" class="column-text">
-                    12/02/2024
+                  <div  class="column-text">
+                    {{ formatDateString(order.created_at) }}
                   </div>
-                  <div id="w-node-b2319235-1d8b-8528-8df2-5857c2633931-7ac6554d" class="c-status cc-submitted">
-                    <div>Submitted</div>
+                  <div  class="c-status cc-submitted">
+                    <div>{{order.order_status}}</div>
                     <div class="status-color" />
                   </div>
                 </div>
               </div>
             </div>
-            <div v-if="isTableEmpty" class="empty">
+            <div class="empty" :class="isTableEmpty ? 'cc-show' : ''">
               <div class="empty-block_img">
                 <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/empty.svg">
               </div>
@@ -146,37 +147,40 @@
 <script setup lang="ts">
 import type { Order } from "~/types/assets"
 
-const auth = useAuth()
  const user = {
     ...useAuth().value.user
   }
-console.log(user);
+const isTableEmpty = ref(true)
 
-
-// definePageMeta({
-//   middleware: ['auth'],
-// })
 const orders = ref<Order[]>([])
-const userOrderState = useFetchState('/order/all')
+const userOrderState = useFetchState('/orders')
 
-const fetchOrderState = async () => {
+const fetchAllOrders = async () => {
   const { data } = await useGet<Order>(userOrderState.value.url, {})
     try {
     const { data } = await useGet<Order>(userOrderState.value.url,{})
     if (data.value) {
       orders.value = data.value.data as Order[] 
+      isTableEmpty.value = orders.value.length <= 0;
     } 
     }
     catch (error) {
     console.error('Error fetching categories:', error);
   }
 }
+const formatDateString = (dateString) => {
+  const date = new Date(dateString);
 
-const isTableEmpty = ref(true)
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${month}/${day}/${year}`;
+};
 
 
 onMounted(() => {
-fetchOrderState()
+fetchAllOrders()
 });
 
 const metaDef = useDefault('meta')
