@@ -89,3 +89,13 @@ export interface PaystackTransaction {
     fees_breakdown: null
   }
 }
+
+export interface PaystackTransactionResult {
+  reference: string
+  trans: string
+  status: string
+  message: string
+  transaction: string
+  trxref: string
+  redirecturl: string
+}

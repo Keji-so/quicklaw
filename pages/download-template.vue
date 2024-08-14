@@ -199,7 +199,7 @@ const transactionFee = ref<number>(10)
 const totalPrice = ref<number>(0)
 // const router = useRouter()
 const auth = useAuth()
-// const payment = usePay()
+const payment = usePay()
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 
 const fetchServicesState = useFetchState('/services/all')
@@ -298,7 +298,7 @@ const getTotalPrice = () => {
   }
 }
 
-const submitForm = async () => { 
+const createOrder = async () => { 
   const phoneNumber = v$.value.formData.phone_number.$model
    const companyName = ''
     const alternateCompanyName = ''
@@ -306,9 +306,11 @@ const submitForm = async () => {
     const objectOfBusiness = ''
     const scopeOfBusiness = ''
    const payload = {
-     service_id: selectedService?.value.category_id,
+     service_id: selectedService?.value.id,
      phone_number: phoneNumber,
-     subtotal: totalPrice.value,
+     total: totalPrice.value,
+     subtotal: selectedService.value.price,
+     payment_ref: generateRef(), 
      company_details: {
         "Company Name": companyName,
         "Alternate Company Name": alternateCompanyName,
@@ -317,16 +319,13 @@ const submitForm = async () => {
         "Scope of Business": scopeOfBusiness
     }
    }
+
+   console.log(payload);
   
   const { data, error } = await usePost(createOrderState.value.url, payload)   
         if (data.value)
-          useToastExtended('success').show('Success')
-        
-    if (error.value) {
-      useToastExtended('error').show('Something went wrong with your order')
-      return false;
-    }
-
+        useToastExtended('success').show('Success')
+        return data.value
 }
 
 const handlePayment = async () => {
@@ -341,20 +340,49 @@ const handlePayment = async () => {
     useToastExtended('error').show('Some fields require your attention')
     return false
   }
-
-  submitForm()
+    payWithPaystack()
   }
   else modal.show('SignInModal')
 }
 
+
+const payWithPaystack = async () => {
+  const order = await createOrder()
+
+  console.log(order);
+  
+
+  if (order) {
+    try {
+      await payment.paystack(formData.value.email, selectedService.value.price, order.data.payment_ref)
+       navigateTo('/dashboard/orders')
+    } catch (error) {
+        console.error(error)
+    }
+    }
+
+}
+
+const generateRef = () => {
+  const prefix = () => {
+           return 'pstk'
+
+  }
+
+  const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000)
+  const randomId = prefix() + randomNumber
+  return randomId
+}
+
 // const initializePaystackCheckout = () => {
 //   const handler = window.PaystackPop.setup({
-//     key: process.env.PAYSTACK_PUBLIC_KEY, // Replace with your Paystack public key
+//     key: process.env.PAYSTACK_PUBLIC_KEY, 
 //     service: selectedService.name,
 //     full_name: formData.value.name,
 //     email: formData.value.email,
 //     phone: formData.value.phone,
 //     amount: selectedService?.value.price, 
+//     payment_ref: generateRef(),
 //     currency: 'NGN', 
 //     callback: function (response) {
 //       alert('Payment successful! Reference: ' + response.reference)

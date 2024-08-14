@@ -16,12 +16,12 @@ export const useFetchExtended = <T>(
   const config = useRuntimeConfig()
   let headersMod: Record<string, any> = {}
 
-  const authToken = bypassBearer ? bypassBearer.token : auth.value.accessToken
+  const authToken = bypassBearer.token ? bypassBearer.token : auth.value.accessToken
 
   if (baseUrlType === 'cms') {
     headersMod = {}
   } else {
-    headersMod.Authorization = `Bearer ${authToken}`
+    headersMod.Authorization = `Bearer${authToken}`
   }
 
   const defaults: UseFetchOptions<T> = {

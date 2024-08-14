@@ -11,7 +11,7 @@
       <nuxtLink class="c-nav_link" to="/services">
         Services
       </nuxtLink>
-      <nuxtLink class="c-nav_link" to="/download-a-template">
+      <nuxtLink class="c-nav_link" to="/download-template">
         Download A Template
       </nuxtLink>
       <nuxtLink class="c-nav_link" to="/insights">

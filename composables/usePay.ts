@@ -1,5 +1,5 @@
 import PaystackPop from '@paystack/inline-js'
-import type { PaystackTransactionResult } from '~/types/products'
+import type { PaystackTransactionResult } from '~/types/product.d'
 const config = useRuntimeConfig()
 
 export const usePay = () => {
