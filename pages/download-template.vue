@@ -168,7 +168,7 @@
           <div class="download-reciept">
             <div class="order-details_top">
               <div class="download-form_header uc-mb-0">ORDER DETAILS</div>
-              <div class="order-id">Order ID: #12456AJ</div>
+              <div class="order-id"></div>
               <div class="order-details">
                 <div class="order-details_inner">
                   <div>{{ selectedService?.name }}</div>
