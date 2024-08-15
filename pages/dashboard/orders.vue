@@ -64,7 +64,7 @@
             <div>
              
              <div v-if="currentStatus || currentStatus === null">
-              <div v-for="(order, index) in filteredOrders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'">
+              <div v-for="order in filteredOrders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'" @click="getSelectedOrder(order)">
                 <div class="w-layout-grid table-columns cc-hide-desktop">
                   <div id="w-node-_19c35c8b-8878-93ab-6f33-2cfdf576ffbd-7ac6554d" class="column-header">
                     SERVICE
@@ -79,7 +79,7 @@
                     status
                   </div>
                 </div>
-                <div  class="w-layout-grid table-columns">
+                <div class="w-layout-grid table-columns">
                   <div  class="column-text">
                     {{order.service.title}}
                   </div>
@@ -145,6 +145,7 @@
       </div>
     </section>
   </div>
+  <OrderDetailsModal :selectedOrder="selectedOrder" />
 </template>
 
 <script setup lang="ts">
@@ -153,11 +154,13 @@ import type { Order } from "~/types/assets"
  const user = {
     ...useAuth().value.user
   }
-const isTableEmpty = ref(true)
-
+const isTableEmpty = ref(null)
 const orders = ref<Order[]>([])
 const filteredOrders = ref<Order[]>([])
 const currentStatus = ref(null)
+const selectedOrder = ref<Order>()
+
+const modal = useModal('OrderDetailsModal')
 
 const userOrderState = useFetchState('/orders')
 
@@ -167,7 +170,8 @@ const fetchAllOrders = async () => {
     const { data } = await useGet<Order>(userOrderState.value.url,{})
     if (data.value) {
       orders.value = data.value.data as Order[] 
-      isTableEmpty.value = orders.value.length <= 0;
+      isTableEmpty.value = orders.value.length <= 0
+      
     } 
     }
     catch (error) {
@@ -176,12 +180,10 @@ const fetchAllOrders = async () => {
   showAllOrders()
 }
 
-
 const filterOrdersByStatus = (status) => {
   currentStatus.value = status
   if (orders.value && orders.value.length > 0) {
-    filteredOrders.value = orders.value.filter(order => order.order_status === status)
-    
+    filteredOrders.value = orders.value.filter(order =>  order.order_status === status)    
   } else {
     filteredOrders.value = []
   }
@@ -192,7 +194,10 @@ const showAllOrders = () => {
   filteredOrders.value = [...orders.value]
 }
 
-
+const getSelectedOrder = (order:Order) => {
+     selectedOrder.value = order 
+      modal.show('OrderDetailsModal')
+    };
 
 
 
@@ -207,8 +212,10 @@ const formatDateString = (dateString) => {
 };
 
 
+fetchAllOrders()
+
+
 onMounted(() => {
-  fetchAllOrders()
 })
 
 const metaDef = useDefault('meta')
