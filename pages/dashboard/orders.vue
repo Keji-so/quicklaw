@@ -14,27 +14,27 @@
           </div>
           <div class="dashboard-utilitiies">
             <div class="order-filter_flex">
-              <nuxtLink @click="showAllOrders" class="order-filter cc-active w-inline-block" >
+              <nuxtLink @click="showAllOrders" class="order-filter w-inline-block" >
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/unordered-list.svg"></div>
                 <div>All</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block" >
+              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check.svg"></div>
                 <div>Done</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block" >
+              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hourglass.svg"></div>
                 <div>In Progress</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block" >
+              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/feather.svg"></div>
                 <div>Draft</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block" >
+              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/notebook.svg"></div>
                 <div>Submitted</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block" >
+              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cancel.svg"></div>
                 <div>Cancelled</div>
               </nuxtLink>
@@ -145,7 +145,7 @@
       </div>
     </section>
   </div>
-  <OrderDetailsModal :selectedOrder="selectedOrder" />
+  <OrderDetailsModal v-if="modal.has('OrderDetailsModal')" :selectedOrder="selectedOrder" />
 </template>
 
 <script setup lang="ts">
@@ -159,8 +159,11 @@ const orders = ref<Order[]>([])
 const filteredOrders = ref<Order[]>([])
 const currentStatus = ref(null)
 const selectedOrder = ref<Order>()
+const activeFilter = ref('all')
 
-const modal = useModal('OrderDetailsModal')
+
+
+const modal = useModal()
 
 const userOrderState = useFetchState('/orders')
 
@@ -183,11 +186,14 @@ const fetchAllOrders = async () => {
 const filterOrdersByStatus = (status) => {
   currentStatus.value = status
   if (orders.value && orders.value.length > 0) {
-    filteredOrders.value = orders.value.filter(order =>  order.order_status === status)    
+    filteredOrders.value = orders.value.filter(order => order.order_status === status)  
+     
   } else {
     filteredOrders.value = []
   }
 }
+
+
 
 const showAllOrders = () => {
   currentStatus.value = null
@@ -196,7 +202,8 @@ const showAllOrders = () => {
 
 const getSelectedOrder = (order:Order) => {
      selectedOrder.value = order 
-      modal.show('OrderDetailsModal')
+  modal.show('OrderDetailsModal')
+      
     };
 
 
