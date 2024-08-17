@@ -20,9 +20,9 @@
         <div class="services-list_container" :class="{ 'cc-active': isServiceActive[index] }">
           <div class="services-offered">
             <template v-for="service in category.services" :key="service.id">
-              <div class="c-service_item" @click.stop="selectService(service)">
+              <nuxtLink class="c-service_item" @click.stop="selectService(service)">
                 {{ service.name }}
-              </div>
+              </nuxtLink>
             </template>
           </div>
         </div>

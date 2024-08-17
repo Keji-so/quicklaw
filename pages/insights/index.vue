@@ -61,13 +61,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Hero, Image, ArticleContent } from "~/types/content"
+import type { Hero, Image, ArticleContent} from "~/types/content"
 const content = ref(null)
 const hero = ref<Hero[]>([])
 const hero_image = ref<Image>({})
-const featured_image = ref<Image>([])
 const insights = ref<ArticleContent[]>([])
 const featuredPost = ref<ArticleContent[]>([])
+
 
 
 

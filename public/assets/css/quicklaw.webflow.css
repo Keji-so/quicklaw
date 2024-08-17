@@ -1059,6 +1059,7 @@ li {
   font-weight: 700;
   transition: border-color .4s;
   display: inline-block;
+  cursor: pointer;
 }
 
 .c-service_item:hover {
