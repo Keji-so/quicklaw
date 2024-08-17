@@ -161,6 +161,13 @@ export interface ContactNumbers {
   number: string
 }
 
+export interface Pagination {
+  page: number
+  pageSize: number
+  pageCount: number
+  total: number
+}
+
 export interface ApiResponse {
   data: Content
   meta: Record<string, unknown>

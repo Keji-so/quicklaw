@@ -119,12 +119,16 @@
 </template>
 
 <script setup lang="ts">
-import type { ArticleContent, Image, InsightCategory, References } from "~/types/content"
+import type { ArticleContent, Image, InsightCategory, References, Pagination} from "~/types/content"
+// import {  Pagination } from '~/types'
+
+
 const insight = ref<ArticleContent[]>([])
 const insights = ref<ArticleContent[]>([])
 const coverImage = ref<Image[]>([])
 const category = ref<InsightCategory[]>([])
 const references = ref<References[]>([])
+const pagination = ref<Pagination>(useDefault('pagination'))
 
 
 
@@ -143,13 +147,11 @@ const fetchPost = async (params) => {
             throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        insight.value = data.data[0]  
+         insight.value = data.data[0]  
+         pagination.value = usePaginate(data.meta.pagination)
         coverImage.value = insight.value.cover_image.url    
         category.value = insight.value.category
         references.value = insight.value.references
-        references.value.forEach(ref => {
-        const url = generateUrl(ref.text);       
-});
         
     } catch (error) {
         console.error('Error fetching home page data:', error)
@@ -164,6 +166,8 @@ const fetchAllPosts = async () => {
     }
     const data = await response.json()
     insights.value = data.data
+    
+
   } catch (error) {
     console.error('Error fetching home page data:', error)
   }

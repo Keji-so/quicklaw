@@ -1,18 +1,10 @@
 export interface Pagination {
-  current_page: number
-  first_page_url: string
-  from: number
-  last_page: number
-  last_page_url: string
-  links?: Link[]
-  next_page_url?: any
-  path: string
-  per_page: number
-  prev_page_url?: any
-  to: number
+  page: number
+  pageSize: number
+  pageCount: number
   total: number
-  cursor: (index: number) => number
 }
+
 export interface PaginatedCollection<T> {
   user: T[]
   meta: Pagination

@@ -106,7 +106,7 @@
           </div>
           <nuxtLink class="c-button cc-md cc-secondary-green" :to="insightsSection.cta_link"> {{ insightsSection.cta_text }}</nuxtLink>
         </div>
-        <div id="scrollbar" class="insights-wrapper">
+        <div id="scrollbar-hide" class="insights-wrapper">
           <InsightsComponent :insights="insights" class="insights-block" />
         </div>
       </div>

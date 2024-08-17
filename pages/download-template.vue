@@ -354,7 +354,6 @@ const createOrder = async () => {
     },
   };
 
-  console.log(payload);
 
   const { data, error } = await usePost(createOrderState.value.url, payload);
   if (data.value) useToastExtended("success").show("Success");
@@ -380,7 +379,6 @@ const handlePayment = async () => {
 const payWithPaystack = async () => {
   const order = await createOrder();
 
-  console.log(order);
 
   if (order) {
     try {

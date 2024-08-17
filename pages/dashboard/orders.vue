@@ -98,17 +98,17 @@
              </div>
              
             </div>
-            <div class="empty" :class="isTableEmpty ? 'cc-show' : ''">
+            <div class="empty" v-if="filteredOrders.length === 0">
               <div class="empty-block_img">
                 <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/empty.svg">
               </div>
               <div class="empty-block_text">
                 <div>No Available Orders</div>
-                <div>You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text">new order </span>you make will appear here.</div>
+                <div v-if="isTableEmpty && filteredOrders.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template.vue" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
               </div>
             </div>
           </div>
-          <div class="c-pagination" v-if="!isTableEmpty" >
+          <div class="c-pagination" v-if="filteredOrders.length > 0" >
             <div class="pagination-btn cc-disabled">
               <div class="pagination-arrow w-embed">
                 <svg fill="none" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +157,7 @@ import type { Order } from "~/types/assets"
 const isTableEmpty = ref(null)
 const orders = ref<Order[]>([])
 const filteredOrders = ref<Order[]>([])
-const currentStatus = ref(null)
+const currentStatus = ref('all')
 const selectedOrder = ref<Order>()
 const activeFilter = ref('all')
 
@@ -172,9 +172,8 @@ const fetchAllOrders = async () => {
     try {
     const { data } = await useGet<Order>(userOrderState.value.url,{})
     if (data.value) {
-      orders.value = data.value.data as Order[] 
-      isTableEmpty.value = orders.value.length <= 0
-      
+      orders.value = data.value.data.data as Order[] 
+      isTableEmpty.value = orders.value.length <= 0      
     } 
     }
     catch (error) {
@@ -194,17 +193,17 @@ const filterOrdersByStatus = (status) => {
 }
 
 
-
 const showAllOrders = () => {
-  currentStatus.value = null
-  filteredOrders.value = [...orders.value]
+  currentStatus.value = 'all'
+  activeFilter.value = 'all'
+  filteredOrders.value = orders.value
+
 }
 
 const getSelectedOrder = (order:Order) => {
      selectedOrder.value = order 
-  modal.show('OrderDetailsModal')
-      
-    };
+     modal.show('OrderDetailsModal') 
+ };
 
 
 
@@ -219,10 +218,9 @@ const formatDateString = (dateString) => {
 };
 
 
-fetchAllOrders()
-
 
 onMounted(() => {
+fetchAllOrders()
 })
 
 const metaDef = useDefault('meta')

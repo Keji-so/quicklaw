@@ -75,7 +75,6 @@ const fetchAllCategories = async () => {
     const { data } = await useGet<Categories>(fetchCategoriesState.value.url, {})
     if (data.value) {
       categories.value = data.value.data.data as Categories[]
-      console.log(data.value.data.data)
 
     }
   }
