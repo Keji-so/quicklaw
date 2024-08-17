@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper cc-auth">
+  <div data-lenis-prevent  class="page-wrapper cc-auth">
     <Navbar />
     <section class="c-section cc-auth">
       <div class="auth-wrapper">
