@@ -153,17 +153,7 @@ height: 350px;
   min-width: 51%;
 }
 
-.table-entry, .empty {
-  display: none;
-}
 
-.table-entry.cc-show {
-display: block;
-}
-
-.empty.cc-show {
-  display: flex;
-}
 
 .table-columns {
   margin-bottom: 12px;
@@ -173,8 +163,16 @@ display: block;
   justify-self: start;
 }
 
-.order-filter {
+.order-filter, .order-link {
   cursor: pointer;
+}
+
+#scrollbar-hide {
+-ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+#scrollbar-hide::-webkit-scrollbar { 
+    display: none;  
 }
 
 @media screen and (max-width: 991px) {
