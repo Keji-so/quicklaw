@@ -14,27 +14,27 @@
           </div>
           <div class="dashboard-utilitiies">
             <div class="order-filter_flex">
-              <nuxtLink @click="showAllOrders" class="order-filter w-inline-block" >
+              <nuxtLink @click="showAllOrders" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'all' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/unordered-list.svg"></div>
                 <div>All</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block">
+              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'done' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check.svg"></div>
                 <div>Done</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block">
+              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'in-progress' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hourglass.svg"></div>
                 <div>In Progress</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block">
+              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'draft' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/feather.svg"></div>
                 <div>Draft</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block">
+              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'submitted' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/notebook.svg"></div>
                 <div>Submitted</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block">
+              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'cancelled' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cancel.svg"></div>
                 <div>Cancelled</div>
               </nuxtLink>
@@ -187,7 +187,7 @@ const filterOrdersByStatus = (status) => {
   currentStatus.value = status
   if (orders.value && orders.value.length > 0) {
     filteredOrders.value = orders.value.filter(order => order.order_status === status)  
-     
+    activeFilter.value = status
   } else {
     filteredOrders.value = []
   }
