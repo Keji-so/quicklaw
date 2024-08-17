@@ -118,6 +118,15 @@ interface ArticleContent {
   category: string | null
 }
 
+interface Reference {
+  id: number
+  text: string
+}
+
+interface References {
+  references: Reference[]
+}
+
 export interface Form {
   id: number
   title: string

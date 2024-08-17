@@ -81,27 +81,9 @@
           </div>
         </div>
         <div class="references-list">
-          <div class="references-list_item">
-            <span class="reference-list_index">[1]</span>
-            <a >https://www.growthmentor.com/blog/startup-stages</a>
-          </div>
-          <div id="w-node-d08aa9dd-2b49-b35d-9f9d-89e1c120fa0e-37944365" class="references-list_item">
-            <span class="reference-list_index">[2] </span>
-            <a >https://www.forbes.com/sites/abdoriani/2019/11/12/the-5-biggest-stages-of-a-startup-from-idea-to-scale/?sh=b78c1097b6f2</a>
-          </div>
-          <div id="w-node-d5d927d4-434d-7a63-61eb-9a25ddcbe420-37944365" class="references-list_item">
-            <span class="reference-list_index">[3]</span>
-            <a >https://www.mondaq.com/nigeria/shareholders/1087852/</a>
-          </div>
-          <div id="w-node-_0ca5db3f-469c-d244-5691-af9afb8ea2aa-37944365" class="references-list_item">
-            <span class="reference-list_index">[4]</span> What are the six stages of a startup?, Cemex Ventures (2021), <a>https://www.cemexventures.com/startup-stages-phases/</a> accessed 7th January, 2022
-          </div>
-          <div id="w-node-cc475032-07a6-06bf-48f6-cc655625f0a7-37944365" class="references-list_item">
-            <span class="reference-list_index">[5]</span> The minimum viable product is a model that does not have its full functions, making the test less complex. It is released as a first version, with the results and information being collected. After its release it should be analysed to evaluate if it meets the needs of customers; if not, improvements are made with new versions that try to satisfy the user. See Cemex Ventures, supra
-          </div>
-          <div id="w-node-_7f0a72ce-d912-97dd-f728-c1ed263bb477-37944365" class="references-list_item">
-            <span class="reference-list_index">[1]</span>
-            <a >https://www.growthmentor.com/blog/startup-stages</a>
+          <div v-for="(reference, index) in references" :key="reference.id"  class="references-list_item">
+            <span class="reference-list_index">[{{index + 1}}] </span>
+            <nuxtLink :to="generateUrl(reference.text)" >{{generateUrl(reference.text)}}</nuxtLink>
           </div>
         </div>
       </div>
@@ -137,16 +119,22 @@
 </template>
 
 <script setup lang="ts">
-import type { ArticleContent, Image, InsightCategory } from "~/types/content"
+import type { ArticleContent, Image, InsightCategory, References } from "~/types/content"
 const insight = ref<ArticleContent[]>([])
 const insights = ref<ArticleContent[]>([])
 const coverImage = ref<Image[]>([])
 const category = ref<InsightCategory[]>([])
+const references = ref<References[]>([])
+
 
 
 
 
 const route = useRoute()
+
+function generateUrl(text: string): string {
+  return text.toLowerCase().replace(/\s+/g, '-'); 
+}
 
 const fetchPost = async (params) => {
     try {
@@ -158,6 +146,11 @@ const fetchPost = async (params) => {
         insight.value = data.data[0]  
         coverImage.value = insight.value.cover_image.url    
         category.value = insight.value.category
+        references.value = insight.value.references
+        references.value.forEach(ref => {
+        const url = generateUrl(ref.text);       
+});
+        
     } catch (error) {
         console.error('Error fetching home page data:', error)
     }
