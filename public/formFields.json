@@ -1,0 +1,88 @@
+{
+  "customer": {
+    "additional_fields": [
+      {
+        "label": "State Your Designation",
+        "placeholder": "Enter Designation",
+        "type": "text"
+      },
+      {
+        "label": "Nature of Agreement",
+        "placeholder": "State Nature of Agreement",
+        "type": "text"
+      }
+    ],
+    "additional_title": "employee info",
+    "field_title": "partnership details",
+    "fields": [
+      {
+        "label": "Customer Name",
+        "placeholder": "Enter Customer Name",
+        "type": "text"
+      },
+      {
+        "label": "Customer Email",
+        "placeholder": "Enter Customer Email",
+        "type": "email"
+      },
+      {
+        "label": "Customer Requirements",
+        "placeholder": "State customer requirements",
+        "type": "textarea"
+      },
+      {
+        "label": "Customer Name",
+        "placeholder": "Enter Customer Name",
+        "type": "text"
+      },
+      {
+        "label": "Customer Email",
+        "placeholder": "Enter Customer Email",
+        "type": "email"
+      },
+      {
+        "label": "Customer Requirements",
+        "placeholder": "State customer requirements",
+        "type": "textarea"
+      }
+    ]
+  },
+  "employee": {
+    "additional_fields": [
+      {
+        "label": "State Your Designation",
+        "placeholder": "Enter Designation",
+        "type": "text"
+      },
+      {
+        "label": "Nature of Agreement",
+        "placeholder": "State Nature of Agreement",
+        "type": "text"
+      }
+    ],
+    "additional_title": "employee info",
+    "field_title": "employee details",
+    "fields": [
+      {
+        "label": "State Your Designation",
+        "placeholder": "Enter Designation",
+        "type": "text"
+      },
+      {
+        "label": "Nature of Agreement",
+        "placeholder": "State Nature of Agreement",
+        "type": "text"
+      },
+      {
+        "label": "Specific Requirements",
+        "placeholder": "State requirements for this agreement",
+        "type": "textarea"
+      },
+      {
+        "label": "Additional Information",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
+      }
+    ]
+  }
+}

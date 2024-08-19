@@ -83,7 +83,7 @@
         <div class="references-list">
           <div v-for="(reference, index) in references" :key="reference.id"  class="references-list_item">
             <span class="reference-list_index">[{{index + 1}}] </span>
-            <nuxtLink :to="generateUrl(reference.text)" >{{generateUrl(reference.text)}}</nuxtLink>
+            <nuxtLink target="_blank" :to="generateUrl(reference.text)" >{{generateUrl(reference.text)}}</nuxtLink>
           </div>
         </div>
       </div>
@@ -120,6 +120,7 @@
 
 <script setup lang="ts">
 import type { ArticleContent, Image, InsightCategory, References, Pagination} from "~/types/content"
+import { withHttps } from 'ufo'
 // import {  Pagination } from '~/types'
 
 
@@ -128,7 +129,7 @@ const insights = ref<ArticleContent[]>([])
 const coverImage = ref<Image[]>([])
 const category = ref<InsightCategory[]>([])
 const references = ref<References[]>([])
-const pagination = ref<Pagination>(useDefault('pagination'))
+const currentArticle = ref<ArticleContent[]>([])
 
 
 
@@ -137,7 +138,7 @@ const pagination = ref<Pagination>(useDefault('pagination'))
 const route = useRoute()
 
 function generateUrl(text: string): string {
-  return text.toLowerCase().replace(/\s+/g, '-'); 
+  return withHttps(text.toLowerCase().replace(/\s+/g, '-')) 
 }
 
 const fetchPost = async (params) => {
@@ -148,10 +149,10 @@ const fetchPost = async (params) => {
         }
         const data = await response.json()
          insight.value = data.data[0]  
-         pagination.value = usePaginate(data.meta.pagination)
-        coverImage.value = insight.value.cover_image.url    
-        category.value = insight.value.category
-        references.value = insight.value.references
+         currentArticle.value = data.data[0].id       
+         coverImage.value = insight.value.cover_image.url    
+         category.value = insight.value.category
+         references.value = insight.value.references
         
     } catch (error) {
         console.error('Error fetching home page data:', error)
@@ -171,6 +172,9 @@ const fetchAllPosts = async () => {
   } catch (error) {
     console.error('Error fetching home page data:', error)
   }
+}
+const fetchNextPost = async () => { 
+
 }
 
 

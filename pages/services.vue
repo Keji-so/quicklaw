@@ -47,8 +47,12 @@ const hero_image = ref<Image>({})
 
 
 
+
+
 const modal = useModal()
 const categories = ref<Categories[]>([])
+
+
 const fetchCategoriesState = useFetchState('/categories')
 
 
@@ -82,7 +86,6 @@ const fetchAllCategories = async () => {
     console.error('Error fetching categories:', error)
   }
 }
-
 
 
 // no result property

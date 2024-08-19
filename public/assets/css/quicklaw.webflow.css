@@ -708,7 +708,8 @@ li {
 }
 
 .c-form_field {
-  flex: 1;
+  /* flex: 1; */
+  width: 45%;
   margin-bottom: 43px;
 }
 
@@ -1117,11 +1118,13 @@ li {
 }
 
 .form-flex {
-  grid-column-gap: 78px;
-  grid-row-gap: 78px;
+  /* grid-column-gap: 78px; */
+  /* grid-row-gap: 78px; */
   justify-content: space-between;
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
+    grid-column-gap: 5%;
 }
 
 .form-flex.cc-profile {
