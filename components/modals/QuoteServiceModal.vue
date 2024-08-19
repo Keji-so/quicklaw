@@ -19,7 +19,7 @@
                 <div class="services-form_block" >
                   <p class="services-from_header cc-margin-top">{{fieldTitle}}</p>
                   <div class="form-flex cc-popup"  >
-                    <div class="c-form_field" v-for="(field, index) in fields" :key="index" >
+                    <div class="c-form_field cc-categories" v-for="(field, index) in fields" :key="index" >
                       <div class="c-label_wrapper">
                         <label class="c-label">{{ field.label }}</label>
                       </div>
@@ -58,7 +58,7 @@
                 <div class="services-form_block">
                   <p class="services-from_header cc-margin-top">{{additionalTitle}}</p>
                   <div class="form-flex cc-popup">
-                <div class="c-form_field" v-for="(field, index) in additionalFields" :key="index" >
+                <div class="c-form_field cc-categories" v-for="(field, index) in additionalFields" :key="index" >
                       <div class="c-label_wrapper">
                         <label class="c-label">{{ field.label }}</label>
                       </div>

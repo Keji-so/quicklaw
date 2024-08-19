@@ -708,7 +708,13 @@ li {
 }
 
 .c-form_field {
-  /* flex: 1; */
+  flex: 1;
+  /* width: 45%; */
+  margin-bottom: 43px;
+}
+
+.c-form_field.cc-categories{
+ flex:auto;
   width: 45%;
   margin-bottom: 43px;
 }
