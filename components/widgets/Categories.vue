@@ -22,16 +22,16 @@
             <template v-for="service in category.services" :key="service.id">
               <nuxtLink class="c-service_item" @click.stop="selectService(service)">
                 {{ service.name }}
-                  <!-- Render the modal outside of the loop -->
-    <QuoteServiceModal v-if="selectedService" :service="selectedService" />
-    <DefaultServiceModal v-if="selectedService" :service="selectedService" />
+                
               </nuxtLink>
             </template>
           </div>
         </div>
       </div>
     </div>
-
+  <!-- Render the modal outside of the loop -->
+                  <QuoteServiceModal v-if="selectedService" :service="selectedService" @modalClosed="handleModalClosed"/>
+                  <DefaultServiceModal v-if="selectedService" :service="selectedService" @modalClosed="handleModalClosed" />
   
   </div>
 </template>
@@ -51,7 +51,6 @@ const props = defineProps<{
 }>()
 const isServiceActive = ref<boolean[]>(Array(props.categories.length).fill(false))
 const selectedService = ref<Services | null>(null)
-const isQuoteService = ref(null)
 
 const toggleService = (index: number) => {
   if (isServiceActive.value[index]) {
@@ -63,7 +62,6 @@ const toggleService = (index: number) => {
 }
 const selectService = (service: Services) => {
   selectedService.value = service 
-
   
   if (selectedService.value.is_quote_service === 1) {
     modal.show('QuoteServiceModal');
@@ -71,6 +69,10 @@ const selectService = (service: Services) => {
     modal.show('DefaultServiceModal');
   }
 }
+
+ const handleModalClosed = (service: Services | null) => {
+    selectedService.value = service;
+  };
 </script>
 
 <style scoped>

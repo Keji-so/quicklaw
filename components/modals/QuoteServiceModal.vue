@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div class="btn-flex cc-align-right"><input type="submit" data-wait=""
-                  class="c-button cc-secondary-green w-button" value="Get A Quote"></div>
+                  class="c-button cc-secondary-green w-button" value="Get A Quote"  @click.prevent="createOrder"></div>
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>
@@ -86,7 +86,6 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { useModal } from '~/composables/useModal'
 import type { Services } from "~/types/categories"
 
 
@@ -99,7 +98,6 @@ const props = defineProps({
 })
 
 const selectedService = ref<Services>(props.service)
-
 
 const modal = useModal('QuoteServiceModal')
 
@@ -144,8 +142,41 @@ const fetchApiResponse = async () => {
 
 }
 
+const formData = ref<Record<string, any>>({}) 
+
+const createOrderState = useFetchState("/orders/create");
+
+
+const createOrder = async () => {
+  const companyName = "";
+  const alternateCompanyName = "";
+  const registeredAddress = "";
+  const objectOfBusiness = "";
+  const scopeOfBusiness = "";
+  const payload = {
+    service_id: selectedService?.value.id,
+    company_details: {
+      "Company Name": companyName,
+      "Alternate Company Name": alternateCompanyName,
+      "Registered Address": registeredAddress,
+      "Object of Business": objectOfBusiness,
+      "Scope of Business": scopeOfBusiness,
+    },
+  };
+
+
+  const { data, error } = await usePost(createOrderState.value.url, payload);
+  if (data.value) useToastExtended("success").show("Success");
+  return data.value;
+};
+
+const emit = defineEmits<{
+  (event: 'modalClosed', service: Services | null): void;
+}>();
+
 const closeModal = () => {
   modal.hide('QuoteServiceModal')
+  emit('modalClosed', null);
 }
 
 onMounted(() => {

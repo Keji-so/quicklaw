@@ -58,6 +58,11 @@
         "label": "Nature of Agreement",
         "placeholder": "State Nature of Agreement",
         "type": "text"
+      },
+      {
+        "label": "Phone",
+        "placeholder": "Enter Phone Number",
+        "type": "tel"
       }
     ],
     "additional_title": "employee info",

@@ -2,7 +2,7 @@
   <Transition name="modal-fade">
     <div v-if="modal.isVisible" class="c-popup cc-show">
     <div class="c-popup_inner cc-service-checkout">
-      <div class="popup-close_btn cc-white" @click="modal.hide('DefaultServiceForm')"></div>
+      <div class="popup-close_btn cc-white" @click="closeModal"></div>
       <div class="heading-h4">{{selectedService.name}}</div>
       <div class="services-details_block">
         <div class="services-form_wrapper w-form">
@@ -95,11 +95,11 @@
             <div class="download-reciept">
               <div class="order-details_top">
                 <div class="download-form_header uc-mb-0">ORDER DETAILS</div>
-                <div class="order-id">Order ID: #12456AJ</div>
+                <div class="order-id"></div>
                 <div class="order-details">
                   <div class="order-details_inner">
-                    <div>Incorporate A Company</div>
-                    <div class="order-price">₦15,000.00</div>
+                    <div>{{selectedService.name}}</div>
+                    <div class="order-price">{{selectedService.price}}</div>
                   </div>
                   <div class="order-code_image"><img src="@/public/assets/images/la_qrcode.png" loading="lazy" alt="" class="c-img"></div>
                 </div>
@@ -108,18 +108,18 @@
                 <div class="order-details_line"></div>
                 <div class="order-details_flex">
                   <div class="order-price_title">SubTotal</div>
-                  <div>₦15,000.00</div>
+                  <div>₦{{ numberEmptyState(formatNumber(selectedService?.price, "0,0")) }}</div>
                 </div>
                 <div class="order-details_flex">
                   <div class="order-price_title">Paystack Transactions Fee</div>
-                  <div>₦324.00</div>
+                  <div>₦{{ numberEmptyState(formatNumber(transactionFee, "0,0")) }}</div>
                 </div>
                 <div class="reciept-circle cc-green cc-left"></div>
                 <div class="reciept-circle cc-green cc-right"></div>
               </div>
               <div class="order-details_flex">
                 <div class="order-price_title">Total</div>
-                <div>₦15,324.00</div>
+                <div>₦{{ numberEmptyState(formatNumber(totalPrice, "0,0")) }}</div>
               </div>
             </div>
             <div class="c-note">
@@ -136,11 +136,14 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { useModal } from '~/composables/useModal'
 
 import type { Services } from "~/types/categories"
 
-
+const transactionFee = ref<number>(10);
+const totalPrice = ref<number>(0);
+const auth = useAuth();
+// const payment = usePay();
+// const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/);
 const props = defineProps({
   service: {
    type: Object as () => Services,
@@ -150,7 +153,29 @@ const props = defineProps({
 
 const selectedService = ref<Services>(props.service)
 
+
+totalPrice.value = selectedService?.value.price + transactionFee.value;
+
+const getTotalPrice = () => {
+  if (selectedService.value) {
+    totalPrice.value = selectedService?.value.price + transactionFee.value;
+  }
+};
+
+
+
+
+
 const modal = useModal('DefaultServiceModal')
+
+const emit = defineEmits<{
+  (event: 'modalClosed', service: Services | null): void;
+}>();
+
+const closeModal = () => {
+  modal.hide('DefaultServiceModal')
+   emit('modalClosed', null);
+}
 
 </script>
 
