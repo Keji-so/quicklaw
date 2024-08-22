@@ -304,7 +304,11 @@ const fetchAllServices = async () => {
   try {
     const { data } = await useGet<Services>(fetchServicesState.value.url, {});
     if (data.value) {
-      services.value = data.value.data as Services[];
+      // services.value = data.value.data as Services[];
+       const filteredServices = data.value.data.filter(service => service.is_quote_service === 1);
+
+      services.value = filteredServices as Services[];
+      
 
       if (services.value.length > 0) {
         selectedService.value = services.value[0];
