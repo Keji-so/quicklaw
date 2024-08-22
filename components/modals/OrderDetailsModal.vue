@@ -8,7 +8,15 @@
         <div class="order-number">#{{orderId }}</div>
       </div>
       <div class="order-popup_bottom">
+      <div class="order-details_block">
         <p class="uc-bold-text">Order Details</p>
+
+        <a v-if="isOrderCompleted" class="c-button cc-icon-btn cc-download">
+                    <div class="button-icon"><img alt="" class="c-img" loading="lazy"
+                        src="@/public/assets/images/download-line.svg"></div>
+                    <div>Download</div>
+                  </a>
+      </div>
         <div class="order-details_block">
           <div id="w-node-e0bb01c6-2b6a-3e88-98da-6a5417ee3251-2eeaa214" class="order-detail_item">
             <div class="order-details_title">Service</div>
@@ -40,6 +48,8 @@
 const modal = useModal('OrderDetailsModal')
 import type { Order } from "~/types/assets"
 
+const isOrderCompleted = ref<boolean>(false)
+
 const props = defineProps({
   selectedOrder: {
     type: Object as () => Order,
@@ -52,7 +62,16 @@ const props = defineProps({
 const selectedOrder = ref<Order>(props.selectedOrder)
 
       const selectedOrderId = selectedOrder.value.id
-      const orderId = selectedOrderId.slice(0, 5)
+const orderId = selectedOrderId.slice(0, 5)
+
+const orderStatus = selectedOrder.value.order_status
+
+if (orderStatus === 'done') {
+  isOrderCompleted.value = true
+}
+
+
+
 
 const formatDateString = (dateString) => {
   const date = new Date(dateString);

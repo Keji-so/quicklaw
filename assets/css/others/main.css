@@ -136,6 +136,10 @@ input[type='file']:focus {
   border-color: transparent;
 
 }
+.c-button.cc-download {
+  display: flex;
+  justify-self: flex-start;
+}
 
 /* .upload-btn, 
 input[type="file"] {
