@@ -87,6 +87,7 @@ const modal = useModal('CropProfilePictureModal')
 const config = useRuntimeConfig()
 const auth = useAuth()
 
+
 const formData = auth.value.user
 
 const profilePicture = ref<AssetPickerPayload[]>([])
@@ -95,12 +96,6 @@ const cropper = ref()
 const cropImg = ref(null)
 const isWorking = ref(false)
 
-const handleClose = () => {
-  if (!lodashIsEmpty(profilePicture.value))
-    modal.show('ConfirmCloseModal')
-   else
-    modal.hide()
-}
 
 const generateImage = (payload: AssetPickerPayload[]) => {
   profilePicture.value = payload
@@ -111,14 +106,23 @@ const generateImage = (payload: AssetPickerPayload[]) => {
 
 
 const updateProfile = async (pictureUrl: string | any) => {
-  formData.profile_picture = pictureUrl
-  await usePost('/users/update', formData)
+  formData.profile_image_url = pictureUrl
+  await useFetchExtended<Record<string, any>>(
+      `${config.public.baseURL}/user/edit`,
+      {
+        method: 'PATCH',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: formData,
+      },
+    )
 }
 
 const updateUser = (pictureUrl: string) => {
   const user = {
     ...useAuth().value.user,
-    profile_picture: pictureUrl,
+    profile_image_url: pictureUrl,
   }
 
   useAuth().value.user = user
@@ -142,9 +146,9 @@ const uploadImage = async () => {
 
   try {
     const { data } = await useFetchExtended<Record<string, any>>(
-      `${config.public.baseURL}storage/upload-profile-photo`,
+      `${config.public.baseURL}/user/edit`,
       {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
         },
@@ -175,6 +179,7 @@ const resetForm = () => {
 
 const closeModal = () => {
   modal.hide('CropProfilePictureModal')
+  resetForm()
 }
 
 

@@ -187,6 +187,7 @@ definePageMeta({
 })
 
 
+
 const formData = ref({
   id: '',
   first_name: '',
@@ -195,6 +196,7 @@ const formData = ref({
   username: '',
   password: '',
   new_password: '',
+  profile_image_url: '',
   token: auth.value.accessToken || '',
 })
 
@@ -224,7 +226,7 @@ const rules = computed(() => ({
 }))
 
 const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
-const userUpdateState = useFetchState('/user/update')
+const userUpdateState = useFetchState('/user/edit')
 const changePasswordState = useFetchState('/auth/change-password')
 
 const updateUser = (userResponse: Record<string, null>) => {
@@ -235,43 +237,65 @@ const updateUser = (userResponse: Record<string, null>) => {
   useAuth().value.user = user
 }
 
+
+
+const config = useRuntimeConfig()
+
+
 const submitForm = async () => {
   v$.value.$touch()
-  const isFormInvalid
-    = v$.value.email.$invalid
-    || v$.value.first_name.$invalid
-    || v$.value.username.$invalid
-    || v$.value.last_name.$invalid
+  
+  const isFormInvalid =
+    v$.value.email.$invalid ||
+    v$.value.first_name.$invalid ||
+    v$.value.username.$invalid ||
+    v$.value.last_name.$invalid
 
   if (isFormInvalid) {
     useToastExtended('error').show('Some fields require your attention')
     return false
-  }
-  else {
-    const { data } = await usePost(
-      userUpdateState.value.url,
-      removeKeys(formData.value, [
-        'profile',
-        'created_at',
-        'email_verified_at',
-        'deleted_at',
-        'old_password',
-      ]),
+  } else {
+    try {
+     const  response = await useFetchExtended<Record<string, any>>(
+      `${config.public.baseURL}/user/edit`,
+      {
+        method: 'PATCH',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+          body: JSON.stringify(removeKeys(formData.value, [
+          // 'profile',
+          'created_at',
+          'email_verified_at',
+          'deleted_at',
+          // 'old_password',
+        ])),
+      },
     )
 
+ 
 
-    if (data.value) {
-      useToastExtended('success').show('Profile Updated')
-      updateUser(data.value)
-      v$.value.$reset()
-    }
-    else {
-      useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      if (data) {
+        useToastExtended('success').show('Profile Updated');
+        updateUser(data); 
+        v$.value.$reset();
+      } else {
+        useToastExtended('error').show('Oops! Something went wrong while submitting the form.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      useToastExtended('error').show('An error occurred while updating the profile.');
     }
   }
-
-
 }
+
+
 
 
 const allowImageEdit = () => {
@@ -282,6 +306,7 @@ const prefillForm = () => {
   formData.value = deepClone(auth.value.user)
   if (auth.value.user)
     formData.value.profile_payload = deepClone(auth.value.user)
+    
 
   const [first_name, ...rest] = formData.value.full_name.split(' ')
   formData.value.first_name = first_name
