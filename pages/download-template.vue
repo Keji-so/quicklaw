@@ -219,6 +219,8 @@
     </section>
     <FooterNav />
   </div>
+  <DefaultOrderSuccessModal />
+
 </template>
 
 <script setup lang="ts">
@@ -391,7 +393,7 @@ const payWithPaystack = async () => {
         selectedService.value.price,
         order.data.payment_ref
       );
-      navigateTo("/dashboard/orders");
+       modal.show('DefaultOrderSuccessModal')
     } catch (error) {
       console.error(error);
     }

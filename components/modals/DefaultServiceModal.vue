@@ -262,7 +262,7 @@ const payWithPaystack = async () => {
         order.data.payment_ref
       );
         modal.hide('DefaultServiceModal')
-        modal.show('OrderSuccessModal')
+        modal.show('DefaultOrderSuccessModal')
     } catch (error) {
       console.error(error);
     }
