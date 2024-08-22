@@ -27,6 +27,18 @@
                         class="c-input w-input" :type="field.type" />
                     </div>
                   </div>
+
+                                    <div class="c-form_field cc-sm">
+      <div class="c-label_wrapper">
+        <label class="c-label">Phone Number</label>
+      </div>
+      <input
+        v-model="formData.phone_number"
+        type="tel"
+        placeholder="Enter your phone number"
+        class="c-input w-input"
+      />
+    </div>
                   <!-- <div class="form-flex cc-popup">
                     <div class="c-form_field">
                       <div class="upload-btn">
@@ -142,32 +154,50 @@ const fetchApiResponse = async () => {
 
 }
 
-const formData = ref<Record<string, any>>({}) 
+const formData = ref<Record<string, any>>({
+  phone_number: '', 
+});
 
 const createOrderState = useFetchState("/orders/create");
 
+const auth = useAuth();
 
 const createOrder = async () => {
-  const companyName = "";
-  const alternateCompanyName = "";
-  const registeredAddress = "";
-  const objectOfBusiness = "";
-  const scopeOfBusiness = "";
-  const payload = {
-    service_id: selectedService?.value.id,
-    company_details: {
-      "Company Name": companyName,
-      "Alternate Company Name": alternateCompanyName,
-      "Registered Address": registeredAddress,
-      "Object of Business": objectOfBusiness,
-      "Scope of Business": scopeOfBusiness,
-    },
+  if (auth.value?.isLoggedIn) {
+    const phoneNumber = formData.value.phone_number
+    const companyName = ""
+    const alternateCompanyName = ""
+    const registeredAddress = ""
+    const objectOfBusiness = ""
+    const scopeOfBusiness = ""
+    const payload = {
+      payment_ref: generateRef(),
+      service_id: selectedService?.value.id,
+      phone_number: phoneNumber,
+      company_details: {
+        "Company Name": companyName,
+        "Alternate Company Name": alternateCompanyName,
+        "Registered Address": registeredAddress,
+        "Object of Business": objectOfBusiness,
+        "Scope of Business": scopeOfBusiness,
+      },
+    }
+
+
+    const { data, error } = await usePost(createOrderState.value.url, payload)
+    if (data.value) useToastExtended("success").show("Success")
+    return data.value
+  }
+};
+
+const generateRef = () => {
+  const prefix = () => {
+    return "pstk";
   };
 
-
-  const { data, error } = await usePost(createOrderState.value.url, payload);
-  if (data.value) useToastExtended("success").show("Success");
-  return data.value;
+  const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000);
+  const randomId = prefix() + randomNumber;
+  return randomId;
 };
 
 const emit = defineEmits<{

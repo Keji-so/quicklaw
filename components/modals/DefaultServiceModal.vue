@@ -17,6 +17,28 @@
                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
                         class="c-input w-input" :type="field.type" />
                     </div>
+                                <div class="c-form_field cc-sm">
+      <div class="c-label_wrapper">
+        <label class="c-label">Phone Number</label>
+      </div>
+      <input
+        v-model="formData.phone_number"
+        type="tel"
+        placeholder="Enter your phone number"
+        class="c-input w-input"
+      />
+    </div>
+                                <div class="c-form_field cc-sm">
+      <div class="c-label_wrapper">
+        <label class="c-label">Email</label>
+      </div>
+      <input
+        v-model="formData.email"
+        type="email"
+        placeholder="Enter your phone number"
+        class="c-input w-input"
+      />
+    </div>
                 <!-- <div class="c-form_field cc-sm">
                   <div class="c-label_wrapper">
                     <div class="c-label">Company Name</div>
@@ -65,7 +87,7 @@
                     </div>
               </div>
             </div>
-            <div class="btn-flex cc-order-popup"><input type="submit" data-wait="" class="c-button w-button" value="Next"></div>
+            <div class="btn-flex cc-order-popup"><input @click.prevent="handlePayment" type="submit" data-wait="" class="c-button w-button" value="Next"></div>
           </form>
           <div class="w-form-done">
             <div>Thank you! Your submission has been received!</div>
@@ -120,13 +142,17 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-
 import type { Services } from "~/types/categories"
+import { useModal } from "~/composables/useModal";
+
+// import { usePay } from '/composables/usePay';
+const auth = useAuth();
+  const payment = usePay();
+
 
 const transactionFee = ref<number>(10);
 const totalPrice = ref<number>(0);
-const auth = useAuth();
-// const payment = usePay();
+
 // const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/);
 const props = defineProps({
   service: {
@@ -140,11 +166,6 @@ const selectedService = ref<Services>(props.service)
 
 totalPrice.value = selectedService?.value.price + transactionFee.value;
 
-const getTotalPrice = () => {
-  if (selectedService.value) {
-    totalPrice.value = selectedService?.value.price + transactionFee.value;
-  }
-};
 
 const fields = ref<any[]>([])
 const fieldTitle = ref<string>()
@@ -153,6 +174,13 @@ const additionalTitle = ref<string>()
 
 
 const error = ref<string | null>(null)
+const formData = ref<Record<string, any>>({
+  phone_number: '', 
+  email: '',
+});
+
+const createOrderState = useFetchState("/orders/create");
+
 
 
 // Load form fields JSON
@@ -184,6 +212,70 @@ const fetchApiResponse = async () => {
   }
 
 }
+
+
+const createOrder = async () => {
+ const phoneNumber = formData.value.phone_number;
+  const companyName = "";
+  const alternateCompanyName = "";
+  const registeredAddress = "";
+  const objectOfBusiness = "";
+  const scopeOfBusiness = "";
+  const payload = {
+    service_id: selectedService?.value.id,
+    phone_number: phoneNumber,
+    payment_ref: generateRef(),
+    total: totalPrice.value,
+    subtotal: selectedService.value.price,
+    company_details: {
+      "Company Name": companyName,
+      "Alternate Company Name": alternateCompanyName,
+      "Registered Address": registeredAddress,
+      "Object of Business": objectOfBusiness,
+      "Scope of Business": scopeOfBusiness,
+    },
+  };
+  
+
+
+  const { data, error } = await usePost(createOrderState.value.url, payload);
+  if (data.value) useToastExtended("success").show("Success");
+  return data.value;
+};
+
+const handlePayment = async () => {
+  if (auth.value?.isLoggedIn) {
+    payWithPaystack();
+  } else modal.show("SignInModal");
+};
+
+const payWithPaystack = async () => {
+  const order = await createOrder();
+
+
+  if (order) {
+    try {
+      await payment.paystack(
+        formData.value.email,
+        selectedService.value.price,
+        order.data.payment_ref
+      );
+      navigateTo("/dashboard/orders");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
+
+const generateRef = () => {
+  const prefix = () => {
+    return "pstk";
+  };
+
+  const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000);
+  const randomId = prefix() + randomNumber;
+  return randomId;
+};
 
 
 

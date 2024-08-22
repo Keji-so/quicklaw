@@ -41,6 +41,7 @@ import { ref } from 'vue'
 import { useModal } from '~/composables/useModal'
 import type { Services } from "~/types/categories"
 const modal = useModal()
+
 const props = defineProps<{
   categories: Array<{
     id: string
