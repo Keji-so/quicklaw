@@ -138,6 +138,7 @@
     </div>
     </div>
   </Transition>
+
 </template>
 
 <script setup lang="ts">
@@ -260,7 +261,8 @@ const payWithPaystack = async () => {
         selectedService.value.price,
         order.data.payment_ref
       );
-      navigateTo("/dashboard/orders");
+        modal.hide('DefaultServiceModal')
+        modal.show('OrderSuccessModal')
     } catch (error) {
       console.error(error);
     }

@@ -35,6 +35,8 @@
    <!-- Render the modal outside of the loop -->
                       <QuoteServiceModal v-if="selectedService && modal.has('QuoteServiceModal')" :service="selectedService" />
     <DefaultServiceModal v-if="selectedService && modal.has('DefaultServiceModal')" :service="selectedService" />
+  <OrderSuccessModal />
+
 </template>
 
 <script setup lang="ts">
@@ -51,6 +53,7 @@ const props = defineProps<{
     services: Services[]
   }>
 }>()
+
 const isServiceActive = ref<boolean[]>(Array(props.categories.length).fill(false))
 const selectedService = ref<Services | null>(null)
 
