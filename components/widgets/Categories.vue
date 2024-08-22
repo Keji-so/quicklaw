@@ -36,6 +36,8 @@
                       <QuoteServiceModal v-if="selectedService && modal.has('QuoteServiceModal')" :service="selectedService" />
     <DefaultServiceModal v-if="selectedService && modal.has('DefaultServiceModal')" :service="selectedService" />
   <DefaultOrderSuccessModal />
+  <QuoteOrderSuccessModal />
+
 
 </template>
 

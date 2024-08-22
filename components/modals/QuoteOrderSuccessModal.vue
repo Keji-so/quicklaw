@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 
-const modal = useModal('OrderSuccessModal')
+const modal = useModal('DefaultOrderSuccessModal')
 
 
 

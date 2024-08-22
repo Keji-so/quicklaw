@@ -99,6 +99,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { Services } from "~/types/categories"
+import { useModal } from "~/composables/useModal";
 
 
 
@@ -111,7 +112,6 @@ const props = defineProps({
 
 const selectedService = ref<Services>(props.service)
 
-const modal = useModal('QuoteServiceModal')
 
 
 
@@ -171,7 +171,8 @@ const createOrder = async () => {
     const objectOfBusiness = ""
     const scopeOfBusiness = ""
     const payload = {
-      payment_ref: generateRef(),
+      // payment_ref: generateRef(),
+      payment_ref: 'etryu',
       service_id: selectedService?.value.id,
       phone_number: phoneNumber,
       company_details: {
@@ -185,10 +186,16 @@ const createOrder = async () => {
 
 
     const { data, error } = await usePost(createOrderState.value.url, payload)
-    if (data.value) useToastExtended("success").show("Success")
+    if (data.value) {
+      useToastExtended("success").show("Success")
+       modal.hide('QuoteServiceModal')
+       modal.show('DefaultOrderSuccessModal')
+    }
     return data.value
+   
   }
 };
+const modal = useModal('QuoteServiceModal')
 
 const generateRef = () => {
   const prefix = () => {
