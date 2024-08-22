@@ -55,9 +55,14 @@
         "type": "text"
       },
       {
-        "label": "Nature of Agreement",
-        "placeholder": "State Nature of Agreement",
-        "type": "text"
+        "label": "Date",
+        "placeholder": "Date",
+        "type": "date"
+      },
+      {
+        "label": "",
+        "placeholder": "Document",
+        "type": "file"
       },
       {
         "label": "Phone",

@@ -9,8 +9,15 @@
           <form id="wf-form-services-form" name="wf-form-services-form" data-name="services form" method="get" class="services-form_container" data-wf-page-id="66533123d0bbd2c82eeaa214" data-wf-element-id="e0bb01c6-2b6a-3e88-98da-6a5417ee327d">
             <div id="scrollbar" data-lenis-prevent="" class="services-form_inner">
               <div class="services-form_block">
-                <p class="services-from_header">COMPANY DETAILS</p>
-                <div class="c-form_field cc-sm">
+                <p class="services-from_header">{{fieldTitle}}</p>
+                <div class="c-form_field cc-sm" v-for="(field, index) in fields" :key="index" >
+                      <div class="c-label_wrapper">
+                        <label class="c-label">{{ field.label }}</label>
+                      </div>
+                      <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                        class="c-input w-input" :type="field.type" />
+                    </div>
+                <!-- <div class="c-form_field cc-sm">
                   <div class="c-label_wrapper">
                     <div class="c-label">Company Name</div>
                   </div>
@@ -45,40 +52,17 @@
                     <div class="c-label">Aims &amp; Objectives</div>
                   </div>
                   <div class="c-input_wrapper"><textarea id="Aims-Objectives-2" name="Aims-Objectives-2" maxlength="5000" data-name="Aims Objectives 2" placeholder="Enter Organisation Aims &amp; Objectives" required="" class="c-input cc-textarea w-input"></textarea></div>
-                </div>
+                </div> -->
               </div>
               <div class="services-form_block">
-                <p class="services-from_header">COMPANY DETAILS</p>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Company Name</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Company-Name-3" data-name="Company Name 3" placeholder="Enter Company Name" type="text" id="Company-Name-3" required=""></div>
-                </div>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Alternate Company Name</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Alternate-Company-Name-2" data-name="Alternate Company Name 2" placeholder="Enter Alternate Company Name" type="text" id="Alternate-Company-Name-2" required=""></div>
-                </div>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Registered Address</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Registered-Address-2" data-name="Registered Address 2" placeholder="Enter Registered Company Address" type="text" id="Registered-Address-2" required=""></div>
-                </div>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Object of Business</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Object-of-Business-3" data-name="Object Of Business 3" placeholder="Enter Object of Business" type="text" id="Object-of-Business-3" required=""></div>
-                </div>
-                <div class="c-form_field cc-mb-0">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Scope of Business</div>
-                  </div>
-                  <div class="c-input_wrapper"><textarea id="Scope-of-Business-2" name="Scope-of-Business-2" maxlength="5000" data-name="Scope Of Business 2" placeholder="Briefly tell us how your company is run ..." required="" class="c-input cc-textarea w-input"></textarea></div>
-                </div>
+                <p class="services-from_header">{{additionalTitle}}</p>
+                <div class="c-form_field cc-sm" v-for="(field, index) in additionalFields" :key="index" >
+                      <div class="c-label_wrapper">
+                        <label class="c-label">{{ field.label }}</label>
+                      </div>
+                      <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                        class="c-input w-input" :type="field.type" />
+                    </div>
               </div>
             </div>
             <div class="btn-flex cc-order-popup"><input type="submit" data-wait="" class="c-button w-button" value="Next"></div>
@@ -162,6 +146,44 @@ const getTotalPrice = () => {
   }
 };
 
+const fields = ref<any[]>([])
+const fieldTitle = ref<string>()
+const additionalFields = ref<any[]>([])
+const additionalTitle = ref<string>()
+
+
+const error = ref<string | null>(null)
+
+
+// Load form fields JSON
+const loadFormFields = async () => {
+  try {
+    const response = await fetch('/formFields.json') // Adjust the path as necessary
+    if (!response.ok) {
+      throw new Error('Failed to load form fields')
+    }
+    return await response.json()
+  } catch (err) {
+    console.error(err)
+    error.value = 'Error loading form fields.'
+  }
+}
+
+const fetchApiResponse = async () => {
+  const targetParty = selectedService.value.target_party
+  const formFields = await loadFormFields()
+
+  if (formFields.hasOwnProperty(targetParty)) {
+    fields.value = formFields[targetParty].fields
+    additionalFields.value = formFields[targetParty].additional_fields
+    fieldTitle.value = formFields[targetParty].field_title
+    additionalTitle.value = formFields[targetParty].additional_title
+
+  } else {
+    error.value = 'Invalid target party.'
+  }
+
+}
 
 
 
@@ -177,6 +199,9 @@ const closeModal = () => {
    emit('modalClosed', null);
 }
 
+onMounted(() => {
+  fetchApiResponse()
+})
 </script>
 
 <style scoped>
