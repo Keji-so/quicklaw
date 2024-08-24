@@ -2434,6 +2434,11 @@ li {
   margin-bottom: 85px;
 }
 
+.c-popup.cc-sign {
+  z-index: 100;
+
+}
+
 .upload-btn {
   color: var(--green-primary);
   cursor: pointer;

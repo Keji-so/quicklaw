@@ -1,6 +1,6 @@
 <template>
   <Transition name="modal-fade">
-    <div v-if="signInModal.isVisible" class="c-popup cc-show">
+    <div v-if="signInModal.isVisible" class="c-popup cc-sign cc-show">
       <div class="c-popup_inner">
         <div class="popup-header_container">
           <h1 class="heading-h1">Sign In</h1>

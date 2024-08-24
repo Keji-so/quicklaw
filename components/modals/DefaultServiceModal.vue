@@ -246,8 +246,11 @@ const createOrder = async () => {
 
 const handlePayment = async () => {
   if (auth.value?.isLoggedIn) {
-    payWithPaystack();
-  } else modal.show("SignInModal");
+    payWithPaystack()
+  } else {
+    modal.show("SignInModal")
+   modal.hide('DefaultServiceModal')
+  }
 };
 
 const payWithPaystack = async () => {

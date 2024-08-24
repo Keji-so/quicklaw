@@ -81,7 +81,7 @@
                 </div>
               </div>
               <div class="btn-flex cc-align-right"><input type="submit" data-wait=""
-                  class="c-button cc-secondary-green w-button" value="Get A Quote"  @click.prevent="createOrder"></div>
+                  class="c-button cc-secondary-green w-button" value="Get A Quote"  @click.prevent="submitForm"></div>
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>
@@ -162,6 +162,17 @@ const createOrderState = useFetchState("/orders/create");
 
 const auth = useAuth();
 
+
+const submitForm = async () => {
+  if (auth.value?.isLoggedIn) {
+    createOrder()
+  } else {
+    modal.show("SignInModal")
+   modal.hide('QuoteServiceModal')
+  }
+};
+
+
 const createOrder = async () => {
   if (auth.value?.isLoggedIn) {
     const phoneNumber = formData.value.phone_number
@@ -186,6 +197,8 @@ const createOrder = async () => {
 
 
     const { data, error } = await usePost(createOrderState.value.url, payload)
+
+    
     if (data.value) {
       useToastExtended("success").show("Success")
        modal.hide('QuoteServiceModal')
