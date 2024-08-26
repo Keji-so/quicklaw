@@ -77,6 +77,23 @@
                     </div>
                   </div>
                 </div>
+                 <div class="form-flex cc-profile">
+                  <div class="c-form_field">
+                    <div class="c-label_wrapper">
+                      <div class="c-label">
+                        Full Name
+                      </div>
+                    </div>
+                    <div class="c-input_wrapper">
+                      <input id="full-name" class="c-input w-input" :class="{ 'cc-error': v$.full_name.$error }"
+                        v-model="formData.full_name" maxlength="256" name="first-name"
+                        placeholder="Enter your First Name &amp; Last Name" type="text">
+                    </div>
+                    <div class="c-help cc-error" v-if="v$.full_name.$errors.length">
+                      {{ v$?.full_name?.$errors[0]?.$message }}
+                    </div>
+                  </div>
+                </div>
                 <div class="form-flex cc-profile">
                   <div class="c-form_field cc-mb-0">
                     <div class="c-label_wrapper">
@@ -197,6 +214,7 @@ const formData = ref({
   password: '',
   new_password: '',
   profile_image_url: '',
+  full_name: '',
   token: auth.value.accessToken || '',
 })
 
@@ -219,6 +237,7 @@ const formData = ref({
 const rules = computed(() => ({
   email: { email: helpers.withMessage('Please enter a valid email address', email) },
   first_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
+  full_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
   last_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
   password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
   new_password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
@@ -234,9 +253,10 @@ const updateUser = (userResponse: Record<string, null>) => {
     ...useAuth().value.user,
     ...userResponse,
   }
-  useAuth().value.user = user
+  
+  useAuth().value.user = user  
+  
 }
-
 
 
 const config = useRuntimeConfig()
@@ -249,41 +269,37 @@ const submitForm = async () => {
     v$.value.email.$invalid ||
     v$.value.first_name.$invalid ||
     v$.value.username.$invalid ||
-    v$.value.last_name.$invalid
+    v$.value.last_name.$invalid ||
+    v$.value.full_name.$invalid 
 
   if (isFormInvalid) {
     useToastExtended('error').show('Some fields require your attention')
     return false
   } else {
     try {
-     const  response = await useFetchExtended<Record<string, any>>(
-      `${config.public.baseURL}/user/edit`,
-      {
-        method: 'PATCH',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-          body: JSON.stringify(removeKeys(formData.value, [
-          // 'profile',
-          'created_at',
-          'email_verified_at',
-          'deleted_at',
-          // 'old_password',
-        ])),
-      },
-    )
+     const { data } = await usePatch(
+       userUpdateState.value.url,
+      removeKeys(formData.value, [
+        'profile',
+        'first_name',
+        'last_name',
+        'profile_payload',
+        'created_at',
+        'updated_at',
+        'email_verified_at',
+        'deleted_at',
+        'old_password',
+        'status',
+        'message',
+        'data'
+      ]),
+      )
 
- 
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
+       
 
       if (data) {
         useToastExtended('success').show('Profile Updated');
-        updateUser(data); 
+        updateUser(data.value.data); 
         v$.value.$reset();
       } else {
         useToastExtended('error').show('Oops! Something went wrong while submitting the form.');
@@ -302,12 +318,13 @@ const allowImageEdit = () => {
   isImageEditable.value = !isImageEditable.value
 }
 
+
 const prefillForm = () => {
   formData.value = deepClone(auth.value.user)
+
   if (auth.value.user)
     formData.value.profile_payload = deepClone(auth.value.user)
     
-
   const [first_name, ...rest] = formData.value.full_name.split(' ')
   formData.value.first_name = first_name
   formData.value.last_name = rest.join(' ')
