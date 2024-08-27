@@ -240,23 +240,44 @@ const updateUser = (userResponse: Record<string, null>) => {
   
 }
 
-// const new_password = ref('');
-// const current_password = ref('');
 
 const config = useRuntimeConfig()
 
 const updatePassword = async () => {
+  const passwordData = {
+    current_password: formData.value.current_password,
+    new_password: formData.value.new_password,
+  };
 
-  const { data } = await usePost(changePasswordState.value.url, formData.value)
-
-  if (data.value) {
-    useToastExtended('success').show('Password changed successfully');
-    v$.value.$reset()
-    return true
+  if (passwordData.current_password === passwordData.new_password) {
+    useToastExtended('error').show('The new password cannot be the same as the current password.')
+    return false
   }
 
-  return false; 
+  try {
+    const { data, error } = await usePost(changePasswordState.value.url, passwordData)
+
+    if (error.value) {
+      if (error.value.message === 'Incorrect current password') {
+        useToastExtended('error').show('The current password you entered is incorrect.')
+      } else {
+        useToastExtended('error').show('An error occurred while updating the password.')
+      }
+      return false;
+    }
+
+    useToastExtended('success').show('Password changed successfully')
+    v$.value.$reset();
+    return true;
+
+  } catch (err) {
+    console.error('Error updating password:', err)
+    useToastExtended('error').show('An error occurred while updating the password.')
+    return false
+  }
 };
+
+
 
 
 
@@ -267,56 +288,55 @@ const submitForm = async () => {
     v$.value.email.$invalid ||
     v$.value.first_name.$invalid ||
     v$.value.username.$invalid ||
-    v$.value.last_name.$invalid 
+    v$.value.last_name.$invalid
 
   if (isFormInvalid) {
     useToastExtended('error').show('Some fields require your attention')
-    return false
+    return false;
   } else {
     try {
-     const { data } = await usePatch(
-       userUpdateState.value.url,
-      removeKeys(formData.value, [
-        'profile',
-        'first_name',
-        'last_name',
-        'profile_payload',
-        'created_at',
-        'updated_at',
-        'current_password',
-        'new_password',
-        'email_verified_at',
-        'deleted_at',
-        'status',
-        'message',
-        'data'
-      ]),
+      const { data } = await usePatch(
+        userUpdateState.value.url,
+        removeKeys(formData.value, [
+          'profile',
+          'first_name',
+          'last_name',
+          'profile_payload',
+          'created_at',
+          'updated_at',
+          'current_password',
+          'new_password',
+          'email_verified_at',
+          'deleted_at',
+          'status',
+          'message',
+          'data'
+        ]),
       )
 
-       	
-
       if (data) {
-        useToastExtended('success').show('Profile Updated')
-        updateUser(data.value.data)
+        if (!formData.value.new_password) {
+          useToastExtended('success').show('Profile Updated')
+        }
+        
+        updateUser(data.value.data);
         v$.value.$reset()
 
-        if (new_password.value) {
+        if (formData.value.new_password) {
           const passwordUpdateResult = await updatePassword()
           if (passwordUpdateResult === false) {
-            return; 
+            return
           }
         }
-      
-      } 
-      else{
-        useToastExtended('error').show('Oops! Something went wrong while submitting the form.');
+      } else {
+        useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
       }
     } catch (error) {
-      console.error('Error:', error);
-      useToastExtended('error').show('An error occurred while updating the profile.');
+      console.error('Error:', error)
+      useToastExtended('error').show('An error occurred while updating the profile.')
     }
   }
-}
+};
 
 
 
