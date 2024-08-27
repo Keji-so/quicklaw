@@ -77,23 +77,6 @@
                     </div>
                   </div>
                 </div>
-                 <div class="form-flex cc-profile">
-                  <div class="c-form_field">
-                    <div class="c-label_wrapper">
-                      <div class="c-label">
-                        Full Name
-                      </div>
-                    </div>
-                    <div class="c-input_wrapper">
-                      <input id="full-name" class="c-input w-input" :class="{ 'cc-error': v$.full_name.$error }"
-                        v-model="formData.full_name" maxlength="256" name="first-name"
-                        placeholder="Enter your First Name &amp; Last Name" type="text">
-                    </div>
-                    <div class="c-help cc-error" v-if="v$.full_name.$errors.length">
-                      {{ v$?.full_name?.$errors[0]?.$message }}
-                    </div>
-                  </div>
-                </div>
                 <div class="form-flex cc-profile">
                   <div class="c-form_field cc-mb-0">
                     <div class="c-label_wrapper">
@@ -143,14 +126,14 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="current-password" class="c-input w-input" :class="{ 'cc-error': v$.password.$error }"
-                        v-model="formData.password" maxlength="256" name="password" placeholder="Choose a Password"
+                      <input id="current-password" class="c-input cc-trailing w-input" :class="{ 'cc-error': v$.current_password.$error }"
+                        v-model="formData.current_password" maxlength="256" name="current_password" placeholder="Choose a Password"
                         :type="isCurrentPasswordVisible ? 'text' : 'password'">
                       <div @click="toggleCurrentPasswordVisibility" class="reveal-toggle"
                         :class="isCurrentPasswordVisible && 'cc-hidden'" />
                     </div>
-                    <div class="c-help cc-error" v-if="v$.password.$errors.length">
-                      {{ v$?.password?.$errors[0]?.$message }}
+                    <div class="c-help cc-error" v-if="v$.current_password.$errors.length">
+                      {{ v$?.current_password?.$errors[0]?.$message }}
                     </div>
                   </div>
                   <div class="c-form_field cc-mb-0">
@@ -160,8 +143,8 @@
                       </div>
                     </div>
                     <div class="c-input_wrapper">
-                      <input id="new-password" class="c-input w-input" :class="{ 'cc-error': v$.new_password.$error }"
-                        v-model="formData.new_password" maxlength="256" name="password" placeholder="Choose a Password"
+                      <input id="new-password" class="c-input cc-trailing w-input" :class="{ 'cc-error': v$.new_password.$error }"
+                        v-model="formData.new_password" maxlength="256" name="new_password" placeholder="Choose a Password"
                         :type="isNewPasswordVisible ? 'text' : 'password'">
                       <div @click="toggleNewPasswordVisibility" class="reveal-toggle"
                         :class="isNewPasswordVisible && 'cc-hidden'" />
@@ -211,10 +194,9 @@ const formData = ref({
   last_name: '',
   email: '',
   username: '',
-  password: '',
+  current_password: '',
   new_password: '',
   profile_image_url: '',
-  full_name: '',
   token: auth.value.accessToken || '',
 })
 
@@ -237,9 +219,8 @@ const formData = ref({
 const rules = computed(() => ({
   email: { email: helpers.withMessage('Please enter a valid email address', email) },
   first_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
-  full_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
   last_name: { nameRegex: helpers.withMessage('Name should only contain letters', nameRegex) },
-  password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
+  current_password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
   new_password: { minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)) },
   username: { minLength: helpers.withMessage('Username is too short', minLength(3)) },
 }))
@@ -253,13 +234,30 @@ const updateUser = (userResponse: Record<string, null>) => {
     ...useAuth().value.user,
     ...userResponse,
   }
+
   
   useAuth().value.user = user  
   
 }
 
+// const new_password = ref('');
+// const current_password = ref('');
 
 const config = useRuntimeConfig()
+
+const updatePassword = async () => {
+
+  const { data } = await usePost(changePasswordState.value.url, formData.value)
+
+  if (data.value) {
+    useToastExtended('success').show('Password changed successfully');
+    v$.value.$reset()
+    return true
+  }
+
+  return false; 
+};
+
 
 
 const submitForm = async () => {
@@ -269,8 +267,7 @@ const submitForm = async () => {
     v$.value.email.$invalid ||
     v$.value.first_name.$invalid ||
     v$.value.username.$invalid ||
-    v$.value.last_name.$invalid ||
-    v$.value.full_name.$invalid 
+    v$.value.last_name.$invalid 
 
   if (isFormInvalid) {
     useToastExtended('error').show('Some fields require your attention')
@@ -286,22 +283,32 @@ const submitForm = async () => {
         'profile_payload',
         'created_at',
         'updated_at',
+        'current_password',
+        'new_password',
         'email_verified_at',
         'deleted_at',
-        'old_password',
         'status',
         'message',
         'data'
       ]),
       )
 
-       
+       	
 
       if (data) {
-        useToastExtended('success').show('Profile Updated');
-        updateUser(data.value.data); 
-        v$.value.$reset();
-      } else {
+        useToastExtended('success').show('Profile Updated')
+        updateUser(data.value.data)
+        v$.value.$reset()
+
+        if (new_password.value) {
+          const passwordUpdateResult = await updatePassword()
+          if (passwordUpdateResult === false) {
+            return; 
+          }
+        }
+      
+      } 
+      else{
         useToastExtended('error').show('Oops! Something went wrong while submitting the form.');
       }
     } catch (error) {
