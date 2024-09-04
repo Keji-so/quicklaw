@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   pages: true,
 
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       script: [...(getHeadScripts() as any)]
     }

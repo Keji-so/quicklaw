@@ -53,3 +53,22 @@ if (appENV === 'staging' || appENV === 'local') {
   })
 }
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  /* filter: blur(.9rem); */
+  transform: translateY(-40px);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(4px);
+}
+</style>
