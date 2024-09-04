@@ -112,7 +112,7 @@
       </div>
     </section>
     <FooterNav />
-    <Transition name="modal-fade">
+    <Transition name="fade">
     </Transition>
   </div>
 </template>

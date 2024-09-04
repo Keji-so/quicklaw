@@ -1,5 +1,5 @@
 <template>
- <Transition name="modal-fade">
+ <Transition name="fade">
   <div  v-if="resetPasswordModal.isVisible" class="c-popup cc-show">
 <div class="c-popup_inner">
       <div class="popup-header_container">

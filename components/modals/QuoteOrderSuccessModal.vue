@@ -1,5 +1,5 @@
 <template>
-  <Transition name="modal-fade">
+  <Transition name="fade">
     <div v-if="modal.isVisible" class="c-popup cc-show">
 <div class="c-popup_inner cc-order-recieved">
       <div class="popup-close_btn cc-white cc-order" @click="closeModal"></div>
