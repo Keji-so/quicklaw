@@ -9,7 +9,8 @@
       <div class="service-details_container">
         <div class="service-details_inner">
           <div>{{ category.description }}</div>
-          <div v-if="index === 0" class="c-button cc-toggle" :class="{ 'cc-active': isServiceActive[index] }">Get A Quote</div>
+          <div v-if="index === 0" class="c-button cc-toggle" :class="{ 'cc-active': isServiceActive[index] }">Get A
+            Quote</div>
           <div v-if="index > 0" class="service-details_icon" :class="{ 'cc-active': isServiceActive[index] }"></div>
         </div>
       </div>
@@ -22,19 +23,18 @@
             <template v-for="service in category.services" :key="service.id">
               <nuxtLink class="c-service_item" @click.stop="selectService(service)">
                 {{ service.name }}
-                
               </nuxtLink>
             </template>
           </div>
         </div>
       </div>
     </div>
- 
-  
+
+
   </div>
-   <!-- Render the modal outside of the loop -->
-                      <QuoteServiceModal v-if="selectedService && modal.has('QuoteServiceModal')" :service="selectedService" />
-    <DefaultServiceModal v-if="selectedService && modal.has('DefaultServiceModal')" :service="selectedService" />
+  <!-- Render the modal outside of the loop -->
+  <QuoteServiceModal v-if="selectedService && modal.has('QuoteServiceModal')" :service="selectedService" />
+  <DefaultServiceModal v-if="selectedService && modal.has('DefaultServiceModal')" :service="selectedService" />
   <DefaultOrderSuccessModal />
   <QuoteOrderSuccessModal />
 
@@ -68,18 +68,18 @@ const toggleService = (index: number) => {
   }
 }
 const selectService = (service: Services) => {
-  selectedService.value = service 
-  
+  selectedService.value = service
+
   if (selectedService.value.is_quote_service === 1) {
-    modal.show('QuoteServiceModal');
+    modal.show('QuoteServiceModal')
   } else {
-    modal.show('DefaultServiceModal');
+    modal.show('DefaultServiceModal')
   }
 }
 
- const handleModalClosed = (service: Services | null) => {
-    selectedService.value = service;
-  };
+const handleModalClosed = (service: Services | null) => {
+  selectedService.value = service
+}
 </script>
 
 <style scoped>
