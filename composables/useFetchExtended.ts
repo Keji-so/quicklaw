@@ -44,7 +44,7 @@ export const useFetchExtended = <T>(
       fetchState.value.isWorking = false
       fetchState.value.error = null
 
-      if (response.status === 401) {
+      if (response.status === 401 && auth.value.isLoggedIn) {
         navigateTo('/auth/sign-out')
       }
 
@@ -64,6 +64,7 @@ export const useFetchExtended = <T>(
           accessToken: null,
           isLoggedIn: false,
         }
+
 
         // auth.value = authCookie.value
         auth.value = authCookie.value
