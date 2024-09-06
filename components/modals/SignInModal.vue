@@ -173,6 +173,13 @@ const showForgotPasswordModal = () => {
   forgotPasswordModal.show("ForgotPasswordModal");
   closeSignInModal();
 };
+
+onBeforeRouteLeave((to, from, next) => {
+  if (modal.isVisible) {
+    closeSignInModal() 
+  }
+  next() 
+});
 </script>
 
 <style scoped></style>
