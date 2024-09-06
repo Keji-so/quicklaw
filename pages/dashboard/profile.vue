@@ -19,7 +19,7 @@
                 <div class="profile-form_flex">
                   <div class="profile-details">
                     <div class="profile-image_container">
-                      <div class="profile-img_icon" :class="isImageEditable ? 'cc-show' : ''" @click="showModal" />
+                      <div class="profile-img_icon"  @click="showModal" />
                       <div class="profile-image">
                         <img v-if="auth.user?.profile_picture" :alt="`${auth.user?.username}-profile-picture`"
                           class="c-img cc-cover" loading="lazy" :preferSrc="true" :src="auth.user.profile_picture">
@@ -32,7 +32,7 @@
                       </div>
                     </div>
                   </div>
-                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? 'cc-hide' : 'cc-show'"
+                  <!-- <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? 'cc-hide' : 'cc-show'"
                     @click="allowImageEdit">
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy"
                         src="@/public/assets/images/edit.svg"></div>
@@ -42,7 +42,7 @@
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy"
                         src="@/public/assets/images/check-white-outline.svg"></div>
                     <div>Save Changes</div>
-                  </a>
+                  </a> -->
                 </div>
                 <div class="profile-form_divider" />
                 <div class="form-flex cc-profile">
@@ -234,9 +234,8 @@ const updateUser = (userResponse: Record<string, null>) => {
     ...useAuth().value.user,
     ...userResponse,
   }
-
-  
   useAuth().value.user = user  
+  prefillForm()
   
 }
 
@@ -256,22 +255,30 @@ const updatePassword = async () => {
 
   try {
     const { data, error } = await usePost(changePasswordState.value.url, passwordData)
+    
 
-    if (error.value) {
-      if (error.value.message === 'Incorrect current password') {
-        useToastExtended('error').show('The current password you entered is incorrect.')
-      } else {
-        useToastExtended('error').show('An error occurred while updating the password.')
-      }
+    if (error) {
+
+      useToastExtended('error').show('The current password you entered is incorrect.')
+       console.log(error);
+       
+      
+      // if (error.value.message === 'Incorrect current password') {
+      //   useToastExtended('error').show('The current password you entered is incorrect.')
+      // }
+      // else {
+      //   useToastExtended('error').show('An error occurred while updating the password.')
+      // }
       return false;
     }
 
     useToastExtended('success').show('Password changed successfully')
     v$.value.$reset();
-    return true;
+    return 
 
   } catch (err) {
-    console.error('Error updating password:', err)
+    console.log(err);
+    
     useToastExtended('error').show('An error occurred while updating the password.')
     return false
   }
@@ -315,19 +322,20 @@ const submitForm = async () => {
       )
 
       if (data) {
-        if (!formData.value.new_password) {
-          useToastExtended('success').show('Profile Updated')
-        }
-        
-        updateUser(data.value.data);
-        v$.value.$reset()
-
-        if (formData.value.new_password) {
+          if (formData.value.new_password) {    
           const passwordUpdateResult = await updatePassword()
           if (passwordUpdateResult === false) {
             return
           }
-        }
+          }
+          else {
+          useToastExtended('success').show('Profile Updated')
+          }
+        
+        updateUser(data.value.data);
+        v$.value.$reset()
+
+      
       } else {
         useToastExtended('error').show('Oops! Something went wrong while submitting the form.')
       }
@@ -340,10 +348,6 @@ const submitForm = async () => {
 
 
 
-
-const allowImageEdit = () => {
-  isImageEditable.value = !isImageEditable.value
-}
 
 
 const prefillForm = () => {

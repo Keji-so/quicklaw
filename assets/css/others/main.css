@@ -82,16 +82,13 @@ font-size: 16px;
   cursor: pointer;
 }
 
-.profile-img_icon,
 .c-button.cc-hide,
 .c-label_wrapper.cc-hide,
 .c-input_wrapper.cc-hide {
 display: none;
 }
 
-.profile-img_icon.cc-show {
-display: block;
-}
+
 
 
 
