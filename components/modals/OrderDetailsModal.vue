@@ -11,7 +11,7 @@
       <div class="order-details_block">
         <p class="uc-bold-text">Order Details</p>
 
-        <a v-if="isOrderCompleted" class="c-button cc-icon-btn cc-download">
+        <a @click.prevent="downloadFile(selectedOrder.service_file)" v-if="isOrderCompleted" class="c-button cc-icon-btn cc-download">
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy"
                         src="@/public/assets/images/download-line.svg"></div>
                     <div>Download</div>
@@ -61,7 +61,8 @@ const props = defineProps({
 
 const selectedOrder = ref<Order>(props.selectedOrder)
 
-      const selectedOrderId = selectedOrder.value.id
+const selectedOrderId = selectedOrder.value.id
+
 const orderId = selectedOrderId.slice(0, 5)
 
 const orderStatus = selectedOrder.value.order_status
@@ -76,7 +77,7 @@ if (orderStatus === 'done') {
 const formatDateString = (dateString) => {
   const date = new Date(dateString);
 
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const month = String(date.getMonth() + 1).padStart(2, '0'); 
   const day = String(date.getDate()).padStart(2, '0');
   const year = date.getFullYear();
 
