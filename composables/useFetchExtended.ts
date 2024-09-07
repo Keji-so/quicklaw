@@ -3,6 +3,7 @@ import { defu } from 'defu'
 import { withHttps } from 'ufo'
 import type { Auth } from '~/types/auth'
 
+
 export const useFetchExtended = <T>(
   url: string,
   options: UseFetchOptions<T> = {},
@@ -43,6 +44,13 @@ export const useFetchExtended = <T>(
     onResponse: ({ response }) => {
       fetchState.value.isWorking = false
       fetchState.value.error = null
+
+      if (!response.ok) {
+        useToastExtended('error').show(response._data.error)
+
+        fetchState.value.error = (response as Record<string, any>).message
+        return Promise.reject(response)
+      }
 
       if (response.status === 401 && auth.value.isLoggedIn) {
         navigateTo('/auth/sign-out')
