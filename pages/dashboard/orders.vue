@@ -14,27 +14,27 @@
           </div>
           <div class="dashboard-utilitiies">
             <div class="order-filter_flex">
-              <nuxtLink @click="showAllOrders" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'all' }">
+              <nuxtLink @click="filterOrdersByStatus(null)" class="order-filter w-inline-block" :class="{ 'cc-active': !params.status }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/unordered-list.svg"></div>
                 <div>All</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'done' }">
+              <nuxtLink @click="filterOrdersByStatus('done')" class="order-filter w-inline-block" :class="{ 'cc-active': params.status === 'done' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/check.svg"></div>
                 <div>Done</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'in-progress' }">
+              <nuxtLink @click="filterOrdersByStatus('in-progress')" class="order-filter w-inline-block" :class="{ 'cc-active': params.status === 'in-progress' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hourglass.svg"></div>
                 <div>In Progress</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'draft' }">
+              <nuxtLink @click="filterOrdersByStatus('draft')" class="order-filter w-inline-block" :class="{ 'cc-active': params.status === 'draft' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/feather.svg"></div>
                 <div>Draft</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'submitted' }">
+              <nuxtLink @click="filterOrdersByStatus('submitted')"  class="order-filter w-inline-block" :class="{ 'cc-active': params.status === 'submitted' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/notebook.svg"></div>
                 <div>Submitted</div>
               </nuxtLink>
-              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block" :class="{ 'cc-active': activeFilter === 'cancelled' }">
+              <nuxtLink @click="filterOrdersByStatus('cancelled')" class="order-filter w-inline-block" :class="{ 'cc-active': params.status === 'cancelled' }">
                 <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/cancel.svg"></div>
                 <div>Cancelled</div>
               </nuxtLink>
@@ -63,8 +63,8 @@
               </div>
             <div>
              
-             <div v-if="currentStatus || currentStatus === null">
-              <div v-for="order in filteredOrders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'" @click="getSelectedOrder(order)">
+             <div v-if="orders.length > 0">
+              <div v-for="order in orders" :key="order.id" class="table-entry" :class="isTableEmpty ? '' : 'cc-show'" @click="getSelectedOrder(order)">
                 <div class="w-layout-grid table-columns cc-hide-desktop">
                   <div id="w-node-_19c35c8b-8878-93ab-6f33-2cfdf576ffbd-7ac6554d" class="column-header">
                     SERVICE
@@ -98,17 +98,17 @@
              </div>
              
             </div>
-            <div class="empty" v-if="filteredOrders.length === 0">
+            <div class="empty" v-if="orders.length === 0">
               <div class="empty-block_img">
                 <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/empty.svg">
               </div>
               <div class="empty-block_text">
                 <div>No Available Orders</div>
-                <div v-if="isTableEmpty && filteredOrders.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template.vue" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
+                <div v-if="isTableEmpty && orders.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template.vue" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
               </div>
             </div>
           </div>
-          <div class="c-pagination" v-if="filteredOrders.length > 0" >
+          <div class="c-pagination" v-if="orders.length > 0" >
             <div class="pagination-btn cc-disabled">
               <div class="pagination-arrow w-embed">
                 <svg fill="none" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -141,6 +141,15 @@
               </div>
             </div>
           </div>
+            <template v-if="orders.length">
+      <div class="flex mt-8 justify-center">
+        <Paginate
+          v-model="params.page"
+          activeClass="bg-primary text-white"
+          :clickHandler="pageTriggered"
+          :pageCount="pagination.last_page" />
+      </div>
+    </template>
         </div>
       </div>
     </section>
@@ -149,7 +158,9 @@
 </template>
 
 <script setup lang="ts">
+import type { Pagination } from '~/types'
 import type { Order } from "~/types/assets"
+
 
  const user = {
     ...useAuth().value.user
@@ -160,6 +171,9 @@ const filteredOrders = ref<Order[]>([])
 const currentStatus = ref('all')
 const selectedOrder = ref<Order>()
 const activeFilter = ref('all')
+const pagination = ref<Pagination>(useDefault('pagination'))
+
+const params = ref(sanitizeQuery(useRoute().query))
 
 
 
@@ -168,37 +182,40 @@ const modal = useModal()
 const userOrderState = useFetchState('/orders')
 
 const fetchAllOrders = async () => {
-  const { data } = await useGet<Order>(userOrderState.value.url, {})
-    try {
-    const { data } = await useGet<Order>(userOrderState.value.url,{})
+  const { data } = await useGet<Order>(userOrderState.value.url, params.value)
     if (data.value) {
-      orders.value = data.value.data.data as Order[] 
+      orders.value = data.value.data as Order[] 
+      pagination.value = usePaginate(lodashOmit(data.value, 'data'))!
       isTableEmpty.value = orders.value.length <= 0      
     } 
-    }
-    catch (error) {
-    console.error('Error fetching categories:', error);
-    }
-  showAllOrders()
+  // showAllOrders()
+}
+
+const pageTriggered = (page: number) => {
+  scrollToTop()
+  orders.value = []
+  params.value = sanitizeQuery({ ...params.value, ...{ page } })
 }
 
 const filterOrdersByStatus = (status) => {
-  currentStatus.value = status
-  if (orders.value && orders.value.length > 0) {
-    filteredOrders.value = orders.value.filter(order => order.order_status === status)  
-    activeFilter.value = status
-  } else {
-    filteredOrders.value = []
-  }
+  // currentStatus.value = status
+  // if (orders.value && orders.value.length > 0) {
+  //   filteredOrders.value = orders.value.filter(order => order.order_status === status)
+  //   activeFilter.value = status
+  // } else {
+  //   filteredOrders.value = []
+  // }
+  params.value = sanitizeQuery({ ...params.value, ...{ status, page: undefined } })
+
+ 
 }
 
 
-const showAllOrders = () => {
-  currentStatus.value = 'all'
-  activeFilter.value = 'all'
-  filteredOrders.value = orders.value
-
-}
+// const showAllOrders = () => {
+//   currentStatus.value = 'all'
+//   activeFilter.value = 'all'
+//   filteredOrders.value = orders.value
+// }
 
 const getSelectedOrder = (order:Order) => {
      selectedOrder.value = order 
@@ -218,6 +235,13 @@ const formatDateString = (dateString) => {
 };
 
 
+useWatch(params, () => {
+  useRouter().push({
+    path: '/dashboard/orders',
+    query: params.value
+  })
+  fetchAllOrders()
+})
 
 onMounted(() => {
 fetchAllOrders()
