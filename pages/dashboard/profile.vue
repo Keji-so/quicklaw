@@ -192,6 +192,7 @@ const formData = ref({
   id: '',
   first_name: '',
   last_name: '',
+  full_name: '',
   email: '',
   username: '',
   current_password: '',
@@ -200,18 +201,6 @@ const formData = ref({
   token: auth.value.accessToken || '',
 })
 
-
-// const verifyEmailUrl = useFetchState('/auth/validate-email')
-// const verifyEmail = async () => {
-//   const { data: emailStatus } = await usePost(
-//     verifyEmailUrl.value.url,
-//     {
-//       email: auth.value.user.email,
-//     },
-//     {},
-//   )
-// }
-// verifyEmail()
 
 
 
@@ -247,41 +236,16 @@ const updatePassword = async () => {
     current_password: formData.value.current_password,
     new_password: formData.value.new_password,
   };
+  
 
-  if (passwordData.current_password === passwordData.new_password) {
-    useToastExtended('error').show('The new password cannot be the same as the current password.')
-    return false
-  }
-
-  try {
-    const { data, error } = await usePost(changePasswordState.value.url, passwordData)
+  const { data} = await usePost(changePasswordState.value.url, passwordData)
     
 
-    if (error) {
-
-      useToastExtended('error').show('The current password you entered is incorrect.')
-       console.log(error);
-       
-      
-      // if (error.value.message === 'Incorrect current password') {
-      //   useToastExtended('error').show('The current password you entered is incorrect.')
-      // }
-      // else {
-      //   useToastExtended('error').show('An error occurred while updating the password.')
-      // }
-      return false;
-    }
-
+  if(data.value)
     useToastExtended('success').show('Password changed successfully')
     v$.value.$reset();
     return 
 
-  } catch (err) {
-    console.log(err);
-    
-    useToastExtended('error').show('An error occurred while updating the password.')
-    return false
-  }
 };
 
 
@@ -295,9 +259,12 @@ const submitForm = async () => {
     v$.value.email.$invalid ||
     v$.value.first_name.$invalid ||
     v$.value.username.$invalid ||
-    v$.value.last_name.$invalid
+    v$.value.last_name.$invalid 
+
+  formData.value.full_name = formData.value.first_name + " " + formData.value.last_name 
 
   if (isFormInvalid) {
+  
     useToastExtended('error').show('Some fields require your attention')
     return false;
   } else {
@@ -321,7 +288,9 @@ const submitForm = async () => {
         ]),
       )
 
-      if (data) {
+      
+
+      if (data.value) {
           if (formData.value.new_password) {    
           const passwordUpdateResult = await updatePassword()
           if (passwordUpdateResult === false) {
