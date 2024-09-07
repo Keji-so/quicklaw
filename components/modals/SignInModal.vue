@@ -104,6 +104,7 @@ const authMessage = ref();
 const rememberMe = ref(true);
 const signInState = useFetchState("/auth/sign-in");
 const route = useRoute();
+const modal = useModal()
 
 
 
