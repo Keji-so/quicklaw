@@ -6,7 +6,7 @@ export interface Services {
   category_id: string
   service_image_url: string | null
   price: number | null
-  is_quote_service: number | null
+  is_quote_service: boolean | null
   deleted_at: string | null
   created_at: string
   updated_at: string
