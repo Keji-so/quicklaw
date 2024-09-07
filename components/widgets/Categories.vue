@@ -70,7 +70,7 @@ const toggleService = (index: number) => {
 const selectService = (service: Services) => {
   selectedService.value = service
 
-  if (selectedService.value.is_quote_service === 1) {
+  if (selectedService.value.is_quote_service === true) {
     modal.show('QuoteServiceModal')
   } else {
     modal.show('DefaultServiceModal')
