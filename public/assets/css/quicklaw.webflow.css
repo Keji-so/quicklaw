@@ -1285,6 +1285,7 @@ li {
 
 .insight-pagination_btn.cc-disabled {
   color: var(--grey);
+  cursor: not-allowed;
 }
 
 .insight-pagination_icon {
@@ -1937,12 +1938,14 @@ li {
 
 .pagination-btn.cc-disabled {
   color: var(--fade-green);
+  cursor: not-allowed;
 }
 
 .pagination-arrow {
   flex: none;
   width: 15px;
   height: 15px;
+  overflow: hidden;
 }
 
 .pagination-numbers {

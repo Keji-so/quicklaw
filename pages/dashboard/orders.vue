@@ -104,51 +104,19 @@
               </div>
               <div class="empty-block_text">
                 <div>No Available Orders</div>
-                <div v-if="isTableEmpty && orders.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template.vue" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
-              </div>
-            </div>
-          </div>
-          <div class="c-pagination" v-if="orders.length > 0" >
-            <div class="pagination-btn cc-disabled">
-              <div class="pagination-arrow w-embed">
-                <svg fill="none" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4.41284 3.55572L0.46875 7.49979L4.41284 11.4438L5.07574 10.7809L2.2633 7.96851L14.5089 7.96851V7.03101L2.26339 7.03101L5.07574 4.21865L4.41284 3.55572Z" fill="currentColor" />
-                </svg>
-              </div>
-              <div>Previous</div>
-            </div>
-            <div class="pagination-numbers">
-              <div class="pagination-number cc-current">
-                1
-              </div>
-              <div class="pagination-number">
-                2
-              </div>
-              <div class="pagination-number">
-                3
-              </div>
-              <div>...</div>
-              <div class="pagination-number">
-                4
-              </div>
-            </div>
-            <div class="pagination-btn">
-              <div>Next</div>
-              <div class="pagination-arrow w-embed">
-                <svg fill="none" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.5872 3.55572L14.5312 7.49979L10.5872 11.4438L9.92426 10.7809L12.7367 7.96851L0.491134 7.96851V7.03101L12.7366 7.03101L9.92426 4.21865L10.5872 3.55572Z" fill="currentColor" />
-                </svg>
+                <div v-if="isTableEmpty && orders.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
               </div>
             </div>
           </div>
             <template v-if="orders.length">
-      <div class="flex mt-8 justify-center">
         <Paginate
           v-model="params.page"
-          activeClass="bg-primary text-white"
+          activeClass="cc-current"
+          prevText="Previous"
+          nextText="Next"
+          containerClass="c-pagination"
           :clickHandler="pageTriggered"
           :pageCount="pagination.last_page" />
-      </div>
     </template>
         </div>
       </div>
@@ -188,7 +156,6 @@ const fetchAllOrders = async () => {
       pagination.value = usePaginate(lodashOmit(data.value, 'data'))!
       isTableEmpty.value = orders.value.length <= 0      
     } 
-  // showAllOrders()
 }
 
 const pageTriggered = (page: number) => {
@@ -198,24 +165,11 @@ const pageTriggered = (page: number) => {
 }
 
 const filterOrdersByStatus = (status) => {
-  // currentStatus.value = status
-  // if (orders.value && orders.value.length > 0) {
-  //   filteredOrders.value = orders.value.filter(order => order.order_status === status)
-  //   activeFilter.value = status
-  // } else {
-  //   filteredOrders.value = []
-  // }
   params.value = sanitizeQuery({ ...params.value, ...{ status, page: undefined } })
 
  
 }
 
-
-// const showAllOrders = () => {
-//   currentStatus.value = 'all'
-//   activeFilter.value = 'all'
-//   filteredOrders.value = orders.value
-// }
 
 const getSelectedOrder = (order:Order) => {
      selectedOrder.value = order 
@@ -227,7 +181,7 @@ const getSelectedOrder = (order:Order) => {
 const formatDateString = (dateString) => {
   const date = new Date(dateString);
 
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   const year = date.getFullYear();
 

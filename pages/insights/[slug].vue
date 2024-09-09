@@ -87,20 +87,18 @@
           </div>
         </div>
       </div>
-      <div class="insights-pagination">
-        <a class="insight-pagination_btn cc-disabled w-inline-block" >
-          <div class="insight-pagination_icon w-embed"><svg fill="none" viewbox="0 0 15 18" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.41284 4.05621L0.46875 8.00027L4.41284 11.9443L5.07574 11.2814L2.2633 8.46899L14.5089 8.46899V7.53149L2.26339 7.53149L5.07574 4.71914L4.41284 4.05621Z" fill="currentColor" />
-          </svg></div>
-          <div>Previous Insight</div>
-        </a>
-        <a class="insight-pagination_btn w-inline-block" >
-          <div>Next Insight</div>
-          <div class="insight-pagination_icon w-embed"><svg fill="none" viewbox="0 0 15 18" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5872 4.05621L14.5312 8.00027L10.5872 11.9443L9.92426 11.2814L12.7367 8.46899L0.491134 8.46899V7.53149L12.7366 7.53149L9.92426 4.71914L10.5872 4.05621Z" fill="currentColor" />
-          </svg></div>
-        </a>
-      </div>
+   
+
+          <Paginate
+          v-model="params.page"
+          prevText="Previous Insight"
+          nextText="Next Insight"
+          containerClass="insights-pagination"
+          prevLinkClass="insight-pagination_btn"
+          nextLinkClass="insight-pagination_btn"
+          :clickHandler="pageTriggered"
+          :pageCount="pagination.last_page" />
+
       <div class="all-insights_container">
         <div class="section-header_flex">
           <div class="section-inner_header uc-green-text">
@@ -119,9 +117,9 @@
 </template>
 
 <script setup lang="ts">
-import type { ArticleContent, Image, InsightCategory, References, Pagination} from "~/types/content"
+import type { ArticleContent, Image, InsightCategory, References} from "~/types/content"
 import { withHttps } from 'ufo'
-// import {  Pagination } from '~/types'
+import type { Pagination } from '~/types'
 
 
 const insight = ref<ArticleContent[]>([])
@@ -130,6 +128,10 @@ const coverImage = ref<Image[]>([])
 const category = ref<InsightCategory[]>([])
 const references = ref<References[]>([])
 const currentArticle = ref<ArticleContent[]>([])
+
+const pagination = ref<Pagination>(useDefault('pagination'))
+
+const params = ref(sanitizeQuery(useRoute().query))
 
 
 
@@ -150,14 +152,15 @@ const fetchPost = async (params) => {
         const data = await response.json()
          insight.value = data.data[0]  
          currentArticle.value = data.data[0].id       
-         coverImage.value = insight.value.cover_image.url    
-         category.value = insight.value.category
+         coverImage.value = insight.value.cover_image.url             
          references.value = insight.value.references
         
     } catch (error) {
         console.error('Error fetching home page data:', error)
     }
 }
+
+
 
 const fetchAllPosts = async () => {
   try {
@@ -167,16 +170,22 @@ const fetchAllPosts = async () => {
     }
     const data = await response.json()
     insights.value = data.data
-    
-
+    pagination.value = usePaginate(lodashOmit(data.value, 'data'))!
   } catch (error) {
     console.error('Error fetching home page data:', error)
   }
 }
-const fetchNextPost = async () => { 
 
-}
 
+
+
+useWatch(params, () => {
+  useRouter().push({
+    path: `/insights/slug`,
+    query: params.value
+  })
+   fetchAllPosts()
+})
 
 onMounted(async () => {
   const slug = route.params.slug  

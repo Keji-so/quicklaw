@@ -53,7 +53,7 @@ const modal = useModal()
 const categories = ref<Categories[]>([])
 
 
-const fetchCategoriesState = useFetchState('/categories')
+const fetchCategoriesState = useFetchState('/categories/all')
 
 
 const fetchPageData = async () => {
@@ -78,9 +78,7 @@ const fetchAllCategories = async () => {
   try {
     const { data } = await useGet<Categories>(fetchCategoriesState.value.url, {})
     if (data.value) {
-      categories.value = data.value as Categories[]
-      
-
+      categories.value = data.value.data as Categories[]
     }
   }
   catch (error) {

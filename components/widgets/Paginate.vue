@@ -1,160 +1,87 @@
 <template>
-  <ul
-    v-if="!noLiSurround"
-    :class="containerClass"
-  >
-    <li
-      v-if="firstLastButton"
-      :class="[pageClass, firstPageSelected() ? disabledClass : '']"
-    >
-      <a
-        :class="pageLinkClass"
-        :tabindex="firstPageSelected() ? -1 : 0"
-        @click.prevent="selectFirstPage()"
-        @keyup.enter="selectFirstPage()"
-        v-html="firstButtonText"
-      />
+  <!-- <ul v-if="!noLiSurround" :class="containerClass">
+    <li v-if="firstLastButton" :class="[pageClass, firstPageSelected() ? disabledClass : '']">
+      <a :class="pageLinkClass" :tabindex="firstPageSelected() ? -1 : 0" @click.prevent="selectFirstPage()"
+        @keyup.enter="selectFirstPage()" v-html="firstButtonText" />
     </li>
 
-    <li
-      v-if="!(firstPageSelected() && hidePrevNext)"
-      :class="[prevClass, firstPageSelected() ? disabledClass : '']"
-    >
-      <a
-        :class="prevLinkClass"
-        :tabindex="firstPageSelected() ? -1 : 0"
-        @click.prevent="prevPage()"
-        @keyup.enter="prevPage()"
-        v-html="prevText"
-      />
+    <li v-if="!(firstPageSelected() && hidePrevNext)" :class="[prevClass, firstPageSelected() ? disabledClass : '']">
+      <a :class="prevLinkClass" :tabindex="firstPageSelected() ? -1 : 0" @click.prevent="prevPage()"
+        @keyup.enter="prevPage()" v-html="prevText" />
     </li>
 
-    <li
-      v-for="(page, index) in pages"
-      :key="index"
-      :class="[
-        pageClass,
-        page.selected ? activeClass : '',
-        page.disabled ? disabledClass : '',
-        page.breakView ? breakViewClass : '',
-      ]"
-    >
-      <a
-        v-if="page.breakView"
-        :class="[pageLinkClass, breakViewLinkClass]"
-        tabindex="0"
-      >
+    <li v-for="(page, index) in pages" :key="index" :class="[
+    pageClass,
+    page.selected ? activeClass : '',
+    page.disabled ? disabledClass : '',
+    page.breakView ? breakViewClass : '',
+  ]">
+      <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass]" tabindex="0">
         <slot name="breakViewContent">{{ breakViewText }}</slot>
       </a>
-      <a
-        v-else-if="page.disabled"
-        :class="pageLinkClass"
-        tabindex="0"
-      >
+      <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">
         {{ page.content }}
       </a>
-      <a
-        v-else
-        :class="pageLinkClass"
-        tabindex="0"
-        @click.prevent="handlePageSelected(page.index + 1)"
-        @keyup.enter="handlePageSelected(page.index + 1)"
-      >
+      <a v-else :class="pageLinkClass" tabindex="0" @click.prevent="handlePageSelected(page.index + 1)"
+        @keyup.enter="handlePageSelected(page.index + 1)">
         {{ page.content }}
       </a>
     </li>
 
-    <li
-      v-if="!(lastPageSelected() && hidePrevNext)"
-      :class="[nextClass, lastPageSelected() ? disabledClass : '']"
-    >
-      <a
-        :class="nextLinkClass"
-        :tabindex="lastPageSelected() ? -1 : 0"
-        @click.prevent="nextPage()"
-        @keyup.enter="nextPage()"
-        v-html="nextText"
-      />
+    <li v-if="!(lastPageSelected() && hidePrevNext)" :class="[nextClass, lastPageSelected() ? disabledClass : '']">
+      <a :class="nextLinkClass" :tabindex="lastPageSelected() ? -1 : 0" @click.prevent="nextPage()"
+        @keyup.enter="nextPage()" v-html="nextText" />
     </li>
 
-    <li
-      v-if="firstLastButton"
-      :class="[pageClass, lastPageSelected() ? disabledClass : '']"
-    >
-      <a
-        :class="pageLinkClass"
-        :tabindex="lastPageSelected() ? -1 : 0"
-        @click.prevent="selectLastPage()"
-        @keyup.enter="selectLastPage()"
-        v-html="lastButtonText"
-      />
-    </li>
-  </ul>
+    <li v-if="firstLastButton" :class="[pageClass, lastPageSelected() ? disabledClass : '']">
+      <a :class="pageLinkClass" :tabindex="lastPageSelected() ? -1 : 0" @click.prevent="selectLastPage()"
+        @keyup.enter="selectLastPage()" v-html="lastButtonText" />
 
-  <div
-    v-else
-    :class="containerClass"
-  >
-    <a
-      v-if="firstLastButton"
-      :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']"
-      tabindex="0"
-      @click.prevent="selectFirstPage()"
-      @keyup.enter="selectFirstPage()"
-      v-html="firstButtonText"
-    />
-    <a
-      v-if="!(firstPageSelected() && hidePrevNext)"
-      :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']"
-      tabindex="0"
-      @click.prevent="prevPage()"
-      @keyup.enter="prevPage()"
-      v-html="prevText"
-    />
-    <template
-      v-for="(page, index) in pages"
-      :key="index"
-    >
-      <a
-        v-if="page.breakView"
-        :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']"
-        tabindex="0"
-      >
+    </li>
+  </ul> -->
+
+  <div :class="containerClass">
+    <a v-if="firstLastButton" :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0"
+      @click.prevent="selectFirstPage()" @keyup.enter="selectFirstPage()" v-html="firstButtonText" />
+    <a  :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']"
+      tabindex="0" @click.prevent="prevPage()" @keyup.enter="prevPage()">
+       <div class="pagination-arrow w-embed">
+                <svg fill="none" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.41284 3.55572L0.46875 7.49979L4.41284 11.4438L5.07574 10.7809L2.2633 7.96851L14.5089 7.96851V7.03101L2.26339 7.03101L5.07574 4.21865L4.41284 3.55572Z" fill="currentColor" />
+                </svg>
+              </div>
+              <div v-html="prevText"></div>
+       </a>
+       <div class="pagination-numbers">
+          <template v-for="(page, index) in pages" :key="index">
+      <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']"
+        tabindex="0">
         <slot name="breakViewContent">{{ breakViewText }}</slot>
       </a>
-      <a
-        v-else-if="page.disabled"
-        :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]"
-        tabindex="0"
-      >
+      <a v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]"
+        tabindex="0">
         {{ page.content }}
       </a>
-      <a
-        v-else
-        :class="[pageLinkClass, page.selected ? activeClass : '']"
-        tabindex="0"
-        @click.prevent="handlePageSelected(page.index + 1)"
-        @keyup.enter="handlePageSelected(page.index + 1)"
-      >
+      <a v-else :class="[pageLinkClass, page.selected ? activeClass : '']" tabindex="0"
+        @click.prevent="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)">
         {{ page.content }}
       </a>
     </template>
-    <a
-      v-if="!(lastPageSelected() && hidePrevNext)"
-      :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']"
-      tabindex="0"
-      @click.prevent="nextPage()"
-      @keyup.enter="nextPage()"
-      v-html="nextText"
-    />
-    <a
-      v-if="firstLastButton"
-      :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']"
-      tabindex="0"
-      @click.prevent="selectLastPage()"
-      @keyup.enter="selectLastPage()"
-      v-html="lastButtonText"
-    />
+       </div>
+ 
+    <a :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']"
+      tabindex="0" @click.prevent="nextPage()" @keyup.enter="nextPage()">
+      <div v-html="nextText"></div>
+      <div class="pagination-arrow w-embed">
+        <svg fill="none" viewbox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10.5872 3.55572L14.5312 7.49979L10.5872 11.4438L9.92426 10.7809L12.7367 7.96851L0.491134 7.96851V7.03101L12.7366 7.03101L9.92426 4.21865L10.5872 3.55572Z"
+            fill="currentColor" />
+        </svg>
+      </div>
+    </a>
+    <a v-if="firstLastButton" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0"
+      @click.prevent="selectLastPage()" @keyup.enter="selectLastPage()" v-html="lastButtonText" />
   </div>
 </template>
 
@@ -174,7 +101,7 @@ const compProps = defineProps({
   },
   clickHandler: {
     type: Function,
-    default: () => {}
+    default: () => { }
   },
   pageRange: {
     type: Number,
@@ -198,7 +125,7 @@ const compProps = defineProps({
   },
   containerClass: {
     type: String,
-    default: 'btn-group'
+    default: ''
   },
   pageClass: {
     type: String,
@@ -206,7 +133,7 @@ const compProps = defineProps({
   },
   pageLinkClass: {
     type: String,
-    default: 'btn btn-sm'
+    default: 'pagination-number'
   },
   prevClass: {
     type: String,
@@ -214,7 +141,7 @@ const compProps = defineProps({
   },
   prevLinkClass: {
     type: String,
-    default: 'btn btn-sm'
+    default: 'pagination-btn'
   },
   nextClass: {
     type: String,
@@ -222,7 +149,7 @@ const compProps = defineProps({
   },
   nextLinkClass: {
     type: String,
-    default: 'btn btn-sm'
+    default: 'pagination-btn'
   },
   breakViewClass: {
     type: String,
@@ -234,11 +161,12 @@ const compProps = defineProps({
   },
   activeClass: {
     type: String,
-    default: 'btn-disabled'
+    default: 'cc-current'
   },
   disabledClass: {
     type: String,
-    default: 'btn-disabled'
+    default: 'cc-disabled'
+    
   },
   noLiSurround: {
     type: Boolean,
@@ -388,7 +316,3 @@ a {
   cursor: pointer;
 }
 </style>
-
-<!-- This was ported from the Vue 2 version with a few defaults updated based on DaisyUI -->
-<!-- https://github.com/lokyoung/vuejs-paginate -->
-<!-- by UDB 🐼 - aeadedoyin.com -->
