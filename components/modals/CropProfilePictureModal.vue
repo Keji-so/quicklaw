@@ -72,7 +72,7 @@ const updateProfile = async (pictureUrl: string | any) => {
   await useFetchExtended<Record<string, any>>(
     `${config.public.baseURL}/user/edit`,
     {
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
       },
@@ -123,7 +123,7 @@ const uploadImage = async () => {
     const { data } = await useFetchExtended<Record<string, any>>(
       `${config.public.baseURL}/user/edit`,
       {
-        method: 'PATCH',
+        method: 'POST',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
         },

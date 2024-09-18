@@ -29,6 +29,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    paystackSecretKey: process.env.PAYSTACK_SECRET_KEY,
     public: {
       appENV: import.meta.env.APP_ENV,
       baseURL: import.meta.env.BASE_URL,
@@ -48,7 +49,9 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/nitro/**': { proxy: '/api/**' },
-    '/download-template': { ssr: false }
+    '/download-template': { ssr: false },
+    '/services': { ssr: false },
+    '/dashboard/**': { ssr: false }
   },
 
   components: [
@@ -66,4 +69,5 @@ export default defineNuxtConfig({
     viewer: false,
     quiet: true
   }
+
 })

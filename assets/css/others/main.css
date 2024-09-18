@@ -181,6 +181,7 @@ input[type="file"] {
 }
 .founders-note_block {
       flex-shrink: 1;
+      min-width: 47%;
 }
 .founders-image {
   min-width: 51%;

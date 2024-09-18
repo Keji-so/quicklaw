@@ -91,7 +91,7 @@ const rules = computed(() => ({
 
 const v$ = useVuelidate(rules, formData, { $autoDirty: true })
 
-const forgotPasswordState = useFetchState('/auth/send-reset-token')
+const forgotPasswordState = useFetchState('/auth/forgot-password')
 
 
 
@@ -110,6 +110,8 @@ const submitForm = async () => {
   if (data.value) {
     useToastExtended('success').show('Reset link has been sent to your email')
     showResetPasswordModal() 
+    v$.value.$reset()
+
   }
 
 

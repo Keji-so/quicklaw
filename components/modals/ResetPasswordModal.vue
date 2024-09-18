@@ -67,139 +67,49 @@ const isPasswordVisible = ref(false)
 const resetPasswordModal = useModal('ResetPasswordModal')
 const signInModal = useModal('SignInModal')
 
-interface Data {
-  message: string
-  title: string
-  ctaText: string
-  buttonClass: string
-  wrapperClass?: string
-  notifType: 'cc-success' | 'cc-error'
-}
+
+definePageMeta({
+  middleware: ['auth-page'],
+})
 
 const route = useRoute()
-const form = reactive<{ password: string; password_confirmation: string }>({
-  password_confirmation: '',
-  password: ''
+
+const formData = reactive({
+  password: '',
 })
+const passwordVisibility = ref(false)
+const resetPasswordState = useFetchState('/auth/reset-password')
 
-const showPasswordRef = ref(false)
-const showConfirmPasswordRef = ref(false)
-const hasInteractedWithPasswordField = ref(false)
-const componentMode = ref<'form-state' | 'error-state' | 'success-state'>('form-state')
+const rules = computed(() => ({
+  password: { required: helpers.withMessage('Required', required) },
+}))
 
-const successMessage = ref<Data>({
-  message: 'Sign in',
-  title: 'Your Password has been reset',
-  notifType: 'cc-success',
-  buttonClass: 'c-button cc-orange w-button',
-  ctaText: 'Continue'
-})
-
-const errorMessage = ref<Data>({
-  message: "Sorry we couldn't reset your password due to a system error. Please try again",
-  title: 'Password reset not successful',
-  notifType: 'cc-error',
-  buttonClass: 'c-button cc-orange w-button',
-  ctaText: 'Try Again'
-})
-
-const passwordCheckerStates = reactive({
-  minCharacter: false,
-  lowercase: false,
-  uppercase: false,
-  number: false,
-  symbol: false
-})
-
-watch(
-  () => form.password,
-  (newValue) => {
-    hasInteractedWithPasswordField.value = true
-    checkPassword(newValue)
-  }
-)
-
-const checkPassword = (password: string) => {
-  // Rule 1: Minimum character requirement (e.g., 8 characters)
-  if (password.length >= 8) {
-    passwordCheckerStates.minCharacter = true
-  } else {
-    passwordCheckerStates.minCharacter = false
-  }
-
-  // Rule 2: At least one lowercase letter
-  if (/[a-z]/.test(password)) {
-    passwordCheckerStates.lowercase = true
-  } else {
-    passwordCheckerStates.lowercase = false
-  }
-
-  // Rule 3: At least one uppercase letter
-  if (/[A-Z]/.test(password)) {
-    passwordCheckerStates.uppercase = true
-  } else {
-    passwordCheckerStates.uppercase = false
-  }
-
-  // Rule 4: At least one number
-  if (/[0-9]/.test(password)) {
-    passwordCheckerStates.number = true
-  } else {
-    passwordCheckerStates.number = false
-  }
-
-  // Rule 5: At least one symbol
-  if (/[^a-zA-Z0-9]/.test(password)) {
-    passwordCheckerStates.symbol = true
-  } else {
-    passwordCheckerStates.symbol = false
-  }
-}
-
-const formRules = {
-  password: {
-    required: helpers.withMessage('Password is required', required)
-  },
-  password_confirmation: {
-    sameAsPassword: helpers.withMessage('Passwords have to match', sameAs(computed(() => form.password)))
-  }
-}
+const v$ = useVuelidate(rules, formData, { $autoDirty: true })
 
 const submitForm = async () => {
-  const hasPassedValidation = Object.values(passwordCheckerStates).every((check) => check === true)
-  const result = await v$.value.$validate()
-
-  if (result && hasPassedValidation) {
-    resetPassword()
+  v$.value.$touch()
+  if (v$.value.$invalid) {
+    useToastExtended('error').show('Some fields require your attention')
+    return false
   }
-}
 
-const resetPassword = async () => {
-  const email = route.query.email as string
-  const token = route.query.token as string
-  const { data, error } = await usePost('/auth/reset-password', {
-    email,
-    token,
-    ...form
+  const { data, error } = await usePost(resetPasswordState.value.url, formData, {
+    token: route.query.token?.toLocaleString(),
   })
 
   if (data.value) {
-    componentMode.value = 'success-state'
+    useRouter().push('/login')
+    useToastExtended('success').show('Please Login with your new password')
   }
 
-  if (error.value) {
-    componentMode.value = 'error-state'
-  }
+  if (error.value)
+    useToastExtended('error').show('An Error occurred while trying to reset password')
 }
 
-const v$ = useVuelidate(formRules, form, { $autoDirty: true })
 
 
 
 const clearForm = () => {
-  componentMode.value = 'form-state'
-  form.password = ''
-  form.password_confirmation = ''
   v$.value.$reset()
 }
 

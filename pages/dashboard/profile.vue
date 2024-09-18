@@ -215,7 +215,7 @@ const rules = computed(() => ({
 }))
 
 const v$ = useVuelidate(rules, formData.value, { $autoDirty: true })
-const userUpdateState = useFetchState('/user/edit')
+const userUpdateState = useFetchState('/user/edit?method=PUT')
 const changePasswordState = useFetchState('/auth/change-password')
 
 const updateUser = (userResponse: Record<string, null>) => {
@@ -269,7 +269,7 @@ const submitForm = async () => {
     return false;
   } else {
     try {
-      const { data } = await usePatch(
+      const { data } = await usePost(
         userUpdateState.value.url,
         removeKeys(formData.value, [
           'profile',

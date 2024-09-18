@@ -104,11 +104,11 @@
               </div>
               <div class="empty-block_text">
                 <div>No Available Orders</div>
-                <div v-if="isTableEmpty && orders.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
+                <div v-if="isTableEmpty && params.length === 0">You haven’t made any orders yet. <br>Any <span class="uc-bold-text uc-green-text"><nuxtLink to="/download-template" class="order-link">new order</nuxtLink></span> you make will appear here.</div>
               </div>
             </div>
           </div>
-            <template v-if="orders.length">
+            <template v-if="orders.length > 20">
         <Paginate
           v-model="params.page"
           activeClass="cc-current"

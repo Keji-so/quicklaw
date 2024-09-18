@@ -134,9 +134,6 @@ const pagination = ref<Pagination>(useDefault('pagination'))
 const params = ref(sanitizeQuery(useRoute().query))
 
 
-
-
-
 const route = useRoute()
 
 function generateUrl(text: string): string {

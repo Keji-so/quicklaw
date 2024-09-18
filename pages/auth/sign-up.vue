@@ -177,7 +177,6 @@ const silentlySignIn = async () => {
   const { data } = await usePost(signInState.value.url, payload)
     if (data.value)
      navigateTo('/dashboard/profile')
-     useToastExtended('success').show('Welcome!')
 }
 
 

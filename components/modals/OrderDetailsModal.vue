@@ -11,7 +11,7 @@
       <div class="order-details_block">
         <p class="uc-bold-text">Order Details</p>
 
-        <a @click.prevent="downloadFile(selectedOrder.service_file)" v-if="isOrderCompleted" class="c-button cc-icon-btn cc-download">
+        <a @click.prevent="downloadFile(selectedOrder.service_file_url)" v-if="isOrderCompleted" class="c-button cc-icon-btn cc-download">
                     <div class="button-icon"><img alt="" class="c-img" loading="lazy"
                         src="@/public/assets/images/download-line.svg"></div>
                     <div>Download</div>
