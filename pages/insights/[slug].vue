@@ -151,6 +151,8 @@ const fetchPost = async (params) => {
          currentArticle.value = data.data[0].id       
          coverImage.value = insight.value.cover_image.url             
          references.value = insight.value.references
+         category.value = insight.value.category
+         
         
     } catch (error) {
         console.error('Error fetching home page data:', error)
