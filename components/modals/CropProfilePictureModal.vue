@@ -104,11 +104,8 @@ const updateUser = (pictureUrl: string) => {
 
 const uploadImage = async () => {
   cropImg.value = cropper.value.getCroppedCanvas().toDataURL()
-
   isWorking.value = true
-
   const formData = new FormData()
-
  if (cropImg.value) {
     try {
       const response = await fetch(cropImg.value);
@@ -116,13 +113,7 @@ const uploadImage = async () => {
       const file = new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' });
       
       formData.append('profile_image', file);
-      const logFormData = (formData) => {
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
-  }
-};
-
-    } catch (fetchError) {
+       } catch (fetchError) {
       console.error('Error fetching image:', fetchError);
       isWorking.value = false;
       return;
@@ -132,11 +123,8 @@ const uploadImage = async () => {
     isWorking.value = false;
     return;
   }
-
-
-
   try {
-    const { data } = await useFetchExtended<Record<string, any>>(
+const { data } = await useFetchExtended<Record<string, any>>(
       `${config.public.baseURL}user/edit`,
       {
         method: 'POST',
@@ -144,28 +132,19 @@ const uploadImage = async () => {
           'X-Requested-With': 'XMLHttpRequest',
         },
         body:
-          removeKeys(formData, [
-          'created_at',
-          'updated_at',
-        ]),
-      },
-
-    )
-
-
-console.log(response);
-
-    if (response) {
-      
-      updateProfile(data.value.data.path)
-      updateUser(data.value.data.path)
+            formData
+  },
+    
+)
+    if (data.value) {
+      updateUser(data.value.data.profile_image_url)
       profilePicture.value = []
       isWorking.value = false
       modalState.value = ''
       useToastExtended('success').show('Avatar Uploaded')
       modal.hide()
     } else {
-      console.error('Unexpected data.value format:')
+           console.error('Unexpected data.value format:')
     }
   } catch (error) {
     console.error('Upload Exception:', error)
@@ -173,6 +152,70 @@ console.log(response);
     isWorking.value = false
   }
 }
+
+      
+// const uploadImage = async () => {
+//   cropImg.value = cropper.value.getCroppedCanvas().toDataURL()
+
+//   isWorking.value = true
+
+//   const formData = new FormData()
+
+//  if (cropImg.value) {
+//     try {
+//       const response = await fetch(cropImg.value);
+//       const blob = await response.blob();
+//       const file = new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' });
+      
+//       formData.append('profile_image', file);
+// }
+//  catch (fetchError) {
+//       console.error('Error fetching image:', fetchError);
+//       isWorking.value = false;
+//       return;
+//     }
+//   } else {
+//     console.error('No image data available');
+//     isWorking.value = false;
+//     return;
+//   }
+
+//   try {
+//     const { data } = await useFetchExtended<Record<string, any>>(
+//       `${config.public.baseURL}user/edit`,
+//       {
+//         method: 'POST',
+//         headers: {
+//           'X-Requested-With': 'XMLHttpRequest',
+//         },
+//         body:
+//         //   removeKeys(formData, [
+//         //   'created_at',
+//         //   'updated_at',
+//         // ]),
+//         formData
+//       },
+
+//     )
+
+
+
+//     if (data.value) {
+//       updateUser(data.value.data.profile_image_url)
+//       profilePicture.value = []
+//       isWorking.value = false
+//       modalState.value = ''
+//       useToastExtended('success').show('Avatar Uploaded')
+//       modal.hide()
+//     } else {
+//       console.error('Unexpected data.value format:')
+//     }
+//   } catch (error) {
+//     console.error('Upload Exception:', error)
+//     useToastExtended('error').show('Upload Failed')
+//     isWorking.value = false
+//   }
+// }
 
 
 const resetForm = () => {
