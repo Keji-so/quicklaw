@@ -16,10 +16,10 @@
                     <div class="c-label_wrapper">
                       <label class="c-label">{{ field.label }}</label>
                     </div>
-                    <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                      class="c-input w-input" :type="field.type" />
+                      <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                   </div>
-                  <div class="c-form_field cc-sm">
+                  <!-- <div class="c-form_field cc-sm">
                     <div class="c-label_wrapper">
                       <label class="c-label">Phone Number</label>
                     </div>
@@ -32,7 +32,7 @@
                     </div>
                     <input v-model="formData.email" type="email" placeholder="Enter your phone number"
                       class="c-input w-input" />
-                  </div>
+                  </div> -->
                   <!-- <div class="c-form_field cc-sm">
                   <div class="c-label_wrapper">
                     <div class="c-label">Company Name</div>
@@ -76,8 +76,8 @@
                     <div class="c-label_wrapper">
                       <label class="c-label">{{ field.label }}</label>
                     </div>
-                    <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                      class="c-input w-input" :type="field.type" />
+                     <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                   </div>
                 </div>
               </div>
@@ -160,7 +160,6 @@ const props = defineProps({
 
 const selectedService = ref<Services>(props.service)
 
-
 totalPrice.value = selectedService?.value.price + transactionFee.value
 
 
@@ -172,8 +171,6 @@ const additionalTitle = ref<string>()
 
 const error = ref<string | null>(null)
 const formData = ref<Record<string, any>>({
-  phone_number: '',
-  email: '',
 })
 
 const createOrderState = useFetchState("/orders/create")
@@ -183,7 +180,7 @@ const createOrderState = useFetchState("/orders/create")
 // Load form fields JSON
 const loadFormFields = async () => {
   try {
-    const response = await fetch('/formFields.json') // Adjust the path as necessary
+    const response = await fetch('/formFields.json') 
     if (!response.ok) {
       throw new Error('Failed to load form fields')
     }
@@ -195,7 +192,7 @@ const loadFormFields = async () => {
 }
 
 const fetchApiResponse = async () => {
-  const targetParty = selectedService.value.target_party
+  const targetParty = lodashSnakeCase(selectedService.value.name)  
   const formFields = await loadFormFields()
 
   if (formFields.hasOwnProperty(targetParty)) {
@@ -212,24 +209,13 @@ const fetchApiResponse = async () => {
 
 
 const createOrder = async () => {
-  const phoneNumber = formData.value.phone_number
-  const companyName = ""
-  const alternateCompanyName = ""
-  const registeredAddress = ""
-  const objectOfBusiness = ""
-  const scopeOfBusiness = ""
   const payload = {
     service_id: selectedService?.value.id,
-    phone_number: phoneNumber,
     payment_ref: generateRef(),
     total: totalPrice.value,
     subtotal: selectedService.value.price,
     company_details: {
-      "Company Name": companyName,
-      "Alternate Company Name": alternateCompanyName,
-      "Registered Address": registeredAddress,
-      "Object of Business": objectOfBusiness,
-      "Scope of Business": scopeOfBusiness,
+          ...formData.value
     },
   }
 
@@ -267,6 +253,15 @@ const payWithPaystack = async () => {
     }
   }
 }
+
+const updateFormData = (model, event) => {
+      if (!(model in formData.value)) {
+        formData.value[model] = event.target.value;
+      } else {
+        formData.value[model] = event.target.value; 
+      }
+
+    };
 
 const generateRef = () => {
   const prefix = () => {

@@ -24,10 +24,10 @@
                         <label class="c-label">{{ field.label }}</label>
                       </div>
                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                        class="c-input w-input" :type="field.type" />
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                     </div>
                   </div>
-
+<!-- 
                                     <div class="c-form_field cc-sm">
       <div class="c-label_wrapper">
         <label class="c-label">Phone Number</label>
@@ -38,7 +38,7 @@
         placeholder="Enter your phone number"
         class="c-input w-input"
       />
-    </div>
+    </div> -->
                   <!-- <div class="form-flex cc-popup">
                     <div class="c-form_field">
                       <div class="upload-btn">
@@ -74,8 +74,8 @@
                       <div class="c-label_wrapper">
                         <label class="c-label">{{ field.label }}</label>
                       </div>
-                      <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                        class="c-input w-input" :type="field.type" />
+                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                     </div>
                     </div>
                 </div>
@@ -139,7 +139,8 @@ const loadFormFields = async () => {
 }
 
 const fetchApiResponse = async () => {
-  const targetParty = selectedService.value.target_party
+  const targetParty = lodashSnakeCase(selectedService.value.name)
+  
   const formFields = await loadFormFields()
 
   if (formFields.hasOwnProperty(targetParty)) {
@@ -155,7 +156,6 @@ const fetchApiResponse = async () => {
 }
 
 const formData = ref<Record<string, any>>({
-  phone_number: '', 
 });
 
 const createOrderState = useFetchState("/orders/create");
@@ -173,25 +173,24 @@ const submitForm = async () => {
 };
 
 
+const updateFormData = (model, event) => {
+      if (!(model in formData.value)) {
+        formData.value[model] = event.target.value;
+      } else {
+        formData.value[model] = event.target.value; 
+      }
+
+    };
+
+
 const createOrder = async () => {
+  const date = formatDate(Date.now())
   if (auth.value?.isLoggedIn) {
-    const phoneNumber = formData.value.phone_number
-    const companyName = ""
-    const alternateCompanyName = ""
-    const registeredAddress = ""
-    const objectOfBusiness = ""
-    const scopeOfBusiness = ""
     const payload = {
-      // payment_ref: generateRef(),
-      payment_ref: 'etryu',
+      payment_ref: `QTE-${date}`,
       service_id: selectedService?.value.id,
-      phone_number: phoneNumber,
       company_details: {
-        "Company Name": companyName,
-        "Alternate Company Name": alternateCompanyName,
-        "Registered Address": registeredAddress,
-        "Object of Business": objectOfBusiness,
-        "Scope of Business": scopeOfBusiness,
+        ...formData.value
       },
     }
 
