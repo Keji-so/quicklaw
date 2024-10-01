@@ -133,6 +133,24 @@ input[type='file']:focus {
   border-color: transparent;
 
 }
+input[type='file']::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input[type='file']::before {
+  content: 'Upload Supporting Document';
+  color: #253829;
+  display: inline-block;
+  padding-bottom: 10px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+.custom-file-input:active {
+  outline: 0;
+}
 .c-button.cc-download {
   display: flex;
   justify-self: flex-start;
