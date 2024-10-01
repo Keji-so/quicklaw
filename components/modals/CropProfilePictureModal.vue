@@ -116,10 +116,8 @@ const uploadImage = async () => {
       const file = new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' });
       
       formData.append('profile_image', file);
-      console.log(file);
       const logFormData = (formData) => {
   for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
   }
 };
 
@@ -155,7 +153,6 @@ logFormData(formData);
     )
 
 
-console.log(response);
 
     if (response) {
       
