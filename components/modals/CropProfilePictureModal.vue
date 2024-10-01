@@ -68,8 +68,8 @@ const generateImage = (payload: AssetPickerPayload[]) => {
   }, 1000)
 }
 
-const updateProfile = async (pictureUrl: string | any) => {
-  formData.profile_image_url = pictureUrl
+const updateProfile = async () => {
+
   await useFetchExtended<Record<string, any>>(
     `${config.public.baseURL}/user/edit?_method=PUT`,
     {
@@ -117,13 +117,7 @@ const uploadImage = async () => {
       
       formData.append('profile_image', file);
       console.log(file);
-      const logFormData = (formData) => {
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
-  }
-};
 
-logFormData(formData);
     } catch (fetchError) {
       console.error('Error fetching image:', fetchError);
       isWorking.value = false;
@@ -138,36 +132,28 @@ logFormData(formData);
 
 
   try {
-    const response = await fetch(
-      `${config.public.baseURL}/user/edit?_method=PUT`,
+    const { data } = await useFetchExtended<Record<string, any>>(
+      `${config.public.baseURL}user/edit`,
       {
         method: 'POST',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
         },
         body:
-          removeKeys(formData, [
-          'created_at',
-          'updated_at',
-        ]),
+          formData
       },
-
+       
     )
 
-
-console.log(response);
-
-    if (response) {
-      
-      updateProfile(data.value.data.path)
-      updateUser(data.value.data.path)
+    if (data.value) {
+      updateUser(data.value.data.profile_image_url)
       profilePicture.value = []
       isWorking.value = false
       modalState.value = ''
       useToastExtended('success').show('Avatar Uploaded')
       modal.hide()
     } else {
-      console.error('Unexpected data.value format:', data.value.data)
+      console.error('Unexpected data.value format:')
     }
   } catch (error) {
     console.error('Upload Exception:', error)
@@ -176,59 +162,6 @@ console.log(response);
   }
 }
 
-// const uploadImage = async () => {
-//   cropImg.value = cropper.value.getCroppedCanvas().toDataURL();
-//   isWorking.value = true;
-
-//   const formData = new FormData();
-
-//   if (cropImg.value) {
-//     try {
-//       const response = await fetch(cropImg.value);
-//       if (!response.ok) throw new Error('Failed to fetch image blob');
-//       const blob = await response.blob();
-//       const file = new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' });
-//       formData.append('profile_image', file);
-//     } catch (error) {
-//       console.error('Error fetching cropped image:', error);
-//       isWorking.value = false;
-//       return;
-//     }
-//   } else {
-//     console.error('No image data available');
-//     isWorking.value = false;
-//     return;
-//   }
-
-//   try {
-//     const { data } = await useFetchExtended<Record<string, any>>(
-//       `${config.public.baseURL}/user/edit?_method=PUT`,
-//       {
-//         method: 'POST',
-//         headers: {
-//           'X-Requested-With': 'XMLHttpRequest',
-//         },
-//         body: formData,
-//       }
-//     );
-
-//     if (data.value) {
-//       updateProfile(data.value.data.path);
-//       updateUser(data.value.data.path);
-//       profilePicture.value = [];
-//       isWorking.value = false;
-//       modalState.value = '';
-//       useToastExtended('success').show('Avatar Uploaded');
-//       modal.hide();
-//     } else {
-//       console.error('Unexpected data.value format:', data.value.data);
-//     }
-//   } catch (error) {
-//     console.error('Upload Exception:', error);
-//     useToastExtended('error').show('Upload Failed');
-//     isWorking.value = false;
-//   }
-// };
 
 const resetForm = () => {
   modalState.value = ''

@@ -21,8 +21,8 @@
                     <div class="profile-image_container">
                       <div class="profile-img_icon"  @click="showModal" />
                       <div class="profile-image">
-                        <img v-if="auth.user?.profile_picture" :alt="`${auth.user?.username}-profile-picture`"
-                          class="c-img cc-cover" loading="lazy" :preferSrc="true" :src="auth.user.profile_picture">
+                        <img v-if="auth.user?.profile_image_url" :alt="`${auth.user?.username}-profile-picture`"
+                          class="c-img cc-cover" loading="lazy" :preferSrc="true" :src="auth.user.profile_image_url">
                       </div>
                     </div>
                     <div>
