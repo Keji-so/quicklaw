@@ -60,6 +60,7 @@ const cropper = ref()
 const cropImg = ref(null)
 const isWorking = ref(false)
 
+
 const generateImage = (payload: AssetPickerPayload[]) => {
   profilePicture.value = payload
   setTimeout(() => {
@@ -70,7 +71,7 @@ const generateImage = (payload: AssetPickerPayload[]) => {
 const updateProfile = async (pictureUrl: string | any) => {
   formData.profile_image_url = pictureUrl
   await useFetchExtended<Record<string, any>>(
-    `${config.public.baseURL}/user/edit`,
+    `${config.public.baseURL}/user/edit?_method=PUT`,
     {
       method: 'POST',
       headers: {
@@ -103,25 +104,42 @@ const updateUser = (pictureUrl: string) => {
 
 const uploadImage = async () => {
   cropImg.value = cropper.value.getCroppedCanvas().toDataURL()
+
   isWorking.value = true
 
   const formData = new FormData()
 
-  if (cropImg.value) {
-    const file = await fetch(cropImg.value)
-      .then(res => res.blob())
-      .then(blob => new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' }))
+ if (cropImg.value) {
+    try {
+      const response = await fetch(cropImg.value);
+      const blob = await response.blob();
+      const file = new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' });
+      
+      formData.append('profile_image', file);
+      console.log(file);
+      const logFormData = (formData) => {
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
+};
 
-    formData.append('profile_image', file)
+logFormData(formData);
+    } catch (fetchError) {
+      console.error('Error fetching image:', fetchError);
+      isWorking.value = false;
+      return;
+    }
   } else {
-    console.error('No image data available')
-    return // Exit if no image data
+    console.error('No image data available');
+    isWorking.value = false;
+    return;
   }
 
 
+
   try {
-    const { data } = await useFetchExtended<Record<string, any>>(
-      `${config.public.baseURL}/user/edit`,
+    const response = await fetch(
+      `${config.public.baseURL}/user/edit?_method=PUT`,
       {
         method: 'POST',
         headers: {
@@ -133,16 +151,16 @@ const uploadImage = async () => {
           'updated_at',
         ]),
       },
-       
+
     )
 
-    console.log('Response:', data.value) // Log the full data.value
 
+console.log(response);
 
-    if (data.value) {
+    if (response) {
+      
       updateProfile(data.value.data.path)
       updateUser(data.value.data.path)
-      console.log('Uploaded Image Path:', data.value.data.path)
       profilePicture.value = []
       isWorking.value = false
       modalState.value = ''
@@ -157,6 +175,60 @@ const uploadImage = async () => {
     isWorking.value = false
   }
 }
+
+// const uploadImage = async () => {
+//   cropImg.value = cropper.value.getCroppedCanvas().toDataURL();
+//   isWorking.value = true;
+
+//   const formData = new FormData();
+
+//   if (cropImg.value) {
+//     try {
+//       const response = await fetch(cropImg.value);
+//       if (!response.ok) throw new Error('Failed to fetch image blob');
+//       const blob = await response.blob();
+//       const file = new File([blob], 'profile-picture.jpg', { type: 'image/jpeg' });
+//       formData.append('profile_image', file);
+//     } catch (error) {
+//       console.error('Error fetching cropped image:', error);
+//       isWorking.value = false;
+//       return;
+//     }
+//   } else {
+//     console.error('No image data available');
+//     isWorking.value = false;
+//     return;
+//   }
+
+//   try {
+//     const { data } = await useFetchExtended<Record<string, any>>(
+//       `${config.public.baseURL}/user/edit?_method=PUT`,
+//       {
+//         method: 'POST',
+//         headers: {
+//           'X-Requested-With': 'XMLHttpRequest',
+//         },
+//         body: formData,
+//       }
+//     );
+
+//     if (data.value) {
+//       updateProfile(data.value.data.path);
+//       updateUser(data.value.data.path);
+//       profilePicture.value = [];
+//       isWorking.value = false;
+//       modalState.value = '';
+//       useToastExtended('success').show('Avatar Uploaded');
+//       modal.hide();
+//     } else {
+//       console.error('Unexpected data.value format:', data.value.data);
+//     }
+//   } catch (error) {
+//     console.error('Upload Exception:', error);
+//     useToastExtended('error').show('Upload Failed');
+//     isWorking.value = false;
+//   }
+// };
 
 const resetForm = () => {
   modalState.value = ''
