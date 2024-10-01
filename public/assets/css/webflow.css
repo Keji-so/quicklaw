@@ -360,7 +360,6 @@ label {
   border-color: #3898EC;
   outline: 0;
 }
-.w-input[disabled],
 .w-select[disabled],
 .w-input[readonly],
 .w-select[readonly],
@@ -368,7 +367,6 @@ fieldset[disabled] .w-input,
 fieldset[disabled] .w-select {
   cursor: not-allowed;
 }
-.w-input[disabled]:not(.w-input-disabled),
 .w-select[disabled]:not(.w-input-disabled),
 .w-input[readonly],
 .w-select[readonly],

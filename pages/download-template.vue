@@ -97,6 +97,7 @@
                     name="Full-Name"
                     placeholder="Enter your First Name &amp; Last Name"
                     type="text"
+                    disabled
                   />
                 </div>
                 <div v-if="v$.formData.full_name.$errors.length" class="c-help cc-error">
@@ -117,6 +118,7 @@
                     name="email"
                     placeholder="Enter your Email Address"
                     type="email"
+                    disabled
                   />
                 </div>
                 <div v-if="v$.formData.email.$errors.length" class="c-help cc-error">
@@ -340,11 +342,6 @@ const getTotalPrice = () => {
 
 const createOrder = async () => {
   const phoneNumber = v$.value.formData.phone_number.$model;
-  const companyName = "";
-  const alternateCompanyName = "";
-  const registeredAddress = "";
-  const objectOfBusiness = "";
-  const scopeOfBusiness = "";
   const payload = {
     service_id: selectedService?.value.id,
     phone_number: phoneNumber,
@@ -352,11 +349,7 @@ const createOrder = async () => {
     subtotal: selectedService.value.price,
     payment_ref: generateRef(),
     company_details: {
-      "Company Name": companyName,
-      "Alternate Company Name": alternateCompanyName,
-      "Registered Address": registeredAddress,
-      "Object of Business": objectOfBusiness,
-      "Scope of Business": scopeOfBusiness,
+      ...formData.value
     },
   };
 

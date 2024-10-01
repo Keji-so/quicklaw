@@ -32,17 +32,6 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? 'cc-hide' : 'cc-show'"
-                    @click="allowImageEdit">
-                    <div class="button-icon"><img alt="" class="c-img" loading="lazy"
-                        src="@/public/assets/images/edit.svg"></div>
-                    <div>Edit</div>
-                  </a>
-                  <a class="c-button cc-icon-btn w-inline-block" :class="isImageEditable ? '' : 'cc-hide'">
-                    <div class="button-icon"><img alt="" class="c-img" loading="lazy"
-                        src="@/public/assets/images/check-white-outline.svg"></div>
-                    <div>Save Changes</div>
-                  </a> -->
                 </div>
                 <div class="profile-form_divider" />
                 <div class="form-flex cc-profile">
@@ -87,7 +76,7 @@
                     <div class="c-input_wrapper">
                       <input id="email" class="c-input w-input" :class="{ 'cc-error': v$.email.$error }"
                         v-model="formData.email" maxlength="256" name="email"
-                        placeholder="chiamaka.zichat-adebiyi@email.com" type="email">
+                        placeholder="chiamaka.zichat-adebiyi@email.com" type="email" disabled>
                     </div>
                     <div class="c-help cc-error" v-if="v$.email.$errors.length">
                       {{ v$?.email?.$errors[0]?.$message }}
