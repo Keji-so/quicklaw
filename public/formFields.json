@@ -4,21 +4,25 @@
     "fields": [
       {
         "label": "Name of Offender",
+        "model": "offender_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Offender’s Residential Address",
+        "model": "offender_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Offender’s Email Address",
+        "model": "offender_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Offender’s Phone Number",
+        "model": "offender_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
@@ -650,7 +654,7 @@
       }
     ]
   },
-  "letter_of_intent": {
+  "letters_of_intent": {
     "additional_fields": [
       {
         "label": "Full Name",
@@ -1238,7 +1242,7 @@
       }
     ]
   },
-  "service_agreement": {
+  "service_level_agreement": {
     "additional_fields": [
       {
         "label": "Full Name",
@@ -1498,7 +1502,7 @@
       }
     ]
   },
-  "terms_and_Conditions": {
+  "terms_conditions": {
     "field_title": "ORDER DETAILS",
     "fields": [
       {

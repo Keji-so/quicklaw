@@ -19,56 +19,6 @@
                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
                        :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                   </div>
-                  <!-- <div class="c-form_field cc-sm">
-                    <div class="c-label_wrapper">
-                      <label class="c-label">Phone Number</label>
-                    </div>
-                    <input v-model="formData.phone_number" type="tel" placeholder="Enter your phone number"
-                      class="c-input w-input" />
-                  </div>
-                  <div class="c-form_field cc-sm">
-                    <div class="c-label_wrapper">
-                      <label class="c-label">Email</label>
-                    </div>
-                    <input v-model="formData.email" type="email" placeholder="Enter your phone number"
-                      class="c-input w-input" />
-                  </div> -->
-                  <!-- <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Company Name</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Company-Name-5" data-name="Company Name 5" placeholder="Enter Company Name" type="text" id="Company-Name-5" required=""></div>
-                </div>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Alternate Company Name</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Alternate-Company-Name-3" data-name="Alternate Company Name 3" placeholder="Enter Alternate Company Name" type="text" id="Alternate-Company-Name-3" required=""></div>
-                </div>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Registered Address</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Registered-Address-3" data-name="Registered Address 3" placeholder="Enter Registered Company Address" type="text" id="Registered-Address-3" required=""></div>
-                </div>
-                <div class="c-form_field cc-sm">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Object of Business</div>
-                  </div>
-                  <div class="c-input_wrapper"><input class="c-input w-input" maxlength="256" name="Object-of-Business-5" data-name="Object Of Business 5" placeholder="Enter Object of Business" type="text" id="Object-of-Business-5" required=""></div>
-                </div>
-                <div class="c-form_field">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Scope of Business</div>
-                  </div>
-                  <div class="c-input_wrapper"><textarea id="Scope-of-Business-3" name="Scope-of-Business-3" maxlength="5000" data-name="Scope Of Business 3" placeholder="Briefly tell us how your company is run ..." required="" class="c-input cc-textarea w-input"></textarea></div>
-                </div>
-                <div class="c-form_field">
-                  <div class="c-label_wrapper">
-                    <div class="c-label">Aims &amp; Objectives</div>
-                  </div>
-                  <div class="c-input_wrapper"><textarea id="Aims-Objectives-2" name="Aims-Objectives-2" maxlength="5000" data-name="Aims Objectives 2" placeholder="Enter Organisation Aims &amp; Objectives" required="" class="c-input cc-textarea w-input"></textarea></div>
-                </div> -->
                 </div>
                 <div class="services-form_block">
                   <p class="services-from_header">{{ additionalTitle }}</p>
@@ -143,12 +93,14 @@ import { defineProps } from 'vue'
 import type { Services } from "~/types/categories"
 import { useModal } from "~/composables/useModal"
 
-const auth = useAuth()
-const payment = usePay()
+
 
 
 const transactionFee = ref<number>(10)
 const totalPrice = ref<number>(0)
+const auth = useAuth()
+
+const payment = usePay()
 
 // const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/);
 const props = defineProps({
@@ -235,6 +187,8 @@ const handlePayment = async () => {
   }
 }
 
+const userEmail = auth.value.user.email
+
 const payWithPaystack = async () => {
   const order = await createOrder()
 
@@ -242,7 +196,7 @@ const payWithPaystack = async () => {
   if (order) {
     try {
       await payment.paystack(
-        formData.value.email,
+        userEmail,
         selectedService.value.price,
         order.data.payment_ref
       )
@@ -250,6 +204,7 @@ const payWithPaystack = async () => {
       modal.show('DefaultOrderSuccessModal')
     } catch (error) {
       console.error(error)
+      
     }
   }
 }
@@ -267,7 +222,6 @@ const generateRef = () => {
   const prefix = () => {
     return "pstk"
   }
-
   const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000)
   const randomId = prefix() + randomNumber
   return randomId
