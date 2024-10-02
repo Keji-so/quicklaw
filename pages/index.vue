@@ -2,30 +2,35 @@
   <div class="page-wrapper">
     <Navbar />
     <section class="c-section">
-      <div class="c-hero cc-home">
-        <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" :src="hero_image">
-          <div class="hero-img_overlay" />
-        </div>
-        <div class="hero-text_block">
-          <h1 class="heading-h1">
-            {{ hero.heading }}
-          </h1>
-          <div class="hero-subtext">
-            {{ hero.description }}
+       <div class="hero-wrapper">
+        <div class="hero-illustration cc-illustration-one"><img src="@/public/assets/images/hero-illustration-gold.svg" loading="lazy" alt="" class="c-img"></div>
+        <div class="hero-illustration cc-illustration-two"><img src="@/public/assets/images/popup-illustration-4.svg" loading="lazy" alt="" class="c-img"></div>
+        <div class="hero-illustration cc-illustration-three"><img src="@/public/assets/images/hero-illustration-green.svg" loading="lazy" alt="" class="c-img"></div>
+       <div class="hero-slide_container swiper">
+          <div class="c-hero cc-home swiper-wrapper">
+            <div class="hero-slide_wrapper swiper-slide">
+              <div class="hero-img"><img src="@/public/assets/images/home-hero-image.png" loading="lazy"  alt="" class="c-img cc-cover">
+                <div class="hero-img_overlay"></div>
+              </div>
+              <div class="hero-text_block">
+                <h1 class="heading-h1">Welcome to Quicklaw - Your Trusted Online Legal Assistant</h1>
+                <div class="hero-subtext">We&#x27;re your innovative, cost-effective, and time-efficient legal partner, redefining the way legal services work for you in Nigeria.</div>
+                <a href="#" class="c-button cc-md">Get Started</a>
+              </div>
+            </div>
+            <div class="hero-slide_wrapper swiper-slide">
+              <div class="hero-img"><img src="@/public/assets/images/hero-slide-2.png" loading="lazy"  alt="" class="c-img cc-cover">
+                <div class="hero-img_overlay"></div>
+              </div>
+              <div class="hero-text_block">
+                <h1 class="heading-h1">Startup <br>Advisory</h1>
+                <div class="hero-subtext">Building a Startup? Quicklaw has you covered through your business lifecycle from ideation, formation, operations to winding up!</div>
+                <a href="#" class="c-button cc-md">See Startup Advisory</a>
+              </div>
+            </div>
           </div>
-          <nuxtLink class="c-button cc-md" to="/services"> {{ hero.cta_text }}</nuxtLink>
+       </div>
         </div>
-        <div class="hero-illustration cc-illustration-one">
-          <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hero-illustration-gold.svg">
-        </div>
-        <div class="hero-illustration cc-illustration-two">
-          <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/popup-illustration-4.svg">
-        </div>
-        <div class="hero-illustration cc-illustration-three">
-          <img alt="" class="c-img" loading="lazy" src="@/public/assets/images/hero-illustration-green.svg">
-        </div>
-      </div>
     </section>
     <section class="c-section cc-small-width">
       <div class="services-section">
@@ -119,6 +124,7 @@
 
 <script setup lang="ts">
 import type { Hero, ServicesSection, InsightsSection, Image, ArticleContent } from "~/types/content"
+import Swiper from 'swiper/bundle';
 const content = ref(null)
 const hero = ref<Hero[]>([])
 const services = ref<ServicesSection[]>([])
@@ -161,9 +167,26 @@ const fetchAllPosts = async () => {
   }
 }
 
+const initSwiper = () => {
+  const homeSwiper = new Swiper('.swiper', {
+    speed: 1000,
+    allowTouchMove: false,
+    slidesPerView: 'auto',
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    }
+  })  
+}
+
 onMounted(() => {
   fetchPageData()
   fetchAllPosts()
+  initSwiper()
 })
 
 const metaDef = useDefault('meta')

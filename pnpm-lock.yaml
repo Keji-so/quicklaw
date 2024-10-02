@@ -14,6 +14,9 @@ dependencies:
   '@vuelidate/validators':
     specifier: ^2.0.4
     version: 2.0.4(vue@3.5.8)
+  swiper:
+    specifier: ^11.1.14
+    version: 11.1.14
   vue-cropperjs:
     specifier: ^5.0.0
     version: 5.0.0(vue@3.5.8)
@@ -7851,6 +7854,11 @@ packages:
       csso: 5.0.5
       picocolors: 1.1.0
     dev: true
+
+  /swiper@11.1.14:
+    resolution: {integrity: sha512-VbQLQXC04io6AoAjIUWuZwW4MSYozkcP9KjLdrsG/00Q/yiwvhz9RQyt0nHXV10hi9NVnDNy1/wv7Dzq1lkOCQ==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /synckit@0.6.2:
     resolution: {integrity: sha512-Vhf+bUa//YSTYKseDiiEuQmhGCoIF3CVBhunm3r/DQnYiGT4JssmnKQc44BIyOZRK2pKjXXAgbhfmbeoC9CJpA==}
