@@ -125,7 +125,7 @@ const uploadImage = async () => {
   }
   try {
 const { data } = await useFetchExtended<Record<string, any>>(
-      `${config.public.baseURL}user/edit`,
+      `${config.public.baseURL}/user/edit`,
       {
         method: 'POST',
         headers: {
