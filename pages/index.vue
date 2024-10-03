@@ -19,7 +19,7 @@
               </div>
             </div>
             <div class="hero-slide_wrapper swiper-slide">
-              <div class="hero-img"><img src="@/public/assets/images/hero-slide-2.png" loading="lazy"  alt="" class="c-img cc-cover">
+              <div class="hero-img"><img src="@/public/assets/images/hero-slide-2.png" loading="lazy"  alt="" class="c-img cc-cover cc-right-align">
                 <div class="hero-img_overlay"></div>
               </div>
               <div class="hero-text_block">

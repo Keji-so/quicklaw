@@ -260,6 +260,8 @@ li {
   object-fit: cover;
 }
 
+
+
 .c-img.cc-parallax {
   width: 120%;
   max-width: 120%;
@@ -3212,6 +3214,10 @@ li {
 }
 
 @media screen and (max-width: 767px) {
+
+  .c-img.cc-cover.cc-right-align {
+  object-position: 75% 50%;
+}
   .page-wrapper {
     padding-top: 120px;
   }
