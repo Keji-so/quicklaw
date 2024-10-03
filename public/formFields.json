@@ -33,74 +33,24 @@
       }
     ]
   },
-  "company": {
-    "additional_fields": [
-      {
-        "label": "State Your Designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      },
-      {
-        "label": "Nature of Agreement",
-        "placeholder": "State Nature of Agreement",
-        "type": "text"
-      },
-      {
-        "label": "",
-        "placeholder": "Document",
-        "type": "file"
-      }
-    ],
-    "additional_title": "employee info",
-    "field_title": "partnership details",
-    "fields": [
-      {
-        "label": "Customer Name",
-        "placeholder": "Enter Customer Name",
-        "type": "text"
-      },
-      {
-        "label": "Customer Email",
-        "placeholder": "Enter Customer Email",
-        "type": "email"
-      },
-      {
-        "label": "Customer Requirements",
-        "placeholder": "State customer requirements",
-        "type": "textarea"
-      },
-      {
-        "label": "Customer Name",
-        "placeholder": "Enter Customer Name",
-        "type": "text"
-      },
-      {
-        "label": "Customer Email",
-        "placeholder": "Enter Customer Email",
-        "type": "email"
-      },
-      {
-        "label": "Customer Requirements",
-        "placeholder": "State customer requirements",
-        "type": "textarea"
-      }
-    ]
-  },
   "company_search_report": {
     "field_title": "COMPANY DETAILS",
     "fields": [
       {
         "label": "Company Name",
+        "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
       },
       {
         "label": "CAC Number",
+        "model": "cac_number",
         "placeholder": "Enter CAC Number",
         "type": "number"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -110,16 +60,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -129,31 +82,37 @@
     "extra_fields": [
       {
         "label": "Ownership of Invention",
+        "model": "ownership_of_invention",
         "placeholder": "State ownership of invention",
         "type": "textarea"
       },
       {
         "label": "Description of Invention",
+        "model": "description_of_invention",
         "placeholder": "Describe invention",
         "type": "textarea"
       },
       {
         "label": "Duration of Assignment",
+        "model": "duration_of_assignment",
         "placeholder": "Enter duration of assignment",
         "type": "text"
       },
       {
         "label": "Restrictions of Use of Invention",
+        "model": "restriction_of_use_of_invention",
         "placeholder": "State all restrictions for the use of invention",
         "type": "textarea"
       },
       {
-        "label": "Payment of Terms (if applicable)",
+        "label": "Payment Terms (if applicable)",
+        "model": "terms_of_payment",
         "placeholder": "State terms of payment",
         "type": "textarea"
       },
       {
         "label": "Relief for Breach",
+        "model": "relief_for_breach",
         "placeholder": "State terms of breach",
         "type": "textarea"
       }
@@ -162,16 +121,19 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -181,21 +143,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Designation",
+        "model": "party_ii_designation",
         "placeholder": "Enter Designation",
         "type": "text"
       }
@@ -205,21 +171,25 @@
     "extra_fields": [
       {
         "label": "Specific Obligations of Each Party",
+        "model": "specific_obligation_of_each_party",
         "placeholder": "State what each party is required to do",
         "type": "textarea"
       },
       {
         "label": "Duration of Consulting",
+        "model": "duration_of_consulting",
         "placeholder": "Enter duration of consulting",
         "type": "text"
       },
       {
         "label": "Payment Terms",
+        "model": "payment_terms",
         "placeholder": "Define terms of payment",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "text"
       }
@@ -228,21 +198,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Designation",
+        "model": "party_i_designation",
         "placeholder": "Enter Designation",
         "type": "text"
       }
@@ -253,59 +227,25 @@
     "fields": [
       {
         "label": "State Your Designation",
+        "model": "designation",
         "placeholder": "Enter Designation",
         "type": "text"
       },
       {
         "label": "Nature of Agreement",
+        "model": "nature_of_agreement",
         "placeholder": "State Nature of Agreement",
         "type": "text"
       },
       {
         "label": "Specific Requirements",
+        "model": "specific_requirements",
         "placeholder": "State requirements for this agreement",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      }
-    ]
-  },
-  "employee": {
-    "additional_fields": [
-      {
-        "label": "State Your Designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      },
-      {
-        "label": "Date",
-        "placeholder": "Date",
-        "type": "date"
-      }
-    ],
-    "additional_title": "employee info",
-    "field_title": "employee details",
-    "fields": [
-      {
-        "label": "State Your Designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      },
-      {
-        "label": "Nature of Agreement",
-        "placeholder": "State Nature of Agreement",
-        "type": "text"
-      },
-      {
-        "label": "Specific Requirements",
-        "placeholder": "State requirements for this agreement",
-        "type": "textarea"
-      },
-      {
-        "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -316,26 +256,31 @@
     "fields": [
       {
         "label": "Job Title",
+        "model": "job_title",
         "placeholder": "Enter Job Title",
         "type": "text"
       },
       {
         "label": "Job Description",
+        "model": "job_description",
         "placeholder": "Describe what the employee will be required to do in this role",
         "type": "textarea"
       },
       {
         "label": "Nature of Job",
+        "model": "nature_of_job",
         "placeholder": "State what this role requires",
         "type": "textarea"
       },
       {
         "label": "Industry",
+        "model": "industry",
         "placeholder": "What industry is this role in?",
         "type": "text"
       },
       {
         "label": "Terms of Employment",
+        "model": "terms_of_employment",
         "placeholder": "Outline the terms of employment for this role",
         "type": "textarea"
       }
@@ -345,21 +290,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "employee_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "employee_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Residential Address",
+        "model": "employee_residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Phone Number",
+        "model": "employee_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -369,21 +318,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "employer_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "employer_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Office Address",
+        "model": "employer_office_address",
         "placeholder": "Enter Office Address",
         "type": "text"
       },
       {
         "label": "Phone Number",
+        "model": "employer_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -393,16 +346,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Responsibilities",
+        "model": "responsibilities",
         "placeholder": "Outline the responsibilities of this role ",
         "type": "textarea"
       },
       {
         "label": "Role",
+        "model": "role",
         "placeholder": "Enter Role",
         "type": "text"
       }
@@ -412,36 +368,37 @@
     "extra_fields": [
       {
         "label": "Decision Making Authority",
-        "placeholder": "State how you make business decisions",
-        "type": "textarea"
-      },
-      {
-        "label": "Decision Making Authority",
+        "model": "decision_making_authority",
         "placeholder": "State how you make business decisions",
         "type": "textarea"
       },
       {
         "label": "Lock-in Period",
+        "model": "lock_in_period",
         "placeholder": "Enter investment lock-in period",
         "type": "text"
       },
       {
         "label": "Profit-Sharing Plan",
+        "model": "profit_sharing_plan",
         "placeholder": "Outline the profit sharing plan of business ",
         "type": "textarea"
       },
       {
         "label": "Intellectual Property Ownership & Assignment",
+        "model": "intellectual_property_ownership_and_assignment",
         "placeholder": "State terms of intellectual property ownership of business",
         "type": "textarea"
       },
       {
         "label": "Non-Compete Requirements",
+        "model": "non_compete_requirements",
         "placeholder": "State non-compete requirements of business",
         "type": "textarea"
       },
       {
         "label": "Exit Mechanism",
+        "model": "exit_mechanism",
         "placeholder": "Outline exit mechanism of business",
         "type": "textarea"
       }
@@ -450,21 +407,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "founders_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "founders_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Residential Address",
+        "model": "founders_residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Phone Number",
+        "model": "founders_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -475,26 +436,31 @@
     "fields": [
       {
         "label": "Organisation Name",
+        "model": "organisation_name",
         "placeholder": "Enter Organisation Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "model": "registered_address",
         "placeholder": "Enter Registered Organisation Address",
         "type": "text"
       },
       {
         "label": "CAC Number",
+        "model": "cac_number",
         "placeholder": "Enter CAC Number",
         "type": "number"
       },
       {
         "label": "Object of Business",
+        "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -504,31 +470,37 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "phone_number",
         "placeholder": "State Phone Number",
         "type": "tel"
       },
       {
         "label": "Residential Address",
+        "model": "residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Date of Birth",
+        "model": "date_of_birth",
         "placeholder": "",
         "type": "date"
       },
       {
         "label": "Occupation",
+        "model": "occupation",
         "placeholder": "Enter Occupation",
         "type": "text"
       }
@@ -538,26 +510,31 @@
     "fields": [
       {
         "label": "Company Name",
+        "model": "company_name",
         "placeholder": "Enter Company Name",
         "type": "text"
       },
       {
         "label": "Alternate Company Name",
+        "model": "alternate_company_name",
         "placeholder": "Enter Alternate Company Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "model": "registered_address",
         "placeholder": "Enter Registered Company Address",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Scope of Business",
+        "model": "scope_of_business",
         "placeholder": "Enter Scope of Business",
         "type": "textarea"
       }
@@ -567,21 +544,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Designation",
+        "model": "party_ii_designation",
         "placeholder": "Enter Designation",
         "type": "text"
       }
@@ -591,21 +572,25 @@
     "extra_fields": [
       {
         "label": "Description of Service Required",
+        "model": "description_of_service_required",
         "placeholder": "Define service required",
         "type": "textarea"
       },
       {
         "label": "Duration of Service",
+        "model": "duration_of_service",
         "placeholder": "Enter duration of service",
         "type": "text"
       },
       {
         "label": "Specific Obligations of Each Party",
+        "model": "specific_obligations_of_each_party",
         "placeholder": "State what each party is required to do",
         "type": "text"
       },
       {
         "label": "Payment Terms",
+        "model": "payment_terms",
         "placeholder": "Define terms of payment",
         "type": "textarea"
       }
@@ -614,21 +599,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Designation",
+        "model": "party_i_designation",
         "placeholder": "Enter Designation",
         "type": "text"
       }
@@ -639,16 +628,19 @@
     "fields": [
       {
         "label": "Subject Matter",
+        "model": "subject_matter",
         "placeholder": "Enter Subject",
         "type": "text"
       },
       {
         "label": "Specific Requirements",
+        "model": "specific_requirement",
         "placeholder": "Outline specifics of subject matter",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -658,16 +650,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -677,26 +672,31 @@
     "extra_fields": [
       {
         "label": "Terms of Prospective Deal",
+        "model": "terms_of_prospective_deal",
         "placeholder": "State terms of contract",
         "type": "textarea"
       },
       {
         "label": "Financing Obligations of Parties",
+        "model": "financing_obligations_of_parties",
         "placeholder": "Define financial obligations of each party",
         "type": "textarea"
       },
       {
         "label": "Duration of Deal",
+        "model": "duration_of_deal",
         "placeholder": "Enter duration of deal",
         "type": "text"
       },
       {
         "label": "Third Party Rights & Obligations (if any)",
+        "model": "third_party_rights_and_obligations",
         "placeholder": "State third party rights & obligations",
         "type": "textarea"
       },
       {
         "label": "Termination Process",
+        "model": "termination_process",
         "placeholder": "State terms for termination of contract",
         "type": "textarea"
       }
@@ -705,16 +705,19 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -724,16 +727,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "borrower_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "borrower_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "borrower_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -743,36 +749,43 @@
     "extra_fields": [
       {
         "label": "Specific Conditions for Borrower to Fulfil",
+        "model": "specific_conditions_for_borrower_to_fulfil",
         "placeholder": "State conditions to be met by borrower",
         "type": "textarea"
       },
       {
         "label": "Value of Collateral",
+        "model": "value_of_collateral",
         "placeholder": "Enter monetary value of collateral",
         "type": "number"
       },
       {
         "label": "Duration of Loan",
+        "model": "duration_of_loan",
         "placeholder": "Enter auration of loan",
         "type": "text"
       },
       {
         "label": "Interest Rate",
+        "model": "interest_rate",
         "placeholder": "Enter interest rate",
         "type": "number"
       },
       {
         "label": "Repayment Structure",
+        "model": "repayment_structure",
         "placeholder": "Outline loan repayment structure",
         "type": "textarea"
       },
       {
         "label": "Disbursement of Loan",
+        "model": "disbursement_of_loan",
         "placeholder": "Define how loan will be disbursed",
         "type": "textarea"
       },
       {
         "label": "Default Terms",
+        "model": "default_terms",
         "placeholder": "State loan default terms",
         "type": "textarea"
       }
@@ -781,16 +794,19 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "lender_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "lender_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "lender_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -800,16 +816,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -819,26 +838,31 @@
     "extra_fields": [
       {
         "label": "Relationship of Parties",
+        "model": "relationship_of_parties",
         "placeholder": "State relationship of parties",
         "type": "text"
       },
       {
         "label": "Definition of Competitor",
+        "model": "definition_of_competitor",
         "placeholder": "Define competitor for this agreement",
         "type": "textarea"
       },
       {
         "label": "Damages for Breach",
+        "model": "damages_for_breach",
         "placeholder": "State terms for breach of non-compete",
         "type": "textarea"
       },
       {
         "label": "Duration of Non-Compete",
+        "model": "duration_of_non_compete",
         "placeholder": "Enter duration of non-compete",
         "type": "textarea"
       },
       {
         "label": "Payment Terms (if applicable)",
+        "model": "payment_terms",
         "placeholder": "State terms of payment",
         "type": "textarea"
       }
@@ -847,16 +871,19 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -866,16 +893,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -885,26 +915,31 @@
     "extra_fields": [
       {
         "label": "Define Confidential Information",
+        "model": "confidential_information",
         "placeholder": "State all information within limits of confidentiality",
         "type": "textarea"
       },
       {
         "label": "Exclusions to Confidential Information",
+        "model": "exclusion_to_confidential_information",
         "placeholder": "State all information or terms that may not be subject to confidentiality",
         "type": "textarea"
       },
       {
         "label": "Period of Confidentiality",
+        "model": "period_of_confidentiallity",
         "placeholder": "Enter period of confidentiality",
         "type": "text"
       },
       {
         "label": "Remedies for Breach of Confidentiality",
+        "model": "remedies_for_breach_of_confidentiality",
         "placeholder": "Define terms for breach of confidentiality",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -913,16 +948,19 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -968,21 +1006,25 @@
     "fields": [
       {
         "label": "Company Name",
+        "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
       },
       {
         "label": "CAC Number",
+        "model": "cac_number",
         "placeholder": "Enter CAC Number",
         "type": "number"
       },
       {
         "label": "Object of Business",
+        "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -992,11 +1034,13 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "email",
         "placeholder": "Enter Email Address",
         "type": "email"
       }
@@ -1006,26 +1050,31 @@
     "fields": [
       {
         "label": "Company Name",
+        "model": "company_name",
         "placeholder": "Enter Company Name",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Size of Country",
+        "model": "size_of_country",
         "placeholder": "Enter Size of Country",
         "type": "text"
       },
       {
         "label": "Scope of Operations",
+        "model": "scope_of_operations",
         "placeholder": "Briefly state how your company is run",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -1036,36 +1085,43 @@
     "fields": [
       {
         "label": "Business Name",
+        "model": "business_name",
         "placeholder": "Enter Business Name",
         "type": "text"
       },
       {
         "label": "Alternate Business Name",
+        "model": "alternate_business_name",
         "placeholder": "Enter Alternate Business Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "model": "registered_address",
         "placeholder": "Enter Registered Organisation Address",
         "type": "text"
       },
       {
         "label": "Business Address",
+        "model": "business_address",
         "placeholder": "Enter Business Address",
         "type": "text"
       },
       {
         "label": "Object of Businesss",
+        "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Email Business Email Address",
+        "model": "business_email",
         "placeholder": "Enter Business Email Address",
         "type": "email"
       },
       {
         "label": "Business Phone Number",
+        "model": "business_phone_number",
         "placeholder": "Enter Business Phone Number",
         "type": "tel"
       }
@@ -1076,26 +1132,31 @@
     "fields": [
       {
         "label": "Full Name of Copyright Owner",
+        "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential Address",
+        "model": "residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Brief Description of Material*",
+        "model": "brief_description_of_material",
         "placeholder": "Describe the material you would like to copyright",
         "type": "textarea"
       }
@@ -1106,31 +1167,37 @@
     "fields": [
       {
         "label": "Full Name of Trademark Owner",
+        "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential Address",
+        "model": "residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Brief Description of Material*",
+        "model": "brief_description_of_material",
         "placeholder": "Describe the material you would like to trademark",
         "type": "textarea"
       },
       {
         "label": "",
+        "model": "supporting_document",
         "placeholder": "Upload File",
         "type": "file"
       }
@@ -1140,11 +1207,13 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "email",
         "placeholder": "Enter Email Address",
         "type": "email"
       }
@@ -1154,16 +1223,19 @@
     "fields": [
       {
         "label": "Organisation Name",
+        "model": "organisation_name",
         "placeholder": "Enter Organisation Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "model": "registered_address",
         "placeholder": "Enter Registered Organisation Address",
         "type": "text"
       },
       {
         "label": "Scope of Business",
+        "model": "scope_of_business",
         "placeholder": "Enter Scope of Business",
         "type": "textarea"
       }
@@ -1173,21 +1245,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "employee_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential Address",
+        "model": "employee_residential_addresse",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "employee_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "employee_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1197,21 +1273,24 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "employer_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Office Address",
         "placeholder": "Enter Office Address",
-        "type": "text"
+        "type": "employer_office_address"
       },
       {
         "label": "Email Address",
+        "model": "employer_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "employer_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1222,21 +1301,25 @@
     "fields": [
       {
         "label": "State Your Designation",
+        "model": "designation",
         "placeholder": "Enter Designation",
         "type": "text"
       },
       {
         "label": "Nature of Agreement",
+        "model": "nature_of_agreement",
         "placeholder": "State Nature of Agreement",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       },
       {
         "label": "",
+        "model": "supporting_document",
         "placeholder": "Upload Document",
         "type": "file"
       }
@@ -1246,21 +1329,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Designation",
+        "model": "party_ii_designation",
         "placeholder": "Enter Designation",
         "type": "text"
       }
@@ -1270,26 +1357,31 @@
     "extra_fields": [
       {
         "label": "Description of Service Required",
+        "model": "description_of_service",
         "placeholder": "Define service required",
         "type": "textarea"
       },
       {
         "label": "Duration of Service",
+        "model": "duration_of_service",
         "placeholder": "Enter duration of service",
         "type": "text"
       },
       {
         "label": "Specific Obligations of Each Party",
+        "model": "specific_obligations_of_each_party",
         "placeholder": "State what each party is required to do",
         "type": "text"
       },
       {
         "label": "Compensation for Service",
+        "model": "compensation_for_service",
         "placeholder": "State third party rights & obligations",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -1298,21 +1390,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       },
       {
         "label": "Designation",
+        "model": "party_i_designation",
         "placeholder": "Enter Designation",
         "type": "text"
       }
@@ -1322,16 +1418,19 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "party_ii_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_ii_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_ii_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1341,26 +1440,31 @@
     "extra_fields": [
       {
         "label": "Monetary Value for Shares",
+        "model": "monetary_value_for_shares",
         "placeholder": "Enter total price of shares",
         "type": "text"
       },
       {
         "label": "Consideration for Shares",
+        "model": "consideration_for_shares",
         "placeholder": "State terms of consideration for shares",
         "type": "textarea"
       },
       {
         "label": "Representation & Warranties",
+        "model": "representation_and_warranties",
         "placeholder": "State representation & warranties for share purchase",
         "type": "textarea"
       },
       {
         "label": "Indemnification Terms",
+        "model": "idemnification_terms",
         "placeholder": "State terms of indemnification ",
         "type": "textarea"
       },
       {
         "label": "Termination Process",
+        "model": "termination_process",
         "placeholder": "State terms for termination of contract",
         "type": "textarea"
       }
@@ -1369,16 +1473,19 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "party_i_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "party_i_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1389,21 +1496,25 @@
     "fields": [
       {
         "label": "Company Name",
+        "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
       },
       {
         "label": "CAC Number",
+        "model": "cac_number",
         "placeholder": "Enter CAC Number",
         "type": "number"
       },
       {
         "label": "Object of Business",
+        "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -1414,16 +1525,19 @@
     "fields": [
       {
         "label": "Company Name",
+        "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
       },
       {
         "label": "CAC Number",
+        "model": "cac_number",
         "placeholder": "Enter CAC Number",
         "type": "number"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
@@ -1434,21 +1548,25 @@
     "fields": [
       {
         "label": "State Your Designation",
+        "model": "designation",
         "placeholder": "Enter Designation",
         "type": "text"
       },
       {
         "label": "Reason for Termination",
+        "model": "reason_for_termination",
         "placeholder": "State reason for termination",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
       },
       {
         "label": "",
+        "model": "supporting_document",
         "placeholder": "Upload Document",
         "type": "file"
       }
@@ -1458,21 +1576,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "employee_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential Address",
+        "model": "employee_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "employee_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "employee_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1482,21 +1604,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "employer_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Office Address",
+        "model": "employer_office_address",
         "placeholder": "Enter Office Address",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "employer_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "employer_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1507,31 +1633,37 @@
     "fields": [
       {
         "label": "Scope of Services Provided",
+        "model": "scope_of_services_provided",
         "placeholder": "Describe services provided",
         "type": "textarea"
       },
       {
         "label": "Acceptable Use of Service",
+        "model": "acceptable_use_of_service",
         "placeholder": "State all acceptable uses of provided services",
         "type": "textarea"
       },
       {
         "label": "Limitations of Liability",
+        "model": "limitations_of_liability",
         "placeholder": "State all limitations of liability for services provided",
         "type": "textarea"
       },
       {
         "label": "Prices & Payment",
+        "model": "prices_and_payment",
         "placeholder": "State services provided & respective prices along with terms of payment",
         "type": "textarea"
       },
       {
         "label": "Authorised Users",
+        "model": "authorized_users",
         "placeholder": "Name all authorised users",
         "type": "textarea"
       },
       {
         "label": "Privacy Policy Terms",
+        "model": "privacy_policy_terms",
         "placeholder": "State terms of privacy for service engagement ",
         "type": "textarea"
       }
@@ -1541,21 +1673,25 @@
     "additional_fields": [
       {
         "label": "Full Name",
+        "model": "recipient_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "recipient_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Residential/Office Address",
+        "model": "recipient_address",
         "placeholder": "Enter Preferred Address",
         "type": "text"
       },
       {
         "label": "Phone Number",
+        "model": "recipient_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
@@ -1565,21 +1701,25 @@
     "fields": [
       {
         "label": "Full Name",
+        "model": "sender_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential/Office Address",
+        "model": "sender_address",
         "placeholder": "Enter Preferred Address",
         "type": "text"
       },
       {
         "label": "Email Address",
+        "model": "sender_email",
         "placeholder": "Enter Email Address",
         "type": "email"
       },
       {
         "label": "Phone Number",
+        "model": "sender_phone_number",
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
