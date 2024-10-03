@@ -1086,6 +1086,7 @@ li {
   transition: border-color .4s;
   display: inline-block;
   cursor: pointer;
+  align-self: center;
 }
 
 .c-service_item:hover {
