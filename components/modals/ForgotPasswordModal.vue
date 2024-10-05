@@ -25,7 +25,6 @@
                  maxlength="256"
                  name="email"
                  type="email"
-                 @blur="v$.email.$dirty"
                placeholder="Enter your Registered Username or Email Address"></div>
                        <div
                       v-if="errorMessage && !v$.email.$error"
@@ -67,10 +66,12 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers } from '@vuelidate/validators'
+import { useModal } from "~/composables/useModal";
+
 
 const signInModal = useModal('SignInModal')
 const forgotPasswordModal = useModal('ForgotPasswordModal')
-const resetPasswordModal = useModal('ResetPasswordModal')
+const forgotPasswordSuccessModal = useModal('ForgotPasswordSuccessModal')
 const isSubmittingRef = ref(false)
 
 
@@ -106,12 +107,12 @@ const submitForm = async () => {
 
   if (error.value)
     errorMessage.value = 'This email is not associated with a Quicklaw account.'
+  
 
   if (data.value) {
-    useToastExtended('success').show('Reset link has been sent to your email')
-    showResetPasswordModal() 
+    // useToastExtended('success').show('Reset link has been sent to your email')
+    showForgotPasswordSuccessModal() 
     v$.value.$reset()
-
   }
 
 
@@ -124,9 +125,9 @@ const showSignInModal = () => {
   closeForgotPasswordModal()
 }
 
-const showResetPasswordModal = () => {
-  closeForgotPasswordModal()
-  resetPasswordModal.show('ResetPasswordModal')
+const showForgotPasswordSuccessModal = () => {
+  forgotPasswordSuccessModal.show('ForgotPasswordSuccessModal')
+  closeForgotPasswordModal()  
 }
 
 const closeForgotPasswordModal =  () => {

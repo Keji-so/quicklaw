@@ -34,6 +34,7 @@
     </div>
     <SignInModal />
     <ForgotPasswordModal />
+    <ForgotPasswordSuccessModal />
     <ResetPasswordModal />
   </nav>
 </template>
