@@ -1,3 +1,4 @@
+import { startSmoothScroll, stopSmoothScroll } from '~/commons/lenis'
 export const useModal = (modal: string | null = null) => {
   const activeModals = useState<Record<string, { shownAt: number }>>('activeModals', () => {
     return {}
@@ -5,6 +6,7 @@ export const useModal = (modal: string | null = null) => {
 
   const show = (specificModal: string) => {
     activeModals.value[specificModal] = { shownAt: Date.now() }
+    stopSmoothScroll()
   }
 
   const hide = (modalName: string | null = null) => {
@@ -13,6 +15,7 @@ export const useModal = (modal: string | null = null) => {
     } else if (modal) {
       delete activeModals.value[modal]
     }
+    startSmoothScroll()
   }
 
   const hideAll = (modals: string[] | null = null) => {
@@ -28,6 +31,7 @@ export const useModal = (modal: string | null = null) => {
 
   const isVisible = computed(() => {
     if (modal && modal in activeModals.value) {
+      stopSmoothScroll()
       return true
     }
     return false
