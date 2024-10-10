@@ -27,44 +27,7 @@
                        :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                     </div>
                   </div>
-<!-- 
-                                    <div class="c-form_field cc-sm">
-      <div class="c-label_wrapper">
-        <label class="c-label">Phone Number</label>
-      </div>
-      <input
-        v-model="formData.phone_number"
-        type="tel"
-        placeholder="Enter your phone number"
-        class="c-input w-input"
-      />
-    </div> -->
-                  <!-- <div class="form-flex cc-popup">
-                    <div class="c-form_field">
-                      <div class="upload-btn">
-                        <div class="upload-btn_icon"></div>
-                        <div>Upload Document</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="c-form_field">
-                    <div class="c-form_field">
-                      <a class="c-button cc-icon-btn cc-lg w-inline-block">
-                        <div class="button-icon"><img src="@/public/assets/images/plus-white.svg" loading="lazy" alt=""
-                            class="c-img"></div>
-                        <div>New Order</div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="c-form_field">
-                    <div class="c-form_field">
-                      <a class="c-button cc-icon-btn cc-lg w-inline-block">
-                        <div class="button-icon"><img src="@/public/assets/images/plus-white.svg" loading="lazy" alt=""
-                            class="c-img"></div>
-                        <div>Add Role</div>
-                      </a>
-                    </div>
-                  </div> -->
+
                 </div>
                 <div class="services-form_divider cc-mb-0"></div>
                 <div class="services-form_block">
@@ -79,6 +42,20 @@
                     </div>
                     </div>
                 </div>
+
+                 <div class="services-form_block">
+                  <p class="services-from_header cc-margin-top">{{extraTitle}}</p>
+                  <div class="form-flex cc-popup">
+                <div class="c-form_field cc-categories" v-for="(field, index) in extraFields" :key="index" >
+                      <div class="c-label_wrapper">
+                        <label class="c-label">{{ field.label }}</label>
+                      </div>
+                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                    </div>
+                    </div>
+                </div>
+
               </div>
               <div class="btn-flex cc-align-right"><input type="submit" data-wait=""
                   class="c-button cc-secondary-green w-button" value="Get A Quote"  @click.prevent="submitForm"></div>
@@ -116,9 +93,11 @@ const selectedService = ref<Services>(props.service)
 
 
 const fields = ref<any[]>([])
-const fieldTitle = ref<string>()
 const additionalFields = ref<any[]>([])
+const extraFields = ref<any[]>([])
+const fieldTitle = ref<string>()
 const additionalTitle = ref<string>()
+const extraTitle = ref<string>()
 
 
 const error = ref<string | null>(null)
@@ -144,10 +123,12 @@ const fetchApiResponse = async () => {
   const formFields = await loadFormFields()
 
   if (formFields.hasOwnProperty(targetParty)) {
-    fields.value = formFields[targetParty].fields
+     fields.value = formFields[targetParty].fields
     additionalFields.value = formFields[targetParty].additional_fields
+    extraFields.value = formFields[targetParty].extra_fields
     fieldTitle.value = formFields[targetParty].field_title
     additionalTitle.value = formFields[targetParty].additional_title
+    extraTitle.value = formFields[targetParty].extra_field_title
 
   } else {
     error.value = 'Invalid target party.'

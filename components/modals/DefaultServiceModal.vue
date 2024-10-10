@@ -7,8 +7,7 @@
         <div class="services-details_block">
           <div class="services-form_wrapper w-form">
             <form id="wf-form-services-form" name="wf-form-services-form" data-name="services form" method="get"
-              class="services-form_container" data-wf-page-id="66533123d0bbd2c82eeaa214"
-              data-wf-element-id="e0bb01c6-2b6a-3e88-98da-6a5417ee327d">
+              class="services-form_container" >
               <div id="scrollbar" data-lenis-prevent="" class="services-form_inner">
                 <div class="services-form_block">
                   <p class="services-from_header">{{ fieldTitle }}</p>
@@ -17,7 +16,7 @@
                       <label class="c-label">{{ field.label }}</label>
                     </div>
                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" @change="updateFilePlaceholder(field.placeholder)" />
                   </div>
                 </div>
                 <div class="services-form_block">
@@ -30,6 +29,20 @@
                        :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
                   </div>
                 </div>
+
+
+                  <div class="services-form_block">
+                  <p class="services-from_header">{{ extraTitle }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in extraFields" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                  </div>
+                </div>
+
+
               </div>
               <div class="btn-flex cc-order-popup"><input @click.prevent="handlePayment" type="submit" data-wait=""
                   class="c-button w-button" value="Next"></div>
@@ -116,9 +129,12 @@ totalPrice.value = selectedService?.value.price + transactionFee.value
 
 
 const fields = ref<any[]>([])
-const fieldTitle = ref<string>()
 const additionalFields = ref<any[]>([])
+const extraFields = ref<any[]>([])
+const fieldTitle = ref<string>()
 const additionalTitle = ref<string>()
+const extraTitle = ref<string>()
+
 
 
 const error = ref<string | null>(null)
@@ -150,8 +166,11 @@ const fetchApiResponse = async () => {
   if (formFields.hasOwnProperty(targetParty)) {
     fields.value = formFields[targetParty].fields
     additionalFields.value = formFields[targetParty].additional_fields
+    extraFields.value = formFields[targetParty].extra_fields
     fieldTitle.value = formFields[targetParty].field_title
     additionalTitle.value = formFields[targetParty].additional_title
+    extraTitle.value = formFields[targetParty].extra_field_title
+
 
   } else {
     error.value = 'Invalid target party.'
@@ -228,7 +247,9 @@ const generateRef = () => {
 }
 
 
-
+const updateFilePlaceholder = (placeholder: string) => {
+  document.documentElement.style.setProperty('--file-upload-placeholder', placeholder);
+};
 
 const modal = useModal('DefaultServiceModal')
 
@@ -246,4 +267,6 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
