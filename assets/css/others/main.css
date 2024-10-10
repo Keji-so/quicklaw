@@ -114,6 +114,10 @@ height: 350px;
   margin-top: 5px;
 }
 
+.c-form_field.cc-sm:has(input[type='file']) {
+    margin-bottom: 0;
+}
+
 input[type='file'] {
   color: transparent;
   border-color: transparent;
@@ -123,8 +127,6 @@ input[type='file'] {
     background-repeat: no-repeat;
     background-size: 20px;
     flex: none;
-    /* width: 20px; */
-    /* height: 20px; */
     margin-right: 8px;
 }
 
@@ -137,7 +139,7 @@ input[type='file']::-webkit-file-upload-button {
   visibility: hidden;
 }
 input[type='file']::before {
-  content: 'Upload Supporting Document';
+  content: var(--file-upload-placeholder, 'Upload Supporting Document');
   color: #253829;
   display: inline-block;
   padding-bottom: 10px;
@@ -148,6 +150,7 @@ input[type='file']::before {
   font-size: 16px;
   font-weight: 700;
 }
+
 .custom-file-input:active {
   outline: 0;
 }
