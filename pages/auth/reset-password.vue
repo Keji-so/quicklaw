@@ -24,7 +24,10 @@
             </div>
           </div>
           <div class="btn-flex">
-            <SubmitButton classes="c-button cc-lg w-button" form="form-reset-password" message="Continue"
+            <SubmitButton 
+            classes="c-button cc-lg w-button" 
+            form="reset-password-form" 
+            message="Continue"
               :state="isSubmittingRef ? 'loading' : 'idle'" />
           </div>
         </form>
