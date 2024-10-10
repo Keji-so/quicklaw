@@ -120,8 +120,6 @@ import { required, email, minLength, maxLength, helpers  } from '@vuelidate/vali
 const modal = useModal('SignInModal')
 
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
-// const full_name = ref('')
-// const passwordVisibility = ref(false)
 const isSubmittingRef = ref(false)
 const isPasswordVisible = ref(false)
 

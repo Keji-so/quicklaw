@@ -762,6 +762,7 @@ li {
 .c-label {
   font-size: 12px;
   line-height: 1.2em;
+  font-weight: 400;
 }
 
 .c-input_wrapper {
