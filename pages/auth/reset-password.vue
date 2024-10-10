@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { required, helpers, sameAs } from '@vuelidate/validators'
+import { required, helpers, minLength } from '@vuelidate/validators'
 
 
 const isSubmittingRef = ref(false)
@@ -63,7 +63,10 @@ const passwordVisibility = ref(false)
 const resetPasswordState = useFetchState('/auth/reset-password')
 
 const rules = computed(() => ({
-  password: { required: helpers.withMessage('Password Required', required) },
+  password: {
+    required: helpers.withMessage('Password Required', required),
+    minLength: helpers.withMessage('Password should have at least 8 characters', minLength(8)),
+  },
 }))
 
 const v$ = useVuelidate(rules, formData, { $autoDirty: true })
@@ -75,22 +78,21 @@ const submitForm = async () => {
     return false
   }
 
-  const { data, error } = await usePost(resetPasswordState.value.url, formData, {
-    token: route.query.token?.toLocaleString(),
-  })
+   const payload = {
+      token: route.query.token?.toLocaleString(), 
+      password: formData.password,
+  };
 
-  if (data.value) {
+   const { data, error } = await usePost(resetPasswordState.value.url, payload);
+
+  if (data) {
      showResetPasswordSuccessModal() 
-    v$.value.$reset()
+     v$.value.$reset()
   }
 
   if (error.value)
     useToastExtended('error').show('An Error occurred while trying to reset password')
 }
-
-
-
-
 
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value
@@ -100,6 +102,13 @@ const showResetPasswordSuccessModal = () => {
   resetPasswordSuccessModal.show('ResetPasswordSuccessModal')
 }
 
+onMounted(() => {
+  if (!route.query.token) {
+    setTimeout(() => {
+      useRouter().push('/')
+    }, 2000)
+  }
+})
 
 </script>
 
