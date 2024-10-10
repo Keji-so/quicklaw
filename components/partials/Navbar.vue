@@ -35,7 +35,6 @@
     <SignInModal />
     <ForgotPasswordModal />
     <ForgotPasswordSuccessModal />
-    <ResetPasswordModal />
   </nav>
 </template>
 

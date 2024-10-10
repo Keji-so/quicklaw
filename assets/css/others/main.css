@@ -227,6 +227,16 @@ input[type="file"] {
     display: none;  
 }
 
+.c-popup_inner.cc-reset {
+    min-height: 900px;
+    height: 100vh;
+    margin: 0 auto;
+    max-width: 500px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    }
+
 @media screen and (max-width: 991px) {
 .insights-block.cc-featured .insights-block_img{
 height: 450px;
@@ -260,6 +270,12 @@ border-bottom: 1px solid #f5eed7;
 border-bottom: none;
 padding-bottom: 0;
 }
+
+.c-popup_inner.cc-reset {
+    min-height: 700px;
+    max-width: 600px;
+    width: 80%;
+    }
 }
 
 @media screen and (max-width: 568px) {
@@ -269,4 +285,10 @@ height: 350px;
 .insights-block.cc-sm .insights-title{
 font-size: 16px;
 }
+
+.c-popup_inner.cc-reset {
+    min-height: 600px;
+    max-width: 400px;
+    width: 90%;
+    }
 }
