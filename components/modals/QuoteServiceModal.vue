@@ -209,6 +209,9 @@ const closeModal = () => {
   emit('modalClosed', null);
 }
 
+
+
+
 onMounted(() => {
   fetchApiResponse()
 })

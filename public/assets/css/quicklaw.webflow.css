@@ -1005,6 +1005,14 @@ li {
   transition: color .5s;
 }
 
+.c-service:first-child.cc-active {
+  background-color: transparent;
+  color: var(--green-primary);
+ background-image: none;
+}
+
+
+
 .c-service.cc-active {
   background-color: var(--green-primary);
   color: var(--white);
@@ -1062,7 +1070,11 @@ li {
 }
 
 .services-list_container.cc-active {
-  max-height: 1000px;
+  max-height: 100vh;
+}
+
+.c-service:first-child.cc-active .services-list_container.cc-active {
+    max-height: 0px;
 }
 
 .services-offered {

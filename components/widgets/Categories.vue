@@ -9,7 +9,7 @@
       <div class="service-details_container">
         <div class="service-details_inner">
           <div>{{ category.description }}</div>
-          <div v-if="index === 0" class="c-button cc-toggle" :class="{ 'cc-active': isServiceActive[index] }">Get A
+          <div v-if="index === 0" class="c-button cc-toggle"  @click.stop="selectService({ name: 'setDefault' })">Get A
             Quote</div>
           <div v-if="index > 0" class="service-details_icon" :class="{ 'cc-active': isServiceActive[index] }"></div>
         </div>
@@ -18,7 +18,7 @@
     <div class="services-details_container">
       <div class="service-title_container" />
       <div class="service-details_container">
-        <div class="services-list_container" :class="{ 'cc-active': isServiceActive[index] }">
+        <div class="services-list_container" :class="{ 'cc-active': isServiceActive[index]}">
           <div class="services-offered">
             <template v-for="service in category.services" :key="service.id">
               <nuxtLink class="c-service_item" @click.stop="selectService(service)">
@@ -29,8 +29,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
   <!-- Render the modal outside of the loop -->
   <QuoteServiceModal v-if="selectedService && modal.has('QuoteServiceModal')" :service="selectedService" />
@@ -67,15 +65,26 @@ const toggleService = (index: number) => {
     isServiceActive.value[index] = true
   }
 }
+
+
+
+const defaultService = { name: 'Startup Advisory', is_quote_service: true, target_party: 'quote_form' }; 
+
 const selectService = (service: Services) => {
-  selectedService.value = service
+  selectedService.value = service;
+
+  if (selectedService.value.name === 'setDefault') { 
+    selectedService.value = defaultService; 
+  }
 
   if (selectedService.value.is_quote_service === true) {
-    modal.show('QuoteServiceModal')
+    modal.show('QuoteServiceModal');
   } else {
-    modal.show('DefaultServiceModal')
+    modal.show('DefaultServiceModal');
   }
 }
+
+
 
 const handleModalClosed = (service: Services | null) => {
   selectedService.value = service

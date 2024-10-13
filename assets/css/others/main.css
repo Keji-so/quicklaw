@@ -151,6 +151,8 @@ input[type='file']::before {
   font-weight: 700;
 }
 
+
+
 .custom-file-input:active {
   outline: 0;
 }
@@ -196,10 +198,7 @@ input[type="file"] {
  flex-direction: column;
 }
 
-.c-button.cc-toggle.cc-active {
-  color: var(--green-primary);
-  background-color: var(--white);
-}
+
 .founders-note_block {
       flex-shrink: 1;
       min-width: 47%;

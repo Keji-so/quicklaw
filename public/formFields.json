@@ -503,9 +503,21 @@
         "model": "occupation",
         "placeholder": "Enter Occupation",
         "type": "text"
+      },
+      {
+        "label": "",
+        "model": "passport_photograph",
+        "placeholder": "Upload Passport Photograph",
+        "type": "file"
+      },
+      {
+        "label": "",
+        "model": "nin_document",
+        "placeholder": "Upload Passport NIN",
+        "type": "file"
       }
     ],
-    "additional_title": "SECRETARY DETAILS",
+    "additional_title": "DIRECTOR DETAILS",
     "field_title": "COMPANY DETAILS",
     "fields": [
       {
@@ -1061,9 +1073,9 @@
         "type": "text"
       },
       {
-        "label": "Size of Country",
-        "model": "size_of_country",
-        "placeholder": "Enter Size of Country",
+        "label": "Size of Company",
+        "model": "size_of_company",
+        "placeholder": "Enter Size of Company",
         "type": "text"
       },
       {
@@ -1071,6 +1083,35 @@
         "model": "scope_of_operations",
         "placeholder": "Briefly state how your company is run",
         "type": "textarea"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
+      }
+    ]
+  },
+  "quote_form": {
+    "field_title": "COMPANY DETAILS",
+    "fields": [
+      {
+        "label": "Company Name",
+        "model": "company_name",
+        "placeholder": "Company Name",
+        "type": "text"
+      },
+      {
+        "label": "Object of Business",
+        "model": "object_of_business",
+        "placeholder": "Enter Object of Business",
+        "type": "text"
+      },
+      {
+        "label": "CAC Number",
+        "model": "cac_number",
+        "placeholder": "Enter CAC Number",
+        "type": "number"
       },
       {
         "label": "Additional Information",
