@@ -9,43 +9,221 @@
             <form id="wf-form-services-form" name="wf-form-services-form" data-name="services form" method="get"
               class="services-form_container" >
               <div id="scrollbar" data-lenis-prevent="" class="services-form_inner">
-                <div class="services-form_block">
-                  <p class="services-from_header">{{ fieldTitle }}</p>
-                  <div class="c-form_field cc-sm" v-for="(field, index) in fields" :key="index">
+
+
+<div v-if="isPrevVisible">
+     <div class="services-form_block">
+                  <p class="services-from_header">{{ fieldTitle_1 }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in fields_1" :key="index">
                     <div class="c-label_wrapper">
                       <label class="c-label">{{ field.label }}</label>
                     </div>
                       <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" @change="updateFilePlaceholder(field.placeholder)" />
-                  </div>
-                </div>
-                <div class="services-form_block">
-                  <p class="services-from_header">{{ additionalTitle }}</p>
-                  <div class="c-form_field cc-sm" v-for="(field, index) in additionalFields" :key="index">
-                    <div class="c-label_wrapper">
-                      <label class="c-label">{{ field.label }}</label>
-                    </div>
-                     <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
-                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)"  />
+                        <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
                   </div>
                 </div>
 
+                <div class="services-form_block">
+                  <p class="services-from_header">{{ fieldTitle_2 }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in fields_2[0]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                     <div @click="showFields_2" v-if="field.add_button && !isField_2_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                  </div>
+
+                    <div v-if="isField_2_visible" class="c-form_field cc-sm" v-for="(field, index) in fields_2[1]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                   <div @click="hideFields_2" v-if="field.remove_button && isField_2_visible"  class="c-button cc-icon-btn cc-lg cc-error">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                    
+                  </div>
+                </div>
 
                   <div class="services-form_block">
-                  <p class="services-from_header">{{ extraTitle }}</p>
-                  <div class="c-form_field cc-sm" v-for="(field, index) in extraFields" :key="index">
+                  <p class="services-from_header">{{ fieldTitle_3 }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in fields_3[0]" :key="index">
                     <div class="c-label_wrapper">
                       <label class="c-label">{{ field.label }}</label>
                     </div>
-                     <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
                        :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                     <div @click="showFields_3" v-if="field.add_button && !isField_3_visible"  class="c-button cc-icon-btn cc-lg w-inline-block">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+
+                  </div>
+                   <div v-if="isField_3_visible" class="c-form_field cc-sm" v-for="(field, index) in fields_3[1]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                   <div @click="hideFields_3" v-if="field.remove_button && isField_3_visible"  class="c-button cc-icon-btn cc-lg cc-error">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                    
                   </div>
                 </div>
+</div>
+           
+
+           <div v-if="!isPrevVisible">
+
+            <div class="services-form_block">
+                  <p class="services-from_header">{{ fieldTitle_4 }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in fields_4[0]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                     <div @click="showFields_4" v-if="field.add_button && !isField_4_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                  </div>
+
+                    <div v-if="isField_4_visible" class="c-form_field cc-sm" v-for="(field, index) in fields_4[1]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                   <div @click="hideFields_4" v-if="field.remove_button && isField_4_visible"  class="c-button cc-icon-btn cc-lg cc-error">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                    
+                  </div>
+                </div>
+
+
+                  <div class="services-form_block mt-20">
+                  <p class="services-from_header">{{ fieldTitle_5 }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in fields_5[0]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                  </div>
+
+                    <div  class="c-form_field cc-sm" v-for="(field, index) in fields_5[1]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                  
+                     <div @click="showFields_5" v-if="field.add_button && !isField_5_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                    
+                  </div>
+
+                      <div v-if="isField_5_visible" class="c-form_field cc-sm" v-for="(field, index) in fields_5[2]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                   <div @click="hideFields_5" v-if="field.remove_button && isField_5_visible"  class="c-button cc-icon-btn cc-lg cc-error">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                    
+                  </div>
+                </div>
+
+                  <div class="services-form_block">
+                  <p class="services-from_header">{{ fieldTitle_6 }}</p>
+                  <div class="c-form_field cc-sm" v-for="(field, index) in fields_6[0]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                     <div @click="showFields_6" v-if="field.add_button && !isField_6_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                  </div>
+
+                    <div v-if="isField_6_visible" class="c-form_field cc-sm" v-for="(field, index) in fields_6[1]" :key="index">
+                    <div class="c-label_wrapper">
+                      <label class="c-label">{{ field.label }}</label>
+                    </div>
+                     <component v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
+                       :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+                         <label v-if="field.type === 'file'" class="file-label">
+                           {{ field.placeholder }}
+                        </label>
+                   <div @click="hideFields_6" v-if="field.remove_button && isField_6_visible"  class="c-button cc-icon-btn cc-lg cc-error">
+                     <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
+                    <div>{{ field.button_text }}</div>
+                  </div>
+                    
+                  </div>
+                </div>
+           
+           </div>
 
 
               </div>
-              <div class="btn-flex cc-order-popup"><input @click.prevent="handlePayment" type="submit" data-wait=""
-                  class="c-button w-button" value="Next"></div>
+              <div class="btn-flex cc-order-popup cc-align">
+              <div v-if="!isPrevVisible" @click="showPrev" class="c-button">Previous</div>
+              <div v-if="isPrevVisible" @click="showNext" class="c-button cc-left-align">Next</div>
+              <input v-if="!isPrevVisible" @click.prevent="handlePayment" type="submit" data-wait=""
+                  class="c-button cc-left-align w-button" value="Pay">
+                  </div>
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>
@@ -63,7 +241,7 @@
                   <div class="order-details">
                     <div class="order-details_inner">
                       <div>{{ selectedService.name }}</div>
-                      <div class="order-price">{{ selectedService.price }}</div>
+                      <div class="order-price">₦{{ numberEmptyState(formatNumber(selectedService?.price, "0,0")) }}</div>
                     </div>
                     <div class="order-code_image"><img src="@/public/assets/images/la_qrcode.png" loading="lazy" alt=""
                         class="c-img"></div>
@@ -112,6 +290,16 @@ import { useModal } from "~/composables/useModal"
 const transactionFee = ref<number>(10)
 const totalPrice = ref<number>(0)
 const auth = useAuth()
+const isField_2_visible = ref<boolean>(false)
+const isField_3_visible = ref<boolean>(false)
+const isField_4_visible = ref<boolean>(false)
+const isField_5_visible = ref<boolean>(false)
+const isField_6_visible = ref<boolean>(false)
+
+const isPrevVisible = ref<boolean>(true)
+const containsNextPage = ref<boolean>(false)
+
+
 
 const payment = usePay()
 
@@ -128,12 +316,19 @@ const selectedService = ref<Services>(props.service)
 totalPrice.value = selectedService?.value.price + transactionFee.value
 
 
-const fields = ref<any[]>([])
-const additionalFields = ref<any[]>([])
-const extraFields = ref<any[]>([])
-const fieldTitle = ref<string>()
-const additionalTitle = ref<string>()
-const extraTitle = ref<string>()
+const fields_1 = ref<any[]>([])
+const fields_2 = ref<any[]>([])
+const fields_3 = ref<any[]>([])
+const fields_4 = ref<any[]>([])
+const fields_5 = ref<any[]>([])
+const fields_6 = ref<any[]>([])
+const fieldTitle_1 = ref<string>()
+const fieldTitle_2 = ref<string>()
+const fieldTitle_3 = ref<string>()
+const fieldTitle_4 = ref<string>()
+const fieldTitle_5= ref<string>()
+const fieldTitle_6 = ref<string>()
+
 
 
 
@@ -142,6 +337,58 @@ const formData = ref<Record<string, any>>({
 })
 
 const createOrderState = useFetchState("/orders/create")
+
+
+const showFields_2 = () => { 
+  isField_2_visible.value = true
+}
+
+const hideFields_2 = () => { 
+  isField_2_visible.value = false
+}
+
+const showFields_3 = () => { 
+  isField_3_visible.value = true
+}
+
+const hideFields_3 = () => { 
+  isField_3_visible.value = false
+}
+
+const showFields_4 = () => { 
+  isField_4_visible.value = true
+}
+
+const hideFields_4 = () => { 
+  isField_4_visible.value = false
+}
+
+const showFields_5 = () => { 
+  isField_5_visible.value = true
+}
+
+const hideFields_5 = () => { 
+  isField_5_visible.value = false
+}
+
+const showFields_6 = () => { 
+  isField_6_visible.value = true
+}
+
+const hideFields_6 = () => { 
+  isField_6_visible.value = false
+}
+
+const showNext = () => { 
+  isPrevVisible.value = false
+  // containsNextPage.value = true
+}
+
+const showPrev = () => { 
+  isPrevVisible.value = true
+}
+
+
 
 
 
@@ -164,12 +411,18 @@ const fetchApiResponse = async () => {
   const formFields = await loadFormFields()
 
   if (formFields.hasOwnProperty(targetParty)) {
-    fields.value = formFields[targetParty].fields
-    additionalFields.value = formFields[targetParty].additional_fields
-    extraFields.value = formFields[targetParty].extra_fields
-    fieldTitle.value = formFields[targetParty].field_title
-    additionalTitle.value = formFields[targetParty].additional_title
-    extraTitle.value = formFields[targetParty].extra_field_title
+    fields_1.value = formFields[targetParty].fields_1
+    fields_2.value = formFields[targetParty].fields_2
+    fields_3.value = formFields[targetParty].fields_3
+    fields_4.value = formFields[targetParty].fields_4
+    fields_5.value = formFields[targetParty].fields_5
+    fields_6.value = formFields[targetParty].fields_6
+    fieldTitle_1.value = formFields[targetParty].field_title_1
+    fieldTitle_2.value = formFields[targetParty].field_title_2
+    fieldTitle_3.value = formFields[targetParty].field_title_3
+    fieldTitle_4.value = formFields[targetParty].field_title_4
+    fieldTitle_5.value = formFields[targetParty].field_title_5
+    fieldTitle_6.value = formFields[targetParty].field_title_6
 
 
   } else {
@@ -247,9 +500,7 @@ const generateRef = () => {
 }
 
 
-const updateFilePlaceholder = (placeholder: string) => {
-  document.documentElement.style.setProperty('--file-upload-placeholder', placeholder);
-};
+
 
 const modal = useModal('DefaultServiceModal')
 

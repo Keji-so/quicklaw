@@ -82,6 +82,8 @@ font-size: 16px;
   cursor: pointer;
 }
 
+
+
 .c-button.cc-hide,
 .c-label_wrapper.cc-hide,
 .c-input_wrapper.cc-hide {
@@ -89,9 +91,18 @@ display: none;
 }
 
 
+.btn-flex.cc-order-popup.cc-align {
+  justify-content: space-between;
+  padding-left: 6%;
+}
 
+.c-button.cc-left-align {
+  margin-left: auto;
+}
 
-
+.services-form_block.mt-20 {
+  margin-top: 20px;
+}
 .upload-icon {
   width: 40px;
   height: 40px;
@@ -115,7 +126,8 @@ height: 350px;
 }
 
 .c-form_field.cc-sm:has(input[type='file']) {
-    margin-bottom: 0;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 input[type='file'] {
@@ -128,6 +140,21 @@ input[type='file'] {
     background-size: 20px;
     flex: none;
     margin-right: 8px;
+    position: relative;
+    z-index: 2;
+    align-self: center;
+}
+
+.c-form_field.cc-sm:has(input[type='file']) {
+  position: relative;
+}
+
+input[type='file'] + label{
+margin-left: 30px;
+margin-top: 5px;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
 }
 
 input[type='file']:focus {
@@ -138,8 +165,7 @@ input[type='file']:focus {
 input[type='file']::-webkit-file-upload-button {
   visibility: hidden;
 }
-input[type='file']::before {
-  content: var(--file-upload-placeholder, 'Upload Supporting Document');
+/* input[type='file']::before {
   color: #253829;
   display: inline-block;
   padding-bottom: 10px;
@@ -149,7 +175,7 @@ input[type='file']::before {
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-}
+} */
 
 
 
@@ -159,6 +185,9 @@ input[type='file']::before {
 .c-button.cc-download {
   display: flex;
   justify-self: flex-start;
+}
+.c-button.cc-error {
+ background-color: #D11A1A;
 }
 
 /* .upload-btn, 

@@ -321,6 +321,8 @@ li {
   opacity: .8;
 }
 
+
+
 .c-button.cc-md {
   padding: 10px 14px;
   font-size: 14px;
@@ -717,8 +719,9 @@ li {
   padding-right: 50px;
 }
 
-.c-input.cc-textarea {
-  min-height: 72px;
+.c-input.cc-textarea,
+textarea {
+  min-height: 100px;
 }
 
 .c-input.cc-error {
@@ -734,7 +737,8 @@ li {
 
 .c-form_field.cc-categories{
  flex:auto;
-  width: 45%;
+  width: 47.5%;
+  max-width: 47.5%;
   margin-bottom: 43px;
 }
 
@@ -1077,6 +1081,11 @@ li {
     max-height: 0px;
 }
 
+.button-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 .services-offered {
   grid-column-gap: 25px;
   grid-row-gap: 16px;
@@ -1165,6 +1174,10 @@ li {
   flex-wrap: wrap;
     grid-column-gap: 5%;
 }
+
+  .form-flex.cc-popup {
+    align-items: flex-start;
+  }
 
 .form-flex.cc-profile {
   grid-column-gap: 18px;
@@ -1444,7 +1457,7 @@ li {
   flex-flow: column;
   height: 100%;
   display: flex;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .download-reciept {
@@ -2908,10 +2921,10 @@ li {
     padding-right: 50px;
   }
 
-  .form-flex {
+  /* .form-flex {
     grid-column-gap: 48px;
     grid-row-gap: 48px;
-  }
+  } */
 
   .service-flex {
     padding: 30px;
@@ -3563,9 +3576,14 @@ li {
     align-items: flex-start;
   }
 
+  .c-form_field.cc-categories{
+  width: 100%;
+  max-width: 100%;
+}
+
   .form-flex.cc-popup {
     flex-flow: column;
-    align-items: stretch;
+    align-items: flex-start;
   }
 
   .contact-form_inner {

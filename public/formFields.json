@@ -1,7 +1,12 @@
 {
   "cease_desist": {
-    "field_title": "ORDER DETAILS",
-    "fields": [
+    "field_title_1": "ORDER DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Name of Offender",
         "model": "offender_name",
@@ -28,14 +33,43 @@
       },
       {
         "label": "Reason for Cease & Desist",
+        "model": "reason_for_cease_desist",
         "placeholder": "State reason for cease & desist order",
         "type": "textarea"
+      },
+      {
+        "label": "Duration of Offense",
+        "model": "duration_of_offense",
+        "placeholder": "How long has this issue been pending?",
+        "type": "text"
+      },
+      {
+        "label": "Actions Already Taken (if any)",
+        "model": "actions_already_taken",
+        "placeholder": "Tell us what you have done to resolve this issue",
+        "type": "textarea"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "company_search_report": {
-    "field_title": "COMPANY DETAILS",
-    "fields": [
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Company Name",
         "model": "company_name",
@@ -54,71 +88,21 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "confidential_information_invention_assignment_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "CONFIDENTIAL INFORMATION & INVENTION ASSIGNMENT DETAILS",
-    "extra_fields": [
-      {
-        "label": "Ownership of Invention",
-        "model": "ownership_of_invention",
-        "placeholder": "State ownership of invention",
-        "type": "textarea"
-      },
-      {
-        "label": "Description of Invention",
-        "model": "description_of_invention",
-        "placeholder": "Describe invention",
-        "type": "textarea"
-      },
-      {
-        "label": "Duration of Assignment",
-        "model": "duration_of_assignment",
-        "placeholder": "Enter duration of assignment",
-        "type": "text"
-      },
-      {
-        "label": "Restrictions of Use of Invention",
-        "model": "restriction_of_use_of_invention",
-        "placeholder": "State all restrictions for the use of invention",
-        "type": "textarea"
-      },
-      {
-        "label": "Payment Terms (if applicable)",
-        "model": "terms_of_payment",
-        "placeholder": "State terms of payment",
-        "type": "textarea"
-      },
-      {
-        "label": "Relief for Breach",
-        "model": "relief_for_breach",
-        "placeholder": "State terms of breach",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "CONFIDENTIAL INFORMATION & INVENTION ASSIGNMENT DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "party_i_full_name",
@@ -137,65 +121,83 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Ownership of Invention",
+          "model": "ownership_of_invention",
+          "placeholder": "State ownership of invention",
+          "type": "textarea"
+        },
+        {
+          "label": "Description of Invention",
+          "model": "description_of_invention",
+          "placeholder": "Describe invention",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Assignment",
+          "model": "duration_of_assignment",
+          "placeholder": "Enter duration of assignment",
+          "type": "text"
+        },
+        {
+          "label": "Restrictions of Use of Invention",
+          "model": "restriction_of_use_of_invention",
+          "placeholder": "State all restrictions for the use of invention",
+          "type": "textarea"
+        },
+        {
+          "label": "Payment Terms (if applicable)",
+          "model": "terms_of_payment",
+          "placeholder": "State terms of payment",
+          "type": "textarea"
+        },
+        {
+          "label": "Relief for Breach",
+          "model": "relief_for_breach",
+          "placeholder": "State terms of breach",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "consulting_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      },
-      {
-        "label": "Designation",
-        "model": "party_ii_designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "AGREEMENT DETAILS",
-    "extra_fields": [
-      {
-        "label": "Specific Obligations of Each Party",
-        "model": "specific_obligation_of_each_party",
-        "placeholder": "State what each party is required to do",
-        "type": "textarea"
-      },
-      {
-        "label": "Duration of Consulting",
-        "model": "duration_of_consulting",
-        "placeholder": "Enter duration of consulting",
-        "type": "text"
-      },
-      {
-        "label": "Payment Terms",
-        "model": "payment_terms",
-        "placeholder": "Define terms of payment",
-        "type": "textarea"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "text"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "AGREEMENT DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "party_i_full_name",
@@ -220,11 +222,77 @@
         "placeholder": "Enter Designation",
         "type": "text"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Designation",
+          "model": "party_ii_designation",
+          "placeholder": "Enter Designation",
+          "type": "text"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Specific Obligations of Each Party",
+          "model": "specific_obligation_of_each_party",
+          "placeholder": "State what each party is required to do",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Consulting",
+          "model": "duration_of_consulting",
+          "placeholder": "Enter duration of consulting",
+          "type": "text"
+        },
+        {
+          "label": "Payment Terms",
+          "model": "payment_terms",
+          "placeholder": "Define terms of payment",
+          "type": "textarea"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "draft_an_agreement": {
-    "field_title": "AGREEMENT DETAILS",
-    "fields": [
+    "field_title_1": "AGREEMENT DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "State Your Designation",
         "model": "designation",
@@ -234,7 +302,7 @@
       {
         "label": "Nature of Agreement",
         "model": "nature_of_agreement",
-        "placeholder": "State Nature of Agreement",
+        "placeholder": "State nature of agreement",
         "type": "text"
       },
       {
@@ -249,11 +317,21 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "employee_rights_obligations": {
-    "field_title": "EMPLOYMENT DETAILS",
-    "fields": [
+    "field_title_1": "EMPLOYMENT DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Job Title",
         "model": "job_title",
@@ -284,38 +362,21 @@
         "placeholder": "Outline the terms of employment for this role",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "employment_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "employee_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "employee_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Residential Address",
-        "model": "employee_residential_address",
-        "placeholder": "Enter Residential Address",
-        "type": "text"
-      },
-      {
-        "label": "Phone Number",
-        "model": "employee_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "EMPLOYEE DETAILS",
-    "field_title": "EMPLOYER DETAILS",
-    "fields": [
+    "field_title_1": "EMPLOYER DETAILS",
+    "field_title_2": "EMPLOYEE DETAILS",
+    "field_title_3": "EMPLOYMENT DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "employer_full_name",
@@ -340,100 +401,269 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "employee_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "employee_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Residential Address",
+          "model": "employee_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "employee_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Job Role",
+          "model": "job_role",
+          "placeholder": "Enter role",
+          "type": "text"
+        },
+        {
+          "label": "Responsibilities",
+          "model": "responsibilities",
+          "placeholder": "State responsibilities of role",
+          "type": "textarea"
+        },
+        {
+          "label": "Compensation",
+          "model": "compensation",
+          "placeholder": "Enter gross salary per month",
+          "type": "text"
+        },
+        {
+          "label": "Benefits Package",
+          "model": "benefits_package",
+          "placeholder": "State benefits & enitilements of role",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Employment",
+          "model": "duration_of_employment",
+          "placeholder": "6 months",
+          "type": "text"
+        },
+        {
+          "label": "Leave Policy",
+          "model": "leave_policy",
+          "placeholder": "State all terms for leave",
+          "type": "textarea"
+        },
+        {
+          "label": "Notice Period for Termination/Resignation",
+          "model": "notice_period",
+          "placeholder": "Enter notice period",
+          "type": "text"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "founders_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Responsibilities",
-        "model": "responsibilities",
-        "placeholder": "Outline the responsibilities of this role ",
-        "type": "textarea"
-      },
-      {
-        "label": "Role",
-        "model": "role",
-        "placeholder": "Enter Role",
-        "type": "text"
-      }
+    "field_title_1": "",
+    "field_title_2": "FOUNDERS DETAILS",
+    "field_title_3": "ROLES & RESPONSIBILITIES",
+    "field_title_4": "FURTHER DETAILS",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "founder_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "founder_i_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Residential Address",
+          "model": "founder_i_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "founder_i_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Founder"
+        },
+        {}
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "founder_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "founder_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Residential Address",
+          "model": "founder_ii_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "founder_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "button_text": "Remove Founder",
+          "remove_button": "true"
+        }
+      ]
     ],
-    "additional_title": "ROLES & RESPONSIBILITIES",
-    "extra_field_title": "FURTHER DETAILS",
-    "extra_fields": [
-      {
-        "label": "Decision Making Authority",
-        "model": "decision_making_authority",
-        "placeholder": "State how you make business decisions",
-        "type": "textarea"
-      },
-      {
-        "label": "Lock-in Period",
-        "model": "lock_in_period",
-        "placeholder": "Enter investment lock-in period",
-        "type": "text"
-      },
-      {
-        "label": "Profit-Sharing Plan",
-        "model": "profit_sharing_plan",
-        "placeholder": "Outline the profit sharing plan of business ",
-        "type": "textarea"
-      },
-      {
-        "label": "Intellectual Property Ownership & Assignment",
-        "model": "intellectual_property_ownership_and_assignment",
-        "placeholder": "State terms of intellectual property ownership of business",
-        "type": "textarea"
-      },
-      {
-        "label": "Non-Compete Requirements",
-        "model": "non_compete_requirements",
-        "placeholder": "State non-compete requirements of business",
-        "type": "textarea"
-      },
-      {
-        "label": "Exit Mechanism",
-        "model": "exit_mechanism",
-        "placeholder": "Outline exit mechanism of business",
-        "type": "textarea"
-      }
+    "fields_3": [
+      [
+        {
+          "label": "Full Name",
+          "model": "role_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Responsibilities",
+          "model": "role_i_responsibilities",
+          "placeholder": "Outline the responsibilities of this role ",
+          "type": "textarea"
+        },
+        {
+          "label": "Role",
+          "model": "role_i_role",
+          "placeholder": "Enter Role",
+          "type": "text"
+        },
+        {},
+        {
+          "add_button": "true",
+          "button_text": "Add Role"
+        },
+        {}
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "role_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Responsibilities",
+          "model": "role_ii_responsibilities",
+          "placeholder": "Outline the responsibilities of this role ",
+          "type": "textarea"
+        },
+        {
+          "label": "Role",
+          "model": "role_ii_role",
+          "placeholder": "Enter Role",
+          "type": "text"
+        },
+        {},
+        {
+          "button_text": "Remove Role",
+          "remove_button": "true"
+        }
+      ]
     ],
-    "field_title": "FOUNDERS DETAILS",
-    "fields": [
-      {
-        "label": "Full Name",
-        "model": "founders_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "founders_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Residential Address",
-        "model": "founders_residential_address",
-        "placeholder": "Enter Residential Address",
-        "type": "text"
-      },
-      {
-        "label": "Phone Number",
-        "model": "founders_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ]
+    "fields_4": [
+      [
+        {
+          "label": "Decision Making Authority",
+          "model": "decision_making_authority",
+          "placeholder": "State how you make business decisions",
+          "type": "textarea"
+        },
+        {
+          "label": "Equity Ownership & Vesting",
+          "model": "equity_ownership_vesting",
+          "placeholder": "State terms of equity & vesting terms of business",
+          "type": "textarea"
+        },
+        {
+          "label": "Lock-in Period",
+          "model": "lock_in_period",
+          "placeholder": "Enter investment lock-in period",
+          "type": "text"
+        },
+        {
+          "label": "Profit-Sharing Plan",
+          "model": "profit_sharing_plan",
+          "placeholder": "Outline the profit sharing plan of business ",
+          "type": "textarea"
+        },
+        {
+          "label": "Intellectual Property Ownership & Assignment",
+          "model": "intellectual_property_ownership_and_assignment",
+          "placeholder": "State terms of intellectual property ownership of business",
+          "type": "textarea"
+        },
+        {
+          "label": "Non-Compete Requirements",
+          "model": "non_compete_requirements",
+          "placeholder": "State non-compete requirements of business",
+          "type": "textarea"
+        },
+        {
+          "label": "Exit Mechanism",
+          "model": "exit_mechanism",
+          "placeholder": "Outline exit mechanism of business",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_5": [],
+    "fields_6": []
   },
   "get_a_tax_id_number": {
-    "field_title": "COMPANY DETAILS",
-    "fields": [
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Organisation Name",
         "model": "organisation_name",
@@ -464,62 +694,21 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "incorporate_a_company": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "phone_number",
-        "placeholder": "State Phone Number",
-        "type": "tel"
-      },
-      {
-        "label": "Residential Address",
-        "model": "residential_address",
-        "placeholder": "Enter Residential Address",
-        "type": "text"
-      },
-      {
-        "label": "Date of Birth",
-        "model": "date_of_birth",
-        "placeholder": "",
-        "type": "date"
-      },
-      {
-        "label": "Occupation",
-        "model": "occupation",
-        "placeholder": "Enter Occupation",
-        "type": "text"
-      },
-      {
-        "label": "",
-        "model": "passport_photograph",
-        "placeholder": "Upload Passport Photograph",
-        "type": "file"
-      },
-      {
-        "label": "",
-        "model": "nin_document",
-        "placeholder": "Upload Passport NIN",
-        "type": "file"
-      }
-    ],
-    "additional_title": "DIRECTOR DETAILS",
-    "field_title": "COMPANY DETAILS",
-    "fields": [
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "DIRECTOR DETAILS",
+    "field_title_3": "SHARE HOLDER DETAILS",
+    "field_title_4": "SECRETARY DETAILS",
+    "field_title_5": "AUTHORISED SHARE CAPITAL & DIVISION OF SHARES",
+    "field_title_6": "ADDITIONAL DETAILS",
+    "fields_1": [
       {
         "label": "Company Name",
         "model": "company_name",
@@ -550,65 +739,340 @@
         "placeholder": "Enter Scope of Business",
         "type": "textarea"
       }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "director_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "director_i_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "director_i_phone_number",
+          "placeholder": "State Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Residential Address",
+          "model": "director_i_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Date of Birth",
+          "model": "director_i_date_of_birth",
+          "placeholder": "",
+          "type": "date"
+        },
+        {
+          "label": "Occupation",
+          "model": "director_i_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "",
+          "model": "director_i_passport_photograph",
+          "placeholder": "Upload Passport Photograph",
+          "type": "file"
+        },
+        {
+          "label": "",
+          "model": "director_i_nin_document",
+          "placeholder": "Upload NIN",
+          "type": "file"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Director"
+        }
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "director_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "director_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "director_ii_phone_number",
+          "placeholder": "State Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Residential Address",
+          "model": "residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Date of Birth",
+          "model": "director_ii_date_of_birth",
+          "placeholder": "",
+          "type": "date"
+        },
+        {
+          "label": "Occupation",
+          "model": "director_ii_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "",
+          "model": "director_ii_passport_photograph",
+          "placeholder": "Upload Passport Photograph",
+          "type": "file"
+        },
+        {
+          "label": "",
+          "model": "director_ii_nin_document",
+          "placeholder": "Upload NIN",
+          "type": "file"
+        },
+        {
+          "button_text": "Remove Director",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Full Name",
+          "model": "shareholder_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "shareholder_i_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "shareholder_i_phone_number",
+          "placeholder": "State Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Residential Address",
+          "model": "shareholder_i_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Date of Birth",
+          "model": "shareholder_i_date_of_birth",
+          "placeholder": "",
+          "type": "date"
+        },
+        {
+          "label": "Occupation",
+          "model": "shareholder_i_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "Share Capital",
+          "model": "shareholder_i_share_capital",
+          "placeholder": "Enter Share Capital",
+          "type": "text"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Shareholder"
+        }
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "shareholder_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "shareholder_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "shareholder_ii_phone_number",
+          "placeholder": "State Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Residential Address",
+          "model": "shareholder_ii_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Date of Birth",
+          "model": "shareholder_ii_date_of_birth",
+          "placeholder": "",
+          "type": "date"
+        },
+        {
+          "label": "Occupation",
+          "model": "shareholder_ii_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "Share Capital",
+          "model": "shareholder_ii_share_capital",
+          "placeholder": "Enter Share Capital",
+          "type": "text"
+        },
+        {
+          "button_text": "Remove Shareholder",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_4": [
+      [
+        {
+          "label": "Full Name",
+          "model": "secretary_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "secretary_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "secretary_phone_number",
+          "placeholder": "State Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Residential Address",
+          "model": "secretary_residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Date of Birth",
+          "model": "secretary_date_of_birth",
+          "placeholder": "",
+          "type": "date"
+        },
+        {
+          "label": "Occupation",
+          "model": "secretary_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "",
+          "model": "secretary_passport_photograph",
+          "placeholder": "Upload Passport Photograph",
+          "type": "file"
+        },
+        {
+          "label": "",
+          "model": "secretary_nin_document",
+          "placeholder": "Upload NIN",
+          "type": "file"
+        }
+      ],
+      []
+    ],
+    "fields_5": [
+      [
+        {
+          "label": "Full Name",
+          "model": "sharecapital_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Shares Owned",
+          "model": "sharecapital_i_shares_owned",
+          "placeholder": "Enter Shares Owned",
+          "type": "text"
+        }
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "sharecapital_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Shares Owned",
+          "model": "sharecapital_ii_shares_owned",
+          "placeholder": "Enter Shares Owned",
+          "type": "text"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Shareholder"
+        }
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "sharecapital_iii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Shares Owned",
+          "model": "sharecapital_iii_shares_owned",
+          "placeholder": "Enter Shares Owned",
+          "type": "text"
+        },
+        {
+          "button_text": "Remove Shareholder",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_6": [
+      [
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
     ]
   },
   "independent_contractor_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      },
-      {
-        "label": "Designation",
-        "model": "party_ii_designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "AGREEMENT DETAILS",
-    "extra_fields": [
-      {
-        "label": "Description of Service Required",
-        "model": "description_of_service_required",
-        "placeholder": "Define service required",
-        "type": "textarea"
-      },
-      {
-        "label": "Duration of Service",
-        "model": "duration_of_service",
-        "placeholder": "Enter duration of service",
-        "type": "text"
-      },
-      {
-        "label": "Specific Obligations of Each Party",
-        "model": "specific_obligations_of_each_party",
-        "placeholder": "State what each party is required to do",
-        "type": "text"
-      },
-      {
-        "label": "Payment Terms",
-        "model": "payment_terms",
-        "placeholder": "Define terms of payment",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "AGREEMENT DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "party_i_full_name",
@@ -633,11 +1097,77 @@
         "placeholder": "Enter Designation",
         "type": "text"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Designation",
+          "model": "party_ii_designation",
+          "placeholder": "Enter Designation",
+          "type": "text"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Description of Service Required",
+          "model": "description_of_service_required",
+          "placeholder": "Define service required",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Service",
+          "model": "duration_of_service",
+          "placeholder": "Enter duration of service",
+          "type": "text"
+        },
+        {
+          "label": "Specific Obligations of Each Party",
+          "model": "specific_obligations_of_each_party",
+          "placeholder": "State what each party is required to do",
+          "type": "textarea"
+        },
+        {
+          "label": "Payment Terms",
+          "model": "payment_terms",
+          "placeholder": "Define terms of payment",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "legal_opinion": {
-    "field_title": "ORDER DETAILS",
-    "fields": [
+    "field_title_1": "ORDER DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Subject Matter",
         "model": "subject_matter",
@@ -648,7 +1178,7 @@
         "label": "Specific Requirements",
         "model": "specific_requirement",
         "placeholder": "Outline specifics of subject matter",
-        "type": "text"
+        "type": "textarea"
       },
       {
         "label": "Additional Information",
@@ -656,65 +1186,21 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "letters_of_intent": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "CONTRACT DETAILS",
-    "extra_fields": [
-      {
-        "label": "Terms of Prospective Deal",
-        "model": "terms_of_prospective_deal",
-        "placeholder": "State terms of contract",
-        "type": "textarea"
-      },
-      {
-        "label": "Financing Obligations of Parties",
-        "model": "financing_obligations_of_parties",
-        "placeholder": "Define financial obligations of each party",
-        "type": "textarea"
-      },
-      {
-        "label": "Duration of Deal",
-        "model": "duration_of_deal",
-        "placeholder": "Enter duration of deal",
-        "type": "text"
-      },
-      {
-        "label": "Third Party Rights & Obligations (if any)",
-        "model": "third_party_rights_and_obligations",
-        "placeholder": "State third party rights & obligations",
-        "type": "textarea"
-      },
-      {
-        "label": "Termination Process",
-        "model": "termination_process",
-        "placeholder": "State terms for termination of contract",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "CONTRACT DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "party_i_full_name",
@@ -733,77 +1219,77 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Terms of Prospective Deal",
+          "model": "terms_of_prospective_deal",
+          "placeholder": "State terms of contract",
+          "type": "textarea"
+        },
+        {
+          "label": "Financing Obligations of Parties",
+          "model": "financing_obligations_of_parties",
+          "placeholder": "Define financial obligations of each party",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Deal",
+          "model": "duration_of_deal",
+          "placeholder": "Enter duration of deal",
+          "type": "text"
+        },
+        {
+          "label": "Third Party Rights & Obligations (if any)",
+          "model": "third_party_rights_and_obligations",
+          "placeholder": "State third party rights & obligations",
+          "type": "textarea"
+        },
+        {
+          "label": "Termination Process",
+          "model": "termination_process",
+          "placeholder": "State terms for termination of contract",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "loan_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "borrower_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "borrower_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "borrower_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "BORROWER DETAILS",
-    "extra_field_title": "LOAN DETAILS",
-    "extra_fields": [
-      {
-        "label": "Specific Conditions for Borrower to Fulfil",
-        "model": "specific_conditions_for_borrower_to_fulfil",
-        "placeholder": "State conditions to be met by borrower",
-        "type": "textarea"
-      },
-      {
-        "label": "Value of Collateral",
-        "model": "value_of_collateral",
-        "placeholder": "Enter monetary value of collateral",
-        "type": "number"
-      },
-      {
-        "label": "Duration of Loan",
-        "model": "duration_of_loan",
-        "placeholder": "Enter auration of loan",
-        "type": "text"
-      },
-      {
-        "label": "Interest Rate",
-        "model": "interest_rate",
-        "placeholder": "Enter interest rate",
-        "type": "number"
-      },
-      {
-        "label": "Repayment Structure",
-        "model": "repayment_structure",
-        "placeholder": "Outline loan repayment structure",
-        "type": "textarea"
-      },
-      {
-        "label": "Disbursement of Loan",
-        "model": "disbursement_of_loan",
-        "placeholder": "Define how loan will be disbursed",
-        "type": "textarea"
-      },
-      {
-        "label": "Default Terms",
-        "model": "default_terms",
-        "placeholder": "State loan default terms",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "LENDER DETAILS ",
-    "fields": [
+    "field_title_1": "LENDER DETAILS ",
+    "field_title_2": "BORROWER DETAILS",
+    "field_title_3": "LOAN DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "lender_full_name",
@@ -822,65 +1308,89 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "borrower_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "borrower_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "borrower_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Specific Conditions for Borrower to Fulfil",
+          "model": "specific_conditions_for_borrower_to_fulfil",
+          "placeholder": "State conditions to be met by borrower",
+          "type": "textarea"
+        },
+        {
+          "label": "Value of Collateral",
+          "model": "value_of_collateral",
+          "placeholder": "Enter monetary value of collateral",
+          "type": "number"
+        },
+        {
+          "label": "Duration of Loan",
+          "model": "duration_of_loan",
+          "placeholder": "Enter auration of loan",
+          "type": "text"
+        },
+        {
+          "label": "Interest Rate",
+          "model": "interest_rate",
+          "placeholder": "Enter interest rate",
+          "type": "number"
+        },
+        {
+          "label": "Repayment Structure",
+          "model": "repayment_structure",
+          "placeholder": "Outline loan repayment structure",
+          "type": "textarea"
+        },
+        {
+          "label": "Disbursement of Loan",
+          "model": "disbursement_of_loan",
+          "placeholder": "Define how loan will be disbursed",
+          "type": "textarea"
+        },
+        {
+          "label": "Default Terms",
+          "model": "default_terms",
+          "placeholder": "State loan default terms",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "non_compete_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "NON-COMPETE DETAILS",
-    "extra_fields": [
-      {
-        "label": "Relationship of Parties",
-        "model": "relationship_of_parties",
-        "placeholder": "State relationship of parties",
-        "type": "text"
-      },
-      {
-        "label": "Definition of Competitor",
-        "model": "definition_of_competitor",
-        "placeholder": "Define competitor for this agreement",
-        "type": "textarea"
-      },
-      {
-        "label": "Damages for Breach",
-        "model": "damages_for_breach",
-        "placeholder": "State terms for breach of non-compete",
-        "type": "textarea"
-      },
-      {
-        "label": "Duration of Non-Compete",
-        "model": "duration_of_non_compete",
-        "placeholder": "Enter duration of non-compete",
-        "type": "textarea"
-      },
-      {
-        "label": "Payment Terms (if applicable)",
-        "model": "payment_terms",
-        "placeholder": "State terms of payment",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "NON-COMPETE DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "party_i_full_name",
@@ -899,65 +1409,76 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ]
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Relationship of Parties",
+          "model": "relationship_of_parties",
+          "placeholder": "State relationship of parties",
+          "type": "textarea"
+        },
+        {
+          "label": "Definition of Competitor",
+          "model": "definition_of_competitor",
+          "placeholder": "Define competitor for this agreement",
+          "type": "textarea"
+        },
+        {
+          "label": "Damages for Breach",
+          "model": "damages_for_breach",
+          "placeholder": "State terms for breach of non-compete",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Non-Compete",
+          "model": "duration_of_non_compete",
+          "placeholder": "Enter duration of non-compete",
+          "type": "textarea"
+        },
+        {
+          "label": "Payment Terms (if applicable)",
+          "model": "payment_terms",
+          "placeholder": "State terms of payment",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "non_disclosure_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "NON-DISCLOSURE DETAILS",
-    "extra_fields": [
-      {
-        "label": "Define Confidential Information",
-        "model": "confidential_information",
-        "placeholder": "State all information within limits of confidentiality",
-        "type": "textarea"
-      },
-      {
-        "label": "Exclusions to Confidential Information",
-        "model": "exclusion_to_confidential_information",
-        "placeholder": "State all information or terms that may not be subject to confidentiality",
-        "type": "textarea"
-      },
-      {
-        "label": "Period of Confidentiality",
-        "model": "period_of_confidentiallity",
-        "placeholder": "Enter period of confidentiality",
-        "type": "text"
-      },
-      {
-        "label": "Remedies for Breach of Confidentiality",
-        "model": "remedies_for_breach_of_confidentiality",
-        "placeholder": "Define terms for breach of confidentiality",
-        "type": "textarea"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "NON-DISCLOSURE DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "party_i_full_name",
@@ -976,17 +1497,77 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Define Confidential Information",
+          "model": "confidential_information",
+          "placeholder": "State all information within limits of confidentiality",
+          "type": "textarea"
+        },
+        {
+          "label": "Exclusions to Confidential Information",
+          "model": "exclusion_to_confidential_information",
+          "placeholder": "State all information or terms that may not be subject to confidentiality",
+          "type": "textarea"
+        },
+        {
+          "label": "Period of Confidentiality",
+          "model": "period_of_confidentiallity",
+          "placeholder": "Enter period of confidentiality",
+          "type": "text"
+        },
+        {
+          "label": "Remedies for Breach of Confidentiality",
+          "model": "remedies_for_breach_of_confidentiality",
+          "placeholder": "Define terms for breach of confidentiality",
+          "type": "textarea"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "other": {
-    "field_title": "DETAILS",
-    "fields": [
-      {
-        "label": "Phone number",
-        "model": "phone_number",
-        "placeholder": "Enter phone number",
-        "type": "tel"
-      },
+    "field_title_1": "DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "full_name",
@@ -1011,11 +1592,142 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "partnership_agreement": {
+    "field_title_1": "PARTNERSHIP DETAILS",
+    "field_title_2": "ROLES & RESPONSIBILITIES",
+    "field_title_3": "OWNERSHIP FINANCIAL CONTRIBUTION DETAILS",
+    "field_title_4": "FURTHER DETAILS",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Partnership or Business Name",
+        "model": "business_name",
+        "placeholder": "Enter Business Name",
+        "type": "text"
+      },
+      {
+        "label": "Registered Business Address",
+        "model": "registered_address",
+        "placeholder": "Enter Registered Business Address",
+        "type": "text"
+      },
+      {
+        "label": "Object of Partnership or Business",
+        "model": "object_of_business",
+        "placeholder": "Enter Object of Business",
+        "type": "text"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name of Partner",
+          "model": "partner_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Role",
+          "model": "partner_i_role",
+          "placeholder": "Enter Role",
+          "type": "text"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Role"
+        },
+        {}
+      ],
+      [
+        {
+          "label": "Full Name of Partner",
+          "model": "partner_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Role",
+          "model": "partner_ii_role",
+          "placeholder": "Enter Role",
+          "type": "text"
+        },
+        {
+          "button_text": "Remove Role",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Equity Ownership & Financial Contribution",
+          "model": "equity_onwership_financil_contribution",
+          "placeholder": "State how ownership & financial contribution of business are shared",
+          "type": "textarea"
+        },
+        {
+          "label": "Profit & Loss Sharing Plan",
+          "model": "profilt_loss_sharing_plan",
+          "placeholder": "Outline profit & loss sharing plan of business",
+          "type": "textarea"
+        },
+        {
+          "label": "Salary Expectations",
+          "model": "salary_expectations",
+          "placeholder": "State salary expectations for all partners ",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [
+      [
+        {
+          "label": "Termination Process",
+          "model": "termination_process",
+          "placeholder": "State terms of partnership termination",
+          "type": "textarea"
+        },
+        {
+          "label": "Resignation Process",
+          "model": "resignation_process",
+          "placeholder": "State terms of partner resignation ",
+          "type": "textarea"
+        },
+        {
+          "label": "Dispute Resolution Mechanism",
+          "model": "dispute_resolution_mechanism",
+          "placeholder": "Outline dispute resolution mechanism of business",
+          "type": "textarea"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_5": [],
+    "fields_6": []
   },
   "pay_my_taxes": {
-    "field_title": "COMPANY DETAILS",
-    "fields": [
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Company Name",
         "model": "company_name",
@@ -1040,26 +1752,21 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "policy_advice": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      }
-    ],
-    "additional_title": "TRUSTEES DETAILS",
-    "field_title": "COMPANY DETAILS",
-    "fields": [
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Company Name",
         "model": "company_name",
@@ -1090,11 +1797,16 @@
         "placeholder": "Enter additional information",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "quote_form": {
-    "field_title": "COMPANY DETAILS",
-    "fields": [
+    "field_title_1": "COMPANY DETAILS",
+    "fields_1": [
       {
         "label": "Company Name",
         "model": "company_name",
@@ -1122,8 +1834,13 @@
     ]
   },
   "register_a_business_name": {
-    "field_title": "BUSINESS DETAILS",
-    "fields": [
+    "field_title_1": "BUSINESS DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Business Name",
         "model": "business_name",
@@ -1134,12 +1851,6 @@
         "label": "Alternate Business Name",
         "model": "alternate_business_name",
         "placeholder": "Enter Alternate Business Name",
-        "type": "text"
-      },
-      {
-        "label": "Registered Address",
-        "model": "registered_address",
-        "placeholder": "Enter Registered Organisation Address",
         "type": "text"
       },
       {
@@ -1155,7 +1866,7 @@
         "type": "text"
       },
       {
-        "label": "Email Business Email Address",
+        "label": "Business Email Address",
         "model": "business_email",
         "placeholder": "Enter Business Email Address",
         "type": "email"
@@ -1166,11 +1877,21 @@
         "placeholder": "Enter Business Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "register_a_copyright": {
-    "field_title": "COPYRIGHT DETAILS",
-    "fields": [
+    "field_title_1": "COPYRIGHT DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name of Copyright Owner",
         "model": "full_name",
@@ -1200,12 +1921,28 @@
         "model": "brief_description_of_material",
         "placeholder": "Describe the material you would like to copyright",
         "type": "textarea"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Anything else we should know to help this process",
+        "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "register_a_trademark": {
-    "field_title": "TRADEMARK DETAILS",
-    "fields": [
+    "field_title_1": "TRADEMARK DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name of Trademark Owner",
         "model": "full_name",
@@ -1239,29 +1976,30 @@
       {
         "label": "",
         "model": "supporting_document",
-        "placeholder": "Upload File",
+        "placeholder": "Upload Supporting Evidence",
         "type": "file"
-      }
-    ]
-  },
-  "register_an_ngo": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
       },
       {
-        "label": "Email Address",
-        "model": "email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Anything else we should know to help this process",
+        "type": "textarea"
       }
     ],
-    "additional_title": "TRUSTEES DETAILS",
-    "field_title": "NGO DETAILS",
-    "fields": [
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "register_an_ngo": {
+    "field_title_1": "NGO DETAILS",
+    "field_title_2": "TRUSTEES DETAILS",
+    "field_title_3": "SECRETARY DETAILS",
+    "field_title_4": "ADDITIONAL DETAILS",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Organisation Name",
         "model": "organisation_name",
@@ -1275,374 +2013,107 @@
         "type": "text"
       },
       {
-        "label": "Scope of Business",
-        "model": "scope_of_business",
-        "placeholder": "Enter Scope of Business",
+        "label": "Aims & Objectives",
+        "model": "aims_objectives",
+        "placeholder": "Enter Aims & Objectives",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "trustee_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "trustee_i_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "trustee_i_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Trustee"
+        }
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "trustee_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "trustee_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "trustee_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "button_text": "Remove Trustee",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Full Name",
+          "model": "secretary_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "secretary_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "secretary_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_4": [
+      [
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_5": [],
+    "fields_6": []
   },
   "resignation_letter": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "employee_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Residential Address",
-        "model": "employee_residential_addresse",
-        "placeholder": "Enter Residential Address",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "employee_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "employee_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "EMPLOYEE PROFILE",
-    "field_title": "EMPLOYER PROFILE",
-    "fields": [
-      {
-        "label": "Full Name",
-        "model": "employer_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Office Address",
-        "placeholder": "Enter Office Address",
-        "type": "employer_office_address"
-      },
-      {
-        "label": "Email Address",
-        "model": "employer_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "employer_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ]
-  },
-  "review_an_agreement": {
-    "field_title": "AGREEMENT DETAILS",
-    "fields": [
-      {
-        "label": "State Your Designation",
-        "model": "designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      },
-      {
-        "label": "Nature of Agreement",
-        "model": "nature_of_agreement",
-        "placeholder": "State Nature of Agreement",
-        "type": "text"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      },
-      {
-        "label": "",
-        "model": "supporting_document",
-        "placeholder": "Upload Document",
-        "type": "file"
-      }
-    ]
-  },
-  "service_level_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      },
-      {
-        "label": "Designation",
-        "model": "party_ii_designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "AGREEMENT DETAILS",
-    "extra_fields": [
-      {
-        "label": "Description of Service Required",
-        "model": "description_of_service",
-        "placeholder": "Define service required",
-        "type": "textarea"
-      },
-      {
-        "label": "Duration of Service",
-        "model": "duration_of_service",
-        "placeholder": "Enter duration of service",
-        "type": "text"
-      },
-      {
-        "label": "Specific Obligations of Each Party",
-        "model": "specific_obligations_of_each_party",
-        "placeholder": "State what each party is required to do",
-        "type": "text"
-      },
-      {
-        "label": "Compensation for Service",
-        "model": "compensation_for_service",
-        "placeholder": "State third party rights & obligations",
-        "type": "textarea"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
-      {
-        "label": "Full Name",
-        "model": "party_i_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_i_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_i_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      },
-      {
-        "label": "Designation",
-        "model": "party_i_designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      }
-    ]
-  },
-  "share_purchase_agreement": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "party_ii_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_ii_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_ii_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "PARTY DETAILS II",
-    "extra_field_title": "SHARE PURCHASE DETAILS",
-    "extra_fields": [
-      {
-        "label": "Monetary Value for Shares",
-        "model": "monetary_value_for_shares",
-        "placeholder": "Enter total price of shares",
-        "type": "text"
-      },
-      {
-        "label": "Consideration for Shares",
-        "model": "consideration_for_shares",
-        "placeholder": "State terms of consideration for shares",
-        "type": "textarea"
-      },
-      {
-        "label": "Representation & Warranties",
-        "model": "representation_and_warranties",
-        "placeholder": "State representation & warranties for share purchase",
-        "type": "textarea"
-      },
-      {
-        "label": "Indemnification Terms",
-        "model": "idemnification_terms",
-        "placeholder": "State terms of indemnification ",
-        "type": "textarea"
-      },
-      {
-        "label": "Termination Process",
-        "model": "termination_process",
-        "placeholder": "State terms for termination of contract",
-        "type": "textarea"
-      }
-    ],
-    "field_title": "PARTY DETAILS I",
-    "fields": [
-      {
-        "label": "Full Name",
-        "model": "party_i_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "party_i_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "party_i_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ]
-  },
-  "startup_advisory": {
-    "field_title": "COMPANY DETAILS",
-    "fields": [
-      {
-        "label": "Company Name",
-        "model": "company_name",
-        "placeholder": "Company Name",
-        "type": "text"
-      },
-      {
-        "label": "CAC Number",
-        "model": "cac_number",
-        "placeholder": "Enter CAC Number",
-        "type": "number"
-      },
-      {
-        "label": "Object of Business",
-        "model": "object_of_business",
-        "placeholder": "Enter Object of Business",
-        "type": "text"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      }
-    ]
-  },
-  "statutory_filings": {
-    "field_title": "COMPANY DETAILS",
-    "fields": [
-      {
-        "label": "Company Name",
-        "model": "company_name",
-        "placeholder": "Company Name",
-        "type": "text"
-      },
-      {
-        "label": "CAC Number",
-        "model": "cac_number",
-        "placeholder": "Enter CAC Number",
-        "type": "number"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      }
-    ]
-  },
-  "terminate_an_agreement": {
-    "field_title": "AGREEMENT DETAILS",
-    "fields": [
-      {
-        "label": "State Your Designation",
-        "model": "designation",
-        "placeholder": "Enter Designation",
-        "type": "text"
-      },
-      {
-        "label": "Reason for Termination",
-        "model": "reason_for_termination",
-        "placeholder": "State reason for termination",
-        "type": "text"
-      },
-      {
-        "label": "Additional Information",
-        "model": "additional_info",
-        "placeholder": "Enter additional information",
-        "type": "textarea"
-      },
-      {
-        "label": "",
-        "model": "supporting_document",
-        "placeholder": "Upload Document",
-        "type": "file"
-      }
-    ]
-  },
-  "termination_of_employment": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "employee_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Residential Address",
-        "model": "employee_address",
-        "placeholder": "Enter Residential Address",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "employee_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Phone Number",
-        "model": "employee_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "EMPLOYEE PROFILE",
-    "field_title": "EMPLOYER PROFILE",
-    "fields": [
+    "field_title_1": "EMPLOYER PROFILE",
+    "field_title_2": "EMPLOYEE PROFILE",
+    "field_title_3": "TERMS OF RESIGNATION",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "employer_full_name",
@@ -1667,11 +2138,924 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "employee_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Residential Address",
+          "model": "employee_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "employee_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "employee_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Reason for Resignation",
+          "model": "reason_for_resignation",
+          "placeholder": "State reason for resignation",
+          "type": "textarea"
+        },
+        {
+          "label": "Required Notice Period",
+          "model": "required_notice_period",
+          "placeholder": "State required notice period for resignation",
+          "type": "text"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "review_an_agreement": {
+    "field_title_1": "AGREEMENT DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "State Your Designation",
+        "model": "designation",
+        "placeholder": "Enter Designation",
+        "type": "text"
+      },
+      {
+        "label": "Nature of Agreement",
+        "model": "nature_of_agreement",
+        "placeholder": "State nature of agreement",
+        "type": "text"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
+      },
+      {
+        "label": "",
+        "model": "supporting_document",
+        "placeholder": "Upload Document",
+        "type": "file"
+      }
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "sales_agreement": {
+    "field_title_1": "SELLER DETAILS",
+    "field_title_2": "CUSTOMER DETAILS",
+    "field_title_3": "ITEM DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Full Name",
+        "model": "seller_full_name",
+        "placeholder": "Enter Full Name",
+        "type": "text"
+      },
+      {
+        "label": "Email Address",
+        "model": "seller_email",
+        "placeholder": "Enter Email Address",
+        "type": "email"
+      },
+      {
+        "label": "Phone Number",
+        "model": "seller_phone_number",
+        "placeholder": "Enter Phone Number",
+        "type": "tel"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "customer_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "customer_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "customer_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Description of Item",
+          "model": "description_of_item",
+          "placeholder": "Describe the item for sale",
+          "type": "textarea"
+        },
+        {
+          "label": "Purchase Price",
+          "model": "purchase_price",
+          "placeholder": "Enter Price",
+          "type": "text"
+        },
+        {
+          "label": "Payment Details",
+          "model": "payment_details",
+          "placeholder": "State method of payment ",
+          "type": "textarea"
+        },
+        {
+          "label": "Inspection Period",
+          "model": "inspection_period",
+          "placeholder": "Enter inspection period",
+          "type": "text"
+        },
+        {
+          "label": "Warranty & Guarantee",
+          "model": "warranty_guarantee",
+          "placeholder": "State warranty & gaurantee of item",
+          "type": "textarea"
+        },
+        {
+          "label": "Delivery Details",
+          "model": "delivery_details",
+          "placeholder": "State method & destination of item delivery",
+          "type": "textarea"
+        },
+        {
+          "label": "Contingency Information",
+          "model": "contingency_information",
+          "placeholder": "State all additional information for this item & sale ",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "service_level_agreement": {
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "AGREEMENT DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Full Name",
+        "model": "party_i_full_name",
+        "placeholder": "Enter Full Name",
+        "type": "text"
+      },
+      {
+        "label": "Email Address",
+        "model": "party_i_email",
+        "placeholder": "Enter Email Address",
+        "type": "email"
+      },
+      {
+        "label": "Phone Number",
+        "model": "party_i_phone_number",
+        "placeholder": "Enter Phone Number",
+        "type": "tel"
+      },
+      {
+        "label": "Designation",
+        "model": "party_i_designation",
+        "placeholder": "Enter Designation",
+        "type": "text"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "label": "Designation",
+          "model": "party_ii_designation",
+          "placeholder": "Enter Designation",
+          "type": "text"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Description of Service Required",
+          "model": "description_of_service",
+          "placeholder": "Define service required",
+          "type": "textarea"
+        },
+        {
+          "label": "Duration of Service",
+          "model": "duration_of_service",
+          "placeholder": "Enter duration of service",
+          "type": "text"
+        },
+        {
+          "label": "Specific Obligations of Each Party",
+          "model": "specific_obligations_of_each_party",
+          "placeholder": "State what each party is required to do",
+          "type": "text"
+        },
+        {
+          "label": "Compensation for Service",
+          "model": "compensation_for_service",
+          "placeholder": "State third party rights & obligations",
+          "type": "textarea"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "share_purchase_agreement": {
+    "field_title_1": "PARTY DETAILS I",
+    "field_title_2": "PARTY DETAILS II",
+    "field_title_3": "SHARE PURCHASE DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Full Name",
+        "model": "party_i_full_name",
+        "placeholder": "Enter Full Name",
+        "type": "text"
+      },
+      {
+        "label": "Email Address",
+        "model": "party_i_email",
+        "placeholder": "Enter Email Address",
+        "type": "email"
+      },
+      {
+        "label": "Phone Number",
+        "model": "party_i_phone_number",
+        "placeholder": "Enter Phone Number",
+        "type": "tel"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "party_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "party_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "party_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Monetary Value for Shares",
+          "model": "monetary_value_for_shares",
+          "placeholder": "Enter total price of shares",
+          "type": "text"
+        },
+        {
+          "label": "Consideration for Shares",
+          "model": "consideration_for_shares",
+          "placeholder": "State terms of consideration for shares",
+          "type": "textarea"
+        },
+        {
+          "label": "Representation & Warranties",
+          "model": "representation_and_warranties",
+          "placeholder": "State representation & warranties for share purchase",
+          "type": "textarea"
+        },
+        {
+          "label": "Indemnification Terms",
+          "model": "idemnification_terms",
+          "placeholder": "State terms of indemnification ",
+          "type": "textarea"
+        },
+        {
+          "label": "Termination Process",
+          "model": "termination_process",
+          "placeholder": "State terms for termination of contract",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "shareholders_agreement_i": {
+    "field_title_1": "SHAREHOLDER DETAILS",
+    "field_title_2": "COMPANY DETAILS",
+    "field_title_3": "KEY ROLES & RESPONSIBILITIES",
+    "field_title_4": "DIRECTOR DETAILS",
+    "field_title_5": "FURTHER DETAILS",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Full Name",
+        "model": "shareholder_full_name",
+        "placeholder": "Enter Full Name",
+        "type": "text"
+      },
+      {
+        "label": "Email Address",
+        "model": "shareholder_email",
+        "placeholder": "Enter Email Address",
+        "type": "email"
+      },
+      {
+        "label": "Shareholding",
+        "model": "share_holding",
+        "placeholder": "Enter Shares",
+        "type": "text"
+      },
+      {
+        "label": "Phone Number",
+        "model": "shareholder_phone_number",
+        "placeholder": "Enter Phone Number",
+        "type": "tel"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Company Name",
+          "model": "company_name",
+          "placeholder": "Enter Company Name",
+          "type": "text"
+        },
+        {
+          "label": "CAC Number",
+          "model": "cac_number",
+          "placeholder": "Enter CAC Number",
+          "type": "number"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Full Name",
+          "model": "role_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Responsibilities",
+          "model": "role_i_responsibilities",
+          "placeholder": "State responsibilities of role",
+          "type": "textarea"
+        },
+        {
+          "label": "Role",
+          "model": "role_i_role",
+          "placeholder": "Role",
+          "type": "text"
+        },
+        {},
+        {
+          "add_button": "true",
+          "button_text": "Add Role"
+        },
+        {}
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "role_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Responsibilities",
+          "model": "role_ii_responsibilities",
+          "placeholder": "State responsibilities of role",
+          "type": "textarea"
+        },
+        {
+          "label": "Role",
+          "model": "role_ii_role",
+          "placeholder": "Role",
+          "type": "text"
+        },
+        {},
+        {
+          "button_text": "Remove Role",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_4": [
+      [
+        {
+          "label": "Full Name",
+          "model": "director_i_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "director_i_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Occupation",
+          "model": "director_i_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "director_i_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "add_button": "true",
+          "button_text": "Add Director"
+        },
+        {}
+      ],
+      [
+        {
+          "label": "Full Name",
+          "model": "director_ii_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "director_ii_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Occupation",
+          "model": "director_ii_occupation",
+          "placeholder": "Enter Occupation",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "director_ii_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        },
+        {
+          "button_text": "Remove Director",
+          "remove_button": "true"
+        }
+      ]
+    ],
+    "fields_5": [
+      [
+        {
+          "label": "Management & Control of Business",
+          "model": "management_control_of_business",
+          "placeholder": "State how business is managed & controlled",
+          "type": "textarea"
+        },
+        {
+          "label": "Non-Compete Policy",
+          "model": "non_compete_policy",
+          "placeholder": "State non-compete terms of business",
+          "type": "textarea"
+        },
+        {
+          "label": "Payment of Dividends",
+          "model": "terms_of_dividends_payment",
+          "placeholder": "State terms of dividend payment",
+          "type": "textarea"
+        },
+        {
+          "label": "Dispute Resolution",
+          "model": "dispute_resolution_mechanism",
+          "placeholder": "Outline dispute resolution mechanism of business",
+          "type": "textarea"
+        }
+      ],
+      [],
+      []
+    ],
+    "fields_6": []
+  },
+  "shareholders_agreement_ii": {
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "SHAREHOLDER DETAILS",
+    "field_title_3": "FURTHER DETAILS",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Company Name",
+        "model": "company_name",
+        "placeholder": "Enter Company Name",
+        "type": "text"
+      },
+      {
+        "label": "Company Address",
+        "model": "company_address",
+        "placeholder": "Enter Registered Company Address",
+        "type": "text"
+      },
+      {
+        "label": "Object of Business",
+        "model": "object_of_business",
+        "placeholder": "State object of business",
+        "type": "text"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "shareholder_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "shareholder_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Residential Address",
+          "model": "residential_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "shareholder_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Purchase Price of Shares",
+          "model": "totlat_price_of_shares",
+          "placeholder": "Enter total price of shares",
+          "type": "text"
+        },
+        {
+          "label": "Payment Terms",
+          "model": "terms_of_payment",
+          "placeholder": "State terms of payment",
+          "type": "textarea"
+        },
+        {
+          "label": "Obligation to Shareholders",
+          "model": "oblogation_to_shareholders",
+          "placeholder": "State company obligations to shareholders",
+          "type": "textarea"
+        },
+        {
+          "label": "Shareholder Rights & Responsibilities",
+          "model": "rights_responsibilities_of_shareholders",
+          "placeholder": "State rights & responsibilities of shareholders",
+          "type": "textarea"
+        },
+        {
+          "label": "Distribution of Dividends",
+          "model": "distribution_of_dividends",
+          "placeholder": "State how dividends are distributed",
+          "type": "textarea"
+        },
+        {
+          "label": "Process of Transfer of Shares",
+          "model": "process_of_share_transfer",
+          "placeholder": "Outline process of transferring shares",
+          "type": "textarea"
+        },
+        {
+          "label": "Capital & Financial Contributions of Shareholders",
+          "model": "capital_financial_contributions",
+          "placeholder": "State capital & financial contributions of shareholder",
+          "type": "textarea"
+        },
+        {
+          "label": "Dissolution of Shareholding",
+          "model": "process_of_dissolution",
+          "placeholder": "Outline process of shareholding dissolution",
+          "type": "textarea"
+        },
+        {
+          "label": "Dispute Resolution Mechanism",
+          "model": "dispute_resolution_mechanism",
+          "placeholder": "Outline dispute resolution mechanism",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "startup_advisory": {
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Company Name",
+        "model": "company_name",
+        "placeholder": "Company Name",
+        "type": "text"
+      },
+      {
+        "label": "Object of Business",
+        "model": "object_of_business",
+        "placeholder": "Enter Object of Business",
+        "type": "text"
+      },
+      {
+        "label": "CAC Number",
+        "model": "cac_number",
+        "placeholder": "Enter CAC Number",
+        "type": "number"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
+      }
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "statutory_filings": {
+    "field_title_1": "COMPANY DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Company Name",
+        "model": "company_name",
+        "placeholder": "Company Name",
+        "type": "text"
+      },
+      {
+        "label": "CAC Number",
+        "model": "cac_number",
+        "placeholder": "Enter CAC Number",
+        "type": "number"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
+      }
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "terminate_an_agreement": {
+    "field_title_1": "AGREEMENT DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Nature of Agreement",
+        "model": "nature_of_agreement",
+        "placeholder": "State nature of agreement",
+        "type": "text"
+      },
+      {
+        "label": "Reason for Termination",
+        "model": "reason_for_termination",
+        "placeholder": "State reason for termination",
+        "type": "textarea"
+      },
+      {
+        "label": "Additional Information",
+        "model": "additional_info",
+        "placeholder": "Enter additional information",
+        "type": "textarea"
+      },
+      {
+        "label": "",
+        "model": "supporting_document",
+        "placeholder": "Upload Document",
+        "type": "file"
+      }
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
+  },
+  "termination_of_employment": {
+    "field_title_1": "EMPLOYER PROFILE",
+    "field_title_2": "EMPLOYEE PROFILE",
+    "field_title_3": "TERMS OF TERMINATION",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
+      {
+        "label": "Full Name",
+        "model": "employer_full_name",
+        "placeholder": "Enter Full Name",
+        "type": "text"
+      },
+      {
+        "label": "Office Address",
+        "model": "employer_office_address",
+        "placeholder": "Enter Office Address",
+        "type": "text"
+      },
+      {
+        "label": "Email Address",
+        "model": "employer_email",
+        "placeholder": "Enter Email Address",
+        "type": "email"
+      },
+      {
+        "label": "Phone Number",
+        "model": "employer_phone_number",
+        "placeholder": "Enter Phone Number",
+        "type": "tel"
+      }
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "employee_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Residential Address",
+          "model": "employee_address",
+          "placeholder": "Enter Residential Address",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "employee_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Phone Number",
+          "model": "employee_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Reason for Termination",
+          "model": "reason_for_termination",
+          "placeholder": "State reason for employment termination",
+          "type": "textarea"
+        },
+        {
+          "label": "Required Notice Period",
+          "model": "required_notice_period",
+          "placeholder": "State required notice period for termination",
+          "type": "text"
+        },
+        {
+          "label": "Due Compensation (if any)",
+          "model": "due_compensation",
+          "placeholder": "Enter amount due",
+          "type": "text"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Enter additional information",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "terms_conditions": {
-    "field_title": "ORDER DETAILS",
-    "fields": [
+    "field_title_1": "ORDER DETAILS",
+    "field_title_2": "",
+    "field_title_3": "",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Scope of Services Provided",
         "model": "scope_of_services_provided",
@@ -1708,38 +3092,21 @@
         "placeholder": "State terms of privacy for service engagement ",
         "type": "textarea"
       }
-    ]
+    ],
+    "fields_2": [],
+    "fields_3": [],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   },
   "write_a_letter": {
-    "additional_fields": [
-      {
-        "label": "Full Name",
-        "model": "recipient_full_name",
-        "placeholder": "Enter Full Name",
-        "type": "text"
-      },
-      {
-        "label": "Email Address",
-        "model": "recipient_email",
-        "placeholder": "Enter Email Address",
-        "type": "email"
-      },
-      {
-        "label": "Residential/Office Address",
-        "model": "recipient_address",
-        "placeholder": "Enter Preferred Address",
-        "type": "text"
-      },
-      {
-        "label": "Phone Number",
-        "model": "recipient_phone_number",
-        "placeholder": "Enter Phone Number",
-        "type": "tel"
-      }
-    ],
-    "additional_title": "RECIPIENT DETAILS",
-    "field_title": "SENDER DETAILS",
-    "fields": [
+    "field_title_1": "SENDER DETAILS",
+    "field_title_2": "RECIPIENT DETAILS",
+    "field_title_3": "LETTER CONTENT",
+    "field_title_4": "",
+    "field_title_5": "",
+    "field_title_6": "",
+    "fields_1": [
       {
         "label": "Full Name",
         "model": "sender_full_name",
@@ -1764,6 +3131,55 @@
         "placeholder": "Enter Phone Number",
         "type": "tel"
       }
-    ]
+    ],
+    "fields_2": [
+      [
+        {
+          "label": "Full Name",
+          "model": "recipient_full_name",
+          "placeholder": "Enter Full Name",
+          "type": "text"
+        },
+        {
+          "label": "Email Address",
+          "model": "recipient_email",
+          "placeholder": "Enter Email Address",
+          "type": "email"
+        },
+        {
+          "label": "Residential/Office Address",
+          "model": "recipient_address",
+          "placeholder": "Enter Preferred Address",
+          "type": "text"
+        },
+        {
+          "label": "Phone Number",
+          "model": "recipient_phone_number",
+          "placeholder": "Enter Phone Number",
+          "type": "tel"
+        }
+      ],
+      []
+    ],
+    "fields_3": [
+      [
+        {
+          "label": "Subject of Letter",
+          "model": "subject_of_letter",
+          "placeholder": "Enter letter heading",
+          "type": "text"
+        },
+        {
+          "label": "Additional Information",
+          "model": "additional_info",
+          "placeholder": "Outline letter content",
+          "type": "textarea"
+        }
+      ],
+      []
+    ],
+    "fields_4": [],
+    "fields_5": [],
+    "fields_6": []
   }
 }
