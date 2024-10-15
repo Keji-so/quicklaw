@@ -29,6 +29,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                     </div>
                   </div>
 
@@ -43,9 +46,13 @@
                       </div>
                        <component  v-if="field.type" :is="field.type === 'textarea' ? 'textarea' : 'input'" :placeholder="field.placeholder"
                        :value="formData[field.model]" class="c-input w-input" :type="field.type" @input="updateFormData(field.model, $event)" />
+
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                          <div @click="showFields_2" v-if="field.add_button && !isField_2_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
                     <div>{{ field.button_text }}</div>
@@ -61,6 +68,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                    <div @click="hideFields_2" v-if="field.remove_button && isField_2_visible"  class="c-button cc-icon-btn cc-lg cc-error">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
                     <div>{{ field.button_text }}</div>
@@ -83,6 +93,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                          <div @click="showFields_3" v-if="field.add_button && !isField_3_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
                     <div>{{ field.button_text }}</div>
@@ -98,6 +111,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                    <div @click="hideFields_3" v-if="field.remove_button && isField_3_visible"  class="c-button cc-icon-btn cc-lg cc-error">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
                     <div>{{ field.button_text }}</div>
@@ -120,6 +136,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                          <div @click="showFields_4" v-if="field.add_button && !isField_4_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
                     <div>{{ field.button_text }}</div>
@@ -135,6 +154,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                    <div @click="hideFields_4" v-if="field.remove_button && isField_4_visible"  class="c-button cc-icon-btn cc-lg cc-error">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
                     <div>{{ field.button_text }}</div>
@@ -157,6 +179,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                   </div>
 
                     <div  class="c-form_field cc-categories" v-for="(field, index) in fields_5[1]" :key="index">
@@ -168,7 +193,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
-                  
+                   <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                      <div @click="showFields_5" v-if="field.add_button && !isField_5_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
                     <div>{{ field.button_text }}</div>
@@ -185,6 +212,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                    <div @click="hideFields_5" v-if="field.remove_button && isField_5_visible"  class="c-button cc-icon-btn cc-lg cc-error">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
                     <div>{{ field.button_text }}</div>
@@ -207,6 +237,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                      <div @click="showFields_6" v-if="field.add_button && !isField_6_visible" to="/download-template" class="c-button cc-icon-btn cc-lg w-inline-block">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/plus-white.svg"></div>
                     <div>{{ field.button_text }}</div>
@@ -222,6 +255,9 @@
                          <label v-if="field.type === 'file'" class="file-label">
                            {{ field.placeholder }}
                         </label>
+                         <div v-if="v$[field.model].$errors  && field.type != 'file' && !field.button_text" v-for="(error, index) in v$[field.model].$errors" :key="index">
+                              <div class="c-help cc-error">{{ error.$message }}</div>
+                          </div>
                    <div @click="hideFields_6" v-if="field.remove_button && isField_6_visible"  class="c-button cc-icon-btn cc-lg cc-error">
                      <div class="button-icon"><img alt="" class="c-img" loading="lazy" src="@/public/assets/images/error.png"></div>
                     <div>{{ field.button_text }}</div>
@@ -249,6 +285,8 @@
 </template>
 
 <script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength, maxLength, helpers  } from '@vuelidate/validators'
 import { defineProps } from 'vue'
 import type { Services } from "~/types/categories"
 import { useModal } from "~/composables/useModal";
@@ -278,6 +316,7 @@ const fields_3 = ref<any[]>([])
 const fields_4 = ref<any[]>([])
 const fields_5 = ref<any[]>([])
 const fields_6 = ref<any[]>([])
+const currentServiceFields = ref<any[]>([])
 const fieldTitle_1 = ref<string>()
 const fieldTitle_2 = ref<string>()
 const fieldTitle_3 = ref<string>()
@@ -345,13 +384,16 @@ const loadFormFields = async () => {
   }
 }
 
+// let formFields;
+
 const fetchApiResponse = async () => {
   const targetParty = lodashSnakeCase(selectedService.value.name)
   
   const formFields = await loadFormFields()
+  
 
   if (formFields.hasOwnProperty(targetParty)) {
-     fields_1.value = formFields[targetParty].fields_1
+    fields_1.value = formFields[targetParty].fields_1
     fields_2.value = formFields[targetParty].fields_2
     fields_3.value = formFields[targetParty].fields_3
     fields_4.value = formFields[targetParty].fields_4
@@ -364,6 +406,21 @@ const fetchApiResponse = async () => {
     fieldTitle_5.value = formFields[targetParty].field_title_5
     fieldTitle_6.value = formFields[targetParty].field_title_6
 
+      currentServiceFields.value = [
+  ...fields_1.value,
+  ...(fields_2.value[0] || []),
+  ...(fields_2.value[1] || []),
+  ...(fields_3.value[0] || []),
+  ...(fields_3.value[1] || []),
+  ...(fields_4.value[0] || []),
+  ...(fields_4.value[1] || []),
+  ...(fields_5.value[0] || []),
+  ...(fields_5.value[1] || []),
+  ...(fields_5.value[2] || []),
+  ...(fields_6.value[0] || []),
+  ...(fields_6.value[1] || [])
+];
+
   } else {
     error.value = 'Invalid target party.'
   }
@@ -373,18 +430,81 @@ const fetchApiResponse = async () => {
 const formData = ref<Record<string, any>>({
 });
 
+
+
+
+const phoneRegex = helpers.regex(/^(070|080|090|081)[0-9]{8}$/)
+ 
+
+const getValidationRules = (field) => {
+  const rules = [ helpers.withMessage('This field is required', required)]; 
+
+  switch (field.type) {
+    
+    case 'text':
+      if (field.minLength) {
+        rules.push(
+          helpers.withMessage('This field should have a minimum length of 10 characters', minLength(10))
+        );
+      }
+      if (field.maxLength) {
+        rules.push(
+          helpers.withMessage('This field should have a maximum length of 300 characters', maxLength(300),)
+        );
+      }
+      break;
+      case 'email':
+      rules.push(
+         helpers.withMessage('Please enter a valid email address', email)
+      );
+      break;
+      case 'tel':
+      rules.push(
+        helpers.withMessage('Please enter a valid phone number', phoneRegex),
+      );
+      break;
+      case 'textarea':
+      if (field.minLength) {
+        rules.push(
+          helpers.withMessage('This field should have a minimum length of 10 characters', minLength(10))
+        );
+      }
+      break;
+  }
+
+  return rules;
+  
+};
+
+const v$ = useVuelidate(
+  computed(() => {
+    const rules = {};
+    currentServiceFields.value.forEach(field => {
+      rules[field.model] = getValidationRules(field);
+    });
+    return rules;
+    
+  }),
+  formData,
+  { $autoDirty: true },
+);
+
 const createOrderState = useFetchState("/orders/create");
 
 const auth = useAuth();
 
 
 const submitForm = async () => {
-  if (auth.value?.isLoggedIn) {
+  v$.value.$validate();
+ if (!v$.value.$error) {
+   if (auth.value?.isLoggedIn) {
     createOrder()
   } else {
     modal.show("SignInModal")
    modal.hide('QuoteServiceModal')
   }
+  } 
+
 };
 
 
@@ -394,7 +514,6 @@ const updateFormData = (model, event) => {
       } else {
         formData.value[model] = event.target.value; 
       }
-
     };
 
 

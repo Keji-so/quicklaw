@@ -9,12 +9,16 @@
     "fields_1": [
       {
         "label": "Name of Offender",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "offender_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Offender’s Residential Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "offender_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
@@ -33,24 +37,29 @@
       },
       {
         "label": "Reason for Cease & Desist",
+        "minLength": 10,
         "model": "reason_for_cease_desist",
         "placeholder": "State reason for cease & desist order",
         "type": "textarea"
       },
       {
         "label": "Duration of Offense",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "duration_of_offense",
         "placeholder": "How long has this issue been pending?",
         "type": "text"
       },
       {
         "label": "Actions Already Taken (if any)",
+        "minLength": 10,
         "model": "actions_already_taken",
         "placeholder": "Tell us what you have done to resolve this issue",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -72,6 +81,8 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
@@ -80,10 +91,11 @@
         "label": "CAC Number",
         "model": "cac_number",
         "placeholder": "Enter CAC Number",
-        "type": "number"
+        "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -105,6 +117,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -126,6 +140,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -149,36 +165,43 @@
       [
         {
           "label": "Ownership of Invention",
+          "minLength": 10,
           "model": "ownership_of_invention",
           "placeholder": "State ownership of invention",
           "type": "textarea"
         },
         {
           "label": "Description of Invention",
+          "minLength": 10,
           "model": "description_of_invention",
           "placeholder": "Describe invention",
           "type": "textarea"
         },
         {
           "label": "Duration of Assignment",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_assignment",
           "placeholder": "Enter duration of assignment",
           "type": "text"
         },
         {
           "label": "Restrictions of Use of Invention",
+          "minLength": 10,
           "model": "restriction_of_use_of_invention",
           "placeholder": "State all restrictions for the use of invention",
           "type": "textarea"
         },
         {
           "label": "Payment Terms (if applicable)",
+          "minLength": 10,
           "model": "terms_of_payment",
           "placeholder": "State terms of payment",
           "type": "textarea"
         },
         {
           "label": "Relief for Breach",
+          "minLength": 10,
           "model": "relief_for_breach",
           "placeholder": "State terms of breach",
           "type": "textarea"
@@ -200,6 +223,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -218,6 +243,8 @@
       },
       {
         "label": "Designation",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_designation",
         "placeholder": "Enter Designation",
         "type": "text"
@@ -227,6 +254,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -245,6 +274,8 @@
         },
         {
           "label": "Designation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_designation",
           "placeholder": "Enter Designation",
           "type": "text"
@@ -256,24 +287,29 @@
       [
         {
           "label": "Specific Obligations of Each Party",
+          "minLength": 10,
           "model": "specific_obligation_of_each_party",
           "placeholder": "State what each party is required to do",
           "type": "textarea"
         },
         {
           "label": "Duration of Consulting",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_consulting",
           "placeholder": "Enter duration of consulting",
           "type": "text"
         },
         {
           "label": "Payment Terms",
+          "minLength": 10,
           "model": "payment_terms",
           "placeholder": "Define terms of payment",
           "type": "textarea"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -295,24 +331,30 @@
     "fields_1": [
       {
         "label": "State Your Designation",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "designation",
         "placeholder": "Enter Designation",
         "type": "text"
       },
       {
         "label": "Nature of Agreement",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "nature_of_agreement",
         "placeholder": "State nature of agreement",
         "type": "text"
       },
       {
         "label": "Specific Requirements",
+        "minLength": 10,
         "model": "specific_requirements",
         "placeholder": "State requirements for this agreement",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -334,30 +376,37 @@
     "fields_1": [
       {
         "label": "Job Title",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "job_title",
         "placeholder": "Enter Job Title",
         "type": "text"
       },
       {
         "label": "Job Description",
+        "minLength": 10,
         "model": "job_description",
         "placeholder": "Describe what the employee will be required to do in this role",
         "type": "textarea"
       },
       {
         "label": "Nature of Job",
+        "minLength": 10,
         "model": "nature_of_job",
         "placeholder": "State what this role requires",
         "type": "textarea"
       },
       {
         "label": "Industry",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "industry",
         "placeholder": "What industry is this role in?",
         "type": "text"
       },
       {
         "label": "Terms of Employment",
+        "minLength": 10,
         "model": "terms_of_employment",
         "placeholder": "Outline the terms of employment for this role",
         "type": "textarea"
@@ -379,6 +428,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "employer_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -391,6 +442,8 @@
       },
       {
         "label": "Office Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "employer_office_address",
         "placeholder": "Enter Office Address",
         "type": "text"
@@ -406,6 +459,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "employee_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -418,6 +473,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "employee_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -435,42 +492,53 @@
       [
         {
           "label": "Job Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "job_role",
           "placeholder": "Enter role",
           "type": "text"
         },
         {
           "label": "Responsibilities",
+          "minLength": 10,
           "model": "responsibilities",
           "placeholder": "State responsibilities of role",
           "type": "textarea"
         },
         {
           "label": "Compensation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "compensation",
           "placeholder": "Enter gross salary per month",
           "type": "text"
         },
         {
           "label": "Benefits Package",
+          "minLength": 10,
           "model": "benefits_package",
           "placeholder": "State benefits & enitilements of role",
           "type": "textarea"
         },
         {
           "label": "Duration of Employment",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_employment",
           "placeholder": "6 months",
           "type": "text"
         },
         {
           "label": "Leave Policy",
+          "minLength": 10,
           "model": "leave_policy",
           "placeholder": "State all terms for leave",
           "type": "textarea"
         },
         {
           "label": "Notice Period for Termination/Resignation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "notice_period",
           "placeholder": "Enter notice period",
           "type": "text"
@@ -494,6 +562,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "founder_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -506,6 +576,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "founder_i_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -525,6 +597,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "founder_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -537,6 +611,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "founder_ii_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -557,18 +633,23 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Responsibilities",
+          "minLength": 10,
           "model": "role_i_responsibilities",
           "placeholder": "Outline the responsibilities of this role ",
           "type": "textarea"
         },
         {
           "label": "Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_i_role",
           "placeholder": "Enter Role",
           "type": "text"
@@ -583,18 +664,23 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Responsibilities",
+          "minLength": 10,
           "model": "role_ii_responsibilities",
           "placeholder": "Outline the responsibilities of this role ",
           "type": "textarea"
         },
         {
           "label": "Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_ii_role",
           "placeholder": "Enter Role",
           "type": "text"
@@ -610,42 +696,50 @@
       [
         {
           "label": "Decision Making Authority",
+          "minLength": 10,
           "model": "decision_making_authority",
           "placeholder": "State how you make business decisions",
           "type": "textarea"
         },
         {
           "label": "Equity Ownership & Vesting",
+          "minLength": 10,
           "model": "equity_ownership_vesting",
           "placeholder": "State terms of equity & vesting terms of business",
           "type": "textarea"
         },
         {
           "label": "Lock-in Period",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "lock_in_period",
           "placeholder": "Enter investment lock-in period",
           "type": "text"
         },
         {
           "label": "Profit-Sharing Plan",
+          "minLength": 10,
           "model": "profit_sharing_plan",
           "placeholder": "Outline the profit sharing plan of business ",
           "type": "textarea"
         },
         {
           "label": "Intellectual Property Ownership & Assignment",
+          "minLength": 10,
           "model": "intellectual_property_ownership_and_assignment",
           "placeholder": "State terms of intellectual property ownership of business",
           "type": "textarea"
         },
         {
           "label": "Non-Compete Requirements",
+          "minLength": 10,
           "model": "non_compete_requirements",
           "placeholder": "State non-compete requirements of business",
           "type": "textarea"
         },
         {
           "label": "Exit Mechanism",
+          "minLength": 10,
           "model": "exit_mechanism",
           "placeholder": "Outline exit mechanism of business",
           "type": "textarea"
@@ -666,12 +760,16 @@
     "fields_1": [
       {
         "label": "Organisation Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "organisation_name",
         "placeholder": "Enter Organisation Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "registered_address",
         "placeholder": "Enter Registered Organisation Address",
         "type": "text"
@@ -680,16 +778,19 @@
         "label": "CAC Number",
         "model": "cac_number",
         "placeholder": "Enter CAC Number",
-        "type": "number"
+        "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -711,30 +812,39 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Enter Company Name",
         "type": "text"
       },
       {
         "label": "Alternate Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "alternate_company_name",
         "placeholder": "Enter Alternate Company Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "registered_address",
         "placeholder": "Enter Registered Company Address",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Scope of Business",
+        "minLength": 10,
         "model": "scope_of_business",
         "placeholder": "Enter Scope of Business",
         "type": "textarea"
@@ -744,6 +854,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -762,6 +874,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_i_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -774,6 +888,8 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_i_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
@@ -798,6 +914,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -816,6 +934,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -828,6 +948,8 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_ii_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
@@ -854,6 +976,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -872,6 +996,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_i_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -884,12 +1010,16 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_i_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
         },
         {
           "label": "Share Capital",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_i_share_capital",
           "placeholder": "Enter Share Capital",
           "type": "text"
@@ -902,6 +1032,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -920,6 +1052,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_ii_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -932,12 +1066,16 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_ii_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
         },
         {
           "label": "Share Capital",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_ii_share_capital",
           "placeholder": "Enter Share Capital",
           "type": "text"
@@ -952,6 +1090,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "secretary_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -970,6 +1110,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "secretary_residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -982,6 +1124,8 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "secretary_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
@@ -1005,12 +1149,16 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "sharecapital_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Shares Owned",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "sharecapital_i_shares_owned",
           "placeholder": "Enter Shares Owned",
           "type": "text"
@@ -1019,12 +1167,16 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "sharecapital_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Shares Owned",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "sharecapital_ii_shares_owned",
           "placeholder": "Enter Shares Owned",
           "type": "text"
@@ -1037,12 +1189,16 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "sharecapital_iii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Shares Owned",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "sharecapital_iii_shares_owned",
           "placeholder": "Enter Shares Owned",
           "type": "text"
@@ -1057,6 +1213,7 @@
       [
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -1075,6 +1232,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -1093,6 +1252,8 @@
       },
       {
         "label": "Designation",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_designation",
         "placeholder": "Enter Designation",
         "type": "text"
@@ -1102,6 +1263,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -1120,6 +1283,8 @@
         },
         {
           "label": "Designation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_designation",
           "placeholder": "Enter Designation",
           "type": "text"
@@ -1131,24 +1296,29 @@
       [
         {
           "label": "Description of Service Required",
+          "minLength": 10,
           "model": "description_of_service_required",
           "placeholder": "Define service required",
           "type": "textarea"
         },
         {
           "label": "Duration of Service",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_service",
           "placeholder": "Enter duration of service",
           "type": "text"
         },
         {
           "label": "Specific Obligations of Each Party",
+          "minLength": 10,
           "model": "specific_obligations_of_each_party",
           "placeholder": "State what each party is required to do",
           "type": "textarea"
         },
         {
           "label": "Payment Terms",
+          "minLength": 10,
           "model": "payment_terms",
           "placeholder": "Define terms of payment",
           "type": "textarea"
@@ -1170,18 +1340,22 @@
     "fields_1": [
       {
         "label": "Subject Matter",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "subject_matter",
         "placeholder": "Enter Subject",
         "type": "text"
       },
       {
         "label": "Specific Requirements",
+        "minLength": 10,
         "model": "specific_requirement",
         "placeholder": "Outline specifics of subject matter",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -1203,6 +1377,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -1224,6 +1400,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -1247,30 +1425,36 @@
       [
         {
           "label": "Terms of Prospective Deal",
+          "minLength": 10,
           "model": "terms_of_prospective_deal",
           "placeholder": "State terms of contract",
           "type": "textarea"
         },
         {
           "label": "Financing Obligations of Parties",
+          "minLength": 10,
           "model": "financing_obligations_of_parties",
           "placeholder": "Define financial obligations of each party",
           "type": "textarea"
         },
         {
           "label": "Duration of Deal",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_deal",
           "placeholder": "Enter duration of deal",
           "type": "text"
         },
         {
           "label": "Third Party Rights & Obligations (if any)",
+          "minLength": 10,
           "model": "third_party_rights_and_obligations",
           "placeholder": "State third party rights & obligations",
           "type": "textarea"
         },
         {
           "label": "Termination Process",
+          "minLength": 10,
           "model": "termination_process",
           "placeholder": "State terms for termination of contract",
           "type": "textarea"
@@ -1292,6 +1476,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "lender_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -1313,6 +1499,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "borrower_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -1336,6 +1524,7 @@
       [
         {
           "label": "Specific Conditions for Borrower to Fulfil",
+          "minLength": 10,
           "model": "specific_conditions_for_borrower_to_fulfil",
           "placeholder": "State conditions to be met by borrower",
           "type": "textarea"
@@ -1344,10 +1533,12 @@
           "label": "Value of Collateral",
           "model": "value_of_collateral",
           "placeholder": "Enter monetary value of collateral",
-          "type": "number"
+          "type": "text"
         },
         {
           "label": "Duration of Loan",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_loan",
           "placeholder": "Enter auration of loan",
           "type": "text"
@@ -1356,22 +1547,25 @@
           "label": "Interest Rate",
           "model": "interest_rate",
           "placeholder": "Enter interest rate",
-          "type": "number"
+          "type": "text"
         },
         {
           "label": "Repayment Structure",
+          "minLength": 10,
           "model": "repayment_structure",
           "placeholder": "Outline loan repayment structure",
           "type": "textarea"
         },
         {
           "label": "Disbursement of Loan",
+          "minLength": 10,
           "model": "disbursement_of_loan",
           "placeholder": "Define how loan will be disbursed",
           "type": "textarea"
         },
         {
           "label": "Default Terms",
+          "minLength": 10,
           "model": "default_terms",
           "placeholder": "State loan default terms",
           "type": "textarea"
@@ -1393,6 +1587,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -1414,6 +1610,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -1436,30 +1634,35 @@
       [
         {
           "label": "Relationship of Parties",
+          "minLength": 10,
           "model": "relationship_of_parties",
           "placeholder": "State relationship of parties",
           "type": "textarea"
         },
         {
           "label": "Definition of Competitor",
+          "minLength": 10,
           "model": "definition_of_competitor",
           "placeholder": "Define competitor for this agreement",
           "type": "textarea"
         },
         {
           "label": "Damages for Breach",
+          "minLength": 10,
           "model": "damages_for_breach",
           "placeholder": "State terms for breach of non-compete",
           "type": "textarea"
         },
         {
           "label": "Duration of Non-Compete",
+          "minLength": 10,
           "model": "duration_of_non_compete",
           "placeholder": "Enter duration of non-compete",
           "type": "textarea"
         },
         {
           "label": "Payment Terms (if applicable)",
+          "minLength": 10,
           "model": "payment_terms",
           "placeholder": "State terms of payment",
           "type": "textarea"
@@ -1481,6 +1684,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -1502,6 +1707,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -1525,30 +1732,36 @@
       [
         {
           "label": "Define Confidential Information",
+          "minLength": 10,
           "model": "confidential_information",
           "placeholder": "State all information within limits of confidentiality",
           "type": "textarea"
         },
         {
           "label": "Exclusions to Confidential Information",
+          "minLength": 10,
           "model": "exclusion_to_confidential_information",
           "placeholder": "State all information or terms that may not be subject to confidentiality",
           "type": "textarea"
         },
         {
           "label": "Period of Confidentiality",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "period_of_confidentiallity",
           "placeholder": "Enter period of confidentiality",
           "type": "text"
         },
         {
           "label": "Remedies for Breach of Confidentiality",
+          "minLength": 10,
           "model": "remedies_for_breach_of_confidentiality",
           "placeholder": "Define terms for breach of confidentiality",
           "type": "textarea"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -1570,6 +1783,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -1582,12 +1797,15 @@
       },
       {
         "label": "Subject",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "subject",
         "placeholder": "How may we help you?",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -1609,18 +1827,24 @@
     "fields_1": [
       {
         "label": "Partnership or Business Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "business_name",
         "placeholder": "Enter Business Name",
         "type": "text"
       },
       {
         "label": "Registered Business Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "registered_address",
         "placeholder": "Enter Registered Business Address",
         "type": "text"
       },
       {
         "label": "Object of Partnership or Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
@@ -1630,12 +1854,16 @@
       [
         {
           "label": "Full Name of Partner",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "partner_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "partner_i_role",
           "placeholder": "Enter Role",
           "type": "text"
@@ -1649,12 +1877,16 @@
       [
         {
           "label": "Full Name of Partner",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "partner_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "partner_ii_role",
           "placeholder": "Enter Role",
           "type": "text"
@@ -1669,18 +1901,21 @@
       [
         {
           "label": "Equity Ownership & Financial Contribution",
+          "minLength": 10,
           "model": "equity_onwership_financil_contribution",
           "placeholder": "State how ownership & financial contribution of business are shared",
           "type": "textarea"
         },
         {
           "label": "Profit & Loss Sharing Plan",
+          "minLength": 10,
           "model": "profilt_loss_sharing_plan",
           "placeholder": "Outline profit & loss sharing plan of business",
           "type": "textarea"
         },
         {
           "label": "Salary Expectations",
+          "minLength": 10,
           "model": "salary_expectations",
           "placeholder": "State salary expectations for all partners ",
           "type": "textarea"
@@ -1692,24 +1927,28 @@
       [
         {
           "label": "Termination Process",
+          "minLength": 10,
           "model": "termination_process",
           "placeholder": "State terms of partnership termination",
           "type": "textarea"
         },
         {
           "label": "Resignation Process",
+          "minLength": 10,
           "model": "resignation_process",
           "placeholder": "State terms of partner resignation ",
           "type": "textarea"
         },
         {
           "label": "Dispute Resolution Mechanism",
+          "minLength": 10,
           "model": "dispute_resolution_mechanism",
           "placeholder": "Outline dispute resolution mechanism of business",
           "type": "textarea"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -1730,6 +1969,8 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
@@ -1738,16 +1979,19 @@
         "label": "CAC Number",
         "model": "cac_number",
         "placeholder": "Enter CAC Number",
-        "type": "number"
+        "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -1769,30 +2013,38 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Enter Company Name",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
       },
       {
         "label": "Size of Company",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "size_of_company",
         "placeholder": "Enter Size of Company",
         "type": "text"
       },
       {
         "label": "Scope of Operations",
+        "minLength": 10,
         "model": "scope_of_operations",
         "placeholder": "Briefly state how your company is run",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -1809,12 +2061,16 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
@@ -1823,10 +2079,11 @@
         "label": "CAC Number",
         "model": "cac_number",
         "placeholder": "Enter CAC Number",
-        "type": "number"
+        "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -1843,24 +2100,32 @@
     "fields_1": [
       {
         "label": "Business Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "business_name",
         "placeholder": "Enter Business Name",
         "type": "text"
       },
       {
         "label": "Alternate Business Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "alternate_business_name",
         "placeholder": "Enter Alternate Business Name",
         "type": "text"
       },
       {
         "label": "Business Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "business_address",
         "placeholder": "Enter Business Address",
         "type": "text"
       },
       {
         "label": "Object of Businesss",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
@@ -1894,12 +2159,16 @@
     "fields_1": [
       {
         "label": "Full Name of Copyright Owner",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
@@ -1918,12 +2187,14 @@
       },
       {
         "label": "Brief Description of Material*",
+        "minLength": 10,
         "model": "brief_description_of_material",
         "placeholder": "Describe the material you would like to copyright",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Anything else we should know to help this process",
         "type": "textarea"
@@ -1945,12 +2216,16 @@
     "fields_1": [
       {
         "label": "Full Name of Trademark Owner",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "residential_address",
         "placeholder": "Enter Residential Address",
         "type": "text"
@@ -1969,6 +2244,7 @@
       },
       {
         "label": "Brief Description of Material*",
+        "minLength": 10,
         "model": "brief_description_of_material",
         "placeholder": "Describe the material you would like to trademark",
         "type": "textarea"
@@ -1981,6 +2257,7 @@
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Anything else we should know to help this process",
         "type": "textarea"
@@ -2002,18 +2279,23 @@
     "fields_1": [
       {
         "label": "Organisation Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "organisation_name",
         "placeholder": "Enter Organisation Name",
         "type": "text"
       },
       {
         "label": "Registered Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "registered_address",
         "placeholder": "Enter Registered Organisation Address",
         "type": "text"
       },
       {
         "label": "Aims & Objectives",
+        "minLength": 10,
         "model": "aims_objectives",
         "placeholder": "Enter Aims & Objectives",
         "type": "textarea"
@@ -2023,6 +2305,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "trustee_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2047,6 +2331,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "trustee_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2073,6 +2359,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "secretary_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2096,6 +2384,7 @@
       [
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -2116,12 +2405,16 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "employer_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Office Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "employer_office_address",
         "placeholder": "Enter Office Address",
         "type": "text"
@@ -2143,12 +2436,16 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "employee_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "employee_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -2172,18 +2469,22 @@
       [
         {
           "label": "Reason for Resignation",
+          "minLength": 10,
           "model": "reason_for_resignation",
           "placeholder": "State reason for resignation",
           "type": "textarea"
         },
         {
           "label": "Required Notice Period",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "required_notice_period",
           "placeholder": "State required notice period for resignation",
           "type": "text"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -2205,18 +2506,23 @@
     "fields_1": [
       {
         "label": "State Your Designation",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "designation",
         "placeholder": "Enter Designation",
         "type": "text"
       },
       {
         "label": "Nature of Agreement",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "nature_of_agreement",
         "placeholder": "State nature of agreement",
         "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -2244,6 +2550,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "seller_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -2265,6 +2573,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "customer_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2288,42 +2598,51 @@
       [
         {
           "label": "Description of Item",
+          "minLength": 10,
           "model": "description_of_item",
           "placeholder": "Describe the item for sale",
           "type": "textarea"
         },
         {
           "label": "Purchase Price",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "purchase_price",
           "placeholder": "Enter Price",
           "type": "text"
         },
         {
           "label": "Payment Details",
+          "minLength": 10,
           "model": "payment_details",
           "placeholder": "State method of payment ",
           "type": "textarea"
         },
         {
           "label": "Inspection Period",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "inspection_period",
           "placeholder": "Enter inspection period",
           "type": "text"
         },
         {
           "label": "Warranty & Guarantee",
+          "minLength": 10,
           "model": "warranty_guarantee",
           "placeholder": "State warranty & gaurantee of item",
           "type": "textarea"
         },
         {
           "label": "Delivery Details",
+          "minLength": 10,
           "model": "delivery_details",
           "placeholder": "State method & destination of item delivery",
           "type": "textarea"
         },
         {
           "label": "Contingency Information",
+          "minLength": 10,
           "model": "contingency_information",
           "placeholder": "State all additional information for this item & sale ",
           "type": "textarea"
@@ -2345,6 +2664,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -2363,6 +2684,8 @@
       },
       {
         "label": "Designation",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_designation",
         "placeholder": "Enter Designation",
         "type": "text"
@@ -2372,6 +2695,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2390,6 +2715,8 @@
         },
         {
           "label": "Designation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_designation",
           "placeholder": "Enter Designation",
           "type": "text"
@@ -2401,30 +2728,37 @@
       [
         {
           "label": "Description of Service Required",
+          "minLength": 10,
           "model": "description_of_service",
           "placeholder": "Define service required",
           "type": "textarea"
         },
         {
           "label": "Duration of Service",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "duration_of_service",
           "placeholder": "Enter duration of service",
           "type": "text"
         },
         {
           "label": "Specific Obligations of Each Party",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "specific_obligations_of_each_party",
           "placeholder": "State what each party is required to do",
           "type": "text"
         },
         {
           "label": "Compensation for Service",
+          "minLength": 10,
           "model": "compensation_for_service",
           "placeholder": "State third party rights & obligations",
           "type": "textarea"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -2446,6 +2780,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "party_i_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -2467,6 +2803,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "party_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2490,30 +2828,36 @@
       [
         {
           "label": "Monetary Value for Shares",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "monetary_value_for_shares",
           "placeholder": "Enter total price of shares",
           "type": "text"
         },
         {
           "label": "Consideration for Shares",
+          "minLength": 10,
           "model": "consideration_for_shares",
           "placeholder": "State terms of consideration for shares",
           "type": "textarea"
         },
         {
           "label": "Representation & Warranties",
+          "minLength": 10,
           "model": "representation_and_warranties",
           "placeholder": "State representation & warranties for share purchase",
           "type": "textarea"
         },
         {
           "label": "Indemnification Terms",
+          "minLength": 10,
           "model": "idemnification_terms",
           "placeholder": "State terms of indemnification ",
           "type": "textarea"
         },
         {
           "label": "Termination Process",
+          "minLength": 10,
           "model": "termination_process",
           "placeholder": "State terms for termination of contract",
           "type": "textarea"
@@ -2535,6 +2879,8 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "shareholder_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
@@ -2547,6 +2893,8 @@
       },
       {
         "label": "Shareholding",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "share_holding",
         "placeholder": "Enter Shares",
         "type": "text"
@@ -2562,6 +2910,8 @@
       [
         {
           "label": "Company Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "company_name",
           "placeholder": "Enter Company Name",
           "type": "text"
@@ -2570,7 +2920,7 @@
           "label": "CAC Number",
           "model": "cac_number",
           "placeholder": "Enter CAC Number",
-          "type": "number"
+          "type": "text"
         }
       ],
       []
@@ -2579,18 +2929,23 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Responsibilities",
+          "minLength": 10,
           "model": "role_i_responsibilities",
           "placeholder": "State responsibilities of role",
           "type": "textarea"
         },
         {
           "label": "Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_i_role",
           "placeholder": "Role",
           "type": "text"
@@ -2605,18 +2960,23 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Responsibilities",
+          "minLength": 10,
           "model": "role_ii_responsibilities",
           "placeholder": "State responsibilities of role",
           "type": "textarea"
         },
         {
           "label": "Role",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "role_ii_role",
           "placeholder": "Role",
           "type": "text"
@@ -2632,6 +2992,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_i_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2644,6 +3006,8 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_i_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
@@ -2663,6 +3027,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_ii_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2675,6 +3041,8 @@
         },
         {
           "label": "Occupation",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "director_ii_occupation",
           "placeholder": "Enter Occupation",
           "type": "text"
@@ -2695,24 +3063,28 @@
       [
         {
           "label": "Management & Control of Business",
+          "minLength": 10,
           "model": "management_control_of_business",
           "placeholder": "State how business is managed & controlled",
           "type": "textarea"
         },
         {
           "label": "Non-Compete Policy",
+          "minLength": 10,
           "model": "non_compete_policy",
           "placeholder": "State non-compete terms of business",
           "type": "textarea"
         },
         {
           "label": "Payment of Dividends",
+          "minLength": 10,
           "model": "terms_of_dividends_payment",
           "placeholder": "State terms of dividend payment",
           "type": "textarea"
         },
         {
           "label": "Dispute Resolution",
+          "minLength": 10,
           "model": "dispute_resolution_mechanism",
           "placeholder": "Outline dispute resolution mechanism of business",
           "type": "textarea"
@@ -2733,18 +3105,24 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Enter Company Name",
         "type": "text"
       },
       {
         "label": "Company Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_address",
         "placeholder": "Enter Registered Company Address",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "State object of business",
         "type": "text"
@@ -2754,6 +3132,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "shareholder_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -2766,6 +3146,8 @@
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "residential_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -2783,54 +3165,64 @@
       [
         {
           "label": "Purchase Price of Shares",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "totlat_price_of_shares",
           "placeholder": "Enter total price of shares",
           "type": "text"
         },
         {
           "label": "Payment Terms",
+          "minLength": 10,
           "model": "terms_of_payment",
           "placeholder": "State terms of payment",
           "type": "textarea"
         },
         {
           "label": "Obligation to Shareholders",
+          "minLength": 10,
           "model": "oblogation_to_shareholders",
           "placeholder": "State company obligations to shareholders",
           "type": "textarea"
         },
         {
           "label": "Shareholder Rights & Responsibilities",
+          "minLength": 10,
           "model": "rights_responsibilities_of_shareholders",
           "placeholder": "State rights & responsibilities of shareholders",
           "type": "textarea"
         },
         {
           "label": "Distribution of Dividends",
+          "minLength": 10,
           "model": "distribution_of_dividends",
           "placeholder": "State how dividends are distributed",
           "type": "textarea"
         },
         {
           "label": "Process of Transfer of Shares",
+          "minLength": 10,
           "model": "process_of_share_transfer",
           "placeholder": "Outline process of transferring shares",
           "type": "textarea"
         },
         {
           "label": "Capital & Financial Contributions of Shareholders",
+          "minLength": 10,
           "model": "capital_financial_contributions",
           "placeholder": "State capital & financial contributions of shareholder",
           "type": "textarea"
         },
         {
           "label": "Dissolution of Shareholding",
+          "minLength": 10,
           "model": "process_of_dissolution",
           "placeholder": "Outline process of shareholding dissolution",
           "type": "textarea"
         },
         {
           "label": "Dispute Resolution Mechanism",
+          "minLength": 10,
           "model": "dispute_resolution_mechanism",
           "placeholder": "Outline dispute resolution mechanism",
           "type": "textarea"
@@ -2852,12 +3244,16 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
       },
       {
         "label": "Object of Business",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "object_of_business",
         "placeholder": "Enter Object of Business",
         "type": "text"
@@ -2866,10 +3262,11 @@
         "label": "CAC Number",
         "model": "cac_number",
         "placeholder": "Enter CAC Number",
-        "type": "number"
+        "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -2891,6 +3288,8 @@
     "fields_1": [
       {
         "label": "Company Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "company_name",
         "placeholder": "Company Name",
         "type": "text"
@@ -2899,10 +3298,11 @@
         "label": "CAC Number",
         "model": "cac_number",
         "placeholder": "Enter CAC Number",
-        "type": "number"
+        "type": "text"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -2924,18 +3324,22 @@
     "fields_1": [
       {
         "label": "Nature of Agreement",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "nature_of_agreement",
         "placeholder": "State nature of agreement",
         "type": "text"
       },
       {
         "label": "Reason for Termination",
+        "minLength": 10,
         "model": "reason_for_termination",
         "placeholder": "State reason for termination",
         "type": "textarea"
       },
       {
         "label": "Additional Information",
+        "minLength": 10,
         "model": "additional_info",
         "placeholder": "Enter additional information",
         "type": "textarea"
@@ -2963,12 +3367,16 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "employer_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Office Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "employer_office_address",
         "placeholder": "Enter Office Address",
         "type": "text"
@@ -2990,12 +3398,16 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "employee_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
         },
         {
           "label": "Residential Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "employee_address",
           "placeholder": "Enter Residential Address",
           "type": "text"
@@ -3019,24 +3431,30 @@
       [
         {
           "label": "Reason for Termination",
+          "minLength": 10,
           "model": "reason_for_termination",
           "placeholder": "State reason for employment termination",
           "type": "textarea"
         },
         {
           "label": "Required Notice Period",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "required_notice_period",
           "placeholder": "State required notice period for termination",
           "type": "text"
         },
         {
           "label": "Due Compensation (if any)",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "due_compensation",
           "placeholder": "Enter amount due",
           "type": "text"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Enter additional information",
           "type": "textarea"
@@ -3058,36 +3476,42 @@
     "fields_1": [
       {
         "label": "Scope of Services Provided",
+        "minLength": 10,
         "model": "scope_of_services_provided",
         "placeholder": "Describe services provided",
         "type": "textarea"
       },
       {
         "label": "Acceptable Use of Service",
+        "minLength": 10,
         "model": "acceptable_use_of_service",
         "placeholder": "State all acceptable uses of provided services",
         "type": "textarea"
       },
       {
         "label": "Limitations of Liability",
+        "minLength": 10,
         "model": "limitations_of_liability",
         "placeholder": "State all limitations of liability for services provided",
         "type": "textarea"
       },
       {
         "label": "Prices & Payment",
+        "minLength": 10,
         "model": "prices_and_payment",
         "placeholder": "State services provided & respective prices along with terms of payment",
         "type": "textarea"
       },
       {
         "label": "Authorised Users",
+        "minLength": 10,
         "model": "authorized_users",
         "placeholder": "Name all authorised users",
         "type": "textarea"
       },
       {
         "label": "Privacy Policy Terms",
+        "minLength": 10,
         "model": "privacy_policy_terms",
         "placeholder": "State terms of privacy for service engagement ",
         "type": "textarea"
@@ -3109,12 +3533,16 @@
     "fields_1": [
       {
         "label": "Full Name",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "sender_full_name",
         "placeholder": "Enter Full Name",
         "type": "text"
       },
       {
         "label": "Residential/Office Address",
+        "maxLength": 300,
+        "minLength": 10,
         "model": "sender_address",
         "placeholder": "Enter Preferred Address",
         "type": "text"
@@ -3136,6 +3564,8 @@
       [
         {
           "label": "Full Name",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "recipient_full_name",
           "placeholder": "Enter Full Name",
           "type": "text"
@@ -3148,6 +3578,8 @@
         },
         {
           "label": "Residential/Office Address",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "recipient_address",
           "placeholder": "Enter Preferred Address",
           "type": "text"
@@ -3165,12 +3597,15 @@
       [
         {
           "label": "Subject of Letter",
+          "maxLength": 300,
+          "minLength": 10,
           "model": "subject_of_letter",
           "placeholder": "Enter letter heading",
           "type": "text"
         },
         {
           "label": "Additional Information",
+          "minLength": 10,
           "model": "additional_info",
           "placeholder": "Outline letter content",
           "type": "textarea"
