@@ -151,10 +151,9 @@ input[type='file'] {
 
 input[type='file'] + label{
 margin-left: 30px;
-margin-top: 5px;
+margin-top: 20px;
 position: absolute;
-top: 50%;
-transform: translateY(-50%);
+top: 0;
 }
 
 input[type='file']:focus {

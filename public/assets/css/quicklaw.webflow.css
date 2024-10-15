@@ -740,6 +740,7 @@ textarea {
   width: 47.5%;
   max-width: 47.5%;
   margin-bottom: 43px;
+  position: relative;
 }
 
 .c-form_field.cc-mb-0 {
