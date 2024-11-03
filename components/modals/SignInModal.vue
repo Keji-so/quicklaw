@@ -109,7 +109,6 @@ const modal = useModal()
 
 
 const formData = reactive({
-  // email: "",
   email_or_username: '',
   password: "",
 });
@@ -181,6 +180,10 @@ onBeforeRouteLeave((to, from, next) => {
   }
   next() 
 });
+
+onMounted(() => {
+  v$.value.$reset()
+})
 </script>
 
 <style scoped></style>

@@ -32,13 +32,14 @@
       </ClientOnly>
      
     </div>
-    <SignInModal />
+    <SignInModal v-if="modal.has('SignInModal')" />
     <ForgotPasswordModal />
     <ForgotPasswordSuccessModal />
   </nav>
 </template>
 
 <script setup lang="ts">
+const modal = useModal()
 const signInModal = useModal('SignInModal')
 
 const auth = useAuth()
@@ -49,14 +50,6 @@ const showSignIn =  () => {
 }
 
 
-
-// useWatch(
-//   () => signInModal.isVisible,
-//   (value) => {
-//     if (!value)
-//       useToast().show('Modal B has closed', { description: 'No events emitted' })
-//   }
-// )
 
 
 onMounted(() => {
