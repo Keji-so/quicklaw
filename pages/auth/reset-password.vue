@@ -36,7 +36,7 @@
         <div class="back-btn_icon"></div>
         <div>Back to Homepage</div>
       </nuxtLink>
-      <!-- <ResetPasswordSuccessModal/> -->
+      <ResetPasswordSuccessModal/> 
     </div>
 </template>
 
@@ -83,11 +83,14 @@ const submitForm = async () => {
       password: formData.password,
   };
 
-   const { data, error } = await usePost(resetPasswordState.value.url, payload);
+  const { data, error } = await usePost(resetPasswordState.value.url, payload);
 
-  if (data) {
-     showResetPasswordSuccessModal() 
+   
+
+  if (data.value) {
+    formData.password = ''; 
      v$.value.$reset()
+     showResetPasswordSuccessModal() 
   }
 
   if (error.value)
