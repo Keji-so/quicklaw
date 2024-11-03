@@ -286,6 +286,7 @@ const nextPage = () => {
     return
 
   handlePageSelected(selected.value + 1)
+  
 }
 const firstPageSelected = () => selected.value === 1
 const lastPageSelected = () => selected.value === compProps.pageCount || compProps.pageCount === 0

@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { smoothScroll } from './commons/lenis'
+import { useAllPosts } from './composables/states'
 
 onMounted(() => {
   setTimeout(() => {
@@ -37,6 +38,19 @@ useWatch(isOnline, (value) => {
   }
 })
 
+const fetchAllPosts = async () => {
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/posts?populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    useAllPosts().value = data.data
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
+
 const metaDef = useDefault('meta')
 
 useSeoMeta({ ...metaDef })
@@ -52,4 +66,8 @@ if (appENV === 'staging' || appENV === 'local') {
     ]
   })
 }
+
+onMounted(async () => {
+  fetchAllPosts()
+});
 </script>
