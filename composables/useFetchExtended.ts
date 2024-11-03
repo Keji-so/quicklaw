@@ -46,13 +46,12 @@ export const useFetchExtended = <T>(
       fetchState.value.error = null
 
       if (!response.ok) {
-        useToastExtended('error').show(response._data.error)
 
         fetchState.value.error = (response as Record<string, any>).message
         return Promise.reject(response)
       }
 
-      if (response.status === 401 && auth.value.isLoggedIn) {
+      if (response.status === 401 && !response.statusText.includes('Invalid Credentials')) {
         navigateTo('/auth/sign-out')
       }
 
@@ -86,7 +85,6 @@ export const useFetchExtended = <T>(
 
       if (import.meta.client) {
         if (navigator.onLine) {
-          useToastExtended('error').show(error?.message)
         }
         else {
           // toast.show('You are offline', useDefault('toastError'))
