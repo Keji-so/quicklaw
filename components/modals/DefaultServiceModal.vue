@@ -585,12 +585,13 @@ const payWithPaystack = async () => {
 
 
   if (order) {
-
+    console.log(order);
+    
     try {
       await payment.paystack(
         userEmail,
         selectedService.value.price,
-        order.payment_ref
+        order.data.payment_ref
         
       )
       modal.hide('DefaultServiceModal')
