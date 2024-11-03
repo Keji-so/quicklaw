@@ -8,24 +8,14 @@
         <div class="hero-illustration cc-illustration-three"><img src="@/public/assets/images/hero-illustration-green.svg" loading="lazy" alt="" class="c-img"></div>
        <div class="hero-slide_container swiper">
           <div class="c-hero cc-home swiper-wrapper">
-            <div class="hero-slide_wrapper swiper-slide">
-              <div class="hero-img"><img src="@/public/assets/images/home-hero-image.png" loading="lazy"  alt="" class="c-img cc-cover">
+             <div v-for="(heroDetail, index) in heroDetails" :key="heroDetail.id" class="hero-slide_wrapper swiper-slide">
+              <div class="hero-img"><img :src="heroDetail.image.url || '#' " loading="lazy"  alt="" class="c-img cc-cover">
                 <div class="hero-img_overlay"></div>
               </div>
               <div class="hero-text_block">
-                <h1 class="heading-h1">Welcome to Quicklaw - Your Trusted Online Legal Assistant</h1>
-                <div class="hero-subtext">We&#x27;re your innovative, cost-effective, and time-efficient legal partner, redefining the way legal services work for you in Nigeria.</div>
-                <a href="#" class="c-button cc-md">Get Started</a>
-              </div>
-            </div>
-            <div class="hero-slide_wrapper swiper-slide">
-              <div class="hero-img"><img src="@/public/assets/images/hero-slide-2.png" loading="lazy"  alt="" class="c-img cc-cover cc-right-align">
-                <div class="hero-img_overlay"></div>
-              </div>
-              <div class="hero-text_block">
-                <h1 class="heading-h1">Startup <br>Advisory</h1>
-                <div class="hero-subtext">Building a Startup? Quicklaw has you covered through your business lifecycle from ideation, formation, operations to winding up!</div>
-                <a href="#" class="c-button cc-md">See Startup Advisory</a>
+                <h1 class="heading-h1">{{heroDetail.heading}}</h1>
+                <div class="hero-subtext">{{heroDetail.description}}</div>
+                <NuxtLink :to="heroDetail.cta_link || '#'" class="c-button cc-md">{{heroDetail.cta_text}}</NuxtLink>
               </div>
             </div>
           </div>
@@ -41,7 +31,7 @@
                 {{ services.title }}
               </div>
             </div>
-            <nuxtLink class="c-button" :to="services.cta_link">{{ services.cta_text }}</nuxtLink>
+            <nuxtLink class="c-button" :to="services.cta_link || '#'">{{ services.cta_text }}</nuxtLink>
           </div>
           <div class="services-list">
             <div id="w-node-_045f05d8-f113-974c-fd7e-64a6bb978efe-a4ae8fab" class="services-list_item">
@@ -109,7 +99,7 @@
               {{ insightsSection.title }}
             </div>
           </div>
-          <nuxtLink class="c-button cc-md cc-secondary-green" :to="insightsSection.cta_link"> {{ insightsSection.cta_text }}</nuxtLink>
+          <nuxtLink class="c-button cc-md cc-secondary-green" :to="insightsSection.cta_link || '#'"> {{ insightsSection.cta_text }}</nuxtLink>
         </div>
         <div id="scrollbar-hide" class="insights-wrapper">
           <InsightsComponent :insights="insights" class="insights-block" />
@@ -126,11 +116,11 @@
 import type { Hero, ServicesSection, InsightsSection, Image, ArticleContent } from "~/types/content"
 import Swiper from 'swiper/bundle';
 const content = ref(null)
-const hero = ref<Hero[]>([])
+const heroDetails = ref<Hero[]>([])
 const services = ref<ServicesSection[]>([])
 const insightsSection = ref<InsightsSection[]>([])
 const insights = ref<ArticleContent[]>([])
-const hero_image = ref<Image>({})
+const hero_image = ref<Image[]>([])
 
 
 
@@ -144,10 +134,13 @@ const fetchPageData = async () => {
     }
     const data = await response.json()
     content.value = data.data
-    hero.value = content.value.hero
+    heroDetails.value = content.value.hero
+    //hero_image.value = heroDetails.value.map(hero => hero.image.url).filter(url => url !== undefined);  
+    //   hero_image.value = heroDetails.value.image.url
+     
     services.value = content.value.services_section
     insightsSection.value = content.value.insights_section
-    hero_image.value = hero.value.image.url
+    
 
   } catch (error) {
     console.error('Error fetching home page data:', error)

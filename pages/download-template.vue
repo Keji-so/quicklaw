@@ -9,7 +9,7 @@
             class="c-img cc-cover"
             loading="lazy"
             sizes="(max-width: 767px) 90vw, 88vw"
-            :src="hero_image"
+            :src="hero_image || '#'"
           />
           <div class="hero-img_overlay" />
         </div>

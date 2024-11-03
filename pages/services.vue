@@ -45,7 +45,7 @@ const content = ref(null)
 const hero = ref<Hero[]>([])
 const hero_image = ref<Image>({})
 
-
+const params = useRoute().query
 
 
 
@@ -102,9 +102,15 @@ const noResultCopy = computed(() => {
   }
 })
 
+const activeTab = params.tab
+
 onMounted(() => {
   fetchPageData()
   fetchAllCategories()
+
+  if (activeTab === 'startup-advisory') {
+      
+  }
 })
 
 const metaDef = useDefault('meta')

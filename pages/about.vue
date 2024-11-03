@@ -4,7 +4,7 @@
     <section class="c-section">
       <div class="c-hero">
         <div class="hero-img">
-          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" :src="hero_image">
+          <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw" :src="hero_image || '#'">
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block">
