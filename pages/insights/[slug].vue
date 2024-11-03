@@ -96,6 +96,7 @@
           containerClass="insights-pagination"
           prevLinkClass="insight-pagination_btn"
           nextLinkClass="insight-pagination_btn"
+          :surroundingInsights="surroundingInsights"
           :clickHandler="pageTriggered"
           :pageCount="pagination.last_page" />
 
@@ -120,6 +121,7 @@
 import type { ArticleContent, Image, InsightCategory, References} from "~/types/content"
 import { withHttps } from 'ufo'
 import type { Pagination } from '~/types'
+import { useAllPosts } from '~/composables/states'
 
 
 const insight = ref<ArticleContent[]>([])
@@ -128,6 +130,7 @@ const coverImage = ref<Image[]>([])
 const category = ref<InsightCategory[]>([])
 const references = ref<References[]>([])
 const currentArticle = ref<ArticleContent[]>([])
+const surroundingInsights = ref<Record<string,null>>({})
 
 const pagination = ref<Pagination>(useDefault('pagination'))
 
@@ -140,24 +143,20 @@ function generateUrl(text: string): string {
   return withHttps(text.toLowerCase().replace(/\s+/g, '-')) 
 }
 
-const fetchPost = async (params) => {
-    try {
-        const response = await fetch(`https://cms.quicklaw.ng/api/posts?filters[slug]=${params.slug}&populate=deep`)
+
+
+        const response = await fetch(`https://cms.quicklaw.ng/api/posts?filters[slug]=${route.params.slug}&populate=deep`)
         if (!response.ok) {
             throw new Error('Network response was not ok')
         }
         const data = await response.json()
-         insight.value = data.data[0]  
-         currentArticle.value = data.data[0].id       
+         insight.value = data.data[0]
+         currentArticle.value = data.data[0].id   
          coverImage.value = insight.value.cover_image.url             
          references.value = insight.value.references
          category.value = insight.value.category
          
         
-    } catch (error) {
-        console.error('Error fetching home page data:', error)
-    }
-}
 
 
 
@@ -176,8 +175,35 @@ const fetchAllPosts = async () => {
 }
 
 
+// get surrounding elements of element in an array
+const getSurroundingElement = (array, element) => {
+  const minIndex = 0
+  console.log(array);
+  
+  
+  const maxIndex = array.length - 1
+  const elementIndex = array.findIndex(post => post.slug === element.slug)
+  console.log('elementIndex', elementIndex);
+  
+  let previousElement = null
+  let nextElement = null
 
+  if (elementIndex !== -1) {
+    if (elementIndex > minIndex) {
+      previousElement = elementIndex - 1
+    }
 
+    if (elementIndex < maxIndex) {
+      nextElement = elementIndex + 1
+    }
+  }
+
+  return {
+    previousElement: array[previousElement],
+    nextElement: array[nextElement]
+  }
+
+}
 useWatch(params, () => {
   useRouter().push({
     path: `/insights/slug`,
@@ -188,8 +214,11 @@ useWatch(params, () => {
 
 onMounted(async () => {
   const slug = route.params.slug  
-  await fetchPost({ slug })
+  // await fetchPost({ slug })
   fetchAllPosts()
+  surroundingInsights.value = getSurroundingElement(useAllPosts().value, insight.value)
+  console.log(surroundingInsights.value)
+  console.log(useAllPosts().value);
 });
 
 const metaDef = useDefault('meta')
