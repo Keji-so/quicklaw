@@ -581,15 +581,17 @@ const handlePayment = async () => {
 const userEmail = auth.value.user.email
 
 const payWithPaystack = async () => {
-  const order = await createOrder()
+  const order = await createOrder() as Record<string,any>
 
 
   if (order) {
+
     try {
       await payment.paystack(
         userEmail,
         selectedService.value.price,
-        order.data.payment_ref
+        order.payment_ref
+        
       )
       modal.hide('DefaultServiceModal')
       modal.show('DefaultOrderSuccessModal')
