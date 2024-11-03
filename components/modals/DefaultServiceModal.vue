@@ -499,7 +499,7 @@ const getValidationRules = (field) => {
     case 'text':
       if (field.minLength) {
         rules.push(
-          helpers.withMessage('This field should have a minimum length of 10 characters', minLength(10))
+          helpers.withMessage('This field should have a minimum length of 3 characters', minLength(3))
         );
       }
       if (field.maxLength) {
@@ -521,7 +521,7 @@ const getValidationRules = (field) => {
       case 'textarea':
       if (field.minLength) {
         rules.push(
-          helpers.withMessage('This field should have a minimum length of 10 characters', minLength(10))
+          helpers.withMessage('This field should have a minimum length of 3 characters', minLength(3))
         );
       }
       break;
