@@ -6,7 +6,7 @@ export const useModal = (modal: string | null = null) => {
 
   const show = (specificModal: string) => {
     activeModals.value[specificModal] = { shownAt: Date.now() }
-    stopSmoothScroll()
+    disableBodyScroll()
   }
 
   const hide = (modalName: string | null = null) => {
@@ -15,7 +15,7 @@ export const useModal = (modal: string | null = null) => {
     } else if (modal) {
       delete activeModals.value[modal]
     }
-    startSmoothScroll()
+    enableBodyScroll()
   }
 
   const hideAll = (modals: string[] | null = null) => {
@@ -31,7 +31,7 @@ export const useModal = (modal: string | null = null) => {
 
   const isVisible = computed(() => {
     if (modal && modal in activeModals.value) {
-      stopSmoothScroll()
+      disableBodyScroll()
       return true
     }
     return false
