@@ -61,8 +61,10 @@ const appENV = useRuntimeConfig().public.appENV.toLowerCase()
 if (appENV === 'staging' || appENV === 'local') {
   useHeadSafe({
     meta: [
-      { name: 'robots', content: 'noindex, nofollow' },
-      { name: 'googlebot', content: 'noindex' }
+      {
+        name: 'Quicklaw: Home',
+        content: 'Quicklaw is dedicated to providing easy access to legal services, helping users attain all their legal needs through cheap and easily accessible legal services through a niche of qualified and experienced legal professionals.'
+      }
     ]
   })
 }

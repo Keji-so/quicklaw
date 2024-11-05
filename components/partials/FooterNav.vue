@@ -106,7 +106,7 @@
                   CONNECT WITH US
                 </div>
                 <div class="social-links">
-                  <a class="social-link w-inline-block" >
+                  <nuxtLink to="https://x.com/quicklaw_ng" target="_blank" class="social-link w-inline-block" >
                     <div class="w-embed">
                       <svg
                         fill="none"
@@ -119,8 +119,8 @@
                         />
                       </svg>
                     </div>
-                  </a>
-                  <a class="social-link w-inline-block" >
+                  </nuxtLink>
+                  <nuxtLink to="https://www.instagram.com/quicklaw.ng/" target="_blank" class="social-link w-inline-block" >
                     <div class="w-embed">
                       <svg
                         fill="none"
@@ -133,8 +133,8 @@
                         />
                       </svg>
                     </div>
-                  </a>
-                  <a class="social-link w-inline-block" >
+                  </nuxtLink>
+                  <nuxtLink to="https://www.facebook.com/QuickLaw" class="social-link w-inline-block" >
                     <div class="w-embed">
                       <svg
                         fill="none"
@@ -147,7 +147,7 @@
                         />
                       </svg>
                     </div>
-                  </a>
+                  </nuxtLink>
                 </div>
               </div>
             </div>

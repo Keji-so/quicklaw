@@ -5,18 +5,16 @@
       <div class="c-hero">
         <div class="hero-img">
           <img alt="" class="c-img cc-cover" loading="lazy" sizes="(max-width: 767px) 90vw, 88vw"
-                                    :src="hero_image || '#'"
-
-            >
+            :src="hero_image || '#'">
           <div class="hero-img_overlay" />
         </div>
         <div class="hero-text_block cc-services">
           <div class="page-title">
-                                             {{ hero.heading }}
+            {{ hero.heading }}
 
           </div>
           <h1 class="heading-h2">
-                                                          {{ hero.description}}
+            {{ hero.description }}
 
           </h1>
         </div>
@@ -36,7 +34,7 @@
         <div class="contact-container">
           <div class="contact-header">
             <h2 class="heading-h3">
-                                                           {{ form_content.title }}
+              {{ form_content.title }}
             </h2>
           </div>
           <div class="form-block w-form">
@@ -129,7 +127,7 @@ import type { Hero, Image, Form } from "~/types/content"
 const contactSubmitState = useFetchState('/contact-us')
 const nameRegex = helpers.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*\s*$/)
 
-const content = ref(null);
+const content = ref(null)
 const hero = ref<Hero[]>([])
 const hero_image = ref<Image>({})
 const form_content = ref<Form[]>([])
@@ -137,24 +135,24 @@ const form_content = ref<Form[]>([])
 
 
 const fetchPageData = async () => {
-    try {
-        const response = await fetch('https://cms.quicklaw.ng/api/contact?populate=deep')
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        content.value = data.data; 
-        hero.value = content.value.hero
-         hero_image.value = hero.value.image.url
-        form_content.value = content.value.form
-         
-        
-        
-        
-    } catch (error) {
-        console.error('Error fetching home page data:', error);
+  try {
+    const response = await fetch('https://cms.quicklaw.ng/api/contact?populate=deep')
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
     }
-};
+    const data = await response.json()
+    content.value = data.data
+    hero.value = content.value.hero
+    hero_image.value = hero.value.image.url
+    form_content.value = content.value.form
+
+
+
+
+  } catch (error) {
+    console.error('Error fetching home page data:', error)
+  }
+}
 
 
 
@@ -235,7 +233,9 @@ onMounted(() => {
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,
-  title: `${metaDef.title} | Contact`,
+  title: 'Quicklaw | Contact Us',
+    ogTitle: 'Quicklaw | Contact Us',
+    description: 'The best legal support service starts here. Leave a message and receive fast responses to get legal aid.'
 })
 </script>
 

@@ -419,7 +419,9 @@ onMounted(() => {
 const metaDef = useDefault("meta");
 useSeoMeta({
   ...metaDef,
-  title: `${metaDef.title} | Download a Template`,
+  title: 'Quicklaw | Buy An Agreement',
+    ogTitle: 'Quicklaw | Buy An Agreement',
+    description: 'Download a legally vetted template agreement for a host of services. Agreements have been drafted to enable you to insert key information with ease.'
 });
 </script>
 

@@ -18,8 +18,8 @@ const defaults = {
   meta: {
     title: 'Quicklaw',
     ogTitle: 'Quicklaw',
-    description: '',
-    ogDescription: '',
+    description: 'Quicklaw is dedicated to providing easy access to legal services, helping users attain all their legal needs through cheap and easily accessible legal services through a niche of qualified and experienced legal professionals.',
+    ogDescription: 'Quicklaw is dedicated to providing easy access to legal services, helping users attain all their legal needs through cheap and easily accessible legal services through a niche of qualified and experienced legal professionals.',
     ogImage: '',
     twitterCard: 'summary_large_image'
   } as Parameters<typeof useSeoMeta>[0],

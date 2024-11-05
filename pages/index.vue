@@ -185,6 +185,8 @@ onMounted(() => {
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,
-  title: `${metaDef.title} - Home`,
+    title: 'Quicklaw | Home',
+    ogTitle: 'Quicklaw | Home',
+    description: 'Quicklaw is dedicated to providing easy access to legal services, helping users attain all their legal needs through cheap and easily accessible legal services through a niche of qualified and experienced legal professionals.',
 })
 </script>

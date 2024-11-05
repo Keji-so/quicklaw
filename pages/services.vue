@@ -128,7 +128,9 @@ onMounted(async () => {
 const metaDef = useDefault('meta')
 useSeoMeta({
   ...metaDef,
-  title: `${metaDef.title} | Services`,
+  title: 'Quicklaw | Services',
+    ogTitle: 'Quicklaw | Services',
+    description: 'Access instant legal services which includes registering a business, creating contracts/agreements, Startup Advisory and protecting your ideas.'
 })
 </script>
 
