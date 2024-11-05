@@ -89,7 +89,7 @@
       </div>
    
 
-          <Paginate
+          <!-- <Paginate
           v-model="params.page"
           prevText="Previous Insight"
           nextText="Next Insight"
@@ -98,7 +98,7 @@
           nextLinkClass="insight-pagination_btn"
           :surroundingInsights="surroundingInsights"
           :clickHandler="pageTriggered"
-          :pageCount="pagination.last_page" />
+          :pageCount="pagination.last_page" /> -->
 
       <div class="all-insights_container">
         <div class="section-header_flex">
