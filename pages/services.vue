@@ -104,14 +104,26 @@ const noResultCopy = computed(() => {
 
 const activeTab = params.tab
 
-onMounted(() => {
-  fetchPageData()
+const scrollToSection = (className: string) => {
+   const element = document.querySelector(className)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+
+onMounted(async () => {
+ fetchPageData()
   fetchAllCategories()
 
-  if (activeTab === 'startup-advisory') {
-      
+  if (activeTab === 'startup-adivsory') {
+    await nextTick();
+   setTimeout(() => {
+    scrollToSection('.services-wrapper'); 
+  }, 100); 
   }
-})
+});
+
 
 const metaDef = useDefault('meta')
 useSeoMeta({

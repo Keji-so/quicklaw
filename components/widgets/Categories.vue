@@ -54,6 +54,9 @@ const props = defineProps<{
   }>
 }>()
 
+const params = useRoute().query
+
+
 const isServiceActive = ref<boolean[]>(Array(props.categories.length).fill(false))
 const selectedService = ref<Services | null>(null)
 
@@ -89,6 +92,20 @@ const selectService = (service: Services) => {
 const handleModalClosed = (service: Services | null) => {
   selectedService.value = service
 }
+
+
+const activeTab = params.tab
+
+onMounted(async () => {
+
+  if (activeTab === 'startup-adivsory') {
+    await nextTick();
+    setTimeout(() => {
+     selectService({ name: 'setDefault' })
+  }, 200); 
+  }
+});
+
 </script>
 
 <style scoped>
