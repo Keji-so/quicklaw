@@ -201,6 +201,14 @@ input[type="file"] {
   display: inline-flex;
 } */
 
+.hero-slide-wrapper {
+  z-index: 1;
+}
+
+.swiper-slide-active {
+  z-index: 2;
+}
+
 .upload-text {
   margin-top: 20px;
   margin-bottom: 10px;
