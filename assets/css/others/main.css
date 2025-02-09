@@ -317,6 +317,11 @@ padding-bottom: 0;
 }
 
 @media screen and (max-width: 568px) {
+
+.order-details {
+ gap: 30px; 
+  }
+
 .insights-block.cc-featured .insights-block_img{
 height: 350px;
 }

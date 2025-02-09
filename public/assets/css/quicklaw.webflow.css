@@ -1458,7 +1458,8 @@ textarea {
   flex-flow: column;
   height: 100%;
   display: flex;
-  /* overflow: auto; */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .download-reciept {

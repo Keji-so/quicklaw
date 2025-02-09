@@ -153,7 +153,7 @@
                   class="c-button cc-secondary-green w-button"
                   data-wait=""
                   type="submit"
-                  value="Checkout"
+                  value="Pay"
                   @click.prevent="handlePayment"
                 />
               </div>
